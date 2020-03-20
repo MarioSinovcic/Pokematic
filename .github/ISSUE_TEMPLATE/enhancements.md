@@ -1,5 +1,5 @@
 ---
-name: Enchanments
+name: Enhancements
 about: Proposed changes to better the code-base
 title: "[CHANGE]"
 labels: Enhancement
