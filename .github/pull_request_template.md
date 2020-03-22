@@ -1,5 +1,9 @@
 ### Resolves: #{issue_number}
 
+#### Implementation details:
+
+e.g., New endpoint created for checking the status of the API
+
 
 #### The pull request is complete according to the following criteria:
 
