@@ -11,8 +11,6 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        {/* Redux example here  */}
-        <Counter />
         <a
           className="App-link"
           href="https://reactjs.org"
