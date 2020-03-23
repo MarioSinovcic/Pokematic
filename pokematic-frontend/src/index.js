@@ -4,12 +4,22 @@ import { BrowserRouter as Router } from "react-router-dom";
 import Routes from "./router/Routes";
 import * as serviceWorker from "./serviceWorker";
 import './index.css';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import rootReducers from './reducers';
+
+// creating a store for the redux structure
+const store = createStore(
+    rootReducers,
+);
 
 const RouteWrapper = () => {
   return (
+    <Provider store={store}>
       <Router>
           <Routes />
       </Router>
+     </Provider>
   );
 };
 

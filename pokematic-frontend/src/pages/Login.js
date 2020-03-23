@@ -1,4 +1,5 @@
 import React from 'react';
+import Counter from '../Counter';
 
 function Login() {
   return (
@@ -7,6 +8,8 @@ function Login() {
         <p>
           Login
         </p>
+        {/* NOTE: REMOVE THIS AND ITS CLASS WHEN READY */}
+        <Counter />
       </header>
     </div>
   );
