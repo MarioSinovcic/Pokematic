@@ -15,11 +15,11 @@ const store = createStore(
 
 const RouteWrapper = () => {
   return (
-    // <Provider store={store}>
+    <Provider store={store}>
       <Router>
           <Routes />
       </Router>
-    // </Provider>
+     </Provider>
   );
 };
 
