@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 function Board() {
   return (
-    <div className="App">
+    <div className="Board">
       <header className="App-header">
         <p>
           Board
