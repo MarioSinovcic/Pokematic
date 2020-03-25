@@ -8,7 +8,7 @@ namespace pokematic_backend.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class UserController
+    public class UserController : ControllerBase
     {
         private readonly UserService _userService;
 
@@ -16,7 +16,7 @@ namespace pokematic_backend.Controllers
         {
             _userService = userService;
         }
-
+        
         /*
          *  Get method Return all users
          */

@@ -22,7 +22,7 @@ namespace pokematic_backend.Services
         public string GetAllUsers()
         {
             return _users.ToJson();
-        } 
+        }
         
         public Task<User> Get(ObjectId userId)
         {
