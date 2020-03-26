@@ -10,16 +10,13 @@ function PokedexList() {
     fakePokemon.push(i)
   }
 
-  var pokemonToRender = fakePokemon.map(item => <div class="grid-item"><PokedexItem/></div>)
+  var pokemonToRender = fakePokemon.map(item => <div class="grid-item"><PokedexItem pokemonNumber={item}/></div>)
 
   return (
     <div className="PokedexList">
-      <div className="pokeball-background-black"></div>
-      <div className="background-enabler">
         <div class="grid-container">
           {pokemonToRender}
         </div>
-      </div>
     </div>
   );
 }

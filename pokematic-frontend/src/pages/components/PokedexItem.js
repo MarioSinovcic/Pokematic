@@ -1,14 +1,14 @@
 import React from 'react';
 import './PokedexItem.css'
 
-function PokedexItem() {
+const PokedexItem = props => {
   return (
     <div className="PokedexItem">
       <div className="pokeball-background"></div>
       {/* <img src={require('../../images/background_pokeball.png')} alt="pokeball" /> */}
       <div className="background-enabler">
         <div className="pokemon-number">
-            #007
+            #{props.pokemonNumber}
           </div>
           <div className="pokemon-name">
             Wartortle
