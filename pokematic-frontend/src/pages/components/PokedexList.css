@@ -2,24 +2,24 @@
    margin-top: 100px !important;
    align-content: center;
    margin: 0 auto;
+   width: 100%;
 }
 
 
 .grid-container {
-   margin: 0;
-   padding: 1em;
-   display: grid;
-   grid-template-columns: repeat(4, 1fr);
-   grid-template-rows: repeat(auto-fill, 120px);
-   grid-row-gap: .5em;
-   grid-column-gap: 1em;
+   width: 90%;
+   margin: auto;
+   padding-left: 20px;
+   display: flex;
+   flex-flow: wrap;
+   align-items: center;
 }
 
  .grid-item{
     height: initial !important;
     background-color: lightblue;
-    padding: 5px 5px;
-    margin: 34px 55px;
+    padding: 5px 5px !important;;
+    margin: 34px 55px !important;;
     border-radius: 20px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
  }

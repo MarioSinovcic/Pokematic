@@ -1,4 +1,8 @@
-.PokedexList{
+.Pokedex{
+   height: 3000px;
    background-color: whitesmoke;
+   /* background-image: url("../images/background_pokeball.png");
+   background-position: center;
+   background-repeat: no-repeat; */
 }
 

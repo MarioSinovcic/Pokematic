@@ -1,18 +1,20 @@
 import React from 'react';
 import PokedexList from './components/PokedexList'
 import Header from '../shared/Header'
+import './Pokedex.css'
 
 function Pokedex() {
   return (
-    <div className="pokedex-page">
+    <div className="Pokedex">
+      
       <div>
         <Header/>
       </div>
-      <div>
+      <div>          
         <PokedexList/>
       </div>
       <div>
-        Team Status
+        {/* Team Status */}
       </div>
     </div>
   );

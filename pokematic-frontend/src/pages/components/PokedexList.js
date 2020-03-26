@@ -11,8 +11,13 @@ function PokedexList() {
         <div class="grid-item"><PokedexItem/></div>
         <div class="grid-item"><PokedexItem/></div>
         <div class="grid-item"><PokedexItem/></div>
-        
-        
+        <div class="grid-item"><PokedexItem/></div>
+        <div class="grid-item"><PokedexItem/></div>
+        <div class="grid-item"><PokedexItem/></div>
+        <div class="grid-item"><PokedexItem/></div>
+        <div class="grid-item"><PokedexItem/></div>
+        <div class="grid-item"><PokedexItem/></div>
+        <div class="grid-item"><PokedexItem/></div>
       </div>
     </div>
   );
