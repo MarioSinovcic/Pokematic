@@ -1,0 +1,55 @@
+@font-face {
+    font-family: 'pkmn_rbygscregular';
+    src: url('/pkmn_rbygsc-webfont.woff2') format('woff2'),
+         url('/pkmn_rbygsc-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+.TeamTabs {
+    display: flex;
+    flex-direction: column !important;
+    align-items: center;
+    padding-bottom: 10px !important;
+}
+
+.TeamName {
+    align-self: flex-start !important;
+    color: white;
+    font-family: 'pkmn_rbygscregular' !important;
+}
+
+.colorPrimary {
+   background-color: 'green';
+}
+
+.MuiLinearProgress-colorPrimary {
+    background-color: white !important;
+}
+
+.MuiLinearProgress-barColorPrimary {
+    background-color: #39D13F !important;
+}
+
+.SideBar {
+    width: 240;
+    flex-shrink: 0;
+    background-color: black !important;
+}
+
+.MuiPaper-root {
+    background-color: #3D3D3D !important;
+}
+
+.GoalProgressBar {
+    height: 20px !important;
+}
+
+.GoalDivider {
+    margin-top: 10px !important;
+
+    width: 75% !important;
+    background-color: white !important;
+}
