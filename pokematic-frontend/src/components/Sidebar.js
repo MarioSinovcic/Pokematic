@@ -72,6 +72,7 @@ export default function Sidebar() {
         </List>
         <Divider className="SideBarDivider"/>
         <List>
+          {/* Dynamically fetch goals here */}
           {['Planning', 'Frontend Team', 'Testers', 'Design Squad'].map((text, index) => (
             <div className="TeamTabs">
             <ListItem button key={text} className="TeamTabs">

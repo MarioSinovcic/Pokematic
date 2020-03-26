@@ -48,6 +48,7 @@
     width: 240;
     flex-shrink: 0;
     background-color: black !important;
+    box-shadow: #3D3D3D;
 }
 
 .MuiPaper-root {

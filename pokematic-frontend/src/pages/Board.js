@@ -1,15 +1,15 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import Sidebar from '../components/Sidebar';
+
 
 function Board() {
   return (
     <div className="Board">
       <header className="App-header">
-        <p>
-          Board
-        </p>
+      <Sidebar />
         {/* Example: This is how we should use Navlinks to swap between routes in nested components */}
-        <NavLink to="/login" >Login One</NavLink>
+        <NavLink to="/login" >Log Out</NavLink>
       </header>
     </div>
   );
