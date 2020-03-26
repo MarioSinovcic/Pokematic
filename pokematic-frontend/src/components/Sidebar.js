@@ -62,15 +62,15 @@ export default function Sidebar() {
         <div className={classes.toolbar} />
         <List>
          
-            <ListItem button key={"All Tasks"}>
-              <ListItemText primary={"All Tasks"} />
+            <ListItem button key={"All Tasks"} className="TeamTabs TaskButton">
+            <Typography className="TaskFilter AllTasks">ALL TASKS</Typography>
             </ListItem>
 
-             <ListItem button key={"My Tasks"}>
-              <ListItemText primary={"My Tasks"} />
+             <ListItem button key={"My Tasks"} className="TeamTabs">
+             <Typography className="TaskFilter MyTasks">MY TASKS</Typography>
             </ListItem>
         </List>
-        <Divider />
+        <Divider className="SideBarDivider"/>
         <List>
           {['Planning', 'Frontend Team', 'Testers', 'Design Squad'].map((text, index) => (
             <div className="TeamTabs">
