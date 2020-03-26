@@ -1,0 +1,11 @@
+
+.BoardPage {
+    display: flex;
+    align-content: center;
+    flex-direction: row;
+    background-color: blueviolet;
+}
+
+.TeamCard {
+    z-index: -1;
+}

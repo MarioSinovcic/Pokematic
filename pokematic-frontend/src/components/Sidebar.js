@@ -14,7 +14,7 @@ import ProgressBar from './ProgressBar';
 import styles from './styledComponents.css'
 import { textAlign } from '@material-ui/system';
 
-const drawerWidth = 240;
+const drawerWidth = 250;
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -26,7 +26,6 @@ const useStyles = makeStyles(theme => ({
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
-    backgroundColor: 'pink'
   },
   drawerPaper: {
     width: drawerWidth,
@@ -44,14 +43,14 @@ export default function Sidebar() {
 
   return (
     <div className={classes.root}>
-      <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar}>
+      {/* <CssBaseline /> */}
+      {/* <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" noWrap>
             Pokematic
           </Typography>
         </Toolbar>
-      </AppBar>
+      </AppBar> */}
       <Drawer
         className="SideBar"
         variant="permanent"

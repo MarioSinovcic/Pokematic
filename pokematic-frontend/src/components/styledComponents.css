@@ -45,10 +45,11 @@
 }
 
 .SideBar {
-    width: 240;
     flex-shrink: 0;
     background-color: black !important;
     box-shadow: #3D3D3D;
+    position: absolute;
+    z-index: -1;
 }
 
 .MuiPaper-root {
@@ -95,3 +96,52 @@
     margin-top: -50px;
     width: 100% !important;
 }
+
+.Shape {
+    z-index: 50;
+}
+
+.BaseShape {
+    width: 200px;
+    height: 130px;
+    background: #C4C4C4;
+    position:absolute;
+    bottom:0;
+    left:0;
+    box-shadow: 10px 10px 5px grey;
+
+}
+
+.ShapeContent {
+    align-items: center;
+    justify-items: center;
+    display: flex;
+}
+
+.TeamProgress {
+    width: 50%;
+    left: 50px;
+    position: relative;
+}
+
+.BottomSupport {
+    width: 61px;
+    height: 69px;
+    background: #C4C4C4;
+    position:absolute;
+    bottom:0;
+    left:200px;
+    box-shadow: 5px 5px 5px grey;
+
+}
+
+.TriangleCut {
+    width: 0px;
+    height: 0px;
+    position:absolute;
+    bottom: 69px;
+    left: 200px;
+    border-right: 61px solid transparent;
+    border-bottom: 61px solid #C4C4C4;
+}
+
