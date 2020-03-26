@@ -1,0 +1,17 @@
+.PokedexItem{
+    width: 272px !important;
+    height: 222px !important;
+}
+
+.pokemon-name{
+    padding-left: 22px;
+    padding-top: 20px;
+
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 25px;
+    line-height: 34px;
+
+    color: #FFFFFF;
+}
