@@ -6,24 +6,6 @@
    height: 100%;
 }
 
-.pokeball-background-black{
-   position: absolute;
-   margin-top: 300px;
-   width: 100%;
-   height: 100%;
-   opacity: 0.035;
-
-   background-image: url('../../images/background_pokeball_black.png');
-   background-position: top;
-   
-   background-repeat: repeat-y;
-}
-
-.background-enabler{
-   z-index: 2;
-   position: relative;
-}
-
 .grid-container {
    width: 90%;
    height: 100%;

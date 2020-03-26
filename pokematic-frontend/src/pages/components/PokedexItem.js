@@ -14,7 +14,7 @@ const PokedexItem = props => {
             Wartortle
           </div>
           <div className="pokemon-image-wrapper">
-            <img className="pokemon-image" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/8.png" alt="Wartortle"></img>
+            <img className="pokemon-image" src={props.pokemonImage} alt="pokemon-picture"></img>
           </div>
           <div className="pokemon-type">
             WATER

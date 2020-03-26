@@ -6,11 +6,14 @@ function PokedexList() {
 
   // This a temporary solution for rendering all of the pokemon cards
   var fakePokemon = [];
-  for (var i = 0; i < 150; i++) {
+  for (var i = 1; i < 152; i++) {
     fakePokemon.push(i)
   }
 
-  var pokemonToRender = fakePokemon.map(item => <div class="grid-item"><PokedexItem pokemonNumber={item}/></div>)
+  var pokemonToRender = fakePokemon.map(item => 
+    <div class="grid-item">
+      <PokedexItem pokemonNumber={item} pokemonImage="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/9.png"/>
+    </div>)
 
   return (
     <div className="PokedexList">
