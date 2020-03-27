@@ -1,5 +1,5 @@
 import React from 'react';
-import PokedexList from './components/PokedexList'
+import PokedexList from './pokedex-components/PokedexList'
 import Header from '../shared/Header'
 import './Pokedex.css'
 
