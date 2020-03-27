@@ -19,7 +19,7 @@ const RouteWrapper = () => {
       <Router>
           <Routes />
       </Router>
-     </Provider>
+    </Provider>
   );
 };
 

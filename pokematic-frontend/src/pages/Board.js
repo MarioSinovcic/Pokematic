@@ -16,6 +16,7 @@ function Board() {
         </div>
         <div className="TasksContent">
           <div className="TodoStatus">
+          {/* Dynamically generate status cards here */}
           <StatusCard id="Todo"/>
           <StatusCard id="InProgress"/>
           <StatusCard id="InReview"/>

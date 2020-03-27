@@ -287,3 +287,10 @@
     border-right: 64px solid transparent;
     border-bottom: 61px solid #E7E7E7;
 }
+
+.StatusCardTitle {
+    margin: 56px 0 0 37px !important;
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-size: 20px !important;
+    font-weight: 600 !important;
+}

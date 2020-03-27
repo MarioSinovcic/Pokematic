@@ -43,8 +43,8 @@ export default function Sidebar() {
 
   return (
     <div className={classes.root}>
-      {/* <CssBaseline /> */}
-      {/* <AppBar position="fixed" className={classes.appBar}>
+      {/* <CssBaseline />
+      <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" noWrap>
             Pokematic
