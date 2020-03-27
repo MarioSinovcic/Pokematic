@@ -2,10 +2,31 @@
 .BoardPage {
     align-content: center;
     flex-direction: row;
-    background-color: blueviolet;
+    display: flex;
     height: 100%;
+    width: 100vw;
 }
 
 .TeamCard {
     z-index: -1;
+}
+
+.Menu {
+    display: inline-block;
+}
+
+.TasksContent {
+    position: absolute;
+    left: 250px;
+}
+
+
+.TodoStatus {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    justify-items: center;
+    align-content: center;
+    margin-top: 50px;
+    margin-left: 15px;
 }

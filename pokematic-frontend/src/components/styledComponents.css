@@ -246,3 +246,44 @@
     max-width: 100%;
     max-height: 100%;
 }
+
+.StatusCardShape {
+    display: flex;
+    flex-direction: row;
+    width: 300px;
+    height: 750px;
+    padding: 25px;
+}
+
+.StatusEdge {
+    display: flex;
+    flex-direction: column;
+}
+
+.StatusBaseShape {
+    width: 300px;
+    height: 750px;
+    background: #E7E7E7;
+    /* box-shadow: 5px 5px 5px grey; */
+    /* position: absolute; */
+}
+
+.StatusBottom {
+    width: 64px;
+    height: 750px;
+    background:#E7E7E7;
+    /* position: relative; */
+    /* top:10px;
+    right:300px; */
+    /* box-shadow: 5px 5px 5px grey; */
+
+}
+
+.StatusCut {
+    height: 0px;
+    /* position: relative; */
+    /* bottom: 69px;
+    right: 300px; */
+    border-right: 64px solid transparent;
+    border-bottom: 61px solid #E7E7E7;
+}
