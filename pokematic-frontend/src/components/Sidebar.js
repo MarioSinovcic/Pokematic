@@ -75,7 +75,7 @@ export default function Sidebar() {
           {['Planning', 'Frontend Team', 'Testers', 'Design Squad'].map((text, index) => (
             <div className="TeamTabs">
             <ListItem button key={text} className="TeamTabs">
-              <Typography className="TeamName">{text}</Typography>
+              <Typography className="TaskName">{text}</Typography>
               <ProgressBar />
             </ListItem>
             <Divider className="GoalDivider" /> 

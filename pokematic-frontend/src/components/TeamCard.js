@@ -1,16 +1,17 @@
 import React from 'react';
-import { shape } from "prop-types";
 import ProgressBar from './ProgressBar';
+import TeamCardShape from './TeamCardShape';
+import styles from './styledComponents.css';
 
 function TeamCard() {
     return (
-        <div className="Shape">
-            <div className="BaseShape ShapeContent">
-                <ProgressBar className="TeamProgress"/>
+        <div>
+            Hello
+            <TeamCardShape className="TeamCardPosition">
+                <div className="TeamLevelBar"><ProgressBar className="TeamLevelBar"/></div>
             
-            </div>
-            <div className="BottomSupport"></div>
-            <div className="TriangleCut"></div>
+            </TeamCardShape>
+
         </div>
     )
 }
