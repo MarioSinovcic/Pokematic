@@ -253,6 +253,7 @@
     width: 300px;
     height: 750px;
     padding: 25px;
+    
 }
 
 .StatusEdge {
@@ -293,4 +294,43 @@
     font-family: 'Roboto Condensed', sans-serif !important;
     font-size: 20px !important;
     font-weight: 600 !important;
+    color: #3D3D3D !important;
+}
+
+.Tasks {
+    position: absolute;
+    margin-left: 5px;
+    padding: 20px 12px 20px 20px;
+    overflow-y: auto;
+    -ms-scrollbar-base-color: #39D13F;
+    height: 610px !important;
+
+}
+
+.TaskCard {
+    width: 250px;
+    height: 155px;
+    background-color: white;
+    border-radius: 9px;
+    margin-bottom: 20px;
+
+
+}
+
+#scrollbar::-webkit-scrollbar-track
+{
+	border-radius: 5px;
+	background-color: transparent;
+}
+
+#scrollbar::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: transparent;
+}
+
+#scrollbar::-webkit-scrollbar-thumb
+{
+	/* border-radius: 5px; */
+	background-color: #C4C4C4;
 }
