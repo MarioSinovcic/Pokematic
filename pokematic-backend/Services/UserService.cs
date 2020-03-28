@@ -23,14 +23,7 @@ namespace pokematic_backend.Services
         {
             return _users.ToJson();
         }
-        
-        public Task<User> Get(ObjectId userId)
-        {
-            var usersAsQueryable = _users.AsQueryable();
-            var userToGet = usersAsQueryable.FirstAsync(user => user.Id == userId);
-            return userToGet;
-        }
-        
+
         public Task<User> Get(string username)
         {
             var usersAsQueryable = _users.AsQueryable();
