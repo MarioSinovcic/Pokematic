@@ -1,6 +1,6 @@
 import React from 'react';
 import PokedexList from './pokedex-components/PokedexList'
-import Header from '../shared/Header'
+import Header from '../shared-components/Header'
 import './Pokedex.css'
 
 function Pokedex() {
