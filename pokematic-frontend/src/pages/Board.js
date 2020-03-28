@@ -4,6 +4,7 @@ import Sidebar from '../components/Sidebar';
 import TeamCard from '../components/TeamCard';
 import StatusCard from '../components/StatusCard';
 import styles from './page.css'
+import NewTaskButton from '../components/NewTaskButton';
 
 
 function Board() {
@@ -23,6 +24,7 @@ function Board() {
           <StatusCard id="Done"/>
           </div>
         </div>
+        <NewTaskButton />
       </div>
         {/* Example: This is how we should use Navlinks to swap between routes in nested components */}
         <NavLink to="/login" >Log Out</NavLink>

@@ -256,6 +256,12 @@
     
 }
 
+.StatusHeaders {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between
+}
+
 .StatusEdge {
     display: flex;
     flex-direction: column;
@@ -334,3 +340,18 @@
 	/* border-radius: 5px; */
 	background-color: #C4C4C4;
 }
+
+.NewTaskButton {
+    position: fixed !important;
+    right: 0;
+    bottom: 0;
+    margin: 25px !important;
+    size: 50px !important;
+}
+
+.NewTaskButtonColors {
+    background-color:  #3D3D3D !important;
+} 
+
+
+
