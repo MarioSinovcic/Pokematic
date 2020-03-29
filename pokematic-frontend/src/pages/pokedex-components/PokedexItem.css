@@ -18,11 +18,11 @@
     height: 250px;
     opacity: 0.15;
 
-    background-image: url('../../images/background_pokeball.png');
+    background-image: url('../../images/background_pokeball_white.png');
     background-repeat: no-repeat;
-    background-size: 170px;
-    background-position-x: 100px;
-    background-position-y: 45px;
+    background-size: 155px;
+    background-position-x: 105px;
+    background-position-y: 55px;
     background-position: fixed;
 }
 
