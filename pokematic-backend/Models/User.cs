@@ -6,7 +6,6 @@ namespace pokematic_backend.Models
     public class User
     {
         public ObjectId Id { get; set; }
-
         [BsonElement("username")] public string Username { get; set; }
         
         [BsonElement("role")] public Role Role { get; set; }

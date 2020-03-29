@@ -8,9 +8,11 @@ namespace pokematic_backend.Models
         public ObjectId Id { get; set; }
 
         [BsonElement("users")] public User[] Users { get; set; }
-        
-        [BsonElement("tasks")] public Task[] Tasks { get; set; }
-        
+
         [BsonElement("goals")] public Goal[] Goals { get; set; }
+        
+        [BsonElement("level")] public int Level { get; set; }
+        
+        [BsonElement("experiencePoints")] public int ExperiencetPoints { get; set; }
     }
 }
