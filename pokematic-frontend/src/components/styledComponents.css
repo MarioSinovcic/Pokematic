@@ -457,10 +457,6 @@
     display: flex;
 }
 
-.MuiSvgIcon-root {
-    margin-bottom: 5px !important;
-}
-
 .AvatarContent {
     display: flex;
     justify-content: flex-end;
