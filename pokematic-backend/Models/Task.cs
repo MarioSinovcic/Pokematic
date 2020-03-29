@@ -12,6 +12,8 @@ namespace pokematic_backend.Models
         
         [BsonElement("deadline")] public DateTime Deadline { get; set; }
         
+        [BsonElement("experiencePoints")] public int ExperiencePoints { get; set; }
         
+        [BsonElement("status")] public Status Status { get; set; }
     }
 }

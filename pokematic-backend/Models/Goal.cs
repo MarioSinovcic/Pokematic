@@ -10,5 +10,7 @@ namespace pokematic_backend.Models
         [BsonElement("description")] public string Description { get; set; }
         
         [BsonElement("tasks")] public Task[] Tasks { get; set; }
+
+        [BsonElement("experiencePoints")] public int ExperiencePoints { get; set; }
     }
 }
