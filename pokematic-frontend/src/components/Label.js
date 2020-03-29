@@ -3,11 +3,12 @@ import { Typography, Button } from '@material-ui/core';
 import styles from './styledComponents.css';
 
 function Label() {
-    const color = "Team Alpha";
+    // Temporary
+    const labelText = "Lv. 21";
 
     return (
         <div id="Label">
-        <Button className="TeamLabel">Lv. 21</Button>
+        <Button className="TeamLabel">{labelText}</Button>
             
         </div>
 )

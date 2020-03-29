@@ -296,7 +296,7 @@
 }
 
 .StatusCardTitle {
-    margin: 56px 0 0 37px !important;
+    margin: 56px 0 0 30px !important;
     font-family: 'Roboto Condensed', sans-serif !important;
     font-size: 20px !important;
     font-weight: 600 !important;
@@ -305,22 +305,22 @@
 
 .Tasks {
     position: absolute;
-    margin-left: 5px;
-    padding: 20px 12px 20px 20px;
+    padding: 10px 18px 10px 25px;
     overflow-y: auto;
-    -ms-scrollbar-base-color: #39D13F;
     height: 610px !important;
 
 }
 
 .TaskCard {
-    width: 250px;
-    height: 155px;
+    width: 225px;
+    height: 130px;
     background-color: white;
     border-radius: 9px;
     margin-bottom: 20px;
-
-
+    display: flex;
+    flex-direction: column;
+    padding: 10px ;
+    justify-content: space-between;
 }
 
 #scrollbar::-webkit-scrollbar-track
@@ -353,5 +353,111 @@
     background-color:  #3D3D3D !important;
 } 
 
+.TaskIDText {
+    font-family: 'Roboto Condensed Bold', sans-serif !important;
+    color: #999999;
+    font-size: 15px !important;
+    text-align: end;
+    padding-left: 5px !important;
+}
+
+.TaskHeaders {
+    display: flex;
+    flex-direction: row;
+}
+
+.TaskTitleText {
+    font-family: 'Roboto Mono', monospace !important;
+    font-weight: 600 !important;
+    color: #3D3D3D;
+    font-size: 15px !important;
+    font-size: 14px !important;
+}
+
+.TaskLabels {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: flex-end;
+    align-items: flex-end;
+}
+
+.Dropdown {
+    height: 30px;
+    width: 100px;
+    padding: 0 !important;
+}
+
+.StatusPlaceholder {
+    font-size: 12px !important;
+    color: #3D3D3D !important;
+    padding: 10px !important;
+    border: 0 !important;
+}
+
+
+
+
+.ToDo {
+    background-color: #F64747 !important;
+    color: transparent !important;
+}
+
+.MuiFilledInput-underline:before {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: "\00a0";
+    position: absolute;
+    pointer-events: none;
+    border: 0 !important;
+}
+
+.MuiFilledInput-underline:after {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: "";
+    position: absolute;
+    transform: scaleX(0);
+    border-radius: 5px;
+    border-bottom: 2px solid #F64747 !important;
+    pointer-events: none;
+}
+
+.MuiInputBase-root {
+    color: rgba(0, 0, 0, 0.87);
+    cursor: text;
+    display: inline-flex;
+    position: relative;
+    font-size: 1rem;
+    box-sizing: border-box;
+    align-items: flex-end !important;
+    font-size: 10px !important;
+    font-family: 'pkmn_rbygscregular' !important;
+    font-weight: 400;
+    padding: 0 !important;
+    text-align: end !important;
+
+}
+
+.MuiFilledInput-root {
+    position: relative;
+    transition: background-color 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+    background-color: transparent !important;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.MuiFilledInput-input {
+    padding: 10px 30px 5px 10px !important;
+    align-content: flex-end !important;
+    margin-bottom: 5px !important;
+    display: flex;
+}
+
+.MuiSvgIcon-root {
+    margin-bottom: 5px !important;
+}
 
 
