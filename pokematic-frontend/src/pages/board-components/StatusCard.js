@@ -1,15 +1,10 @@
 import React from 'react';
-import ProgressBar from '../../shared-components/ProgressBar';
-import { Typography, Button } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import './StatusCard.css';
-import Label from './Label';
 import TaskCard from './TaskCard';
-import CreateIcon from '@material-ui/icons/Create'
 
 function StatusCard() {
     // These should be passed in as props
-    const teamName = "Team Alpha";
-    const temporaryTeamLogo = "/eevee.png";
     const statusTitle = "TODO";
 
     return (

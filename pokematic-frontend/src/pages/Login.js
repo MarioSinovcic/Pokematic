@@ -1,5 +1,4 @@
 import React from 'react';
-import Counter from '../Counter';
 import { NavLink } from 'react-router-dom';
 
 function Login() {

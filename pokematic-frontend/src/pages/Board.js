@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import Sidebar from './board-components/Sidebar';
 import TeamCard from '../shared-components/TeamCard';
 import StatusCard from './board-components/StatusCard';
-import styles from './page.css'
+import './page.css'
 import NewTaskButton from './board-components/NewTaskButton';
 
 

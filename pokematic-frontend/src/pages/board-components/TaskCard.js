@@ -9,7 +9,6 @@ import Assignees from './Assignees';
 
 function TaskCard() {
     // These should be passed in as props
-    const taskID = "34"
     const taskTitle = "Implement collaboration feature";
     const storyPoint = "3";
 

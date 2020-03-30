@@ -12,7 +12,7 @@ function TeamCard() {
         <div id="CardShape">
             <div className="base-shape shape-content">
                 <div className="team-icon-bg">
-                    <img src={temporaryTeamLogo} className="team-image"></img>
+                    <img alt="team-logo" src={temporaryTeamLogo} className="team-image"></img>
                 </div>
                 <div className="team-stats">
                     <Label />
