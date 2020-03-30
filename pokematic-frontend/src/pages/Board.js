@@ -1,10 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import Sidebar from '../components/Sidebar';
-import TeamCard from '../components/TeamCard';
-import StatusCard from '../components/StatusCard';
+import Sidebar from './board-components/Sidebar';
+import TeamCard from '../shared-components/TeamCard';
+import StatusCard from './board-components/StatusCard';
 import styles from './page.css'
-import NewTaskButton from '../components/NewTaskButton';
+import NewTaskButton from './board-components/NewTaskButton';
 
 
 function Board() {

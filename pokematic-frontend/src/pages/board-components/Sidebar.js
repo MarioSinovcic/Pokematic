@@ -10,8 +10,8 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import ProgressBar from './ProgressBar';
-import styles from './styledComponents.css'
+import ProgressBar from '../../shared-components/ProgressBar';
+import './Sidebar.css'
 import { textAlign } from '@material-ui/system';
 
 const drawerWidth = 250;

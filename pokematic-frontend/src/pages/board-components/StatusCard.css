@@ -1,0 +1,81 @@
+.StatusCardShape {
+    display: flex;
+    flex-direction: row;
+    width: 300px;
+    height: 750px;
+    padding: 25px;
+    
+}
+
+.StatusHeaders {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between
+}
+
+.StatusEdge {
+    display: flex;
+    flex-direction: column;
+}
+
+.StatusBaseShape {
+    width: 300px;
+    height: 750px;
+    background: #E7E7E7;
+    /* box-shadow: 5px 5px 5px grey; */
+    /* position: absolute; */
+}
+
+.StatusBottom {
+    width: 64px;
+    height: 750px;
+    background:#E7E7E7;
+    /* position: relative; */
+    /* top:10px;
+    right:300px; */
+    /* box-shadow: 5px 5px 5px grey; */
+
+}
+
+.StatusCut {
+    height: 0px;
+    /* position: relative; */
+    /* bottom: 69px;
+    right: 300px; */
+    border-right: 64px solid transparent;
+    border-bottom: 61px solid #E7E7E7;
+}
+
+.StatusCardTitle {
+    margin: 56px 0 0 30px !important;
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    color: #3D3D3D !important;
+}
+
+.Tasks {
+    position: absolute;
+    padding: 10px 18px 10px 25px;
+    overflow-y: auto;
+    height: 610px !important;
+
+}
+
+#scrollbar::-webkit-scrollbar-track
+{
+	border-radius: 5px;
+	background-color: transparent;
+}
+
+#scrollbar::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: transparent;
+}
+
+#scrollbar::-webkit-scrollbar-thumb
+{
+	/* border-radius: 5px; */
+	background-color: #C4C4C4;
+}

@@ -1,10 +1,8 @@
 import React from 'react';
-import ProgressBar from './ProgressBar';
 import { Typography } from '@material-ui/core';
-import styles from './styledComponents.css';
+import './TaskCard.css';
 import Label from './Label';
 import StatusDropdown from './StatusDropdown';
-import { sizing } from '@material-ui/system';
 import Assignees from './Assignees';
 
 

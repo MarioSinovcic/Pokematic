@@ -1,0 +1,9 @@
+.TeamLabel {
+    background-color: #F64747 !important;
+    color: white !important;
+    font-family: 'pkmn_rbygscregular' !important;
+    border-radius: 10px !important;
+    font-size: 10px !important;
+    size: 15px !important;
+    margin-bottom: 5px !important;
+}

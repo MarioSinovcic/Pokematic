@@ -1,6 +1,6 @@
 import React from 'react';
-import { Typography, Button } from '@material-ui/core';
-import styles from './styledComponents.css';
+import { Button } from '@material-ui/core';
+import './Label.css';
 
 function Label() {
     // Temporary
@@ -8,8 +8,7 @@ function Label() {
 
     return (
         <div id="Label">
-        <Button className="TeamLabel">{labelText}</Button>
-            
+            <Button className="TeamLabel">{labelText}</Button>
         </div>
 )
 }
