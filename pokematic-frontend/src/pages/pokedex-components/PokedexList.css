@@ -7,19 +7,18 @@
 }
 
 .grid-container {
-   width: 90%;
+   width: 100%;
    height: 100%;
-   margin: auto;
-   padding-left: 20px;
    display: flex;
    flex-flow: wrap;
    align-items: center;
+   justify-content: center;
 }
 
  .grid-item{
     height: initial !important;
     background-color: #c4c4c4;
-    margin: 34px 55px !important;;
+    margin: 34px 45px !important;;
     border-radius: 20px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     transition: 0.6s;
