@@ -4,6 +4,7 @@
     <GenerateProgramFile>false</GenerateProgramFile>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>pokematic_backend</RootNamespace>
+    <Company>pokematic-backend</Company>
   </PropertyGroup>
 
   <ItemGroup>
