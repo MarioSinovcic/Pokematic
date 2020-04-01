@@ -37,14 +37,6 @@ export default function Sidebar() {
 
   return (
     <div className={classes.root}>
-      {/* <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar>
-          <Typography variant="h6" noWrap>
-            Pokematic
-          </Typography>
-        </Toolbar>
-      </AppBar> */}
       <Drawer
         className="SideBar"
         variant="permanent"

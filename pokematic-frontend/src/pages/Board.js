@@ -11,14 +11,16 @@ import Header from '../shared-components/Header';
 function Board() {
   return (
     <div>
-      <div className="BoardPage">
+      <div className="board-page">
       <Header />
-        <div className="Menu">
-          <TeamCard className="TeamCard"/>
+      <div className="team-card">
+            <TeamCard />
+      </div>
+        <div className="menu">
           <Sidebar />
         </div>
-        <div className="TasksContent">
-          <div className="TodoStatus">
+        <div className="tasks-content">
+          <div className="todo-ctatus">
           {/* Dynamically generate status cards here */}
           <StatusCard id="Todo"/>
           <StatusCard id="InProgress"/>

@@ -1,23 +1,30 @@
 
-.BoardPage {
+.board-page {
     align-content: center;
     flex-direction: row;
     display: flex;
-    height: 100%;
+    height: 100vh;
     width: 100vw;
 }
 
-.Menu {
+.menu {
     display: inline-block;
 }
 
-.TasksContent {
+.team-card {
+    z-index: 5;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}
+
+
+.tasks-content {
     position: absolute;
     left: 250px;
 }
 
-
-.TodoStatus {
+.todo-status {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
