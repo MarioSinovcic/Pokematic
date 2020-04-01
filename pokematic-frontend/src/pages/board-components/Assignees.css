@@ -1,0 +1,10 @@
+.AvatarContent {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.MuiAvatar-root {
+    width: 25px !important;
+    height: 25px !important;
+    font-size: 13px !important;
+}

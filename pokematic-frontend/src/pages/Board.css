@@ -1,0 +1,35 @@
+
+.board-page {
+    align-content: center;
+    flex-direction: row;
+    display: flex;
+    height: 100%;
+    width: 100vw;
+}
+
+.menu {
+    display: inline-block;
+}
+
+.team-card {
+    z-index: 5;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}
+
+
+.tasks-content {
+    position: absolute;
+    left: 250px;
+}
+
+.todo-status {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    justify-items: center;
+    align-content: center;
+    margin-top: 50px;
+    margin-left: 15px;
+}

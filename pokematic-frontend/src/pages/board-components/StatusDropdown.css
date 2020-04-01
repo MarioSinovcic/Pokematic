@@ -1,0 +1,64 @@
+.StatusPlaceholder {
+    font-size: 12px !important;
+    color: #3D3D3D !important;
+    padding: 10px !important;
+    border: 0 !important;
+}
+
+.ToDo {
+    background-color: #F64747 !important;
+    color: transparent !important;
+}
+
+.MuiFilledInput-underline:before {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: "\00a0";
+    position: absolute;
+    pointer-events: none;
+    border: 0 !important;
+}
+
+.MuiFilledInput-underline:after {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: "";
+    position: absolute;
+    transform: scaleX(0);
+    border-radius: 5px;
+    border-bottom: 2px solid #F64747 !important;
+    pointer-events: none;
+}
+
+.MuiInputBase-root {
+    color: rgba(0, 0, 0, 0.87);
+    cursor: text;
+    display: inline-flex;
+    position: relative;
+    font-size: 1rem;
+    box-sizing: border-box;
+    align-items: flex-end !important;
+    font-size: 10px !important;
+    font-family: 'pkmn_rbygscregular' !important;
+    font-weight: 400;
+    padding: 0 !important;
+    text-align: end !important;
+
+}
+
+.MuiFilledInput-root {
+    position: relative;
+    transition: background-color 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+    background-color: transparent !important;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.MuiFilledInput-input {
+    padding: 10px 30px 5px 10px !important;
+    align-content: flex-end !important;
+    margin-bottom: 5px !important;
+    display: flex;
+}

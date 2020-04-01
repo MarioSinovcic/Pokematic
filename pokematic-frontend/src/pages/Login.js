@@ -1,5 +1,5 @@
 import React from 'react';
-import Counter from '../Counter';
+import { NavLink } from 'react-router-dom';
 
 function Login() {
   return (
@@ -9,7 +9,8 @@ function Login() {
           Login
         </p>
         {/* NOTE: REMOVE THIS AND ITS CLASS WHEN READY */}
-        <Counter />
+        {/* <Counter /> */}
+        <NavLink to="/board" >Log In</NavLink>
       </header>
     </div>
   );

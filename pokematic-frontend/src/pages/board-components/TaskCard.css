@@ -1,0 +1,84 @@
+@font-face {
+    font-family: 'pkmn_rbygscregular';
+    src: url('/fonts/pkmn_rbygsc-webfont.woff2') format('woff2'),
+         url('/fonts/pkmn_rbygsc-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Roboto Mono';
+    src: url('/fonts/RobotoMono_Regular.woff2') format('woff2'),
+         url('/fonts/RobotoMono_Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto Condensed Bold';
+    src: url('/fonts/robotocondensed-bold-webfont.woff2') format('woff2'),
+         url('/fonts/robotocondensed-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto Condensed Light';
+    src: url('/fonts/RobotoCondensed-Light.woff2') format('woff2'),
+         url('/fonts/RobotoCondensed-Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto Condensed';
+    src: url('/fonts/RobotoCondensed-Regular.woff2') format('woff2'),
+         url('/fonts/RobotoCondensed-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+.TaskCard {
+    width: 225px;
+    height: 130px;
+    background-color: white;
+    border-radius: 9px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px ;
+    justify-content: space-between;
+}
+
+.TaskHeaders {
+    display: flex;
+    flex-direction: row;
+}
+
+.TaskTitleText {
+    font-family: 'Roboto Mono', monospace !important;
+    font-weight: 600 !important;
+    color: #3D3D3D;
+    font-size: 15px !important;
+    font-size: 14px !important;
+}
+
+.TaskLabels {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: flex-end;
+    align-items: flex-end;
+}
+
+
+.StoryPoint {
+    background-color: transparent !important;
+    color: #F64747 !important;
+    border-color: #F64747 !important;
+    font-family: 'Roboto Condensed' !important;
+    font-weight: 600 !important;
+}
