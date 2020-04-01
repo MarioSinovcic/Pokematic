@@ -7,10 +7,6 @@
     width: 100vw;
 }
 
-.TeamCard {
-    z-index: -1;
-}
-
 .Menu {
     display: inline-block;
 }
