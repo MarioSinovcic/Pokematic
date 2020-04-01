@@ -20,7 +20,7 @@ function Board() {
           <Sidebar />
         </div>
         <div className="tasks-content">
-          <div className="todo-ctatus">
+          <div className="todo-status">
           {/* Dynamically generate status cards here */}
           <StatusCard id="Todo"/>
           <StatusCard id="InProgress"/>
