@@ -5,12 +5,14 @@ import TeamCard from '../shared-components/TeamCard';
 import StatusCard from './board-components/StatusCard';
 import './page.css'
 import NewTaskButton from './board-components/NewTaskButton';
+import Header from '../shared-components/Header';
 
 
 function Board() {
   return (
     <div>
       <div className="BoardPage">
+      <Header />
         <div className="Menu">
           <TeamCard className="TeamCard"/>
           <Sidebar />
