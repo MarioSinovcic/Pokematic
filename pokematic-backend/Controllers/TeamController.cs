@@ -18,13 +18,13 @@ namespace pokematic_backend.Controllers
         }
         
         [HttpGet]
-        public string GetAllUsers()
+        public string GetAllTeam()
         {
             return _teamService.GetAllTeams();
         }
         
         [HttpPost("create")]
-        public async Task<Team> CreateUser(Team team)
+        public async Task<Team> CreateTeam(Team team)
         {
             _teamService.Create(team);
             return team;
