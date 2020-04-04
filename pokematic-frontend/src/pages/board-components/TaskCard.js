@@ -42,7 +42,7 @@ function TaskCard() {
     // These should be passed in as props
     const taskTitle = "Implement collaboration feature";
     const taskDescription = "As a student, I want to be able to collaborate with my team mates, so that we can all work on the project together.";
-    const storyPoint = "3";
+    const storyPoints = "3";
 
 
     return (
@@ -50,7 +50,7 @@ function TaskCard() {
             <div className="TaskCard" onClick={handlOpen}>
                 <div className="TaskHeaders">
                 <Typography className="TaskTitleText">{taskTitle}</Typography>
-                    <Typography className="TaskIDText StoryPoint">{storyPoint}</Typography>
+                    <Typography className="TaskIDText StoryPoint">{storyPoints}</Typography>
                 </div>
                 <Assignees />
                 <div className="TaskLabels">
@@ -75,7 +75,11 @@ function TaskCard() {
             >
                 <Fade in={open}>
                     <div className={classes.paper}>
-                        <ModalConent/>
+                        <ModalConent 
+                            taskTitle={taskTitle}
+                            taskDescription={taskDescription}
+                            storyPoints={storyPoints}
+                            handleClose={handleClose}/>
                     </div>
                 </Fade>
             </Modal>

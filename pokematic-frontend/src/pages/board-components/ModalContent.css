@@ -117,7 +117,6 @@
 }
 
 .bin-button:hover{
-    margin-bottom: 5px;
     box-shadow: 0px 6px 4px rgba(0, 0, 0, 0.25);
     top: 14px;
     background-color: rgba(225, 225, 225);
