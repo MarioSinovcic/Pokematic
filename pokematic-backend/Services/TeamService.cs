@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -19,9 +21,9 @@ namespace pokematic_backend.Services
             _teams = databaseContext.Database.GetCollection<Team>("Teams");
         }
 
-        public string GetAllTeams()
+        public List<Team> GetAllTeams()
         {
-            return _teams.ToJson();
+            return _teams.AsQueryable().ToList();
         }
 
         public Task<Team> Get(string name)
@@ -44,6 +46,11 @@ namespace pokematic_backend.Services
         public void Remove(string name)
         {
             _teams.DeleteOneAsync(team => team.Name== name);
+        }
+
+        public Goal[] GetGoals(string teamName)
+        {
+            return null;
         }
     }
 }

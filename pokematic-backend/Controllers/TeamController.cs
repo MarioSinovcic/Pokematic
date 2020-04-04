@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using pokematic_backend.Models;
@@ -18,7 +20,7 @@ namespace pokematic_backend.Controllers
         }
         
         [HttpGet]
-        public string GetAllTeam()
+        public async Task<List<Team>> GetAllTeams()
         {
             return _teamService.GetAllTeams();
         }
@@ -35,6 +37,12 @@ namespace pokematic_backend.Controllers
         {
             var team = _teamService.Get(name);
             return await team;
+        }
+
+        public async Task<Goal[]> GetGoals(string teamName)
+        {
+            var goals = _teamService.GetGoals(teamName);
+            return goals;
         }
     }
 }

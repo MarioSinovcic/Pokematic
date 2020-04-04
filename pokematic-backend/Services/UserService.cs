@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -19,9 +21,9 @@ namespace pokematic_backend.Services
             _users = databaseContext.Database.GetCollection<User>("Users");
         }
 
-        public string GetAllUsers()
+        public List<User> GetAllUsers()
         {
-            return _users.ToJson();
+            return _users.AsQueryable().ToList();
         }
 
         public Task<User> Get(string username)

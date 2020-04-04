@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using pokematic_backend.Models;
@@ -21,7 +22,7 @@ namespace pokematic_backend.Controllers
          *  Get method Return all users
          */
         [HttpGet]
-        public string GetAllUsers()
+        public List<User> GetAllUsers()
         {
             return _userService.GetAllUsers();
         }
