@@ -103,26 +103,31 @@
     width: 50px;
     height: 50px;  
  
-    background-image: url('../../images/profile_icon.png');
+    background-image: url('../../images/delete.png');
     background-repeat: no-repeat;
-    background-color: whitesmoke;
+    background-color: #ffffff;
     background-size: 30px 30px;
     background-position: center;
     border-radius: 10px;
     outline: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+    border: none;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
  
     transition: 0.5s;
 }
 
 .bin-button:hover{
+    margin-bottom: 5px;
+    box-shadow: 0px 6px 4px rgba(0, 0, 0, 0.25);
     top: 14px;
     background-color: rgba(225, 225, 225);
     transition: 0.3s;
  }
+
+ .bin-button:active{
+    background-color: rgba(215, 215, 215);
+ }
+
 
 
 @media (max-width:1000px){
