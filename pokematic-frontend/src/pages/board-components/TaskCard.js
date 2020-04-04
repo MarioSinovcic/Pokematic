@@ -5,6 +5,7 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import Label from './Label';
+import ModalConent from './ModalContent';
 import StatusDropdown from './StatusDropdown';
 import Assignees from './Assignees';
 import './TaskCard.css';
@@ -16,8 +17,9 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center',
       },
       paper: {
+        outline: 'none',
+        borderRadius: 15,
         backgroundColor: theme.palette.background.paper,
-        border: '2px solid #000',
         boxShadow: theme.shadows[5],
         padding: theme.spacing(2, 4, 3),
       },
@@ -62,6 +64,7 @@ function TaskCard() {
                 aria-describedby="transition-modal-description"
                 className={classes.modal}
                 open={open}
+                disableAutoFocus={true}
                 onBackdropClick={handleClose}
                 onClose={handleClose}
                 closeAfterTransition
@@ -72,8 +75,7 @@ function TaskCard() {
             >
                 <Fade in={open}>
                     <div className={classes.paper}>
-                        <h2 id="transition-modal-title">{taskTitle}</h2>
-            <p id="transition-modal-description">{taskDescription}</p>
+                        <ModalConent/>
                     </div>
                 </Fade>
             </Modal>

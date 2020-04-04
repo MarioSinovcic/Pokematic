@@ -1,0 +1,144 @@
+.modal-content {
+    font-family: 'Roboto', sans-serif !important;
+    text-align: left;
+    padding: 20px 20px;
+    width: 875px;
+    height: 570px;
+}
+
+.grouping{
+    align-items: center;
+    width: 100%;
+    display: flex;
+}
+
+.task-title{
+    font-family: 'Roboto Mono', monospace !important;
+    font-weight: 600 !important;
+    font-size: 40px;
+    line-height: 20px;
+    color: #3D3D3D;
+}
+
+.task-number{
+    font-weight: 600 !important;
+    font-size: 40px;
+    line-height: 20px;
+    color: #898989;
+    padding-right: 30px;
+}
+
+.right-align{
+    width: 100%;
+    display: inline-flex;
+    align-self: center;
+    justify-content: flex-end;
+}
+
+.padding-bottom{
+    padding-bottom: 10px;
+}
+
+.goal-name{
+    background: #5AC7CE;
+    border-radius: 15px;
+    
+    width:600px;
+    font-family: 'pkmn_rbygscregular', monospace !important;
+    color: #ffffff;
+    text-align: center;
+    font-size: 20px;
+    padding: 15px 15px;
+}
+
+.story-points-label{
+    text-align: right;
+    font-family: 'Roboto Condensed', monospace !important;
+    font-weight: 600 !important;
+    color: #3D3D3D;
+    font-size: 30px;
+}
+
+.story-points{
+    text-align: right;
+    font-family: 'pkmn_rbygscregular';
+    font-weight: 600 !important;
+    line-height: 29px;
+    font-size: 30px;
+    color: #F74747;
+    padding-left: 15px;
+}
+
+.grey-group{
+    background: rgba(241, 241, 241, 0.69);
+    padding: 10px 30px;
+    height: 250px;
+}
+
+.description-label{
+    font-family: 'Roboto Condensed', monospace !important;
+    font-weight: 600 !important;
+    color: #3D3D3D;
+    font-size: 23px;
+    line-height: 0px;
+}
+
+.description{
+    font-family: 'Roboto Condensed Light', monospace !important;
+    font-weight: 600 !important;
+    color: #3D3D3D;
+    font-size: 22px;
+    line-height: 40px;
+}
+
+.status-label{
+    font-family: 'Roboto Condensed', monospace !important;
+    font-weight: 600 !important;
+    color: #3D3D3D;
+    font-size: 30px;
+    padding-right: 30px;
+}
+
+.bin-button{
+    width: 50px;
+    height: 50px;  
+ 
+    background-image: url('../../images/profile_icon.png');
+    background-repeat: no-repeat;
+    background-color: whitesmoke;
+    background-size: 30px 30px;
+    background-position: center;
+    border-radius: 10px;
+    outline: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+ 
+    transition: 0.5s;
+}
+
+.bin-button:hover{
+    top: 14px;
+    background-color: rgba(225, 225, 225);
+    transition: 0.3s;
+ }
+
+
+@media (max-width:1000px){
+    .modal-content {
+        width: 500px !important;
+    }
+
+    .task-title{
+        font-size: 30px;
+        line-height: 25px;
+    }
+
+    .story-points-label{
+        display: none;
+    }
+
+
+
+}

@@ -6,7 +6,7 @@ import './StatusDropdown.css';
 function StatusDropdown() {
 
     return(
-      <FormControl height="80%" variant="filled">
+      <FormControl cheight="80%" variant="filled">
 
         <Select
           native
