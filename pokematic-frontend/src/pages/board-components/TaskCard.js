@@ -5,7 +5,7 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import Label from './Label';
-import ModalConent from './ModalContent';
+import ModalConent from './Modals/TaskModalContent';
 import StatusDropdown from './StatusDropdown';
 import Assignees from './Assignees';
 import './TaskCard.css';
@@ -59,32 +59,32 @@ function TaskCard() {
                 </div>
             </div>
             <div>
-            <Modal 
-                aria-labelledby="transition-modal-title"
-                aria-describedby="transition-modal-description"
-                className={classes.modal}
-                open={open}
-                disableAutoFocus={true}
-                onBackdropClick={handleClose}
-                onClose={handleClose}
-                closeAfterTransition
-                BackdropComponent={Backdrop}
-                BackdropProps={{
-                timeout: 500,
-                }}
-            >
-                <Fade in={open}>
-                    <div className={classes.paper}>
-                        <ModalConent 
-                            taskTitle={taskTitle}
-                            taskDescription={taskDescription}
-                            storyPoints={storyPoints}
-                            handleClose={handleClose}/>
-                    </div>
-                </Fade>
-            </Modal>
+                <Modal 
+                    aria-labelledby="transition-modal-title"
+                    aria-describedby="transition-modal-description"
+                    className={classes.modal}
+                    open={open}
+                    disableAutoFocus={true}
+                    onBackdropClick={handleClose}
+                    onClose={handleClose}
+                    closeAfterTransition
+                    BackdropComponent={Backdrop}
+                    BackdropProps={{
+                    timeout: 500,
+                    }}
+                >
+                    <Fade in={open}>
+                        <div className={classes.paper}>
+                            <ModalConent 
+                                taskTitle={taskTitle}
+                                taskDescription={taskDescription}
+                                storyPoints={storyPoints}
+                                handleClose={handleClose}/>
+                        </div>
+                    </Fade>
+                </Modal>
+            </div>
         </div>
-    </div>
     )   
 }
 
