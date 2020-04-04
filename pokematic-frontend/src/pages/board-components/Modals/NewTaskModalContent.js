@@ -1,4 +1,5 @@
 import React from 'react';
+import StatusDropdown from '../StatusDropdown'
 import "./TaskModalContent.css"
 
 function ModalContent (props) {
@@ -37,7 +38,7 @@ function ModalContent (props) {
             <div className="grouping">
                 <p className="status-label">STATUS</p>
                 <div>
-
+                    <StatusDropdown/>
                 </div>
                 <div className="right-align">
                     <button className="bin-button" onClick={handleAdd}/>
