@@ -36,6 +36,13 @@ function NewTaskButton() {
     setOpen(false);
   };
 
+  const addNewTask = (newTask) => {
+    //TODO
+    console.log("New task added called: " + newTask.name)
+
+    setOpen(false);
+  };
+
 
   return (
     <div>
@@ -61,7 +68,7 @@ function NewTaskButton() {
             >
             <Fade in={open}>
               <div className={classes.paper}>
-                <NewTaskModalContent handleClose={handleClose}/>
+                <NewTaskModalContent addNewTask={addNewTask}/>
               </div>
             </Fade>
           </Modal>

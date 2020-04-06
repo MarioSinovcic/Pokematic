@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from '@material-ui/core/TextField';
 import StatusDropdown from '../StatusDropdown'
@@ -44,16 +44,37 @@ function ModalContent (props) {
     const classes = useStyles();
     const defaultDescription="As a user, \nI want, \nso that, ";
 
-    
+    const [selectedTaskName, setSelectedTaskName] = useState("TASK - " + new Date());
+    const [selectedDescription, setSelectedDescription] = useState("");
+    const [selectedStoryPoints, setSelectedStoryPoints] = useState("");
 
-    function handleAddGoal() {
+    // ----- HANDLERS FOR INPUT FIELDS -----
+    const handleTaskNameChange = event => {
+        setSelectedTaskName(event.target.value);
+    };
 
+    const handleDescriptionChange = event => {
+        setSelectedDescription(event.target.value);
+    };
+
+    const handleStoryPointChange = event => {
+        setSelectedStoryPoints(event.target.value);
+    };
+
+    //TODO
+    const handleAddGoal = event => {
+        
     }
 
+    //TODO
     const handleAddTask = event => {
-        //note: this should call the API first
+        const newTask = {
+            name: selectedTaskName,
+            points: selectedStoryPoints,
+            description: selectedDescription,
+        };
 
-        props.handleClose();
+        props.addNewTask(newTask);
     };
 
 
@@ -62,7 +83,8 @@ function ModalContent (props) {
             <div className="grouping">
                 <p className="task-number">#65</p>
                 <div  className="task-title"> 
-                    <TextField
+                    <TextField 
+                        onChange={handleTaskNameChange}
                         defaultValue="Task Name"
                         fullWidth
                         InputProps={{
@@ -75,14 +97,18 @@ function ModalContent (props) {
                 </div>
             </div>    
             <div className="grouping padding-bottom">
-                <div className="goal-name-input" onClick={handleAddGoal}> + ADD GOAL </div>
+                <div className="goal-name-input" 
+                    onClick={handleAddGoal}> + ADD GOAL </div>
                 <div className="right-align">
                     <div className="story-points-label">STORY POINTS</div>
                     <div className="story-points">
                         <TextField
+                            onChange={handleStoryPointChange}
                             id="story-points-input"
                             type="number"
-                            inputProps={{ min: "0", max: "99", step: "1"}}
+                            onInput={(e)=>{ 
+                                e.target.value = Math.max(0, parseInt(e.target.value) ).toString().slice(0,2)
+                            }}
                             defaultValue={1}
                               InputProps={{
                                 classes: {
@@ -98,6 +124,7 @@ function ModalContent (props) {
                 <p className="description-label">Description</p>
                 <div className="description">
                     <TextField
+                        onChange={handleDescriptionChange}
                         id="description-input"
                         multiline={true}
                         defaultValue= {defaultDescription}
