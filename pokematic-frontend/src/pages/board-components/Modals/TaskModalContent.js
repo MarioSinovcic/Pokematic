@@ -21,11 +21,11 @@ function ModalContent (props) {
     return (
         <div className="modal-content">
             <div className="grouping">
-                <p className="task-number">#65</p>
-                <p  className="task-title">{props.taskTitle}</p>
+                <p className="task-number">#{props.taskNumber}</p>
+                <p className="task-title">{props.taskTitle}</p>
             </div>    
-            <div className="grouping padding-bottom">
-                <p className="goal-name">Planning Goal</p>
+            <div className="grouping padding-bottom-p">
+                <p className="goal-name">{props.taskGoal}</p>
                 <div className="right-align">
                     <div className="story-points-label">STORY POINTS</div>
                     <div className="story-points">{props.storyPoints}</div>

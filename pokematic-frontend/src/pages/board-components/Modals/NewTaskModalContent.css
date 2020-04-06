@@ -13,6 +13,7 @@
 }
 
 .task-title{
+    width: 100%;
     font-family: 'Roboto Mono', monospace !important;
     font-weight: 600 !important;
     font-size: 40px;
@@ -35,12 +36,12 @@
     justify-content: flex-end;
 }
 
-.padding-bottom-p{
-    padding-bottom: 10px;
+.padding-bottom{
+    padding-bottom: 30px;
 }
 
-.goal-name{
-    background: #5AC7CE;
+.goal-name-input{
+    background: #3d3d3d;
     border-radius: 15px;
     
     width:450px;
@@ -51,12 +52,22 @@
     padding: 10px 15px;
 }
 
+.goal-name-input:hover{
+    background: #4e4e4e;
+}
+
+.goal-name-input:active{
+    background: #3D3D3D;
+    color: #dfdfdf;
+}
+
 .story-points-label{
     text-align: right;
     font-family: 'Roboto Condensed', monospace !important;
     font-weight: 600 !important;
     color: #3D3D3D;
     font-size: 30px;
+    align-self: center;
 }
 
 .story-points{
@@ -67,6 +78,8 @@
     font-size: 30px;
     color: #F74747;
     padding-left: 15px;
+    width: 79px;
+    align-self: center;
 }
 
 .grey-group{
@@ -99,33 +112,31 @@
     padding-right: 30px;
 }
 
-.bin-button{
-    width: 50px;
-    height: 50px;  
- 
-    background-image: url('../../../images/delete.png');
-    background-repeat: no-repeat;
-    background-color: #ffffff;
-    background-size: 30px 30px;
-    background-position: center;
-    border-radius: 10px;
-    outline: none;
-    border: none;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
- 
+ .done-button{
+    background: #3d3d3d;
+    border-radius: 15px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);    
+    min-width: 80px;
+    font-family: 'pkmn_rbygscregular', monospace !important;
+    color: #ffffff;
+    text-align: center;
+    font-size: 15px;
+    padding: 15px 15px;
+
     transition: 0.5s;
 }
 
-.bin-button:hover{
+.done-button:hover{
+    background: #4e4e4e;
     box-shadow: 0px 6px 4px rgba(0, 0, 0, 0.25);
     top: 14px;
-    background-color: rgba(225, 225, 225);
     transition: 0.3s;
- }
+}
 
- .bin-button:active{
-    background-color: rgba(215, 215, 215);
- }
+.done-button:active{
+    background: #3D3D3D;
+    color: #dfdfdf;
+}
 
 
 

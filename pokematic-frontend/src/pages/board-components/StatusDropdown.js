@@ -11,6 +11,7 @@ function StatusDropdown() {
         <Select
           native
           height="20%" 
+          fullWidth
           // value={state.age}
           // onChange={handleChange}
         >
