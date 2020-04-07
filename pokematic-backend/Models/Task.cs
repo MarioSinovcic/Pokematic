@@ -14,6 +14,11 @@ namespace pokematic_backend.Models
         
         [BsonElement("experiencePoints")] public int ExperiencePoints { get; set; }
         
-        [BsonElement("status")] public Status Status { get; set; }
+        [BsonElement("status")] public string Status { get; set; }
+
+        [BsonElement("storyPoints")] public int StoryPoints { get; set; }
+
+        [BsonElement("assignees")] public User[] Assignees { get; set; }
+
     }
-}
+}    

@@ -13,5 +13,9 @@ namespace pokematic_backend.Models
 
         [BsonElement("experiencePoints")] public int ExperiencePoints { get; set; }
         
+        // reward XP
+        // progress - ratio of number of tasks which are complted vs how many to complete
+        
+        
     }
 }

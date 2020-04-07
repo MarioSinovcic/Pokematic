@@ -28,8 +28,7 @@ namespace pokematic_backend.Services
 
         public Task<User> Get(string username)
         {
-            var usersAsQueryable = _users.AsQueryable();
-            var userToGet = usersAsQueryable.FirstAsync(user => user.Username == username);
+            var userToGet = _users.AsQueryable().FirstAsync(user => user.Username == username);
             return userToGet;
         }
         
