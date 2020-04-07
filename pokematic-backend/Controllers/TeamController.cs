@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using pokematic_backend.Models;
 using pokematic_backend.Services;
+using Task = System.Threading.Tasks.Task;
 
 namespace pokematic_backend.Controllers
 {
@@ -25,7 +26,7 @@ namespace pokematic_backend.Controllers
             return _teamService.GetAllTeams();
         }
         
-        [HttpPost("create")]
+        [HttpPost("createTeam")]
         public async Task<Team> CreateTeam(Team team)
         {
             _teamService.Create(team);
@@ -39,10 +40,43 @@ namespace pokematic_backend.Controllers
             return await team;
         }
 
+        [HttpGet("goals")]
         public async Task<Goal[]> GetGoals(string teamName)
         {
             var goals = _teamService.GetGoals(teamName);
             return goals;
         }
+
+        [HttpGet("tasks")]
+        public async Task<Task[]> GetTasks(string teamName)
+        {
+            var tasks = _teamService.GetTasks(teamName);
+            return tasks;
+        }
+
+        [HttpPost("createGoal")]
+        public async Task<Goal> CreateGoal(Goal goal, string teamName)
+        {
+            _teamService.CreateGoal(goal, teamName);
+            return goal;
+        }
+
+        [HttpPost("createTask")]
+        public async Task<Task> CreateTask(Task task, string goalName, string teamName)
+        {
+            _teamService.CreateTask(task, goalName, teamName);
+            return task;
+        }
+        
+        /*
+         * Update task and goal status
+         */
+        
+        
+        /*
+         * Approving tasks
+         */
+        
+        
     }
 }

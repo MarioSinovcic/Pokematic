@@ -12,10 +12,12 @@ namespace pokematic_backend.Controllers
     public class UserController : ControllerBase
     {
         private readonly UserService _userService;
+        private readonly TeamService _teamService;
 
-        public UserController(UserService userService)
+        public UserController(UserService userService, TeamService teamService)
         {
             _userService = userService;
+            _teamService = teamService;
         }
         
         /*
@@ -44,6 +46,9 @@ namespace pokematic_backend.Controllers
             return await user;
         }
         
+        /**
+         * Join team
+         */
         
         
     }
