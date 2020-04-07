@@ -11,12 +11,9 @@ function StatusDropdown() {
         <Select
           native
           height="20%" 
+          fullWidth
           // value={state.age}
           // onChange={handleChange}
-          inputProps={{
-            name: 'age',
-            id: 'filled-age-native-simple',
-          }}
         >
           <option className="StatusPlaceholder" value={10}>To Do</option>
           <option className="StatusPlaceholder" value={20}>In Progress</option>
