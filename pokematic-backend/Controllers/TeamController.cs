@@ -41,14 +41,14 @@ namespace pokematic_backend.Controllers
         }
 
         [HttpGet("goals")]
-        public async Task<Goal[]> GetGoals(string teamName)
+        public async Task<List<Goal>> GetGoals(string teamName)
         {
             var goals = _teamService.GetGoals(teamName);
             return goals;
         }
 
         [HttpGet("tasks")]
-        public async Task<Task[]> GetTasks(string teamName)
+        public async Task<List<Models.Task>> GetTasks(string teamName)
         {
             var tasks = _teamService.GetTasks(teamName);
             return tasks;
@@ -62,7 +62,7 @@ namespace pokematic_backend.Controllers
         }
 
         [HttpPost("createTask")]
-        public async Task<Task> CreateTask(Task task, string goalName, string teamName)
+        public async Task<Models.Task> CreateTask(Models.Task task, string goalName, string teamName)
         {
             _teamService.CreateTask(task, goalName, teamName);
             return task;

@@ -12,7 +12,7 @@ using Task = System.Threading.Tasks.Task;
 
 namespace pokematic_backend.Services
 {
-    public class TeamService : ITeamService
+    public class TeamService
     {
         private readonly IMongoCollection<Team> _teams;
         
@@ -29,8 +29,8 @@ namespace pokematic_backend.Services
 
         public Task<Team> Get(string name)
         {
-            var teamToGet = _teams.AsQueryable().FirstAsync(team => team.Name == name);
-            return teamToGet;
+            var team = _teams.AsQueryable().FirstAsync(team => team.Name == name);
+            return team;
         }
 
         public void Create(Team team)
@@ -38,9 +38,9 @@ namespace pokematic_backend.Services
             _teams.InsertOneAsync(team);
         }
 
-        public void Update(ObjectId id, Team teamToUpdate)
+        public void Update(string teamName, Team teamToUpdate)
         {
-            _teams.ReplaceOneAsync(team => team.Id == id, teamToUpdate);
+            _teams.ReplaceOneAsync(team => team.Name == teamName, teamToUpdate);
         }
 
         public void Remove(string name)
@@ -48,24 +48,35 @@ namespace pokematic_backend.Services
             _teams.DeleteOneAsync(team => team.Name== name);
         }
 
-        public Goal[] GetGoals(string teamName)
+        public List<Goal> GetGoals(string teamName)
         {
-            return null;
+            var team =  _teams.AsQueryable().FirstAsync(team => team.Name == teamName);
+            return team.Result.Goals.ToList();
         }
         
-        public Task[] GetTasks(string teamName)
+        public List<Models.Task> GetTasks(string teamName)
         {
-            throw new System.NotImplementedException();
+            var team = _teams.AsQueryable().FirstAsync(team => team.Name == teamName).Result;
+            return team.Goals.SelectMany(goal => goal.Tasks).ToList();
         }
 
-        public void CreateGoal(Goal goal, string teamName)
+        public Goal CreateGoal(Goal goal, string teamName)
         {
-            throw new System.NotImplementedException();
+            var team = _teams.AsQueryable().FirstAsync(team => team.Name == teamName).Result;
+            team.Goals.ToList().Append(goal);
+            Update(teamName, team);
+            return goal;
         }
 
-        public void CreateTask(Task task, string goalName, string teamName)
+        public void CreateTask(Models.Task task, string goalName, string teamName)
         {
-            throw new System.NotImplementedException();
+            var team = _teams.AsQueryable().FirstAsync(team => team.Name == teamName).Result;
+            var goal = team.Goals.First(goal => goal.Name == goalName);
+
+            goal.Tasks.ToList().Append(task);
+            team.Goals[team.Goals.ToList().FindIndex(goal => goal.Name == goalName)] = goal;
+
+            Update(teamName, team);
         }
         
         /**
