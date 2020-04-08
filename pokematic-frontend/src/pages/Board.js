@@ -11,6 +11,8 @@ import Header from '../shared-components/Header';
 function Board() {
   // Temporary goals list - API call should go here
   const goals = ['Planning', 'Frontend Team', 'Testers', 'Design Squad'];
+  const sidebarTitle = 'ALL TASKS';
+  const sidebarSubTitle = 'MY TASKS';
 
   return (
     <div>
@@ -20,7 +22,7 @@ function Board() {
             <TeamCard />
       </div>
         <div className="menu">
-          <Sidebar items={goals}/>
+          <Sidebar items={goals} title={sidebarTitle} subTitle={sidebarSubTitle}/>
         </div>
         <div className="tasks-content">
           <div className="todo-status">

@@ -6,13 +6,14 @@ function Profile() {
 
 // Temporary teams list - API call should go here
 const teams = ['yes', 'hello'];
+const sidebarTitle = 'TEAMS';
 
   return (
     <div className="App">
       <header className="App-header">
       <Header />
         <div className="menu">
-          <Sidebar items={teams}/>
+          <Sidebar items={teams} title={sidebarTitle}/>
         </div>
       </header>
     </div>
