@@ -7,6 +7,7 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import './Sidebar.css'
 import Goal from '../pages/board-components/Goal';
+import TeamDetails from './TeamDetails';
 
 const drawerWidth = 250;
 
@@ -60,7 +61,9 @@ export default function Sidebar(props) {
         <List>
           {/* Dynamically fetch goals/teams here */}
           {props.items.map((text, index) => (
-            <Goal text={text} key={index}/>
+            props.itemType === "GOAL" ? 
+              <Goal text={text} key={index}/> 
+              : <TeamDetails isItem={true}/>
           ))}
         </List>
       </Drawer>

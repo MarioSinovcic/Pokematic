@@ -22,7 +22,7 @@ function Board() {
             <TeamCard />
       </div>
         <div className="menu">
-          <Sidebar items={goals} title={sidebarTitle} subTitle={sidebarSubTitle}/>
+          <Sidebar items={goals} title={sidebarTitle} subTitle={sidebarSubTitle} itemType="GOAL"/>
         </div>
         <div className="tasks-content">
           <div className="todo-status">

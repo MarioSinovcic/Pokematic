@@ -1,26 +1,30 @@
 import React from 'react';
 import ProgressBar from './ProgressBar';
-import { Typography } from '@material-ui/core';
+import { Typography, ListItem, Divider } from '@material-ui/core';
 import './TeamDetails.css';
 import Label from '../pages/board-components/Label';
 
-function TeamDetails() {
+function TeamDetails(props) {
     const teamName = "Team Alpha";
     const temporaryTeamLogo = "/images/eevee.png";
 
+
     return (
+        <div className={props.isItem && "items"}>
         <div className="team-details">
             <div className="team-icon-bg">
                 <img alt="team-logo" src={temporaryTeamLogo} className="team-image"></img>
             </div>
             <div className="team-stats">
                 <Label />
-                <Typography className="team-name">{teamName}</Typography>
-                <div className="team-level-bar ">
+                <Typography className={props.isItem ? "team-name item-text" : "team-name"}>{teamName}</Typography>
+                <div className={props.isItem ? "team-level-bar item-width" : "team-level-bar card-width"}>
                     <ProgressBar/>
-                    <Typography className="EXP EXP-text">EXP: 100/200</Typography>
+                    <Typography className={props.isItem ? "EXP EXP-text item-text" : "EXP EXP-text"}>EXP: 100/200</Typography>
                 </div>
             </div>
+        </div>
+        <Divider className="GoalDivider" /> 
         </div>
 )
 }

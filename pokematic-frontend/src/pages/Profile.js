@@ -13,7 +13,7 @@ const sidebarTitle = 'TEAMS';
       <header className="App-header">
       <Header />
         <div className="menu">
-          <Sidebar items={teams} title={sidebarTitle}/>
+          <Sidebar items={teams} title={sidebarTitle} itemType="TEAM"/>
         </div>
       </header>
     </div>
