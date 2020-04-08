@@ -4,6 +4,7 @@
     bottom: 0;
     margin: 25px !important;
     size: 50px !important;
+    z-index: 10;
 }
 
 .NewTaskButtonColors {
