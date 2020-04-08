@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import Sidebar from './board-components/Sidebar';
+import Sidebar from '../shared-components/Sidebar';
 import TeamCard from '../shared-components/TeamCard';
 import StatusCard from './board-components/StatusCard';
 import './Board.css'
@@ -9,6 +9,9 @@ import Header from '../shared-components/Header';
 
 
 function Board() {
+  // Temporary goals list - API call should go here
+  const goals = ['Planning', 'Frontend Team', 'Testers', 'Design Squad'];
+
   return (
     <div>
       <div className="board-page">
@@ -17,7 +20,7 @@ function Board() {
             <TeamCard />
       </div>
         <div className="menu">
-          <Sidebar />
+          <Sidebar items={goals}/>
         </div>
         <div className="tasks-content">
           <div className="todo-status">

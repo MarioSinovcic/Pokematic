@@ -5,8 +5,8 @@ import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
-import ProgressBar from '../../shared-components/ProgressBar';
 import './Sidebar.css'
+import Goal from '../pages/board-components/Goal';
 
 const drawerWidth = 250;
 
@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
   toolbar: theme.mixins.toolbar,
 }));
 
-export default function Sidebar() {
+export default function Sidebar(props) {
   const classes = useStyles();
 
   return (
@@ -57,15 +57,9 @@ export default function Sidebar() {
         </List>
         <Divider className="SideBarDivider"/>
         <List>
-          {/* Dynamically fetch goals here */}
-          {['Planning', 'Frontend Team', 'Testers', 'Design Squad'].map((text, index) => (
-            <div className="TeamTabs">
-            <ListItem button key={text} className="TeamTabs">
-              <Typography className="TaskName">{text}</Typography>
-              <ProgressBar />
-            </ListItem>
-            <Divider className="GoalDivider" /> 
-            </div>
+          {/* Dynamically fetch goals/teams here */}
+          {props.items.map((text, index) => (
+            <Goal text={text} key={index}/>
           ))}
         </List>
       </Drawer>
