@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson;
+﻿using System.Collections.Generic;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace pokematic_backend.Models
@@ -10,6 +11,6 @@ namespace pokematic_backend.Models
         
         [BsonElement("role")] public string Role { get; set; }
 
-        [BsonElement("teams")] public Team[] Teams { get; set; }
+        [BsonElement("teams")] public List<Team> Teams { get; set; }
     }
 }

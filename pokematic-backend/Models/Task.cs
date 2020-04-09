@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
@@ -20,7 +21,7 @@ namespace pokematic_backend.Models
 
         [BsonElement("storyPoints")] public int StoryPoints { get; set; }
 
-        [BsonElement("assignees")] public User[] Assignees { get; set; }
+        [BsonElement("assignees")] public List<User> Assignees { get; set; }
 
         [BsonElement("approved")] public bool Approved { get; set; }
 

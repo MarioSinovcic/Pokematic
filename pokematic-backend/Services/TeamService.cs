@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
@@ -7,6 +8,7 @@ using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using pokematic_backend.Contexts;
 using pokematic_backend.Models;
+using static MongoDB.Driver.Builders<pokematic_backend.Models.Team>;
 using Task = System.Threading.Tasks.Task;
 
 namespace pokematic_backend.Services
@@ -14,11 +16,15 @@ namespace pokematic_backend.Services
     public class TeamService
     {
         private readonly IMongoCollection<Team> _teams;
+        private readonly IMongoCollection<User> _users;
+        private readonly UserService _userService;
         
         public TeamService(IConfiguration configuration)
         {
             var databaseContext = new DatabaseContext(configuration);
+            _userService = new UserService(configuration);
             _teams = databaseContext.Database.GetCollection<Team>("Teams");
+            _users = databaseContext.Database.GetCollection<User>("Users");
         }
 
         public List<Team> GetAllTeams()
@@ -37,9 +43,10 @@ namespace pokematic_backend.Services
             _teams.InsertOneAsync(team);
         }
 
-        public void Update(string teamName, Team teamToUpdate)
+        public void Update(string teamName, Team team)
         {
-            _teams.ReplaceOneAsync(team => team.Name == teamName, teamToUpdate);
+            var filter = Filter.Eq(team => team.Name, teamName);
+            _teams.ReplaceOneAsync(filter, team);
         }
 
         public void Remove(string name)
@@ -62,8 +69,24 @@ namespace pokematic_backend.Services
         public Goal CreateGoal(Goal goal, string teamName)
         {
             var team = _teams.AsQueryable().FirstAsync(team => team.Name == teamName).Result;
-            team.Goals.Append(goal);
-            Update(teamName, team);
+            
+            if (team == null)
+            {
+                return null;
+            }
+
+            if (team.Goals == null)
+            {
+                var goals = new List<Goal> {goal};
+                team.Goals = goals;
+                Update(teamName, team);
+            }
+            else
+            {
+                team.Goals.Add(goal);
+                Update(teamName, team);
+            }
+
             return goal;
         }
 
@@ -72,15 +95,41 @@ namespace pokematic_backend.Services
             var team = _teams.AsQueryable().FirstAsync(team => team.Name == teamName).Result;
             var goal = team.Goals.First(goal => goal.Name == goalName);
 
-            goal.Tasks.Append(task);
-            team.Goals[team.Goals.ToList().FindIndex(goal => goal.Name == goalName)] = goal;
-            Update(teamName, team);
+            if (goal == null)
+            {
+                return; 
+            }
+
+            if (goal.Tasks == null)
+            {
+                goal.Tasks = new List<Models.Task> {task};
+                team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
+                Update(teamName, team);
+            }
+            else
+            {
+                goal.Tasks.Add(task);
+                team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
+                Update(teamName, team);
+            }
+            
         }
         
         
-        public Team JoinTeam(string teamName, User user)
+        public void JoinTeam(string teamName, string username)
         {
             var team = _teams.AsQueryable().FirstAsync(team => team.Name == teamName).Result;
+            var user = _users.AsQueryable().FirstAsync(user => user.Username == username).Result;
+            
+            if (team == null)
+            {
+                return;
+            }
+
+            if (team.Users == null)
+            {
+                
+            }
             team.Users.Append(user);
             Update(team.Name, team);
             return team;

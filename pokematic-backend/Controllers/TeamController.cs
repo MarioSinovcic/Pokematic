@@ -70,24 +70,24 @@ namespace pokematic_backend.Controllers
             return tasks;
         }
 
-        [HttpPost("createGoal")]
+        [HttpPost("createGoal/{teamName}")]
         public  Goal CreateGoal(Goal goal, string teamName)
         {
             _teamService.CreateGoal(goal, teamName);
             return goal;
         }
 
-        [HttpPost("createTask")]
+        [HttpPost("createTask/{teamName}/{goalName}")]
         public Models.Task CreateTask(Models.Task task, string goalName, string teamName)
         {
              _teamService.CreateTask(task, goalName, teamName);
             return task;
         }
         
-        [HttpPost("joinTeam")]
-        public  ActionResult JoinTeam(string teamName, User user)
+        [HttpPost("joinTeam/{teamName}")]
+        public  ActionResult JoinTeam(string teamName, string username)
         {
-            _teamService.JoinTeam(teamName, user);
+            _teamService.JoinTeam(teamName, username);
             return Ok();
         }
         
