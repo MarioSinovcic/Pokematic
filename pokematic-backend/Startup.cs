@@ -11,7 +11,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using pokematic_backend.Contexts;
-using pokematic_backend.Interfaces;
 using pokematic_backend.Services;
 
 namespace pokematic_backend

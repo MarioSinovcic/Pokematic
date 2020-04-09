@@ -6,7 +6,6 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using pokematic_backend.Contexts;
-using pokematic_backend.Interfaces;
 using pokematic_backend.Models;
 using Task = System.Threading.Tasks.Task;
 

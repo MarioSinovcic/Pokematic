@@ -6,12 +6,11 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using pokematic_backend.Contexts;
-using pokematic_backend.Interfaces;
 using pokematic_backend.Models;
 
 namespace pokematic_backend.Services
 {
-    public class UserService: IUserService
+    public class UserService
     {
         private readonly IMongoCollection<User> _users;
 
