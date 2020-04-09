@@ -7,6 +7,7 @@ using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using pokematic_backend.Contexts;
 using pokematic_backend.Models;
+using static MongoDB.Driver.Builders<pokematic_backend.Models.User>;
 
 namespace pokematic_backend.Services
 {
@@ -25,10 +26,10 @@ namespace pokematic_backend.Services
             return _users.AsQueryable().ToList();
         }
 
-        public Task<User> Get(string username)
+        public User Get(string username)
         {
-            var userToGet = _users.AsQueryable().FirstAsync(user => user.Username == username);
-            return userToGet;
+            var user = _users.AsQueryable().FirstAsync(user => user.Username == username).Result;
+            return user;
         }
         
         public void Create(User user)
@@ -36,9 +37,10 @@ namespace pokematic_backend.Services
             _users.InsertOneAsync(user);
         }
         
-        public void Update(ObjectId id, User userToUpdate)
+        public void Update(string username, User user)
         {
-            _users.ReplaceOneAsync(user => user.Id == id, userToUpdate);
+            var filter = Filter.Eq(user => user.Username, username);
+            _users.ReplaceOneAsync(filter, user);
         }
 
         public void Remove(string username)

@@ -29,17 +29,17 @@ namespace pokematic_backend.Controllers
         
 
         [HttpPost("create")]
-        public async Task<User> CreateUser(User user)
+        public User CreateUser(User user)
         {
             _userService.Create(user);
             return user;
         }
 
         [HttpGet("{username}")]
-        public async Task<User> GetUser(string username)
+        public User GetUser(string username)
         {
             var user = _userService.Get(username);
-            return await user;
+            return user;
         }
         
         

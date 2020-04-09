@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using pokematic_backend.Contexts;
 using pokematic_backend.Services;
+using Newtonsoft.Json;
 
 namespace pokematic_backend
 {
@@ -31,6 +32,7 @@ namespace pokematic_backend
             services.AddScoped<DatabaseContext>();
             services.AddScoped<UserService>();
             services.AddScoped<TeamService>();
+            services.AddControllers().AddNewtonsoftJson();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

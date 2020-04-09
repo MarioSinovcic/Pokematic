@@ -16,7 +16,6 @@ namespace pokematic_backend.Services
     public class TeamService
     {
         private readonly IMongoCollection<Team> _teams;
-        private readonly IMongoCollection<User> _users;
         private readonly UserService _userService;
         
         public TeamService(IConfiguration configuration)
@@ -24,7 +23,6 @@ namespace pokematic_backend.Services
             var databaseContext = new DatabaseContext(configuration);
             _userService = new UserService(configuration);
             _teams = databaseContext.Database.GetCollection<Team>("Teams");
-            _users = databaseContext.Database.GetCollection<User>("Users");
         }
 
         public List<Team> GetAllTeams()
@@ -90,7 +88,7 @@ namespace pokematic_backend.Services
             return goal;
         }
 
-        public void CreateTask(Models.Task task, string goalName, string teamName)
+        public void CreateTask(Models.Task task, string teamName, string goalName)
         {
             var team = _teams.AsQueryable().FirstAsync(team => team.Name == teamName).Result;
             var goal = team.Goals.First(goal => goal.Name == goalName);
@@ -119,7 +117,7 @@ namespace pokematic_backend.Services
         public void JoinTeam(string teamName, string username)
         {
             var team = _teams.AsQueryable().FirstAsync(team => team.Name == teamName).Result;
-            var user = _users.AsQueryable().FirstAsync(user => user.Username == username).Result;
+            var user = _userService.Get(username);
 
             if (team == null)
             {
@@ -137,19 +135,6 @@ namespace pokematic_backend.Services
                 Update(teamName, team);
             }
 
-            if (user.Teams == null)
-            {
-                user.Teams = new List<Team>();
-            }
-            else
-            {
-                
-            }
-
-
-            team.Users.Append(user);
-            Update(team.Name, team);
-            return team;
         }
     }
 }
