@@ -12,12 +12,10 @@ namespace pokematic_backend.Controllers
     public class UserController : ControllerBase
     {
         private readonly UserService _userService;
-        private readonly TeamService _teamService;
 
-        public UserController(UserService userService, TeamService teamService)
+        public UserController(UserService userService)
         {
             _userService = userService;
-            _teamService = teamService;
         }
         
         /*
@@ -29,9 +27,7 @@ namespace pokematic_backend.Controllers
             return _userService.GetAllUsers();
         }
         
-        /*
-         * 
-         */
+
         [HttpPost("create")]
         public async Task<User> CreateUser(User user)
         {
@@ -45,14 +41,6 @@ namespace pokematic_backend.Controllers
             var user = _userService.Get(username);
             return await user;
         }
-
-        [HttpPost("joinTeam")]
-        public async Task<Models.Team> JoinTeam(string teamName, string username)
-        {
-            _userService.JoinTeam(teamName, username);
-            return null;
-        }
-        
         
         
     }

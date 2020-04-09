@@ -10,6 +10,6 @@ namespace pokematic_backend.Models
         
         [BsonElement("role")] public string Role { get; set; }
 
-        [BsonElement("teams")] public Team[] teams { get; set; }
+        [BsonElement("teams")] public Team[] Teams { get; set; }
     }
 }

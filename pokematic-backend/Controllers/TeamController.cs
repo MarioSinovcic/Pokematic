@@ -84,6 +84,13 @@ namespace pokematic_backend.Controllers
             return task;
         }
         
+        [HttpPost("joinTeam")]
+        public  ActionResult JoinTeam(string teamName, User user)
+        {
+            _teamService.JoinTeam(teamName, user);
+            return Ok();
+        }
+        
         /*
          * Update task and goal status
          */
