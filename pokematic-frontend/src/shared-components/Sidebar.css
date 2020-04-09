@@ -3,7 +3,7 @@
     background-color: black !important;
     box-shadow: #3D3D3D;
     position: absolute;
-    z-index: -1;
+    z-index: -2 !important;
     overflow-x: hidden !important
 }
 

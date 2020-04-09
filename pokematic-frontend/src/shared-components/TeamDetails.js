@@ -1,6 +1,6 @@
 import React from 'react';
 import ProgressBar from './ProgressBar';
-import { Typography, ListItem, Divider } from '@material-ui/core';
+import { Typography, Divider } from '@material-ui/core';
 import './TeamDetails.css';
 import Label from '../pages/board-components/Label';
 
