@@ -1,9 +1,11 @@
 import React from 'react';
 import Header from '../shared-components/Header';
 import Sidebar from '../shared-components/Sidebar';
+import ProfileCard from './profile-components/ProfileCard';
+import './Profile.css';
 
 function Profile() {
-
+  
 // Temporary teams list - API call should go here
 const teams = ['yes', 'hello'];
 const sidebarTitle = 'TEAMS';
@@ -14,7 +16,10 @@ const sidebarTitle = 'TEAMS';
       <Header />
         <div className="menu">
           <Sidebar items={teams} title={sidebarTitle} itemType="TEAM"/>
-        </div>
+          </div>
+          <div className="profile-content">
+            <ProfileCard className="profile-card"/>
+          </div>
       </header>
     </div>
   );
