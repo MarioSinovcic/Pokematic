@@ -4,6 +4,7 @@
     box-shadow: #3D3D3D;
     position: absolute;
     z-index: -1;
+    overflow-x: hidden !important
 }
 
 .MuiPaper-root {
