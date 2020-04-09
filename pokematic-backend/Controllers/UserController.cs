@@ -45,10 +45,14 @@ namespace pokematic_backend.Controllers
             var user = _userService.Get(username);
             return await user;
         }
+
+        [HttpPost("joinTeam")]
+        public async Task<Models.Team> JoinTeam(string teamName, string username)
+        {
+            _userService.JoinTeam(teamName, username);
+            return null;
+        }
         
-        /**
-         * Join team
-         */
         
         
     }

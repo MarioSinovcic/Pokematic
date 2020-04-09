@@ -79,15 +79,8 @@ namespace pokematic_backend.Services
             Update(teamName, team);
         }
         
-        /**
-         * UPDATE 
-         */
-        
-        
-        
-        
         
 
- 
+
     }
 }

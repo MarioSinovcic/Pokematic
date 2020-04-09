@@ -7,6 +7,22 @@ using pokematic_backend.Models;
 using pokematic_backend.Services;
 using Task = System.Threading.Tasks.Task;
 
+// TO DO
+/*
+ * updating task, updating goal (or progress of that goal)
+ * approving tasks (PMs), updating EXP/LVL for teams, users to switch roles,
+ * check for existing team (when trying to search for teams to be added into), login stuff,
+ * adding a pokemon to team when they get a new pokemon, get all pokemon of that team’s collection,
+ */
+
+// DONE
+/*
+ * Get all teams, create team, get goals, get tasks, create goals,
+ * create tasks, get user, create user, join a team,
+ * 
+ */
+
+
 namespace pokematic_backend.Controllers
 {
     [ApiController]
@@ -33,21 +49,21 @@ namespace pokematic_backend.Controllers
             return team;
         }
 
-        [HttpGet("{name}")]
-        public async Task<Team> GetTeam(string name)
+        [HttpGet("{teamName}")]
+        public async Task<Team> GetTeam(string teamName)
         {
-            var team = _teamService.Get(name);
+            var team = _teamService.Get(teamName);
             return await team;
         }
 
-        [HttpGet("goals")]
+        [HttpGet("goals/{teamName}")]
         public async Task<List<Goal>> GetGoals(string teamName)
         {
             var goals = _teamService.GetGoals(teamName);
             return goals;
         }
 
-        [HttpGet("tasks")]
+        [HttpGet("tasks/{teamName}")]
         public async Task<List<Models.Task>> GetTasks(string teamName)
         {
             var tasks = _teamService.GetTasks(teamName);
