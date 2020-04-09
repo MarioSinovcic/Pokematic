@@ -114,13 +114,13 @@ namespace pokematic_backend.Services
             }
             
         }
-        
-        
+
+
         public void JoinTeam(string teamName, string username)
         {
             var team = _teams.AsQueryable().FirstAsync(team => team.Name == teamName).Result;
             var user = _users.AsQueryable().FirstAsync(user => user.Username == username).Result;
-            
+
             if (team == null)
             {
                 return;
@@ -128,8 +128,25 @@ namespace pokematic_backend.Services
 
             if (team.Users == null)
             {
+                team.Users = new List<User> {user};
+                Update(teamName, team);
+            }
+            else
+            {
+                team.Users.Add(user);
+                Update(teamName, team);
+            }
+
+            if (user.Teams == null)
+            {
+                user.Teams = new List<Team>();
+            }
+            else
+            {
                 
             }
+
+
             team.Users.Append(user);
             Update(team.Name, team);
             return team;
