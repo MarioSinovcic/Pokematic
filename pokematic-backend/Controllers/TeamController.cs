@@ -37,50 +37,50 @@ namespace pokematic_backend.Controllers
         }
         
         [HttpGet]
-        public async Task<List<Team>> GetAllTeams()
+        public List<Team> GetAllTeams()
         {
             return _teamService.GetAllTeams();
         }
         
         [HttpPost("createTeam")]
-        public async Task<Team> CreateTeam(Team team)
+        public  Team CreateTeam(Team team)
         {
             _teamService.Create(team);
             return team;
         }
 
         [HttpGet("{teamName}")]
-        public async Task<Team> GetTeam(string teamName)
+        public Team GetTeam(string teamName)
         {
             var team = _teamService.Get(teamName);
-            return await team;
+            return team;
         }
 
         [HttpGet("goals/{teamName}")]
-        public async Task<List<Goal>> GetGoals(string teamName)
+        public List<Goal> GetGoals(string teamName)
         {
             var goals = _teamService.GetGoals(teamName);
             return goals;
         }
 
         [HttpGet("tasks/{teamName}")]
-        public async Task<List<Models.Task>> GetTasks(string teamName)
+        public List<Models.Task> GetTasks(string teamName)
         {
             var tasks = _teamService.GetTasks(teamName);
             return tasks;
         }
 
         [HttpPost("createGoal")]
-        public async Task<Goal> CreateGoal(Goal goal, string teamName)
+        public  Goal CreateGoal(Goal goal, string teamName)
         {
             _teamService.CreateGoal(goal, teamName);
             return goal;
         }
 
         [HttpPost("createTask")]
-        public async Task<Models.Task> CreateTask(Models.Task task, string goalName, string teamName)
+        public Models.Task CreateTask(Models.Task task, string goalName, string teamName)
         {
-            _teamService.CreateTask(task, goalName, teamName);
+             _teamService.CreateTask(task, goalName, teamName);
             return task;
         }
         

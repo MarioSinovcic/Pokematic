@@ -27,9 +27,9 @@ namespace pokematic_backend.Services
             return _teams.AsQueryable().ToList();
         }
 
-        public Task<Team> Get(string teamName)
+        public Team Get(string teamName)
         {
-            var team = _teams.AsQueryable().FirstAsync(team => team.Name == teamName);
+            var team = _teams.AsQueryable().FirstAsync(team => team.Name == teamName).Result;
             return team;
         }
 
@@ -50,8 +50,8 @@ namespace pokematic_backend.Services
 
         public List<Goal> GetGoals(string teamName)
         {
-            var team =  _teams.AsQueryable().FirstAsync(team => team.Name == teamName);
-            return team.Result.Goals.ToList();
+            var team =  _teams.AsQueryable().FirstAsync(team => team.Name == teamName).Result;
+            return team.Goals.ToList();
         }
         
         public List<Models.Task> GetTasks(string teamName)
