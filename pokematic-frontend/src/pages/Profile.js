@@ -25,8 +25,8 @@ const newTeamIcon = <AddIcon style={{fontSize: "35px", color: "#3D3D3D"}}/>;
         <div className="menu">
           <Sidebar items={teams} title={sidebarTitle} itemType="TEAM"/>
           <div className="team-buttons">
-            <ModalButton icon={searchTeamIcon} theme="light" />
-            <ModalButton icon={newTeamIcon} theme="light"/>
+            <ModalButton icon={searchTeamIcon} theme="light" type="search-team"/>
+            <ModalButton icon={newTeamIcon} theme="light" type="new-team"/>
           </div>
         </div>
         <div className="profile-content">

@@ -38,7 +38,7 @@ function Board() {
           </div>
         </div>
         <div className="new-task-button">
-          <ModalButton icon={newTaskIcon} theme="dark"/>
+          <ModalButton icon={newTaskIcon} theme="dark" type="new-task"/>
         </div>
       </div>
         {/* Example: This is how we should use Navlinks to swap between routes in nested components */}

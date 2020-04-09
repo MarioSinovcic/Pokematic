@@ -43,6 +43,25 @@ function ModalButton(props) {
     setOpen(false);
   };
 
+  let renderModal;
+  switch(props.type) {
+
+    case "new-task":
+    renderModal = <NewTaskModalContent addNewTask={addNewTask}/>
+    break;
+
+    case "search-team":
+    renderModal = "To be Completed";
+      break; 
+
+    case "new-team":
+    renderModal = "To be Completed";
+    break;
+
+    default:
+    break;
+  }
+
 
   return (
     <div>
@@ -68,7 +87,7 @@ function ModalButton(props) {
             >
               <Fade in={open}>
                <div className={classes.paper}>
-                <NewTaskModalContent addNewTask={addNewTask}/>
+                {renderModal}
               </div>
             </Fade>
           </Modal>
