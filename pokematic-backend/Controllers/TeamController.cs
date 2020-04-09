@@ -80,7 +80,7 @@ namespace pokematic_backend.Controllers
         [HttpPost("createTask/{teamName}/{goalName}")]
         public Models.Task CreateTask(Models.Task task, string teamName, string goalName)
         {
-             _teamService.CreateTask(task, goalName, teamName);
+             _teamService.CreateTask(task, teamName, goalName);
             return task;
         }
         
