@@ -4,8 +4,10 @@ import Sidebar from '../shared-components/Sidebar';
 import TeamCard from '../shared-components/TeamCard';
 import StatusCard from './board-components/StatusCard';
 import './Board.css'
-import NewTaskButton from './board-components/NewTaskButton';
+import ModalButton from '../shared-components/ModalButton';
 import Header from '../shared-components/Header';
+import AddIcon from '@material-ui/icons/Add';
+
 
 
 function Board() {
@@ -13,6 +15,8 @@ function Board() {
   const goals = ['Planning', 'Frontend Team', 'Testers', 'Design Squad'];
   const sidebarTitle = 'ALL TASKS';
   const sidebarSubTitle = 'MY TASKS';
+
+  const newTaskIcon = <AddIcon style={{fontSize: "35px"}}/>;
 
   return (
     <div>
@@ -33,7 +37,9 @@ function Board() {
           <StatusCard id="Done"/>
           </div>
         </div>
-        <NewTaskButton />
+        <div className="new-task-button">
+          <ModalButton icon={newTaskIcon} theme="dark"/>
+        </div>
       </div>
         {/* Example: This is how we should use Navlinks to swap between routes in nested components */}
         <NavLink to="/login" >Log Out</NavLink>

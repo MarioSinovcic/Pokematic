@@ -5,8 +5,8 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import AddIcon from '@material-ui/icons/Add';
-import NewTaskModalContent from './Modals/NewTaskModalContent'
-import './NewTaskButton.css';
+import NewTaskModalContent from '../pages/board-components/Modals/NewTaskModalContent'
+import './ModalButton.css';
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function NewTaskButton() {
+function ModalButton(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   
@@ -47,8 +47,8 @@ function NewTaskButton() {
   return (
     <div>
       <div>
-        <Fab color="secondary" aria-label="add" className="NewTaskButton NewTaskButtonColors" onClick={handlOpen}>
-          <AddIcon style={{fontSize: "35px"}}/>
+        <Fab color="secondary" aria-label="add" className={props.theme === "light" ? "light-theme-bg" : "dark-theme-bg"} onClick={handlOpen}>
+          {props.icon}
         </Fab>
       </div>
       <div>
@@ -66,8 +66,8 @@ function NewTaskButton() {
               timeout: 500,
               }}
             >
-            <Fade in={open}>
-              <div className={classes.paper}>
+              <Fade in={open}>
+               <div className={classes.paper}>
                 <NewTaskModalContent addNewTask={addNewTask}/>
               </div>
             </Fade>
@@ -77,4 +77,4 @@ function NewTaskButton() {
   );
 }
 
-export default NewTaskButton;
+export default ModalButton;
