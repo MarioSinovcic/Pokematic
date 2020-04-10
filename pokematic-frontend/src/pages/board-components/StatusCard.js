@@ -3,32 +3,53 @@ import { Typography } from '@material-ui/core';
 import './StatusCard.css';
 import TaskCard from './TaskCard';
 
-function StatusCard() {
-    // These should be passed in as props
-    const statusTitle = "TODO";
+export class StatusCard extends React.Component {
+    constructor(props){
+        super(props);
+        
+        this.state = {
+          taskCards: []
+        }
+      }
+      
+    render() {
+        if (!this.props.taskList){ 
+            return null;
+        }
+        else{            
+            var tasksToRender = this.props.taskList.map((taskData) => 
+                <TaskCard 
+                    id={taskData["id"]} 
+                    name={taskData["name"]} 
+                    taskNumber={taskData["taskNumber"]} 
+                    description={taskData["description"]} 
+                    experiencePoints={taskData["experiencePoints"]} 
+                    status={taskData["status"]} 
+                    storyPoints={taskData["storyPoints"]}
+                    assignees={taskData["assignees"]}
+                    approved={taskData["approved"]}
+                    />
+            )
 
-    return (
-        <div className="StatusCardShape">
-            <div className="StatusBaseShape">
-            <div className="StatusHeaders">
-                <Typography className="StatusCardTitle">{statusTitle}</Typography>
+            return (
+            <div class="StatusCardShape">
+                <div className="StatusBaseShape">
+                <div className="StatusHeaders">
+                    <Typography className="StatusCardTitle">{this.props.statusTitle}</Typography>
+                    </div>
+                    {/* Dynamically generate cards here */}
+                    <div className ="Tasks" id="scrollbar">
+                        {tasksToRender}
+                    </div>
                 </div>
-                {/* Dynamically generate cards here */}
-                <div className ="Tasks" id="scrollbar">
-                    <TaskCard />
-                    <TaskCard />
-                    <TaskCard />
-                    <TaskCard />
-
-
+                <div className="StatusEdge">
+                    <div className="StatusCut"></div>
+                    <div className="StatusBottom"></div> 
                 </div>
             </div>
-            <div className="StatusEdge">
-                <div className="StatusCut"></div>
-                <div className="StatusBottom"></div> 
-            </div>
-        </div>
-)
+        );
+        }
+    } 
 }
 
 export default StatusCard;

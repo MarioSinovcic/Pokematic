@@ -22,7 +22,7 @@ function ModalContent (props) {
         <div className="modal-content">
             <div className="grouping">
                 <p className="task-number">#{props.taskNumber}</p>
-                <p className="task-title">{props.taskTitle}</p>
+                <p className="task-title">{props.name}</p>
             </div>    
             <div className="grouping padding-bottom-p">
                 <p className="goal-name">{props.taskGoal}</p>
@@ -33,7 +33,7 @@ function ModalContent (props) {
             </div>  
             <div className="grey-group">
                 <p className="description-label">Description</p>
-                <p className="description">{props.taskDescription}</p>
+                <p className="description">{props.description}</p>
             </div>  
             <div className="grouping">
                 <p className="status-label">STATUS</p>
