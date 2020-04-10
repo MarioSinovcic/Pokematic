@@ -33,12 +33,3 @@
     margin-top: 50px;
     margin-left: 15px;
 }
-
-.new-task-button {
-    position: fixed !important;
-    right: 0;
-    bottom: 0;
-    margin: 25px !important;
-    size: 50px !important;
-    z-index: 10;
-}

@@ -5,9 +5,8 @@ import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
+import ProgressBar from '../../shared-components/ProgressBar';
 import './Sidebar.css'
-import Goal from '../pages/board-components/Goal';
-import TeamDetails from './TeamDetails';
 
 const drawerWidth = 250;
 
@@ -16,6 +15,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
   },
   appBar: {
+    zIndex: theme.zIndex.drawer + 1,
   },
   drawer: {
     width: drawerWidth,
@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
   toolbar: theme.mixins.toolbar,
 }));
 
-export default function Sidebar(props) {
+export default function Sidebar() {
   const classes = useStyles();
 
   return (
@@ -47,22 +47,25 @@ export default function Sidebar(props) {
         <div className={classes.toolbar} />
         <List>
          
-            <ListItem button key={"title"} className="TeamTabs TaskButton">
-            <Typography className="TaskFilter AllTasks">{props.title}</Typography>
+            <ListItem button key={"All Tasks"} className="TeamTabs TaskButton">
+            <Typography className="TaskFilter AllTasks">ALL TASKS</Typography>
             </ListItem>
 
-            {props.subTitle && 
-             <ListItem button key={"subtitle"} className="TeamTabs">
-             <Typography className="TaskFilter MyTasks">{props.subTitle}</Typography>
-            </ListItem>}
+             <ListItem button key={"My Tasks"} className="TeamTabs">
+             <Typography className="TaskFilter MyTasks">MY TASKS</Typography>
+            </ListItem>
         </List>
         <Divider className="SideBarDivider"/>
         <List>
-          {/* Dynamically fetch goals/teams here */}
-          {props.items.map((text, index) => (
-            props.itemType === "GOAL" ? 
-              <Goal text={text} key={index}/> 
-              : <TeamDetails isItem={true}/>
+          {/* Dynamically fetch goals here */}
+          {['Planning', 'Frontend Team', 'Testers', 'Design Squad'].map((text, index) => (
+            <div className="TeamTabs">
+            <ListItem button key={text} className="TeamTabs">
+              <Typography className="TaskName">{text}</Typography>
+              <ProgressBar />
+            </ListItem>
+            <Divider className="GoalDivider" /> 
+            </div>
           ))}
         </List>
       </Drawer>
