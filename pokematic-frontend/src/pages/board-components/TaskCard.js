@@ -47,7 +47,7 @@ function TaskCard(props) {
             </div>
             <Assignees />
             <div className="TaskLabels">
-                <Label />
+                <Label labelText={props.experiencePoints + " XP"}/>
                 <StatusDropdown />
             </div>
         </div>
