@@ -54,11 +54,13 @@
 }
 
 .TaskHeaders {
+    width: 100%;
     display: flex;
-    flex-direction: row;
 }
 
 .TaskTitleText {
+    width: 220px;
+    padding-right: 20px;
     font-family: 'Roboto Mono', monospace !important;
     font-weight: 600 !important;
     color: #3D3D3D;

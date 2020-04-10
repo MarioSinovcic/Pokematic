@@ -17,7 +17,7 @@ function TeamDetails(props) {
                 <img alt="team-logo" src={temporaryTeamLogo} className="team-image"></img>
             </div>
             <div className="team-stats">
-                <Label labelText={"Lv "+teamLevel}/>
+                <Label labelText={"lv. "+teamLevel}/>
                 <Typography className={props.isItem ? "team-name team-item-text" : "team-name"}>{teamName}</Typography>
                 <div className={props.isItem ? "team-level-bar item-width" : "team-level-bar card-width"}>
                     <ProgressBar progress={60}/>
