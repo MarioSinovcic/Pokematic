@@ -8,7 +8,7 @@ function StatusCard() {
     const statusTitle = "TODO";
 
     return (
-        <div class="StatusCardShape">
+        <div className="StatusCardShape">
             <div className="StatusBaseShape">
             <div className="StatusHeaders">
                 <Typography className="StatusCardTitle">{statusTitle}</Typography>

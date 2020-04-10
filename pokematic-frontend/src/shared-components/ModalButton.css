@@ -1,0 +1,17 @@
+
+
+.light-theme-bg {
+    background-color:  whitesmoke !important;
+} 
+
+.dark-theme-bg {
+    background-color:  #3D3D3D !important;
+} 
+
+.light-theme-icon {
+    color: #3D3D3D;
+}
+
+.dark-theme-icon {
+    color: whitesmoke;
+}
