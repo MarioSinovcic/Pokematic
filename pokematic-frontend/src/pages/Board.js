@@ -1,5 +1,4 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import Sidebar from '../shared-components/Sidebar';
 import TeamCard from '../shared-components/TeamCard';
 import StatusCard from './board-components/StatusCard';
@@ -8,7 +7,10 @@ import Header from '../shared-components/Header';
 import AddIcon from '@material-ui/icons/Add';
 import './Board.css'
 
-import LOCALFILE from './test.json';
+import goalResponse from './goalResponse.json';
+
+const SIDEBARTITLE = 'ALL TASKS';
+const SIDEBARSUBTITLE = 'MY TASKS';
 
 class Board extends React.Component {
   constructor(props){
@@ -24,41 +26,49 @@ class Board extends React.Component {
   }
 
   componentDidMount(){
-    //similar ops here
     this.getTeamGoals();
-    this.getTasks();
   }
 
   getTeamGoals(){
     //replace with api call
-    const gatheredTeamGoals = ['Planning', 'Frontend Team', 'Testers', 'Design Squad'];
+    var data = goalResponse;
 
+    const gatheredTeamGoals= [];
+    var gatheredTasksForGoals= [];
+
+    for (var goal = 0; goal < data.length; goal++) {
+      gatheredTeamGoals.push(data[goal]);
+      var taskArray = data[goal]["tasks"];
+
+      for(var task = 0; task < taskArray.length; task++){
+        gatheredTasksForGoals.push(taskArray[task]);
+      }
+    }
+    this.sortTasks(gatheredTasksForGoals);
+    
     this.setState({
       goalsList: gatheredTeamGoals
     })
   }
 
-  getTasks(){
-    //replace with api call and handelling
-    var data = LOCALFILE;
-
+  sortTasks(tasks){
     const gatheredTodoList = [];
     const gatheredInProgressList = [];
     const gatheredInReviewList = [];
     const gatheredDoneList = [];
-
-    for (var i = 0; i < data.length; i++) {
-      if(data[i]["status"] === "TODO"){
-        gatheredTodoList.push(data[i])
+    
+    for (var i = 0; i < tasks.length; i++) {
+      if(tasks[i]["status"] === "TODO"){
+        gatheredTodoList.push(tasks[i]);
       }
-      if(data[i]["status"] === "In Progress"){
-        gatheredInProgressList.push(data[i])
+      if(tasks[i]["status"] === "In Progress"){
+        gatheredInProgressList.push(tasks[i]);
       }
-      if(data[i]["status"] === "In Review"){
-        gatheredInReviewList.push(data[i])
+      if(tasks[i]["status"] === "In Review"){
+        gatheredInReviewList.push(tasks[i]);
       }
-      if(data[i]["status"] === "Done"){
-        gatheredDoneList.push(data[i])
+      if(tasks[i]["status"] === "Done"){
+        gatheredDoneList.push(tasks[i]);
       }
     }
         
@@ -72,12 +82,10 @@ class Board extends React.Component {
 
 
   render(){
-
   // Temporary goals list - API call should go here
   const goals = ['Planning', 'Frontend Team', 'Testers', 'Design Squad'];
-  const sidebarTitle = 'ALL TASKS';
-  const sidebarSubTitle = 'MY TASKS';
-    return (
+
+  return (
       <div>
         <div className="board-page">
         <Header />
@@ -85,7 +93,7 @@ class Board extends React.Component {
               <TeamCard />
         </div>
           <div className="menu">
-            <Sidebar items={goals} title={sidebarTitle} subTitle={sidebarSubTitle} itemType="GOAL"/>
+            <Sidebar items={goals} title={SIDEBARTITLE} subTitle={SIDEBARSUBTITLE} itemType="GOAL"/>
           </div>
           <div className="tasks-content">
             <div className="todo-status">
@@ -100,8 +108,6 @@ class Board extends React.Component {
             <ModalButton icon={<AddIcon style={{fontSize: "35px"}}/>} theme="dark" type="new-task"/>
           </div>
         </div>
-          {/* Example: This is how we should use Navlinks to swap between routes in nested components */}
-          <NavLink to="/login" >Log Out</NavLink>
       </div>
     );
   }
