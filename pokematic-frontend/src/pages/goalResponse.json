@@ -54,9 +54,9 @@
         "tasks": [
             {
                 "id": "000000000000000000000000",
-                "name": "Implement Navigation Bar",
+                "name": "Implement Tests",
                 "taskNumber": 65,
-                "description": "As a user, I would like to navigate between pages, So that I can access the different functionalities of the app",
+                "description": "As a user, I would like have some tests, So that I can access tests",
                 "experiencePoints": 2,
                 "status": "Done",
                 "storyPoints": 3,
@@ -66,7 +66,7 @@
             {
                 "id": "000000000000000000000000",
                 "name": "Implement Other stuff",
-                "taskNumber": 66,
+                "taskNumber": 64,
                 "description": "As a user, I would like to navigate between pages, So that I can access the different functionalities of the app",
                 "experiencePoints": 2,
                 "status": "TODO",
@@ -88,7 +88,7 @@
             {
                 "id": "000000000000000000000000",
                 "name": "Other stuff",
-                "taskNumber": 66,
+                "taskNumber": 63,
                 "description": "As a user, I am scared, So that I functionalities of the app",
                 "experiencePoints": 2,
                 "status": "Done",
