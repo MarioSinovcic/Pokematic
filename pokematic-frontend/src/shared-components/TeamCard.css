@@ -17,6 +17,64 @@
     justify-content: center;
 }
 
+.team-icon-bg {
+    height: 70px;
+    width: 400px;
+    background-color: white;
+    border-radius: 3px;
+    margin: 12px 12px 12px 12px;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    display: flex;
+}
+
+.team-image {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.team-stats {
+    left: 10px;
+    width: 600px;
+    position: relative;
+    z-index: 5;
+
+}
+
+.team-name {
+    font-family: 'Roboto Mono', monospace !important;
+    font-weight: 500 !important;
+    align-self: flex-end !important;
+    font-size: 20px !important;
+    color: black;
+    padding-bottom: 0 !important;
+    width: 200%;
+}
+
+.team-level-bar {
+    margin-top: 10px;
+    bottom: 0px;
+    position: relative;
+    z-index: 5;
+    width: 130%;
+    justify-content: flex-end;
+    flex-direction: column;
+}
+
+.EXP-text {
+    text-align: right !important;
+    align-content: right !important;
+    color: black;
+    font-size: 12px !important;
+}
+
+.EXP {
+    font-family: 'Roboto Mono', monospace !important;
+    font-weight: 500 !important;
+    align-self: center !important;
+}
 
 .bottom-support {
     width: 61px;

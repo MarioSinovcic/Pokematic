@@ -1,0 +1,11 @@
+.NewTaskButton {
+    position: fixed !important;
+    right: 0;
+    bottom: 0;
+    margin: 25px !important;
+    size: 50px !important;
+}
+
+.NewTaskButtonColors {
+    background-color:  #3D3D3D !important;
+} 
