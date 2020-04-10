@@ -1,5 +1,5 @@
 import React from 'react';
-import Sidebar from '../shared-components/Sidebar';
+import GoalSidebar from './board-components/GoalSideBar';
 import TeamCard from '../shared-components/TeamCard';
 import StatusCard from './board-components/StatusCard';
 import ModalButton from '../shared-components/ModalButton';
@@ -8,9 +8,6 @@ import AddIcon from '@material-ui/icons/Add';
 import './Board.css'
 
 import fakeGoalResponse from './goalResponse.json';
-
-const SIDEBARTITLE = 'ALL TASKS';
-const SIDEBARSUBTITLE = 'MY TASKS';
 
 class Board extends React.Component {
   constructor(props){
@@ -42,7 +39,6 @@ class Board extends React.Component {
 
       for(var task = 0; task < taskArray.length; task++){
         var currentTask = taskArray[task];
-        console.log(currentTask);
         currentTask["goalName"] = goalResponse[goal]["name"];
         gatheredTasksForGoals.push(currentTask);
       }
@@ -83,36 +79,31 @@ class Board extends React.Component {
     })
   }
 
-
   render(){
-  // Temporary goals list - API call should go here
-  const goals = ['Planning', 'Frontend Team', 'Testers', 'Design Squad'];
-
-  return (
-      <div>
-        <div className="board-page">
-        <Header />
-        <div className="team-card">
-              <TeamCard />
-        </div>
-          <div className="menu">
-            <Sidebar items={goals} title={SIDEBARTITLE} subTitle={SIDEBARSUBTITLE} itemType="GOAL"/>
+    return (
+        <div>
+          <div className="board-page">
+          <Header />
+          <div className="team-card">
+                <TeamCard />
           </div>
-          <div className="tasks-content">
-            <div className="todo-status">
-            {/* Dynamically generate status cards here */}
-            <StatusCard statusTitle={"TODO"} taskList={this.state.todoList}/>
-            <StatusCard statusTitle={"IN PROGRESS"} taskList={this.state.inProgressList}/>
-            <StatusCard statusTitle={"IN REVIEW"} taskList={this.state.inReviewList}/>
-            <StatusCard statusTitle={"DONE"} taskList={this.state.doneList}/>
+            <div className="menu">
+            <GoalSidebar goalsList={this.state.goalsList}/>
+            </div>
+            <div className="tasks-content">
+              <div className="todo-status">
+              <StatusCard statusTitle={"TODO"} taskList={this.state.todoList}/>
+              <StatusCard statusTitle={"IN PROGRESS"} taskList={this.state.inProgressList}/>
+              <StatusCard statusTitle={"IN REVIEW"} taskList={this.state.inReviewList}/>
+              <StatusCard statusTitle={"DONE"} taskList={this.state.doneList}/>
+              </div>
+            </div>
+            <div className="new-task-button">
+              <ModalButton icon={<AddIcon style={{fontSize: "35px"}}/>} theme="dark" type="new-task"/>
             </div>
           </div>
-          <div className="new-task-button">
-            <ModalButton icon={<AddIcon style={{fontSize: "35px"}}/>} theme="dark" type="new-task"/>
-          </div>
         </div>
-      </div>
-    );
+     );
   }
 }
 

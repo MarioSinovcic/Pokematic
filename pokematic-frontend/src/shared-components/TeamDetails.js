@@ -19,7 +19,7 @@ function TeamDetails(props) {
                 <Label />
                 <Typography className={props.isItem ? "team-name team-item-text" : "team-name"}>{teamName}</Typography>
                 <div className={props.isItem ? "team-level-bar item-width" : "team-level-bar card-width"}>
-                    <ProgressBar/>
+                    <ProgressBar progress={60}/>
                     <Typography className={props.isItem ? "EXP EXP-text item-text" : "EXP EXP-text"}>EXP: 100/200</Typography>
                 </div>
             </div>
