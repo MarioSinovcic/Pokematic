@@ -28,6 +28,7 @@ export class StatusCard extends React.Component {
                     storyPoints={taskData["storyPoints"]}
                     assignees={taskData["assignees"]}
                     approved={taskData["approved"]}
+                    goalName={taskData["goalName"]}
                     />
             )
 

@@ -38,11 +38,6 @@ function TaskCard(props) {
       setOpen(false);
     };
 
-
-    // - - - not yet handled by API
-    const taskGoal = "Some goal";
-
-
     return (
         <div>
         <div className="TaskCard" >
@@ -83,9 +78,8 @@ function TaskCard(props) {
                             storyPoints={props.storyPoints}
                             assignees={props.assignees}
                             approved={props.approved}
+                            goalName={props.goalName}
                             handleClose={handleClose}
-                            //not yet implemented
-                            taskGoal={taskGoal}
                             />
                     </div>
                 </Fade>

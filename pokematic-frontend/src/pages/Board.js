@@ -7,7 +7,7 @@ import Header from '../shared-components/Header';
 import AddIcon from '@material-ui/icons/Add';
 import './Board.css'
 
-import goalResponse from './goalResponse.json';
+import fakeGoalResponse from './goalResponse.json';
 
 const SIDEBARTITLE = 'ALL TASKS';
 const SIDEBARSUBTITLE = 'MY TASKS';
@@ -31,17 +31,20 @@ class Board extends React.Component {
 
   getTeamGoals(){
     //replace with api call
-    var data = goalResponse;
+    var goalResponse = fakeGoalResponse;
 
     const gatheredTeamGoals= [];
     var gatheredTasksForGoals= [];
 
-    for (var goal = 0; goal < data.length; goal++) {
-      gatheredTeamGoals.push(data[goal]);
-      var taskArray = data[goal]["tasks"];
+    for (var goal = 0; goal < goalResponse.length; goal++) {
+      gatheredTeamGoals.push(goalResponse[goal]);
+      var taskArray = goalResponse[goal]["tasks"];
 
       for(var task = 0; task < taskArray.length; task++){
-        gatheredTasksForGoals.push(taskArray[task]);
+        var currentTask = taskArray[task];
+        console.log(currentTask);
+        currentTask["goalName"] = goalResponse[goal]["name"];
+        gatheredTasksForGoals.push(currentTask);
       }
     }
     this.sortTasks(gatheredTasksForGoals);

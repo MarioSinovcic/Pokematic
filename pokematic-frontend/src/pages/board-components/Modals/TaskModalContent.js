@@ -25,7 +25,7 @@ function ModalContent (props) {
                 <p className="task-title">{props.name}</p>
             </div>    
             <div className="grouping padding-bottom-p">
-                <p className="goal-name">{props.taskGoal}</p>
+                <p className="goal-name">{props.goalName}</p>
                 <div className="right-align">
                     <div className="story-points-label">STORY POINTS</div>
                     <div className="story-points">{props.storyPoints}</div>
