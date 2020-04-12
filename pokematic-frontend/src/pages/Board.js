@@ -7,7 +7,8 @@ import Header from '../shared-components/Header';
 import AddIcon from '@material-ui/icons/Add';
 import './Board.css'
 
-import fakeGoalResponse from './goalResponse.json';
+import {STATUSLIST} from '../constants';
+import fakeGoalResponse from '../goalResponse.json';
 
 class Board extends React.Component {
   constructor(props){
@@ -57,16 +58,16 @@ class Board extends React.Component {
     const gatheredDoneList = [];
     
     for (var i = 0; i < tasks.length; i++) {
-      if(tasks[i]["status"] === "TODO"){
+      if(tasks[i]["status"] === STATUSLIST[0]){
         gatheredTodoList.push(tasks[i]);
       }
-      if(tasks[i]["status"] === "In Progress"){
+      if(tasks[i]["status"] === STATUSLIST[1]){
         gatheredInProgressList.push(tasks[i]);
       }
-      if(tasks[i]["status"] === "In Review"){
+      if(tasks[i]["status"] === STATUSLIST[2]){
         gatheredInReviewList.push(tasks[i]);
       }
-      if(tasks[i]["status"] === "Done"){
+      if(tasks[i]["status"] === STATUSLIST[3]){
         gatheredDoneList.push(tasks[i]);
       }
     }
