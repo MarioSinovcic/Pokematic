@@ -1,0 +1,103 @@
+[
+    {
+        "id": "000000000000000000000000",
+        "name": "Dummy Goal",
+        "tasks": [
+            {
+                "id": "000000000000000000000000",
+                "name": "Implement Navigation Bar",
+                "taskNumber": 65,
+                "description": "As a user, I would like to navigate between pages, So that I can access the different functionalities of the app",
+                "experiencePoints": 8,
+                "status": "In Review",
+                "storyPoints": 3,
+                "assignees": null,
+                "approved": false
+            }
+        ],
+        "experiencePoints": 20,
+        "progress": 4
+    },
+    {
+        "id": "000000000000000000000000",
+        "name": "Create App Bar",
+        "tasks": [
+            {
+                "id": "000000000000000000000000",
+                "name": "Implement Bar",
+                "taskNumber": 63,
+                "description": "As a user, I want to have a bar, So that I can use the bar",
+                "experiencePoints": 1,
+                "status": "In Progress",
+                "storyPoints": 5,
+                "assignees": null,
+                "approved": false
+            },
+            {
+                "id": "000000000000000000000000",
+                "name": "Implement App",
+                "taskNumber": 65,
+                "description": "As a user, I want an app.",
+                "experiencePoints": 2,
+                "status": "TODO",
+                "storyPoints": 3,
+                "assignees": null,
+                "approved": false
+            }
+        ],
+        "experiencePoints": 20,
+        "progress": 3
+    },
+    {
+        "id": "000000000000000000000000",
+        "name": "RNG Goal",
+        "tasks": [
+            {
+                "id": "000000000000000000000000",
+                "name": "Implement Tests",
+                "taskNumber": 65,
+                "description": "As a user, I would like have some tests, So that I can access tests",
+                "experiencePoints": 5,
+                "status": "Done",
+                "storyPoints": 3,
+                "assignees": null,
+                "approved": false
+            },
+            {
+                "id": "000000000000000000000000",
+                "name": "Implement Other stuff",
+                "taskNumber": 64,
+                "description": "As a user, I would like to navigate between pages, So that I can access the different functionalities of the app",
+                "experiencePoints": 3,
+                "status": "TODO",
+                "storyPoints": 80,
+                "assignees": null,
+                "approved": false
+            },
+            {
+                "id": "000000000000000000000000",
+                "name": "Howdy",
+                "taskNumber": 66,
+                "description": "As a user, I would like to navigate between pages, So that I can access the different functionalities of the app",
+                "experiencePoints": 2,
+                "status": "In Progress",
+                "storyPoints": 5,
+                "assignees": null,
+                "approved": false
+            },
+            {
+                "id": "000000000000000000000000",
+                "name": "Other stuff",
+                "taskNumber": 63,
+                "description": "As a user, I am scared, So that I functionalities of the app",
+                "experiencePoints": 3,
+                "status": "Done",
+                "storyPoints": 10,
+                "assignees": null,
+                "approved": false
+            }
+        ],
+        "experiencePoints": 20,
+        "progress": 16
+    }
+]

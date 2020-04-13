@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 
-function TaskCard() {
+function TaskCard(props) {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
   
@@ -38,57 +38,54 @@ function TaskCard() {
       setOpen(false);
     };
 
-
-    // These should be passed in as props
-    const taskNumber = "65";
-    const taskTitle = "Implement collaboration feature";
-    const taskGoal = "Some goal";
-    const taskDescription = "As a student, I want to be able to collaborate with my team mates, so that we can all work on the project together.";
-    const storyPoints = "3";
-
-
     return (
         <div>
-            <div className="TaskCard" >
-                <div className="TaskHeaders" onClick={handlOpen}>
-                <Typography className="TaskTitleText">{taskTitle}</Typography>
-                    <Typography className="TaskIDText StoryPoint">{storyPoints}</Typography>
-                </div>
-                <Assignees />
-                <div className="TaskLabels">
-                    <Label />
-                    <StatusDropdown />
-                </div>
+        <div className="TaskCard" >
+            <div className="TaskHeaders" onClick={handlOpen}>
+            <Typography className="TaskTitleText">{props.name}</Typography>
+                <Typography className="TaskIDText StoryPoint">{props.storyPoints}</Typography>
             </div>
-            <div>
-                <Modal 
-                    aria-labelledby="transition-modal-title"
-                    aria-describedby="transition-modal-description"
-                    className={classes.modal}
-                    open={open}
-                    disableAutoFocus={true}
-                    onBackdropClick={handleClose}
-                    onClose={handleClose}
-                    closeAfterTransition
-                    BackdropComponent={Backdrop}
-                    BackdropProps={{
-                    timeout: 500,
-                    }}
-                >
-                    <Fade in={open}>
-                        <div className={classes.paper}>
-                            <ModalConent 
-                                taskNumber={taskNumber}
-                                taskTitle={taskTitle}
-                                taskGoal={taskGoal}
-                                taskDescription={taskDescription}
-                                storyPoints={storyPoints}
-                                handleClose={handleClose}/>
-                        </div>
-                    </Fade>
-                </Modal>
+            <Assignees />
+            <div className="TaskLabels">
+                <Label labelText={props.experiencePoints + " XP"}/>
+                <StatusDropdown />
             </div>
         </div>
+        <div>
+            <Modal 
+                aria-labelledby="transition-modal-title"
+                aria-describedby="transition-modal-description"
+                className={classes.modal}
+                open={open}
+                disableAutoFocus={true}
+                onBackdropClick={handleClose}
+                onClose={handleClose}
+                closeAfterTransition
+                BackdropComponent={Backdrop}
+                BackdropProps={{
+                timeout: 500,
+                }}
+            >
+                <Fade in={open}>
+                    <div className={classes.paper}>
+                        <ModalConent 
+                            id={props.id}
+                            name={props.name} 
+                            taskNumber={props.taskNumber} 
+                            description={props.description} 
+                            experiencePoints={props.experiencePoints} 
+                            status={props.status} 
+                            storyPoints={props.storyPoints}
+                            assignees={props.assignees}
+                            approved={props.approved}
+                            goalName={props.goalName}
+                            handleClose={handleClose}
+                            />
+                    </div>
+                </Fade>
+            </Modal>
+        </div>
+    </div>
     )   
 }
 

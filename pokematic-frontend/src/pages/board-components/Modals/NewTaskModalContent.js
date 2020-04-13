@@ -36,6 +36,7 @@ const useStyles = makeStyles({
         'monospace'
       ].join(','),
     fontSize: 22,
+    lineHeight: 1.3,
   },
 
 });

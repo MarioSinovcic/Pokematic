@@ -6,6 +6,7 @@ import Label from '../pages/board-components/Label';
 
 function TeamDetails(props) {
     const teamName = "Team Alpha";
+    const teamLevel= "20";
     const temporaryTeamLogo = "/images/eevee.png";
 
 
@@ -16,10 +17,10 @@ function TeamDetails(props) {
                 <img alt="team-logo" src={temporaryTeamLogo} className="team-image"></img>
             </div>
             <div className="team-stats">
-                <Label />
+                <Label labelText={"lv. "+teamLevel}/>
                 <Typography className={props.isItem ? "team-name team-item-text" : "team-name"}>{teamName}</Typography>
                 <div className={props.isItem ? "team-level-bar item-width" : "team-level-bar card-width"}>
-                    <ProgressBar/>
+                    <ProgressBar progress={60}/>
                     <Typography className={props.isItem ? "EXP EXP-text item-text" : "EXP EXP-text"}>EXP: 100/200</Typography>
                 </div>
             </div>

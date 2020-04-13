@@ -5,11 +5,15 @@ import ProgressBar from '../../shared-components/ProgressBar';
 
 function Goal(props) {
 
+  function calculateProgress(){
+    return (props.progress / props.experiencePoints *100)
+  }
+
     return (
         <div className="TeamTabs">
             <ListItem button key={props.text} className="TeamTabs">
-              <Typography className="TaskName">{props.text}</Typography>
-              <ProgressBar />
+              <Typography className="TaskName">{props.name}</Typography>
+              <ProgressBar progress={calculateProgress()} />
             </ListItem>
             <Divider className="GoalDivider" /> 
         </div>
