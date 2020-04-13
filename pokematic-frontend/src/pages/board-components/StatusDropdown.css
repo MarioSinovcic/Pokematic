@@ -10,7 +10,7 @@
     color: transparent !important;
 }
 
-.MuiFilledInput-underline:before {
+/* .MuiFilledInput-underline:before {
     left: 0;
     right: 0;
     bottom: 0;
@@ -61,4 +61,4 @@
     align-content: flex-end !important;
     margin-bottom: 5px !important;
     display: flex;
-}
+} */
