@@ -15,6 +15,7 @@
    width: 45px;
    height: 45px;  
 
+   background-image: url('../images/profile_icon.png');
    background-repeat: no-repeat;
    background-color: whitesmoke;
    background-size: 30px 30px;
@@ -23,18 +24,6 @@
 
    transition: 0.5s;
    z-index: 5;
-}
-
-.profile-image {
-    background-image: url('../images/icons8-instinct-pokemon-96.png');
-}
-
-.pokedex-image {
-    background-image: url('../images/icons8-pokeball-96.png');
-}
-
-.board-image {
-    background-image: url('../images/icons8-tasks-96.png');
 }
 
 .left-icon:hover{
@@ -61,6 +50,7 @@
    width: 45px;
    height: 45px; 
 
+   background-image: url('../images/pokeball_icon.png');
    background-repeat: no-repeat;
    background-color: whitesmoke;
    background-size: 30px 30px;
