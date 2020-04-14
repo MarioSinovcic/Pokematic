@@ -30,6 +30,7 @@ const Header = () => {
               </div>
               <div className="right-icon pokedex-image" onClick={handlePokedex}/>
           </div>);
+      break;
 
       case "/board":
         return (    
@@ -40,6 +41,7 @@ const Header = () => {
               </div>
               <div className="right-icon pokedex-image" onClick={handlePokedex}/>
           </div>);
+      break;
 
 
       case "/pokedex":
@@ -51,6 +53,7 @@ const Header = () => {
               </div>
               <div className="right-icon board-image" onClick={handleBoard}/>
           </div>);
+      break;
 
       default:
       return (    
@@ -61,6 +64,7 @@ const Header = () => {
             </div>
             <div className="right-icon pokedex-image" onClick={handlePokedex}/>
         </div>);
+    break;
 
     }
   }
