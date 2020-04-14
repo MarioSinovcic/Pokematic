@@ -33,7 +33,7 @@ export class StatusCard extends React.Component {
             )
 
             return (
-            <div class="StatusCardShape">
+            <div className="StatusCardShape">
                 <div className="StatusBaseShape">
                 <div className="StatusHeaders">
                     <Typography className="StatusCardTitle">{this.props.statusTitle}</Typography>

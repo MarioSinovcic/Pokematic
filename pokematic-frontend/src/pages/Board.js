@@ -41,7 +41,7 @@ class Board extends React.Component {
     
     var goalResponse = this.state.response;
 
-    const gatheredTeamGoals= [];
+    var gatheredTeamGoals= [];
     var gatheredTasksForGoals= [];
 
     for (var goal = 0; goal < goalResponse.length; goal++) {
@@ -115,7 +115,7 @@ class Board extends React.Component {
               </div>
             </div>
             <div className="new-task-button">
-              <ModalButton icon={<AddIcon style={{fontSize: "35px"}}/>} theme="dark" type="new-task"/>
+              <ModalButton getTeamGoals={this.getTeamGoals} icon={<AddIcon style={{fontSize: "35px"}}/>} theme="dark" type="new-task"/>
             </div>
           </div>
         </div>

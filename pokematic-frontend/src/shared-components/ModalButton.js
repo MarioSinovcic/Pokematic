@@ -8,6 +8,8 @@ import AddIcon from '@material-ui/icons/Add';
 import NewTaskModalContent from '../pages/board-components/Modals/NewTaskModalContent'
 import './ModalButton.css';
 
+import {LOCALHOST} from '.././constants';
+
 const useStyles = makeStyles((theme) => ({
   modal: {
       display: 'flex',
@@ -36,9 +38,16 @@ function ModalButton(props) {
     setOpen(false);
   };
 
-  const addNewTask = (newTask) => {
-    //TODO
-    console.log("New task added called: " + newTask.name)
+  async function addNewTask(newTask) {
+    var APIcall = LOCALHOST + "team/createTask/" + "Dummy Team";
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newTask)
+    };
+    const APIresponse = await fetch(APIcall, requestOptions)
+        .then(APIresponse => APIresponse)
+        .then(data => postMessage = data.id );
 
     setOpen(false);
   };

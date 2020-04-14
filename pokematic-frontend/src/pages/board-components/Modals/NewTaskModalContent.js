@@ -45,7 +45,7 @@ function ModalContent (props) {
     const classes = useStyles();
     const defaultDescription="As a user, \nI want, \nso that, ";
 
-    const [selectedTaskName, setSelectedTaskName] = useState("TASK - " + new Date());
+    const [selectedTaskName, setSelectedTaskName] = useState("NEW TASK");
     const [selectedDescription, setSelectedDescription] = useState("");
     const [selectedStoryPoints, setSelectedStoryPoints] = useState("");
 
@@ -71,13 +71,17 @@ function ModalContent (props) {
     const handleAddTask = event => {
         const newTask = {
             name: selectedTaskName,
-            points: selectedStoryPoints,
+            taskNumber: 6,
             description: selectedDescription,
+            experiencePoints: parseInt(selectedStoryPoints),
+            status: "TODO",
+            storyPoints: parseInt(selectedStoryPoints),
+            assignees: [],
+            approved: false
         };
 
         props.addNewTask(newTask);
     };
-
 
     return (
         <div className="modal-content">
