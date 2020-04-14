@@ -130,7 +130,7 @@ function ModalContent (props) {
                         multiline={true}
                         defaultValue= {defaultDescription}
                         fullWidth
-                        rowsMax={8}
+                        rowsMax={7}
                         InputProps={{
                             classes: {
                                 input: classes.descriptionInput,

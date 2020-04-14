@@ -8,6 +8,7 @@ import AddIcon from '@material-ui/icons/Add';
 import './Board.css'
 
 import {STATUSLIST} from '../constants';
+import {LOCALHOST} from '../constants';
 import fakeGoalResponse from '../goalResponse.json';
 
 class Board extends React.Component {
@@ -15,6 +16,7 @@ class Board extends React.Component {
     super(props);
 
     this.state = {
+      response: [],
       goalsList: [],
       todoList: [],
       inProgressList: [],
@@ -23,13 +25,21 @@ class Board extends React.Component {
     }
   }
 
-  componentDidMount(){
+  async componentDidMount(){
     this.getTeamGoals();
   }
 
-  getTeamGoals(){
-    //replace with api call
-    var goalResponse = fakeGoalResponse;
+  async getTeamGoals(){
+    var APIcall = LOCALHOST + "team/goals/" + "Dummy Team"
+    const APIresponse = await fetch(APIcall)
+      .then(APIresponse => APIresponse.json()
+      );
+
+    this.setState({
+      response: APIresponse,
+    })
+    
+    var goalResponse = this.state.response;
 
     const gatheredTeamGoals= [];
     var gatheredTasksForGoals= [];
@@ -81,6 +91,11 @@ class Board extends React.Component {
   }
 
   render(){
+    if(this.state.response === []){
+      return(<div>loading</div>)
+    }
+    else{
+      console.log(this.state.response)
     return (
         <div>
           <div className="board-page">
@@ -106,6 +121,7 @@ class Board extends React.Component {
         </div>
      );
   }
+}
 }
 
 export default Board;
