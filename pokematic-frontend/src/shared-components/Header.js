@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import './Header.css'
 
 const Header = () => {
@@ -10,16 +10,68 @@ const Header = () => {
   }
 
   function handlePokedex() {
+    history.push("/pokedex");
+  }
+
+  function handleBoard() {
     history.push("/board");
+  }
+
+
+  function renderHeader(currentPage) {
+    switch(currentPage) {
+
+      case "/profile":
+        return (    
+          <div className="Header">
+              <div className="left-icon board-image" onClick={handleBoard}/>
+              <div className="middle-section">
+                <img className="logo" src="https://imgur.com/MOQ5TEp.png" alt="Pokematic" onClick={handleBoard}/>
+              </div>
+              <div className="right-icon pokedex-image" onClick={handlePokedex}/>
+          </div>);
+      break;
+
+      case "/board":
+        return (    
+          <div className="Header">
+              <div className="left-icon profile-image" onClick={handleProfile}/>
+              <div className="middle-section">
+                <img className="logo" src="https://imgur.com/MOQ5TEp.png" alt="Pokematic" onClick={handleBoard}/>
+              </div>
+              <div className="right-icon pokedex-image" onClick={handlePokedex}/>
+          </div>);
+      break;
+
+
+      case "/pokedex":
+        return (    
+          <div className="Header">
+              <div className="left-icon profile-image" onClick={handleProfile}/>
+              <div className="middle-section">
+                <img className="logo" src="https://imgur.com/MOQ5TEp.png" alt="Pokematic" onClick={handleBoard}/>
+              </div>
+              <div className="right-icon board-image" onClick={handleBoard}/>
+          </div>);
+      break;
+
+      default:
+      return (    
+        <div className="Header">
+            <div className="left-icon profile-image" onClick={handleProfile}/>
+            <div className="middle-section">
+              <img className="logo" src="https://imgur.com/MOQ5TEp.png" alt="Pokematic" onClick={handleBoard}/>
+            </div>
+            <div className="right-icon pokedex-image" onClick={handlePokedex}/>
+        </div>);
+    break;
+
+    }
   }
 
   return (
     <div className="Header">
-        <div className="left-icon" onClick={handleProfile}/>
-        <div className="middle-section">
-          <img className="logo" src="https://imgur.com/MOQ5TEp.png" alt="Pokematic"/>
-        </div>
-        <div className="right-icon" onClick={handlePokedex}/>
+      {renderHeader(useLocation().pathname)}
     </div>
   );
 }
