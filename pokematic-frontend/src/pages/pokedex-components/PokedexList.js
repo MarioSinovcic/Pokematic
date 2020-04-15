@@ -39,9 +39,9 @@ class PokedexList extends React.Component {
     await fetch(pokemonURL)
       .then(response => response.json())
       .then(data => {
-          this.props.addPokemonTypes(data.name, data.types);
-          console.log(this.props.pokemonTypes)
-          console.log(data.name, data.types);
+          const name = data.name;
+          const types = [data.types[0].type.name, (data.types[1] && data.types[1].type.name)];
+          this.props.addPokemonTypes(name, types);
       })
   }
 
@@ -71,7 +71,7 @@ class PokedexList extends React.Component {
 
             return (
               <div className="grid-item">
-                <PokedexItem pokemonNumber={pokemonData[0]} pokemonName={pokemonData[1]} pokemonImage={pokemonData[2]} />
+                <PokedexItem pokemonNumber={pokemonData[0]} pokemonName={pokemonData[1]} pokemonImage={pokemonData[2]} pokemonType={this.props.pokemonTypes} />
               </div>)
           })}
 
