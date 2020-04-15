@@ -12,14 +12,12 @@ export default function pokemonReducer(state = initialState, action) {
     switch(action.type) {
 
       case ADD_POKEMON_NAMES:
-      console.log('This was ' + state.pokemon);
         return {
             ...state,
           pokemon: action.pokemonData
         };
       default:
-      console.log('Yes');
 
         return state;
     }
-  }
+}

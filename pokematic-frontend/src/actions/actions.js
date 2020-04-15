@@ -1,14 +1,4 @@
-import { GET_POKEMON_NAMES, ADD_POKEMON_NAMES }  from "./actionTypes";
-
-
-// default function to display redux action format
-export function getPokemonNames() {
-
-    // action object format being return to a reducer
-    return {
-        type: GET_POKEMON_NAMES
-      }
-}
+import { ADD_POKEMON_NAMES }  from "./actionTypes";
 
 export function addPokemonNames(pokemonData) {
 

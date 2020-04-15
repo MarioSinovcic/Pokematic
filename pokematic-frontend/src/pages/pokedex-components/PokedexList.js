@@ -6,10 +6,6 @@ import { addPokemonNames } from '../../actions/actions'
 
 class PokedexList extends React.Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   state = {
     pokemon: []
   }
@@ -36,15 +32,6 @@ class PokedexList extends React.Component {
   populatePokemon() {
 
     var populatedPokemon = []
-
-    //   this.populatedPokemon.push(
-    //     [i,
-    //       this.props.pokemonMap[i] && this.props.pokemonMap[i].name,
-    //       "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + (i + 1) + ".png",
-    //     ])
-
-    //     return populatedPokemon;
-    // }
 
     this.props.pokemonMap.map((pokemonData, i) => {
       return(
