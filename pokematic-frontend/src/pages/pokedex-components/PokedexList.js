@@ -28,7 +28,6 @@ class PokedexList extends React.Component {
         this.props.addPokemon(data.results);
       })
 
-    console.log("we are done");
     this.setState({
       pokemon: this.populatePokemon()
     })
