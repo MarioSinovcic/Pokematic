@@ -42,6 +42,12 @@ namespace pokematic_backend
             {
                 app.UseDeveloperExceptionPage();
             }
+            
+            app.UseCors(builder => {
+                builder.AllowAnyOrigin();
+                builder.AllowAnyMethod();
+                builder.AllowAnyHeader();
+            });
 
             app.UseHttpsRedirection();
 
@@ -53,6 +59,8 @@ namespace pokematic_backend
             {
                 endpoints.MapControllers();
             });
+            
+           
         }
     }
 }
