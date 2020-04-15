@@ -191,7 +191,7 @@ namespace pokematic_backend.Services
                 Update(teamName, team);
             }
 
-            return username + " assigned to " + taskName;
+            return "success";
 
         }
     }
