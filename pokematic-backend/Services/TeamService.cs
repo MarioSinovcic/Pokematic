@@ -136,5 +136,63 @@ namespace pokematic_backend.Services
             }
 
         }
+
+        public string AssignUserToTask(string teamName, string goalName, string taskName, string username)
+        {
+            
+            var team = _teams.AsQueryable().FirstAsync(team => team.Name == teamName).Result;
+
+            if (team == null)
+            {
+                return "No team with that team name";
+
+            }
+            
+            var user = _userService.Get(username);
+
+            if (user == null)
+            {
+                return "No user with that username";
+            }
+            
+            var goal = team.Goals.First(goal => goal.Name == goalName);
+
+            if (goal == null)
+            {
+                return "No goal with that goal name exists for the " + teamName + " team ";
+            }
+
+            var task = goal.Tasks.First(task => task.Name == taskName);
+
+            if (task == null)
+            {
+                return "No task with that task name exists for the goal with the name " + goalName;
+            }
+            
+            var assignees = task.Assignees;
+
+            if (assignees == null)
+            {
+                task.Assignees = new List<User> {user};
+                goal.Tasks[goal.Tasks.FindIndex(task => task.Name == taskName)] = task;
+                team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
+                Update(teamName, team);
+            }
+            else if (assignees.Contains(user))
+            {
+                return "User is already assigned to this task";
+            }
+            else
+            {
+                assignees.Add(user);
+                task.Assignees = assignees;
+                goal.Tasks[goal.Tasks.FindIndex(task => task.Name == taskName)] = task;
+                team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
+                Update(teamName, team);
+            }
+
+            return username + " assigned to " + taskName;
+
+        }
     }
 }

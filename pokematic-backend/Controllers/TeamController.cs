@@ -91,6 +91,12 @@ namespace pokematic_backend.Controllers
             return Ok();
         }
         
+        [HttpPost("assignTask/{teamName}/{goalName}/{taskName}/{username}")]
+        public ActionResult AssignUserToTask(string teamName, string goalName, string taskName, string username)
+        {
+            var task = _teamService.AssignUserToTask(teamName, goalName, taskName, username);
+            return Ok(task);
+        }
         /*
          * Update task and goal status
          */
