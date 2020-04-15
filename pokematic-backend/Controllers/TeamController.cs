@@ -113,8 +113,7 @@ namespace pokematic_backend.Controllers
             return NotFound(serviceMessage);
         }
 
-
-
+        
         /*
          * Update task and goal status
          */
