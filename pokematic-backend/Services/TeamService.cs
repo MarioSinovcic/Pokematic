@@ -32,7 +32,7 @@ namespace pokematic_backend.Services
 
         public Team Get(string teamName)
         {
-            var team = _teams.AsQueryable().FirstAsync(team => team.Name == teamName).Result;
+            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
             return team;
         }
 
@@ -54,19 +54,19 @@ namespace pokematic_backend.Services
 
         public List<Goal> GetGoals(string teamName)
         {
-            var team =  _teams.AsQueryable().FirstAsync(team => team.Name == teamName).Result;
+            var team =  _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
             return team.Goals.ToList();
         }
         
         public List<Models.Task> GetTasks(string teamName)
         {
-            var team = _teams.AsQueryable().FirstAsync(team => team.Name == teamName).Result;
+            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
             return team.Goals.SelectMany(goal => goal.Tasks).ToList();
         }
 
         public Goal CreateGoal(Goal goal, string teamName)
         {
-            var team = _teams.AsQueryable().FirstAsync(team => team.Name == teamName).Result;
+            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
             
             if (team == null)
             {
@@ -90,8 +90,8 @@ namespace pokematic_backend.Services
 
         public void CreateTask(Models.Task task, string teamName, string goalName)
         {
-            var team = _teams.AsQueryable().FirstAsync(team => team.Name == teamName).Result;
-            var goal = team.Goals.First(goal => goal.Name == goalName);
+            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
+            var goal = team.Goals.FirstOrDefault(goal => goal.Name == goalName);
 
             if (goal == null)
             {
@@ -116,7 +116,7 @@ namespace pokematic_backend.Services
 
         public void JoinTeam(string teamName, string username)
         {
-            var team = _teams.AsQueryable().FirstAsync(team => team.Name == teamName).Result;
+            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
             var user = _userService.Get(username);
 
             if (team == null)
@@ -140,7 +140,7 @@ namespace pokematic_backend.Services
         public string AssignUserToTask(string teamName, string goalName, string taskName, string username)
         {
             
-            var team = _teams.AsQueryable().FirstAsync(team => team.Name == teamName).Result;
+            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
 
             if (team == null)
             {
@@ -155,7 +155,7 @@ namespace pokematic_backend.Services
                 return "No user with that username";
             }
             
-            var goal = team.Goals.First(goal => goal.Name == goalName);
+            var goal = team.Goals.FirstOrDefault(goal => goal.Name == goalName);
 
             if (goal == null)
             {
@@ -167,7 +167,7 @@ namespace pokematic_backend.Services
                 return "No task with that task name exists for the goal with the name " + goalName;
             }
             
-            var task = goal.Tasks.First(task => task.Name == taskName);
+            var task = goal.Tasks.FirstOrDefault(task => task.Name == taskName);
 
             if (task == null)
             {
@@ -203,7 +203,7 @@ namespace pokematic_backend.Services
         public string unassignUserToTask(string teamName, string goalName, string taskName, string username)
         {
                       
-            var team = _teams.AsQueryable().FirstAsync(team => team.Name == teamName).Result;
+            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
 
             if (team == null)
             {
@@ -218,14 +218,14 @@ namespace pokematic_backend.Services
                 return "No user with that username";
             }
             
-            var goal = team.Goals.First(goal => goal.Name == goalName);
+            var goal = team.Goals.FirstOrDefault(goal => goal.Name == goalName);
 
             if (goal == null)
             {
                 return "No goal with that goal name exists for the " + teamName + " team ";
             }
 
-            var task = goal.Tasks.First(task => task.Name == taskName);
+            var task = goal.Tasks.FirstOrDefault(task => task.Name == taskName);
 
             if (task == null)
             {
