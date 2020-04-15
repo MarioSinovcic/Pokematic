@@ -1,11 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson;
 using pokematic_backend.Models;
 using pokematic_backend.Services;
-using Task = System.Threading.Tasks.Task;
 
 // TO DO
 /*
@@ -64,7 +60,7 @@ namespace pokematic_backend.Controllers
         }
 
         [HttpGet("tasks/{teamName}")]
-        public List<Models.Task> GetTasks(string teamName)
+        public List<Task> GetTasks(string teamName)
         {
             var tasks = _teamService.GetTasks(teamName);
             return tasks;
@@ -78,7 +74,7 @@ namespace pokematic_backend.Controllers
         }
 
         [HttpPost("createTask/{teamName}/{goalName}")]
-        public Models.Task CreateTask(Models.Task task, string teamName, string goalName)
+        public Task CreateTask(Task task, string teamName, string goalName)
         {
              _teamService.CreateTask(task, teamName, goalName);
             return task;
@@ -94,9 +90,31 @@ namespace pokematic_backend.Controllers
         [HttpPost("assignTask/{teamName}/{goalName}/{taskName}/{username}")]
         public ActionResult AssignUserToTask(string teamName, string goalName, string taskName, string username)
         {
-            var task = _teamService.AssignUserToTask(teamName, goalName, taskName, username);
-            return Ok(task);
+            var serviceMessage = _teamService.AssignUserToTask(teamName, goalName, taskName, username);
+
+            if (serviceMessage == "success")
+            {
+                return Ok();
+            }
+
+            return NotFound(serviceMessage);
         }
+
+        [HttpPost("unassignTask/{teamName}/{goalName}/{taskName}/{username}")]
+        public ActionResult UnassignUserToTask(string teamName, string goalName, string taskName, string username)
+        {
+            var serviceMessage = _teamService.unassignUserToTask(teamName, goalName, taskName, username);
+
+            if (serviceMessage == "success")
+            {
+                return Ok();
+            }
+
+            return NotFound(serviceMessage);
+        }
+
+
+
         /*
          * Update task and goal status
          */
