@@ -9,6 +9,7 @@ import ModalConent from './Modals/TaskModalContent';
 import StatusDropdown from './StatusDropdown';
 import Assignees from './Assignees';
 import './TaskCard.css';
+import * as colors from '../../colors'
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -47,7 +48,7 @@ function TaskCard(props) {
             </div>
             <Assignees />
             <div className="TaskLabels">
-                <Label labelText={props.experiencePoints + " XP"} color="#F64747"/>
+                <Label labelText={props.experiencePoints + " XP"} color={colors.fire}/>
                 <StatusDropdown />
             </div>
         </div>

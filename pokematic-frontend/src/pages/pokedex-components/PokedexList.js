@@ -3,6 +3,7 @@ import PokedexItem from './PokedexItem'
 import './PokedexList.css'
 import { connect } from 'react-redux';
 import { addPokemonNames, addPokemonTypes, togglePokemonLoad } from '../../actions/actions'
+import * as colors from '../../colors';
 
 class PokedexList extends React.Component {
 
@@ -72,7 +73,7 @@ class PokedexList extends React.Component {
         <div className="grid-container">
           {this.state.pokemon.map((pokemonData) => {
             return (
-              <div className="grid-item">
+              <div className="grid-item" style={{backgroundColor: colors.fire}}>
                 <PokedexItem pokemonNumber={pokemonData[0]} pokemonName={pokemonData[1]} pokemonImage={pokemonData[2]} pokemonType={this.props.pokemonTypes} />
               </div>)
           })}
