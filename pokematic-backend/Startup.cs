@@ -10,9 +10,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 using pokematic_backend.Contexts;
 using pokematic_backend.Services;
 using Newtonsoft.Json;
+using Swashbuckle.AspNetCore.Swagger;
+using Swashbuckle.Swagger;
 
 namespace pokematic_backend
 {
@@ -33,6 +36,11 @@ namespace pokematic_backend
             services.AddScoped<UserService>();
             services.AddScoped<TeamService>();
             services.AddControllers().AddNewtonsoftJson();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "API Docs", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +55,14 @@ namespace pokematic_backend
                 builder.AllowAnyOrigin();
                 builder.AllowAnyMethod();
                 builder.AllowAnyHeader();
+            });
+
+            app.UseSwagger();
+            
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "API V1");
+                c.RoutePrefix = string.Empty;                
             });
 
             app.UseHttpsRedirection();
