@@ -38,16 +38,18 @@ function ModalButton(props) {
     setOpen(false);
   };
 
-  async function addNewTask(newTask) {
-    var APIcall = LOCALHOST + "team/createTask/" + "Dummy Team";
+  async function addNewTask(newTask, goalName) {
+    console.log(JSON.stringify(newTask));
+    var APIcall = LOCALHOST + "team/createTask/" + "Dummy Team/" +goalName;
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newTask)
     };
-    const APIresponse = await fetch(APIcall, requestOptions)
-        .then(APIresponse => APIresponse)
-        .then(data => postMessage = data.id );
+
+    await fetch(APIcall, requestOptions);
+
+    await props.getTeamGoals();
 
     setOpen(false);
   };

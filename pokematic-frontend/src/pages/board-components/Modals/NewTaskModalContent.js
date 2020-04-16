@@ -38,7 +38,6 @@ const useStyles = makeStyles({
     fontSize: 22,
     lineHeight: 1.3,
   },
-
 });
 
 function ModalContent (props) {
@@ -46,8 +45,8 @@ function ModalContent (props) {
     const defaultDescription="As a user, \nI want, \nso that, ";
 
     const [selectedTaskName, setSelectedTaskName] = useState("NEW TASK");
-    const [selectedDescription, setSelectedDescription] = useState("");
-    const [selectedStoryPoints, setSelectedStoryPoints] = useState("");
+    const [selectedDescription, setSelectedDescription] = useState(defaultDescription);
+    const [selectedStoryPoints, setSelectedStoryPoints] = useState(1);
 
     // ----- HANDLERS FOR INPUT FIELDS -----
     const handleTaskNameChange = event => {
@@ -69,18 +68,19 @@ function ModalContent (props) {
 
     //TODO
     const handleAddTask = event => {
+        const goalName = "Dummy Goal"; //TODO
         const newTask = {
             name: selectedTaskName,
-            taskNumber: 6,
+            taskNumber: 6, //TODO
             description: selectedDescription,
             experiencePoints: parseInt(selectedStoryPoints),
-            status: "TODO",
+            status: "Done",
             storyPoints: parseInt(selectedStoryPoints),
-            assignees: [],
-            approved: false
+            assignees: [], //TODO
+            approved: false,
         };
 
-        props.addNewTask(newTask);
+        props.addNewTask(newTask, goalName);
     };
 
     return (

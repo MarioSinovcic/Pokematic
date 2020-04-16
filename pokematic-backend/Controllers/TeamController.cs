@@ -77,7 +77,7 @@ namespace pokematic_backend.Controllers
         }
 
         [HttpGet("tasks/{teamName}")]
-        public List<Task> GetTasks(string teamName)
+        public List<Models.Task> GetTasks(string teamName)
         {
             var tasks = _teamService.GetTasks(teamName);
             return tasks;
@@ -91,7 +91,7 @@ namespace pokematic_backend.Controllers
         }
 
         [HttpPost("createTask/{teamName}/{goalName}")]
-        public Task CreateTask(Task task, string teamName, string goalName)
+        public Models.Task CreateTask(Models.Task task, string teamName, string goalName)
         {
              _teamService.CreateTask(task, teamName, goalName);
             return task;

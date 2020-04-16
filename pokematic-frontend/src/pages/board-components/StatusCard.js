@@ -19,6 +19,7 @@ export class StatusCard extends React.Component {
         else{            
             var tasksToRender = this.props.taskList.map((taskData) => 
                 <TaskCard 
+                    key={taskData["name"]} //not used: just avoiding warnings
                     id={taskData["id"]} 
                     name={taskData["name"]} 
                     taskNumber={taskData["taskNumber"]} 

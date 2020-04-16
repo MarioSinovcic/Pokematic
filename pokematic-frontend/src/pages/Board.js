@@ -29,25 +29,25 @@ class Board extends React.Component {
     this.getTeamGoals();
   }
 
-  async getTeamGoals(){
-    var APIcall = LOCALHOST + "team/goals/" + "Dummy Team"
-    const APIresponse = await fetch(APIcall)
-      .then(APIresponse => APIresponse.json()
-      );
+  shouldComponentUpdate(){
+    this.forceUpdate();
+  }
 
-    this.setState({
-      response: APIresponse,
-    })
+  getTeamGoals = async () => {
+    var APIcall = LOCALHOST + "team/goals/" + "Dummy Team"
+    await fetch(APIcall)
+    .then(response => response.json())
+    .then(json => {
+      this.setState({response: json});
+   });
     
     var goalResponse = this.state.response;
-
     var gatheredTeamGoals= [];
     var gatheredTasksForGoals= [];
 
     for (var goal = 0; goal < goalResponse.length; goal++) {
       gatheredTeamGoals.push(goalResponse[goal]);
       var taskArray = goalResponse[goal]["tasks"];
-
       for(var task = 0; task < taskArray.length; task++){
         var currentTask = taskArray[task];
         currentTask["goalName"] = goalResponse[goal]["name"];
@@ -95,7 +95,6 @@ class Board extends React.Component {
       return(<div>loading</div>)
     }
     else{
-      console.log(this.state.response)
     return (
         <div>
           <div className="board-page">
