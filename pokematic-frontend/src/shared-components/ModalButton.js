@@ -43,6 +43,13 @@ function ModalButton(props) {
     setOpen(false);
   };
 
+  const addNewGoal = (newGoal) => {
+    //TODO
+    console.log("New goal added called: " + newGoal.name)
+
+    setOpen(false);
+  };
+
   let renderModal;
   switch(props.type) {
 
@@ -59,7 +66,7 @@ function ModalButton(props) {
     break;
 
     case "new-goal":
-    renderModal = <NewGoalModalContent addNewTask={addNewTask}/>
+    renderModal = <NewGoalModalContent addNewGoal={addNewGoal}/>
     break;
 
     default:

@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from '@material-ui/core/TextField';
-import StatusDropdown from '../StatusDropdown'
-import "./NewTaskModalContent.css"
+import "./NewGoalModalContent.css"
 
 const useStyles = makeStyles({
   underline: {
@@ -13,7 +12,7 @@ const useStyles = makeStyles({
       borderBottom: "none"
     }
   },
-  taskNameInput: {
+  goalNameInput: {
     fontFamily: [
         'Roboto Mono', 
         'monospace'
@@ -43,85 +42,59 @@ const useStyles = makeStyles({
 
 function ModalContent (props) {
     const classes = useStyles();
-    const defaultDescription="As a user, \nI want, \nso that, ";
+    const defaultDescription = "This task needs to be done because ...."
 
-    const [selectedTaskName, setSelectedTaskName] = useState("TASK - " + new Date());
-    const [selectedDescription, setSelectedDescription] = useState("");
-    const [selectedStoryPoints, setSelectedStoryPoints] = useState("");
+    const [selectedGoalName, setSelectedGoalName] = useState("GOAL: " + new Date());
+    const [selectedDescription, setSelectedDescription] = useState("No description added");
+    const [selectedDifficulty, setSelectedDifficulty] = useState("EASY");
 
     // ----- HANDLERS FOR INPUT FIELDS -----
-    const handleTaskNameChange = event => {
-        setSelectedTaskName(event.target.value);
+    const handleGoalNameChange = event => {
+        setSelectedGoalName(event.target.value);
     };
 
     const handleDescriptionChange = event => {
         setSelectedDescription(event.target.value);
     };
 
-    const handleStoryPointChange = event => {
-        setSelectedStoryPoints(event.target.value);
+    const handleDifficultyChange = event => {
+        if(event.target.value === "EASY"){
+            setSelectedDifficulty(10);
+        }
     };
 
     //TODO
     const handleAddGoal = event => {
-        
-    }
-
-    //TODO
-    const handleAddTask = event => {
-        const newTask = {
-            name: selectedTaskName,
-            points: selectedStoryPoints,
+        const newGoal = {
+            name: selectedGoalName,
             description: selectedDescription,
+            tasks: [],
+            experiencePoints: 10,
+            progress: 0
         };
 
-        props.addNewTask(newTask);
+        props.addNewGoal(newGoal);
     };
 
 
     return (
-        <div className="modal-content">
+        <div className="goal-modal-content">
             <div className="grouping">
-                <p className="task-number">#65</p>
-                <div  className="task-title"> 
+                <div  className="goal-title"> 
                     <TextField 
-                        onChange={handleTaskNameChange}
-                        defaultValue="Task Name"
+                        onChange={handleGoalNameChange}
+                        defaultValue="Goal Name"
                         fullWidth
                         InputProps={{
                             classes: {
-                                input: classes.taskNameInput,
+                                input: classes.goalNameInput,
                                 underline: classes.underline
                             },
                         }}
                     />
                 </div>
             </div>    
-            <div className="grouping padding-bottom">
-                <div className="goal-name-input" 
-                    onClick={handleAddGoal}> + ADD GOAL </div>
-                <div className="right-align">
-                    <div className="story-points-label">STORY POINTS</div>
-                    <div className="story-points">
-                        <TextField
-                            onChange={handleStoryPointChange}
-                            id="story-points-input"
-                            type="number"
-                            onInput={(e)=>{ 
-                                e.target.value = Math.max(0, parseInt(e.target.value) ).toString().slice(0,2)
-                            }}
-                            defaultValue={1}
-                              InputProps={{
-                                classes: {
-                                    input: classes.storyPointInput,
-                                    underline: classes.underline
-                                },
-                            }}
-                        />
-                    </div>
-                </div>
-            </div>  
-            <div className="grey-group">
+            <div className="goal-grey-group">
                 <p className="description-label">Description</p>
                 <div className="description">
                     <TextField
@@ -130,7 +103,7 @@ function ModalContent (props) {
                         multiline={true}
                         defaultValue= {defaultDescription}
                         fullWidth
-                        rowsMax={8}
+                        rowsMax={4}
                         InputProps={{
                             classes: {
                                 input: classes.descriptionInput,
@@ -141,12 +114,12 @@ function ModalContent (props) {
                 </div>
             </div>  
             <div className="grouping">
-                <p className="status-label">STATUS</p>
+                <p className="difficulty-label">DIFFICULTY</p>
                 <div>
-                    <StatusDropdown/>
+                    DiffucltyDropDown
                 </div>
                 <div className="right-align">
-                    <div className="done-button" onClick={handleAddTask}>DONE</div>
+                    <div className="done-button" onClick={handleAddGoal}>DONE</div>
                 </div>
             </div> 
         </div>
