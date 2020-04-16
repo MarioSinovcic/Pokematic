@@ -1,0 +1,159 @@
+.modal-content {
+    font-family: 'Roboto', sans-serif !important;
+    text-align: left;
+    padding: 20px 20px;
+    width: 875px;
+    height: 570px;
+}
+
+.grouping{
+    align-items: center;
+    width: 100%;
+    display: flex;
+}
+
+.task-title{
+    width: 100%;
+    font-family: 'Roboto Mono', monospace !important;
+    font-weight: 600 !important;
+    font-size: 40px;
+    line-height: 20px;
+    color: #3D3D3D;
+}
+
+.task-number{
+    font-weight: 600 !important;
+    font-size: 40px;
+    line-height: 20px;
+    color: #898989;
+    padding-right: 30px;
+}
+
+.right-align{
+    width: 100%;
+    display: inline-flex;
+    align-self: center;
+    justify-content: flex-end;
+}
+
+.padding-bottom{
+    padding-bottom: 30px;
+}
+
+.goal-name-input{
+    background: #3d3d3d;
+    border-radius: 15px;
+    
+    width:450px;
+    font-family: 'pkmn_rbygscregular', monospace !important;
+    color: #ffffff;
+    text-align: center;
+    font-size: 15px;
+    padding: 10px 15px;
+}
+
+.goal-name-input:hover{
+    background: #4e4e4e;
+}
+
+.goal-name-input:active{
+    background: #3D3D3D;
+    color: #dfdfdf;
+}
+
+.story-points-label{
+    text-align: right;
+    font-family: 'Roboto Condensed', monospace !important;
+    font-weight: 600 !important;
+    color: #3D3D3D;
+    font-size: 30px;
+    align-self: center;
+}
+
+.story-points{
+    text-align: right;
+    font-family: 'pkmn_rbygscregular';
+    font-weight: 600 !important;
+    line-height: 29px;
+    font-size: 30px;
+    color: #F74747;
+    padding-left: 15px;
+    width: 79px;
+    align-self: center;
+}
+
+.grey-group{
+    background: rgba(241, 241, 241, 0.69);
+    padding: 10px 30px;
+    height: 250px;
+}
+
+.description-label{
+    font-family: 'Roboto Condensed', monospace !important;
+    font-weight: 600 !important;
+    color: #3D3D3D;
+    font-size: 23px;
+    line-height: 0px;
+}
+
+.description{
+    font-family: 'Roboto Condensed Light', monospace !important;
+    font-weight: 600 !important;
+    color: #3D3D3D;
+    font-size: 22px;
+    line-height: 40px;
+}
+
+.status-label{
+    font-family: 'Roboto Condensed', monospace !important;
+    font-weight: 600 !important;
+    color: #3D3D3D;
+    font-size: 30px;
+    padding-right: 30px;
+}
+
+ .done-button{
+    background: #3d3d3d;
+    border-radius: 15px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);    
+    min-width: 80px;
+    font-family: 'pkmn_rbygscregular', monospace !important;
+    color: #ffffff;
+    text-align: center;
+    font-size: 15px;
+    padding: 15px 15px;
+
+    transition: 0.5s;
+}
+
+.done-button:hover{
+    background: #4e4e4e;
+    box-shadow: 0px 6px 4px rgba(0, 0, 0, 0.25);
+    top: 14px;
+    transition: 0.3s;
+}
+
+.done-button:active{
+    background: #3D3D3D;
+    color: #dfdfdf;
+}
+
+
+
+@media (max-width:1000px){
+    .modal-content {
+        width: 500px !important;
+    }
+
+    .task-title{
+        font-size: 30px;
+        line-height: 35px;
+    }
+
+    .story-points-label{
+        display: none;
+    }
+
+
+
+}
