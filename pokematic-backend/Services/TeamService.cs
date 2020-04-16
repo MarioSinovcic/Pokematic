@@ -32,7 +32,7 @@ namespace pokematic_backend.Services
 
         public Team Get(string teamName)
         {
-            var team = _teams.AsQueryable().FirstAsync(team => team.Name == teamName).Result;
+            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
             return team;
         }
 
@@ -54,19 +54,19 @@ namespace pokematic_backend.Services
 
         public List<Goal> GetGoals(string teamName)
         {
-            var team =  _teams.AsQueryable().FirstAsync(team => team.Name == teamName).Result;
+            var team =  _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
             return team.Goals.ToList();
         }
         
         public List<Models.Task> GetTasks(string teamName)
         {
-            var team = _teams.AsQueryable().FirstAsync(team => team.Name == teamName).Result;
+            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
             return team.Goals.SelectMany(goal => goal.Tasks).ToList();
         }
 
         public Goal CreateGoal(Goal goal, string teamName)
         {
-            var team = _teams.AsQueryable().FirstAsync(team => team.Name == teamName).Result;
+            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
             
             if (team == null)
             {
@@ -90,8 +90,8 @@ namespace pokematic_backend.Services
 
         public void CreateTask(Models.Task task, string teamName, string goalName)
         {
-            var team = _teams.AsQueryable().FirstAsync(team => team.Name == teamName).Result;
-            var goal = team.Goals.First(goal => goal.Name == goalName);
+            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
+            var goal = team.Goals.FirstOrDefault(goal => goal.Name == goalName);
 
             if (goal == null)
             {
@@ -116,7 +116,7 @@ namespace pokematic_backend.Services
 
         public void JoinTeam(string teamName, string username)
         {
-            var team = _teams.AsQueryable().FirstAsync(team => team.Name == teamName).Result;
+            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
             var user = _userService.Get(username);
 
             if (team == null)
@@ -135,6 +135,122 @@ namespace pokematic_backend.Services
                 Update(teamName, team);
             }
 
+        }
+
+        public string AssignUserToTask(string teamName, string goalName, string taskName, string username)
+        {
+            
+            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
+
+            if (team == null)
+            {
+                return "No team with that team name";
+
+            }
+            
+            var user = _userService.Get(username);
+
+            if (user == null)
+            {
+                return "No user with that username";
+            }
+            
+            var goal = team.Goals.FirstOrDefault(goal => goal.Name == goalName);
+
+            if (goal == null)
+            {
+                return "No goal with that goal name exists for the " + teamName + " team ";
+            }
+
+            if (goal.Tasks == null)
+            {
+                return "No task with that task name exists for the goal with the name " + goalName;
+            }
+            
+            var task = goal.Tasks.FirstOrDefault(task => task.Name == taskName);
+
+            if (task == null)
+            {
+                return "No task with that task name exists for the goal with the name " + goalName;
+            }
+
+            var assignees = task.Assignees;
+
+            if (assignees == null)
+            {
+                task.Assignees = new List<User> {user};
+                goal.Tasks[goal.Tasks.FindIndex(task => task.Name == taskName)] = task;
+                team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
+                Update(teamName, team);
+            }
+            else if (assignees.Exists(user => user.Username == username))
+            {
+                return "User is already assigned to this task";
+            }
+            else
+            {
+                assignees.Add(user);
+                task.Assignees = assignees;
+                goal.Tasks[goal.Tasks.FindIndex(task => task.Name == taskName)] = task;
+                team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
+                Update(teamName, team);
+            }
+
+            return "success";
+
+        }
+
+        public string unassignUserToTask(string teamName, string goalName, string taskName, string username)
+        {
+                      
+            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
+
+            if (team == null)
+            {
+                return "No team with that team name";
+
+            }
+            
+            var user = _userService.Get(username);
+
+            if (user == null)
+            {
+                return "No user with that username";
+            }
+            
+            var goal = team.Goals.FirstOrDefault(goal => goal.Name == goalName);
+
+            if (goal == null)
+            {
+                return "No goal with that goal name exists for the " + teamName + " team ";
+            }
+
+            var task = goal.Tasks.FirstOrDefault(task => task.Name == taskName);
+
+            if (task == null)
+            {
+                return "No task with that task name exists for the goal with the name " + goalName;
+            }
+            
+            var assignees = task.Assignees;
+
+            if (assignees == null)
+            {
+                return "User is not assigned to this task";
+            }
+
+            if (!assignees.Exists(user => user.Username == username))
+            {
+                return "User is not assigned to this task";
+            }
+
+            assignees.Remove(assignees.Single(user => user.Username == username));
+            task.Assignees = assignees;
+            goal.Tasks[goal.Tasks.FindIndex(task => task.Name == taskName)] = task;
+            team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
+            Update(teamName, team);
+
+            return "success";
         }
     }
 }
