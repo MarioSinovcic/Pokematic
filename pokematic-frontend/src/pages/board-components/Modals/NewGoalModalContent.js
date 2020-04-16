@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from '@material-ui/core/TextField';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 import "./NewGoalModalContent.css"
 
 const useStyles = makeStyles({
@@ -14,20 +17,13 @@ const useStyles = makeStyles({
   },
   goalNameInput: {
     fontFamily: [
-        'Roboto Mono', 
+        'Roboto Condensed', 
         'monospace'
       ].join(','),
     fontSize: 30,
+    color: "#3D3D3D",
     lineHeight: 35,
     fontWeight: 600,
-  },
-  storyPointInput: {
-    fontFamily: 'pkmn_rbygscregular',
-    fontSize: 30,
-    fontWeight: 600,
-    color: '#F74747',
-    min: "0",
-    max: "99",
   },
   descriptionInput: {
     fontFamily: [
@@ -37,16 +33,29 @@ const useStyles = makeStyles({
     fontSize: 22,
     lineHeight: 1.3,
   },
-
+  dropDown:{
+      width: 200,
+  },
+  dropDownMenu: {
+    borderRadius: 15,
+    fontFamily: 'pkmn_rbygscregular',
+  },
+  dropDownItems:{
+    fontFamily: 'pkmn_rbygscregular',
+    color: 'white'
+  },
+  icon: {
+    fill: "red",
+  },
 });
 
 function ModalContent (props) {
     const classes = useStyles();
-    const defaultDescription = "This task needs to be done because ...."
+    const defaultDescription = "This goal encapsulates ...."
 
     const [selectedGoalName, setSelectedGoalName] = useState("GOAL: " + new Date());
     const [selectedDescription, setSelectedDescription] = useState("No description added");
-    const [selectedDifficulty, setSelectedDifficulty] = useState("EASY");
+    const [selectedDifficulty, setSelectedDifficulty] = useState(30);
 
     // ----- HANDLERS FOR INPUT FIELDS -----
     const handleGoalNameChange = event => {
@@ -58,9 +67,7 @@ function ModalContent (props) {
     };
 
     const handleDifficultyChange = event => {
-        if(event.target.value === "EASY"){
-            setSelectedDifficulty(10);
-        }
+        setSelectedDifficulty(event.target.value);
     };
 
     //TODO
@@ -69,13 +76,12 @@ function ModalContent (props) {
             name: selectedGoalName,
             description: selectedDescription,
             tasks: [],
-            experiencePoints: 10,
+            experiencePoints: selectedDifficulty,
             progress: 0
         };
 
         props.addNewGoal(newGoal);
     };
-
 
     return (
         <div className="goal-modal-content">
@@ -114,10 +120,23 @@ function ModalContent (props) {
                 </div>
             </div>  
             <div className="grouping">
-                <p className="difficulty-label">DIFFICULTY</p>
-                <div>
-                    DiffucltyDropDown
-                </div>
+                    <FormControl variant="outlined" className={classes.dropDown}  >
+                        <Select
+                        className={classes.dropDownMenu}
+                        labelId="demo-simple-select-outlined-label"
+                        id="demo-simple-select-outlined"
+                        onChange={handleDifficultyChange}
+                        inputProps={{
+                            classes: {
+                                icon: classes.icon,
+                            },
+                        }}
+                        >
+                            <MenuItem className={classes.dropDownItems} value={10}>Easy</MenuItem>
+                            <MenuItem className={classes.dropDownItems} value={20}>Medium</MenuItem>
+                            <MenuItem className={classes.dropDownItems} value={30}>Hard</MenuItem>
+                        </Select>
+                    </FormControl>
                 <div className="right-align">
                     <div className="done-button" onClick={handleAddGoal}>DONE</div>
                 </div>

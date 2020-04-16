@@ -45,7 +45,7 @@ function ModalButton(props) {
 
   const addNewGoal = (newGoal) => {
     //TODO
-    console.log("New goal added called: " + newGoal.name)
+    console.log("New goal added called: " + newGoal.experiencePoints)
 
     setOpen(false);
   };
