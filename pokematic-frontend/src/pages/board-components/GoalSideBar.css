@@ -61,7 +61,7 @@
 
 .NewGoalButton{
     padding-left: 20px;
-    margin-top: 770px;
+    top: 76%;
     z-index: 20;
-    position: fixed;
+    position: absolute;
 }
