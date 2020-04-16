@@ -3,7 +3,7 @@ import PokedexItem from './PokedexItem'
 import './PokedexList.css'
 import { connect } from 'react-redux';
 import { addPokemonNames, addPokemonTypes, togglePokemonLoad } from '../../actions/actions'
-import * as colors from '../../colors';
+import PokedexMappingUtil from './PokemonMappingUtil';
 
 class PokedexList extends React.Component {
 
@@ -30,7 +30,9 @@ class PokedexList extends React.Component {
       })
 
     await this.props.pokemonMap.map((pokemon, i) => {
-      this.fetchPokemonTypes(pokemon.url)
+      return (
+        this.fetchPokemonTypes(pokemon.url)
+      )
     })
 
 
@@ -72,9 +74,25 @@ class PokedexList extends React.Component {
       <div className="PokedexList">
         <div className="grid-container">
           {this.state.pokemon.map((pokemonData) => {
+
             return (
-              <div className="grid-item" style={{backgroundColor: colors.fire}}>
-                <PokedexItem pokemonNumber={pokemonData[0]} pokemonName={pokemonData[1]} pokemonImage={pokemonData[2]} pokemonType={this.props.pokemonTypes} />
+
+
+              <div className="grid-item" style={{
+                backgroundColor: PokedexMappingUtil.mapTypeToBackgroundColors(
+                  this.props.pokemonTypes[pokemonData[0]] ?
+                    this.props.pokemonTypes[pokemonData[0]][1][1] ?
+                      this.props.pokemonTypes[pokemonData[0]][1][1]
+                      : this.props.pokemonTypes[pokemonData[0]][1][0]
+                    : ""
+
+                )
+              }}>
+                <PokedexItem
+                  pokemonNumber={pokemonData[0]}
+                  pokemonName={pokemonData[1]}
+                  pokemonImage={pokemonData[2]}
+                  pokemonType={this.props.pokemonTypes} />
               </div>)
           })}
 

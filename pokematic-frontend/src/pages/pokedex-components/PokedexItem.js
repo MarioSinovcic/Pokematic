@@ -1,71 +1,9 @@
 import React from 'react';
 import './PokedexItem.css'
 import Label from '../board-components/Label';
-import * as colors from '../../colors'
-import { POKEMONTYPES } from '../../constants';
+import PokemonMappingUtil from './PokemonMappingUtil';
 
 class PokedexItem extends React.Component{
-
-  constructor(props) {
-    super(props);
-  }
-
-
-  mapTypeToColors(pokemonType) {
-
-    switch(pokemonType) {
-      case POKEMONTYPES.FIRE:
-        return colors.fire;
-
-      case POKEMONTYPES.WATER:
-        return colors.water;
-
-      case POKEMONTYPES.ICE:
-      return colors.ice;
-
-      case POKEMONTYPES.GRASS:
-      return colors.grass;
-
-      case POKEMONTYPES.POISON:
-      return colors.poison;
-
-      case POKEMONTYPES.GROUND:
-      return colors.ground;
-
-      case POKEMONTYPES.NORMAL:
-      return colors.normal;
-
-      case POKEMONTYPES.ELECTRIC:
-      return colors.electric;
-
-      case POKEMONTYPES.DRAGON:
-      return colors.dragon;
-
-      case POKEMONTYPES.STEEL:
-      return colors.steel;
-
-      case POKEMONTYPES.GHOST:
-      return colors.ghost;
-
-      case POKEMONTYPES.PSYCHIC:
-      return colors.psychic;
-
-      case POKEMONTYPES.FAIRY:
-      return colors.fairy;
-
-      case POKEMONTYPES.ROCK:
-      return colors.rock;
-
-      case POKEMONTYPES.FLYING:
-      return colors.flying;
-
-      case POKEMONTYPES.BUG:
-      return colors.bug;
-
-        default:
-        return null;
-    }
-  }
 
   render() {
 
@@ -76,7 +14,7 @@ class PokedexItem extends React.Component{
       <div className="pokeball-background"></div>
       <div className="background-enabler">
         <div className="pokemon-number">
-          #{this.props.pokemonNumber}
+          #{this.props.pokemonNumber + 1}
         </div>
         <div className="pokemon-name">
           {this.props.pokemonName}
@@ -87,9 +25,9 @@ class PokedexItem extends React.Component{
         <div className="pokemon-type">
           {/* TODO: change these into separate labels rather than text */}
           {firstType ?
-            <Label labelText={firstType} color={this.mapTypeToColors(firstType)}/>
+            <Label labelText={firstType} color={PokemonMappingUtil.mapTypeToLabelColors(firstType)}/>
             : null}
-          <Label labelText={secondType} color={this.mapTypeToColors(secondType)}/>
+          <Label labelText={secondType} color={PokemonMappingUtil.mapTypeToLabelColors(secondType)}/>
         </div>
       </div>
     </div>

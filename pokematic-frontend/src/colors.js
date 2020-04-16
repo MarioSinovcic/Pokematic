@@ -28,7 +28,7 @@ export const flyingLight = "#C6B7F5";
 export const flying = "#A890F0";
 export const flyingDark = "#6D5E9C";
 
-export const grassLight = "#A292BC";
+export const grassLight = "#A7DB8D";
 export const grass = "#78C850";
 export const grassDark = "#4E8234";
 
