@@ -1,11 +1,11 @@
 import {STATUSLIST} from './constants';
 
-import {LOCALHOST} from './constants';
+import {HOST} from './constants';
 
 export async function createTask(newTask, goalName){
     var teamName = "Dummy Team"; //temporary
 
-    var APIcall = LOCALHOST + "team/createTask/" + teamName + "/" +goalName;
+    var APIcall = HOST + "team/createTask/" + teamName + "/" +goalName;
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -18,7 +18,7 @@ export async function createTask(newTask, goalName){
 export async function populateBoardPage(){
     var teamName = "Dummy Team"; //temporary
 
-    var APIcall = LOCALHOST + "team/goals/" + teamName;
+    var APIcall = HOST + "team/goals/" + teamName;
     var response = await fetch(APIcall)
     .then(response => response.json())
     .then(json => {
