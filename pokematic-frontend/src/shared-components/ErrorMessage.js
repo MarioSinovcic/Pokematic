@@ -16,19 +16,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ErrorMessage() {
+export default function ErrorMessage(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
-
-  const handleClick = () => {
-    setOpen(true);
-  };
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
     }
-
     setOpen(false);
   };
 
@@ -36,7 +31,7 @@ export default function ErrorMessage() {
     <div className={classes.root}>
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="error">
-          Ahhhhhhhhhhhh !
+          {props.message}
         </Alert>
       </Snackbar>
     </div>

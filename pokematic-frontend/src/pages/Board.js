@@ -15,19 +15,13 @@ class Board extends React.Component {
     this.populatePage = this.populatePage.bind(this);
 
     this.state = {
-
-    }
-  }
-
-  componentWillMount() {
-    this.setState({
       goalsList: [],
       goalNames: [],
       todoList: [],
       inProgressList: [],
       inReviewList: [],
       doneList: [],
-    })
+    }
   }
 
   componentDidMount(){
@@ -45,10 +39,6 @@ class Board extends React.Component {
       inReviewList: (await apiData).inReviewList,
       doneList: (await apiData).doneList,
     })
-
-    console.log(this.state.goalsList);
-    console.log(this.state.doneList);
-
   }
   
   render(){

@@ -8,5 +8,4 @@
 export const STATUSLIST = ["TODO", "In Progress", "In Review", "Done"];
 
 // API CALLS 
-export const HOST = "https://localhost:5001/api/";
-export const GETTASKS = "";
+export const HOST = "https://pokematicapi.azurewebsites.net/api/";

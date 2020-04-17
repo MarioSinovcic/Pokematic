@@ -4,7 +4,6 @@ import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import ErrorMessage from '../../../shared-components/ErrorMessage';
 import {createTask} from '../../../apiHandler';
 import "./NewTaskModalContent.css"
 
@@ -89,8 +88,8 @@ function ModalContent (props) {
 
     const handleAddTask = event => {
 
-        if(selectedStoryPoints == 1){
-            props.showErrorMessage();
+        if(selectedGoal=== "NO GOAL"){
+            props.showErrorMessage("Task wasn't created, make sure you pick a goal");
         }
         else{
             const newTask = {
@@ -98,7 +97,7 @@ function ModalContent (props) {
                 taskNumber: 6, //TODO
                 description: selectedDescription,
                 experiencePoints: parseInt(selectedStoryPoints),
-                status: "In Progress",
+                status: "TODO", //TODO
                 storyPoints: parseInt(selectedStoryPoints),
                 assignees: [], //TODO
                 approved: false,
@@ -109,12 +108,12 @@ function ModalContent (props) {
         props.handleClose();
     };
 
+    var goalsToRender; //This is used to get the goals list in the drop down
     if(!props.goalNames){
-        var goalsToRender = <div>laoding</div>
+        goalsToRender = <div>laoding</div>
     }
     else{
-        console.log(props.goalNames)
-        var goalsToRender = props.goalNames.map((goalData) => 
+        goalsToRender = props.goalNames.map((goalData) => 
             <MenuItem className={classes.dropDownItems} value={goalData}>{goalData}</MenuItem>
         )
     }

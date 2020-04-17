@@ -29,6 +29,7 @@ function ModalButton(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [errorOcurred, setErrorOcurred] = React.useState(false);
+  const [erroMessage, setErrorMessage] = React.useState("Looks like there was a problem with that request");
   
   const handlOpen = () => {
     setOpen(true);
@@ -38,7 +39,8 @@ function ModalButton(props) {
     setOpen(false);
   };
 
-  const showErrorMessage = () => {
+  const showErrorMessage = (message) => {
+    setErrorMessage(message);
     setErrorOcurred(true);
   }
 
@@ -101,7 +103,7 @@ function ModalButton(props) {
             </Fade>
           </Modal>
         </div>
-        {errorOcurred && <ErrorMessage/>}
+        {errorOcurred && <ErrorMessage message={erroMessage}/>}
     </div>
   );
 }
