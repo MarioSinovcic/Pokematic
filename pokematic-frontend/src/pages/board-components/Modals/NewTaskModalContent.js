@@ -4,6 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import ErrorMessage from '../../../shared-components/ErrorMessage';
 import {createTask} from '../../../apiHandler';
 import "./NewTaskModalContent.css"
 
@@ -87,19 +88,25 @@ function ModalContent (props) {
     }
 
     const handleAddTask = event => {
-        const newTask = {
-            name: selectedTaskName,
-            taskNumber: 6, //TODO
-            description: selectedDescription,
-            experiencePoints: parseInt(selectedStoryPoints),
-            status: "In Progress",
-            storyPoints: parseInt(selectedStoryPoints),
-            assignees: [], //TODO
-            approved: false,
-        };
 
-        createTask(newTask, selectedGoal);
-        props.refreshBoardPage();
+        if(selectedStoryPoints == 1){
+            props.showErrorMessage();
+        }
+        else{
+            const newTask = {
+                name: selectedTaskName,
+                taskNumber: 6, //TODO
+                description: selectedDescription,
+                experiencePoints: parseInt(selectedStoryPoints),
+                status: "In Progress",
+                storyPoints: parseInt(selectedStoryPoints),
+                assignees: [], //TODO
+                approved: false,
+            };
+            createTask(newTask, selectedGoal);
+            props.refreshBoardPage();
+        }
+        props.handleClose();
     };
 
     if(!props.goalNames){

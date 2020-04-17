@@ -5,6 +5,7 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import NewTaskModalContent from '../pages/board-components/Modals/NewTaskModalContent'
+import ErrorMessage from './ErrorMessage'
 import './ModalButton.css';
 
 
@@ -27,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
 function ModalButton(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [errorOcurred, setErrorOcurred] = React.useState(false);
   
   const handlOpen = () => {
     setOpen(true);
@@ -36,9 +38,12 @@ function ModalButton(props) {
     setOpen(false);
   };
 
+  const showErrorMessage = () => {
+    setErrorOcurred(true);
+  }
+
   async function refreshBoardPage() {
     props.populatePage();
-
     setOpen(false);
   };
 
@@ -46,7 +51,12 @@ function ModalButton(props) {
   switch(props.type) {
 
     case "new-task":
-    renderModal = <NewTaskModalContent goalNames={props.goalNames} refreshBoardPage={refreshBoardPage}/>
+    renderModal = <NewTaskModalContent 
+                    goalNames={props.goalNames} 
+                    refreshBoardPage={refreshBoardPage}
+                    handleClose={handleClose}
+                    showErrorMessage={showErrorMessage}
+                  />
     break;
 
     case "search-team":
@@ -91,6 +101,7 @@ function ModalButton(props) {
             </Fade>
           </Modal>
         </div>
+        {errorOcurred && <ErrorMessage/>}
     </div>
   );
 }
