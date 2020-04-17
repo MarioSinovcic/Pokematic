@@ -3,9 +3,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import Select from '@material-ui/core/Select';
-import StatusDropdown from '../StatusDropdown'
+import {createTask} from '../../../apiHandler';
 import "./NewTaskModalContent.css"
 
 const useStyles = makeStyles({
@@ -88,23 +87,23 @@ function ModalContent (props) {
     }
 
     const handleAddTask = event => {
-        const goalName = "Dummy Goal"; //TODO
         const newTask = {
             name: selectedTaskName,
             taskNumber: 6, //TODO
             description: selectedDescription,
             experiencePoints: parseInt(selectedStoryPoints),
-            status: "Done",
+            status: "In Progress",
             storyPoints: parseInt(selectedStoryPoints),
             assignees: [], //TODO
             approved: false,
         };
 
-        props.addNewTask(newTask, goalName);
+        createTask(newTask, selectedGoal);
+        props.refreshBoardPage();
     };
 
     if(!props.goalNames){
-        //idk 
+        var goalsToRender = <div>laoding</div>
     }
     else{
         console.log(props.goalNames)

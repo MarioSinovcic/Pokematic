@@ -4,11 +4,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import AddIcon from '@material-ui/icons/Add';
 import NewTaskModalContent from '../pages/board-components/Modals/NewTaskModalContent'
 import './ModalButton.css';
 
-import {LOCALHOST} from '.././constants';
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -38,18 +36,8 @@ function ModalButton(props) {
     setOpen(false);
   };
 
-  async function addNewTask(newTask, goalName) {
-    console.log(JSON.stringify(newTask));
-    var APIcall = LOCALHOST + "team/createTask/" + "Dummy Team/" +goalName;
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newTask)
-    };
-
-    await fetch(APIcall, requestOptions);
-
-    await props.getTeamGoals();
+  async function refreshBoardPage() {
+    props.populatePage();
 
     setOpen(false);
   };
@@ -58,7 +46,7 @@ function ModalButton(props) {
   switch(props.type) {
 
     case "new-task":
-    renderModal = <NewTaskModalContent goalNames={props.goalNames} addNewTask={addNewTask}/>
+    renderModal = <NewTaskModalContent goalNames={props.goalNames} refreshBoardPage={refreshBoardPage}/>
     break;
 
     case "search-team":

@@ -5,96 +5,52 @@ import StatusCard from './board-components/StatusCard';
 import ModalButton from '../shared-components/ModalButton';
 import Header from '../shared-components/Header';
 import AddIcon from '@material-ui/icons/Add';
+import {populateBoardPage} from '.././apiHandler';
 import './Board.css'
-
-import {STATUSLIST} from '../constants';
-import {LOCALHOST} from '../constants';
-import fakeGoalResponse from '../goalResponse.json';
 
 class Board extends React.Component {
   constructor(props){
     super(props);
 
+    this.populatePage = this.populatePage.bind(this);
+
     this.state = {
-      response: [],
+
+    }
+  }
+
+  componentWillMount() {
+    this.setState({
       goalsList: [],
       goalNames: [],
       todoList: [],
       inProgressList: [],
       inReviewList: [],
       doneList: [],
-    }
-  }
-
-  async componentDidMount(){
-    this.getTeamGoals();
-  }
-
-  shouldComponentUpdate(){
-    this.forceUpdate();
-  }
-
-  getTeamGoals = async () => {
-  //   var APIcall = LOCALHOST + "team/goals/" + "Dummy Team"
-  //   await fetch(APIcall)
-  //   .then(response => response.json())
-  //   .then(json => {
-  //     this.setState({response: json});
-  //  });
-    
-    var goalResponse = fakeGoalResponse;
-    var gatheredTeamGoals= [];
-    var gatheredTasksForGoals= [];
-    var gatheredGoalNames= [];
-
-    for (var goal = 0; goal < goalResponse.length; goal++) {
-      gatheredTeamGoals.push(goalResponse[goal]);
-      gatheredGoalNames.push(goalResponse[goal]["name"]);
-      var taskArray = goalResponse[goal]["tasks"];
-
-      for(var task = 0; task < taskArray.length; task++){
-        var currentTask = taskArray[task];
-        currentTask["goalName"] = goalResponse[goal]["name"];
-        gatheredTasksForGoals.push(currentTask);
-      }
-    }
-    this.sortTasks(gatheredTasksForGoals);
-    
-    this.setState({
-      goalsList: gatheredTeamGoals,
-      goalNames: gatheredGoalNames,
     })
   }
 
-  sortTasks(tasks){
-    const gatheredTodoList = [];
-    const gatheredInProgressList = [];
-    const gatheredInReviewList = [];
-    const gatheredDoneList = [];
-    
-    for (var i = 0; i < tasks.length; i++) {
-      if(tasks[i]["status"] === STATUSLIST[0]){
-        gatheredTodoList.push(tasks[i]);
-      }
-      if(tasks[i]["status"] === STATUSLIST[1]){
-        gatheredInProgressList.push(tasks[i]);
-      }
-      if(tasks[i]["status"] === STATUSLIST[2]){
-        gatheredInReviewList.push(tasks[i]);
-      }
-      if(tasks[i]["status"] === STATUSLIST[3]){
-        gatheredDoneList.push(tasks[i]);
-      }
-    }
-        
-    this.setState({
-      todoList: gatheredTodoList,
-      inProgressList: gatheredInProgressList,
-      inReviewList: gatheredInReviewList,
-      doneList: gatheredDoneList,
-    })
+  componentDidMount(){
+    this.populatePage();
   }
 
+  populatePage = async () => {
+    var apiData = populateBoardPage();
+
+    this.setState({
+      goalsList: (await apiData).goalsList,
+      goalNames: (await apiData).goalNames,
+      todoList: (await apiData).todoList,
+      inProgressList: (await apiData).inProgressList,
+      inReviewList: (await apiData).inReviewList,
+      doneList: (await apiData).doneList,
+    })
+
+    console.log(this.state.goalsList);
+    console.log(this.state.doneList);
+
+  }
+  
   render(){
     if(this.state.response === []){
       return(<div>loading</div>)
@@ -120,7 +76,7 @@ class Board extends React.Component {
             </div>
             <div className="new-task-button">
               <ModalButton 
-                getTeamGoals={this.getTeamGoals} 
+                populatePage={this.populatePage} 
                 goalNames ={this.state.goalNames} 
                 icon={<AddIcon style={{fontSize: "35px"}}/>} theme="dark" type="new-task"
               />
