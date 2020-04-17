@@ -16,7 +16,9 @@ const PokedexItem = props => {
             <img className="pokemon-image" src={props.pokemonImage} alt=""></img>
           </div>
           <div className="pokemon-type">
-            WATER
+          {/* TODO: change these into separate labels rather than text */}
+          {props.pokemonType[props.pokemonNumber] && props.pokemonType[props.pokemonNumber][1][0]}
+          {props.pokemonType[props.pokemonNumber] && props.pokemonType[props.pokemonNumber][1][1]}
           </div>
         </div>
     </div>

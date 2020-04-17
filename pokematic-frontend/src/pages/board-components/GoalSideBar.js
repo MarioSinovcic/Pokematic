@@ -5,7 +5,9 @@ import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
+import AddIcon from '@material-ui/icons/Add';
 import Goal from './Goal';
+import ModalButton from '../../shared-components/ModalButton';
 import './GoalSideBar.css'
 
 const drawerWidth = 250;
@@ -37,6 +39,7 @@ export class GoalSideBar extends React.Component {
 
   render (){
     const classes = useStyles;
+    const newModalIcon = <AddIcon style={{fontSize: "35px", color: "#3D3D3D"}}/>;
 
     if (!this.props.goalsList){ 
       return <div>laoding</div>;
@@ -74,6 +77,9 @@ export class GoalSideBar extends React.Component {
             <List>
               {goalsToRender}
             </List>
+            <div className="NewGoalButton">
+              <ModalButton  icon={newModalIcon} theme="light" type="new-goal"/>
+            </div>
           </Drawer>
         </div>
       );
