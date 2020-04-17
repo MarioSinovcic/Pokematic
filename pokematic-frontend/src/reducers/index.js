@@ -1,7 +1,7 @@
 // import { combineReducers } from 'redux';
 
 // calling the default reducer to create a link
-import defaultReducer from './defaultReducer';
+import pokemonReducer from './pokemonReducer';
 
 /**
  * Add this code once you have multiple reducers
@@ -12,6 +12,6 @@ import defaultReducer from './defaultReducer';
 //     defaultReducer
 // });
 
-const rootReducers = defaultReducer;
+const rootReducers = pokemonReducer;
 
 export default rootReducers;
