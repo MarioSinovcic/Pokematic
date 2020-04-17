@@ -18,6 +18,7 @@ class Board extends React.Component {
     this.state = {
       response: [],
       goalsList: [],
+      goalNames: [],
       todoList: [],
       inProgressList: [],
       inReviewList: [],
@@ -34,20 +35,23 @@ class Board extends React.Component {
   }
 
   getTeamGoals = async () => {
-    var APIcall = LOCALHOST + "team/goals/" + "Dummy Team"
-    await fetch(APIcall)
-    .then(response => response.json())
-    .then(json => {
-      this.setState({response: json});
-   });
+  //   var APIcall = LOCALHOST + "team/goals/" + "Dummy Team"
+  //   await fetch(APIcall)
+  //   .then(response => response.json())
+  //   .then(json => {
+  //     this.setState({response: json});
+  //  });
     
-    var goalResponse = this.state.response;
+    var goalResponse = fakeGoalResponse;
     var gatheredTeamGoals= [];
     var gatheredTasksForGoals= [];
+    var gatheredGoalNames= [];
 
     for (var goal = 0; goal < goalResponse.length; goal++) {
       gatheredTeamGoals.push(goalResponse[goal]);
+      gatheredGoalNames.push(goalResponse[goal]["name"]);
       var taskArray = goalResponse[goal]["tasks"];
+
       for(var task = 0; task < taskArray.length; task++){
         var currentTask = taskArray[task];
         currentTask["goalName"] = goalResponse[goal]["name"];
@@ -57,7 +61,8 @@ class Board extends React.Component {
     this.sortTasks(gatheredTasksForGoals);
     
     this.setState({
-      goalsList: gatheredTeamGoals
+      goalsList: gatheredTeamGoals,
+      goalNames: gatheredGoalNames,
     })
   }
 
@@ -114,7 +119,11 @@ class Board extends React.Component {
               </div>
             </div>
             <div className="new-task-button">
-              <ModalButton getTeamGoals={this.getTeamGoals} icon={<AddIcon style={{fontSize: "35px"}}/>} theme="dark" type="new-task"/>
+              <ModalButton 
+                getTeamGoals={this.getTeamGoals} 
+                goalNames ={this.state.goalNames} 
+                icon={<AddIcon style={{fontSize: "35px"}}/>} theme="dark" type="new-task"
+              />
             </div>
           </div>
         </div>

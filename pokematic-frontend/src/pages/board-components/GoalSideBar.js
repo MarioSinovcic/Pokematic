@@ -39,7 +39,7 @@ export class GoalSideBar extends React.Component {
     const classes = useStyles;
 
     if (!this.props.goalsList){ 
-      return null;
+      return <div>laoding</div>;
     }
     else{         
         var goalsToRender = this.props.goalsList.map((goalData) => 
@@ -62,7 +62,6 @@ export class GoalSideBar extends React.Component {
           >
             <div className={classes.toolbar} />
             <List>
-            
                 <ListItem button key={"All Tasks"} className="TeamTabs TaskButton">
                 <Typography className="TaskFilter AllTasks">ALL TASKS</Typography>
                 </ListItem>

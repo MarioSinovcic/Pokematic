@@ -58,7 +58,7 @@ function ModalButton(props) {
   switch(props.type) {
 
     case "new-task":
-    renderModal = <NewTaskModalContent addNewTask={addNewTask}/>
+    renderModal = <NewTaskModalContent goalNames ={props.goalNames} addNewTask={addNewTask}/>
     break;
 
     case "search-team":

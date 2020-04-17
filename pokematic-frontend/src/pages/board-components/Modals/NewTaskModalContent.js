@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from '@material-ui/core/TextField';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import Select from '@material-ui/core/Select';
 import StatusDropdown from '../StatusDropdown'
 import "./NewTaskModalContent.css"
 
@@ -38,6 +42,23 @@ const useStyles = makeStyles({
     fontSize: 22,
     lineHeight: 1.3,
   },
+  dropDown:{
+    width: 320,
+    color: 'white'
+  },
+  dropDownMenu: {
+    paddingLeft: 10, 
+    borderRadius: 15,
+    fontFamily: 'pkmn_rbygscregular',
+    color: 'white'
+  },
+  dropDownItems:{
+    fontFamily: 'pkmn_rbygscregular',
+    color: 'white'
+  },
+  iconGrey: {
+    display: "none"
+  },
 });
 
 function ModalContent (props) {
@@ -45,6 +66,7 @@ function ModalContent (props) {
     const defaultDescription="As a user, \nI want, \nso that, ";
 
     const [selectedTaskName, setSelectedTaskName] = useState("NEW TASK");
+    const [selectedGoal, setSelectedGoal] = useState("NO GOAL");
     const [selectedDescription, setSelectedDescription] = useState(defaultDescription);
     const [selectedStoryPoints, setSelectedStoryPoints] = useState(1);
 
@@ -61,12 +83,10 @@ function ModalContent (props) {
         setSelectedStoryPoints(event.target.value);
     };
 
-    //TODO
-    const handleAddGoal = event => {
-        
+    const handleGoalChange = event => {
+        setSelectedGoal(event.target.value)
     }
 
-    //TODO
     const handleAddTask = event => {
         const goalName = "Dummy Goal"; //TODO
         const newTask = {
@@ -84,9 +104,8 @@ function ModalContent (props) {
     };
 
     return (
-        <div className="modal-content">
+        <div className="new-task-modal-content">
             <div className="grouping">
-                <p className="task-number">#65</p>
                 <div  className="task-title"> 
                     <TextField 
                         onChange={handleTaskNameChange}
@@ -102,8 +121,28 @@ function ModalContent (props) {
                 </div>
             </div>    
             <div className="grouping padding-bottom">
-                <div className="goal-name-input" 
-                    onClick={handleAddGoal}> + ADD GOAL </div>
+                <div className="goal-name-input">
+                <FormControl className={classes.dropDown}  >
+                        <Select
+                        className={classes.dropDownMenu}
+                        id="demo-simple-select-outlined"
+                        onChange={handleGoalChange}
+                        disableUnderline
+                        displayEmpty
+                        defaultValue={"ADD GOAL"}
+                        inputProps={{
+                            classes: {
+                                icon: classes.iconGrey,
+                            },
+                        }}
+                        >
+                            <MenuItem className={classes.dropDownItems} value="ADD GOAL">ADD GOAL +</MenuItem>
+                            <MenuItem className={classes.dropDownItems} value={"Goal 1"}>Goal 1</MenuItem>
+                            <MenuItem className={classes.dropDownItems} value={"Goal 2"}>Goal 2</MenuItem>
+                            <MenuItem className={classes.dropDownItems} value={"Goal 3"}>Goal 3</MenuItem>
+                        </Select>
+                    </FormControl>
+                </div>
                 <div className="right-align">
                     <div className="story-points-label">STORY POINTS</div>
                     <div className="story-points">
@@ -145,10 +184,10 @@ function ModalContent (props) {
                 </div>
             </div>  
             <div className="grouping">
-                <p className="status-label">STATUS</p>
+                {/* <p className="status-label">STATUS</p> // still needs to be implemented
                 <div>
                     <StatusDropdown/>
-                </div>
+                </div> */}
                 <div className="right-align">
                     <div className="done-button" onClick={handleAddTask}>DONE</div>
                 </div>
