@@ -34,7 +34,7 @@ const useStyles = makeStyles({
     lineHeight: 1.3,
   },
   dropDown:{
-      width: 200,
+      width: 350,
   },
   dropDownMenu: {
     borderRadius: 15,
@@ -126,15 +126,17 @@ function ModalContent (props) {
                         labelId="demo-simple-select-outlined-label"
                         id="demo-simple-select-outlined"
                         onChange={handleDifficultyChange}
+                        defaultValue={0}
                         inputProps={{
                             classes: {
                                 icon: classes.icon,
                             },
                         }}
-                        >
-                            <MenuItem className={classes.dropDownItems} value={10}>Easy</MenuItem>
-                            <MenuItem className={classes.dropDownItems} value={20}>Medium</MenuItem>
-                            <MenuItem className={classes.dropDownItems} value={30}>Hard</MenuItem>
+                        > {/* need to validate this input (value === 0) should defualt to 10 */}
+                            <MenuItem className={classes.dropDownItems} value={0}><em>DIFFICULTY</em></MenuItem>
+                            <MenuItem className={classes.dropDownItems} value={10}>EASY</MenuItem>
+                            <MenuItem className={classes.dropDownItems} value={20}>MEDIUM</MenuItem>
+                            <MenuItem className={classes.dropDownItems} value={30}>HARD</MenuItem>
                         </Select>
                     </FormControl>
                 <div className="right-align">
