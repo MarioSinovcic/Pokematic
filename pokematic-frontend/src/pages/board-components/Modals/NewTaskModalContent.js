@@ -65,7 +65,7 @@ function ModalContent (props) {
     const defaultDescription="As a user, \nI want, \nso that, ";
 
     const [selectedTaskName, setSelectedTaskName] = useState("NEW TASK");
-    const [selectedGoal, setSelectedGoal] = useState("NO GOAL");
+    const [selectedGoal, setSelectedGoal] = useState("ADD GOAL +");
     const [selectedDescription, setSelectedDescription] = useState(defaultDescription);
     const [selectedStoryPoints, setSelectedStoryPoints] = useState(1);
 
@@ -88,7 +88,7 @@ function ModalContent (props) {
 
     const handleAddTask = event => {
 
-        if(selectedGoal=== "NO GOAL"){
+        if(selectedGoal === "ADD GOAL +"){
             props.showErrorMessage("Task wasn't created, make sure you pick a goal");
         }
         else{
@@ -108,11 +108,12 @@ function ModalContent (props) {
         props.handleClose();
     };
 
-    var goalsToRender; //This is used to get the goals list in the drop down
+    var goalsToRender; //This is used to get the goals list dropdown items
     if(!props.goalNames){
         goalsToRender = <div>laoding</div>
     }
     else{
+        console.log(props.goalNames)
         goalsToRender = props.goalNames.map((goalData) => 
             <MenuItem className={classes.dropDownItems} value={goalData}>{goalData}</MenuItem>
         )
@@ -144,14 +145,14 @@ function ModalContent (props) {
                         onChange={handleGoalChange}
                         disableUnderline
                         displayEmpty
-                        defaultValue={"ADD GOAL"}
+                        defaultValue={"ADD GOAL +"}
                         inputProps={{
                             classes: {
                                 icon: classes.iconGrey,
                             },
                         }}
                         >
-                            <MenuItem className={classes.dropDownItems} value="ADD GOAL">ADD GOAL +</MenuItem>
+                            <MenuItem className={classes.dropDownItems} value="ADD GOAL +">ADD GOAL +</MenuItem>
                             {goalsToRender}
                         </Select>
                     </FormControl>
