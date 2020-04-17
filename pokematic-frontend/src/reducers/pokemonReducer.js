@@ -6,6 +6,7 @@ import * as actionTypes from "../actions/actionTypes";
 const initialState = {
   pokemonInfo: [],
   pokemonTypes: [],
+  pokemonData: [],
   isLoaded: false
 };
 
@@ -19,6 +20,13 @@ export default function pokemonReducer(state = initialState, action) {
        ...state,
        isLoaded: true,
      };
+
+     // Stores pokemon with [name, URL of their details (for further API call)]
+    case actionTypes.ADD_POKEMON_DATA:
+    return {
+      ...state,
+      pokemonData: action.pokemonData
+    };
 
     // Stores pokemon with [name, URL of their details (for further API call)]
     case actionTypes.ADD_POKEMON_NAMES:

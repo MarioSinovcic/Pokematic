@@ -2,13 +2,13 @@ import React from 'react';
 import PokedexItem from './PokedexItem'
 import './PokedexList.css'
 import { connect } from 'react-redux';
-import { addPokemonNames, addPokemonTypes, togglePokemonLoad } from '../../actions/actions'
+import { addPokemonNames, addPokemonTypes, togglePokemonLoad, addPokemonData } from '../../actions/actions'
 import PokedexMappingUtil from './PokemonMappingUtil';
 
 class PokedexList extends React.Component {
 
   state = {
-    pokemon: []
+    pokemon: this.props.pokemonData || [],
   }
 
   componentWillMount() {
@@ -34,6 +34,9 @@ class PokedexList extends React.Component {
         this.fetchPokemonTypes(pokemon.url)
       )
     })
+
+    this.props.addPokemonData(this.populatePokemon());
+    console.log(this.props.pokemonData);
 
 
     this.setState({
@@ -73,12 +76,12 @@ class PokedexList extends React.Component {
     return (
       <div className="PokedexList">
         <div className="grid-container">
-          {this.state.pokemon.map((pokemonData) => {
+          {this.state.pokemon.map((pokemonData, i) => {
 
             return (
 
 
-              <div className="grid-item" style={{
+              <div key={i} className="grid-item" style={{
                 backgroundColor: PokedexMappingUtil.mapTypeToBackgroundColors(
                   this.props.pokemonTypes[pokemonData[0]] ?
                     this.props.pokemonTypes[pokemonData[0]][1][1] ?
@@ -107,6 +110,7 @@ const mapStateToProps = (state) => {
   return {
     pokemonMap: state.pokemonInfo,
     pokemonTypes: state.pokemonTypes,
+    pokemonData: state.pokemonData,
     isLoaded: state.isLoaded,
   };
 }
@@ -115,6 +119,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     togglePokemonHasLoaded: () => {
       dispatch(togglePokemonLoad())
+    },
+    addPokemonData: (pokemon) => {
+      dispatch(addPokemonData(pokemon))
     },
     addPokemon: (pokemon) => {
       dispatch(addPokemonNames(pokemon))
