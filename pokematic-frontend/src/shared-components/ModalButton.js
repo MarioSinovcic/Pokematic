@@ -5,6 +5,7 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import NewTaskModalContent from '../pages/board-components/Modals/NewTaskModalContent'
+import NewGoalModalContent from '../pages/board-components/Modals/NewGoalModalContent'
 import './ModalButton.css';
 
 const useStyles = makeStyles((theme) => ({
@@ -42,6 +43,13 @@ function ModalButton(props) {
     setOpen(false);
   };
 
+  const addNewGoal = (newGoal) => {
+    //TODO
+    console.log("New goal added called: " + newGoal.experiencePoints)
+
+    setOpen(false);
+  };
+
   let renderModal;
   switch(props.type) {
 
@@ -55,6 +63,10 @@ function ModalButton(props) {
 
     case "new-team":
     renderModal = "To be Completed";
+    break;
+
+    case "new-goal":
+    renderModal = <NewGoalModalContent addNewGoal={addNewGoal}/>
     break;
 
     default:

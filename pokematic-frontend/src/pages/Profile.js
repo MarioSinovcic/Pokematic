@@ -2,10 +2,10 @@ import React from 'react';
 import Header from '../shared-components/Header';
 import Sidebar from '../shared-components/Sidebar';
 import ProfileCard from './profile-components/ProfileCard';
-import './Profile.css';
 import ModalButton from '../shared-components/ModalButton';
 import AddIcon from '@material-ui/icons/Add';
 import SearchIcon from '@material-ui/icons/Search';
+import './Profile.css';
 
 function Profile() {
 
