@@ -1,5 +1,15 @@
-import {STATUSLIST} from './constants';
+/*
+    To run the system without any API interation:
+    1. uncomment the import below
+    2. in the populateBoardPage method uncomment the "var response = fakeGoalResponse;" line
+    3. comment out everything in the "comment out" section in that same method
+    NOTE: API calls will still occur when creating tasks ect... 
 
+*/
+
+//import fakeGoalResponse from './goalResponse.json';
+
+import {STATUSLIST} from './constants';
 import {HOST} from './constants';
 
 export async function createTask(newTask, goalName){
@@ -16,6 +26,7 @@ export async function createTask(newTask, goalName){
 }
 
 export async function populateBoardPage(){
+    // --- comment out ----
     var teamName = "Dummy Team"; //temporary
 
     var APIcall = HOST + "team/goals/" + teamName;
@@ -24,6 +35,9 @@ export async function populateBoardPage(){
     .then(json => {
         return json
     });
+    // --- comment out ----
+
+    // var response = fakeGoalResponse;
     
     var goalResponse = response;
     var gatheredTeamGoals= [];
