@@ -103,6 +103,16 @@ function ModalContent (props) {
         props.addNewTask(newTask, goalName);
     };
 
+    if(!props.goalNames){
+        //idk 
+    }
+    else{
+        console.log(props.goalNames)
+        var goalsToRender = props.goalNames.map((goalData) => 
+            <MenuItem className={classes.dropDownItems} value={goalData}>{goalData}</MenuItem>
+        )
+    }
+
     return (
         <div className="new-task-modal-content">
             <div className="grouping">
@@ -137,9 +147,7 @@ function ModalContent (props) {
                         }}
                         >
                             <MenuItem className={classes.dropDownItems} value="ADD GOAL">ADD GOAL +</MenuItem>
-                            <MenuItem className={classes.dropDownItems} value={"Goal 1"}>Goal 1</MenuItem>
-                            <MenuItem className={classes.dropDownItems} value={"Goal 2"}>Goal 2</MenuItem>
-                            <MenuItem className={classes.dropDownItems} value={"Goal 3"}>Goal 3</MenuItem>
+                            {goalsToRender}
                         </Select>
                     </FormControl>
                 </div>
