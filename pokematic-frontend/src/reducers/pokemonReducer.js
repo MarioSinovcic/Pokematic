@@ -14,19 +14,12 @@ export default function pokemonReducer(state = initialState, action) {
 
   switch (action.type) {
 
-     // Stores pokemon with [name, URL of their details (for further API call)]
-     case actionTypes.TOGGLE_POKEMON_LOAD:
-     return {
-       ...state,
-       isLoaded: true,
-     };
-
-     // Stores pokemon with [name, URL of their details (for further API call)]
-    case actionTypes.ADD_POKEMON_DATA:
-    return {
-      ...state,
-      pokemonData: action.pokemonData
-    };
+    // Stores pokemon with [name, URL of their details (for further API call)]
+    case actionTypes.TOGGLE_POKEMON_LOAD:
+      return {
+        ...state,
+        isLoaded: true,
+      };
 
     // Stores pokemon with [name, URL of their details (for further API call)]
     case actionTypes.ADD_POKEMON_NAMES:
@@ -35,9 +28,16 @@ export default function pokemonReducer(state = initialState, action) {
         pokemonInfo: action.pokemonData
       };
 
-      // Stores pokemon types as [pokemonName, array of pokemonTypes]
-      // To get the name of a pokemon's type , use pokemonTypes[pokemonNum][1][0] and pokemonTypes[pokemonNum][1][1] 
-      // TODO: remove the name of pokemon from the pokemon types but only if we can map names to pokemon numbers.
+    // Stores the FETCHED pokemon from previous API calls for re-rendeering
+    case actionTypes.ADD_POKEMON_DATA:
+      return {
+        ...state,
+        pokemonData: action.pokemonData
+      };
+
+    // Stores pokemon types as [pokemonName, array of pokemonTypes]
+    // To get the name of a pokemon's type , use pokemonTypes[pokemonNum][1][0] and pokemonTypes[pokemonNum][1][1] 
+    // TODO: remove the name of pokemon from the pokemon types but only if we can map names to pokemon numbers.
     case actionTypes.ADD_POKEMON_TYPES:
       return {
         ...state,
