@@ -67,21 +67,24 @@
 }
 
 .pokemon-type{
-    margin-left: 22px;
-    margin-top: 130px;
+    margin-left: 16px;
+    margin-top: 90px;
     width: 64px;
     text-align: center;
+    align-self: flex-end;
+    justify-content: flex-end;
 
-    padding: 7px 7px;
+
+    /* padding: 7px 7px;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 15px;
     line-height: 10px;
-    color: #FFFFFF;
-
+    color: #FFFFFF; */
+/* 
     border-radius: 15px;
-    background-color: #cdcdcd;
+    background-color: #cdcdcd; */
 }
 
 .pokemon-name {

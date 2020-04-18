@@ -3,9 +3,10 @@ import { Button } from '@material-ui/core';
 import './Label.css';
 
 function Label(props) {
+
     return (
         <div id="Label">
-            <Button className="TeamLabel">{props.labelText}</Button>
+            <Button style={ {backgroundColor: props.color} } className="team-label pokemon-label">{props.labelText}</Button>
         </div>
 )
 }
