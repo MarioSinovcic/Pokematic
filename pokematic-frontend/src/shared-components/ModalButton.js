@@ -5,8 +5,10 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import NewTaskModalContent from '../pages/board-components/Modals/NewTaskModalContent'
+import ErrorMessage from './ErrorMessage'
 import NewGoalModalContent from '../pages/board-components/Modals/NewGoalModalContent'
 import './ModalButton.css';
+
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -27,6 +29,8 @@ const useStyles = makeStyles((theme) => ({
 function ModalButton(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [errorOcurred, setErrorOcurred] = React.useState(false);
+  const [erroMessage, setErrorMessage] = React.useState("Looks like there was a problem with that request");
   
   const handlOpen = () => {
     setOpen(true);
@@ -36,10 +40,13 @@ function ModalButton(props) {
     setOpen(false);
   };
 
-  const addNewTask = (newTask) => {
-    //TODO
-    console.log("New task added called: " + newTask.name)
+  const showErrorMessage = (message) => {
+    setErrorMessage(message);
+    setErrorOcurred(true);
+  }
 
+  async function refreshBoardPage() {
+    props.populatePage();
     setOpen(false);
   };
 
@@ -54,7 +61,12 @@ function ModalButton(props) {
   switch(props.type) {
 
     case "new-task":
-    renderModal = <NewTaskModalContent addNewTask={addNewTask}/>
+    renderModal = <NewTaskModalContent 
+                    goalNames={props.goalNames} 
+                    refreshBoardPage={refreshBoardPage}
+                    handleClose={handleClose}
+                    showErrorMessage={showErrorMessage}
+                  />
     break;
 
     case "search-team":
@@ -103,6 +115,7 @@ function ModalButton(props) {
             </Fade>
           </Modal>
         </div>
+        {errorOcurred && <ErrorMessage message={erroMessage}/>}
     </div>
   );
 }
