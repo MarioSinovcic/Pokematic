@@ -78,7 +78,7 @@ export class GoalSideBar extends React.Component {
               {goalsToRender}
             </List>
             <div className="NewGoalButton">
-              <ModalButton  icon={newModalIcon} theme="light" type="new-goal"/>
+              <ModalButton goalNames ={this.props.goalNames} icon={newModalIcon} theme="light" type="new-goal"/>
             </div>
           </Drawer>
         </div>

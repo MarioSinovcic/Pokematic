@@ -54,7 +54,7 @@ class Board extends React.Component {
                 <TeamCard />
           </div>
             <div className="menu">
-            <GoalSidebar goalsList={this.state.goalsList}/>
+            <GoalSidebar goalNames ={this.state.goalNames} goalsList={this.state.goalsList}/>
             </div>
             <div className="tasks-content">
               <div className="todo-status">

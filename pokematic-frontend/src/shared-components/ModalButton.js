@@ -50,13 +50,6 @@ function ModalButton(props) {
     setOpen(false);
   };
 
-  const addNewGoal = (newGoal) => {
-    //TODO
-    console.log("New goal added called: " + newGoal.experiencePoints)
-
-    setOpen(false);
-  };
-
   let renderModal;
   switch(props.type) {
 
@@ -78,7 +71,12 @@ function ModalButton(props) {
     break;
 
     case "new-goal":
-    renderModal = <NewGoalModalContent addNewGoal={addNewGoal}/>
+    renderModal = <NewGoalModalContent                     
+                    goalNames={props.goalNames} 
+                    refreshBoardPage={refreshBoardPage}
+                    handleClose={handleClose}
+                    showErrorMessage={showErrorMessage}
+                    />
     break;
 
     default:

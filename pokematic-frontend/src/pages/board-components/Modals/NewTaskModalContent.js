@@ -87,7 +87,6 @@ function ModalContent (props) {
     }
 
     const handleAddTask = event => {
-
         if(selectedGoal === "ADD GOAL +"){
             props.showErrorMessage("Task wasn't created, make sure you pick a goal");
         }

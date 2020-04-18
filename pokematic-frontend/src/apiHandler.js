@@ -12,23 +12,10 @@
 import {STATUSLIST} from './constants';
 import {HOST} from './constants';
 
-export async function createTask(newTask, goalName){
-    var teamName = "Dummy Team"; //temporary
-
-    var APIcall = HOST + "team/createTask/" + teamName + "/" +goalName;
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newTask)
-    };
-
-    await fetch(APIcall, requestOptions);
-}
+const teamName = "Dummy Team"; //temporary
 
 export async function populateBoardPage(){
     // --- comment out ----
-    var teamName = "Dummy Team"; //temporary
-
     var APIcall = HOST + "team/goals/" + teamName;
     var response = await fetch(APIcall)
     .then(response => response.json())
@@ -87,4 +74,26 @@ export async function populateBoardPage(){
         doneList: gatheredDoneList
     }
     return apiData;
+}
+
+export async function createTask(newTask, goalName){
+  var APIcall = HOST + "team/createTask/" + teamName + "/" +goalName;
+  const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newTask)
+  };
+
+  await fetch(APIcall, requestOptions);
+}
+
+export async function createGoal(newGoal){
+  var APIcall = HOST + "team/createGoal/" + teamName;
+  const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newGoal)
+  };
+
+  await fetch(APIcall, requestOptions);
 }
