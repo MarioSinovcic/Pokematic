@@ -76,7 +76,7 @@ function ModalContent (props) {
         if(currentGoalsForATeam.includes(selectedGoalName.trim())){
            props.showErrorMessage("Goal wasn't created, goal name already in use");
         }
-        if(selectedGoalName === "Goal Name" || selectedDifficulty === 0){
+        else if(selectedGoalName === "Goal Name" || selectedDifficulty === 0){
             props.showErrorMessage("Goal wasn't created, as a property was not filled in");
         }
         else{
