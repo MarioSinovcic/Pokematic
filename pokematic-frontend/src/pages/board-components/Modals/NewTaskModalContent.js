@@ -110,7 +110,7 @@ function ModalContent (props) {
 
     var goalsToRender; //This is used to get the goals list dropdown items
     if(!props.goalNames){
-        goalsToRender = <div>laoding</div>
+        goalsToRender = <div>loading</div>
     }
     else{
         console.log(props.goalNames)
