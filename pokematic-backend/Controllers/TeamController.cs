@@ -161,7 +161,7 @@ namespace pokematic_backend.Controllers
         }
 
         [HttpPut("updateTask/{teamName}/{goalName}/{taskToUpdateName}")]
-        public ActionResult UpdateTask(string teamName, string goalName, string taskToUpdateName, Task updatedTask)
+        public ActionResult UpdateTask(string teamName, string goalName, string taskToUpdateName, Models.Task updatedTask)
         {
             var serviceMessage = _teamService.UpdateTask(teamName, goalName, taskToUpdateName, updatedTask);
 
