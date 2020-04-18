@@ -3,6 +3,7 @@ import ProgressBar from './ProgressBar';
 import { Typography, Divider } from '@material-ui/core';
 import './TeamDetails.css';
 import Label from '../pages/board-components/Label';
+import * as colors from '../colors'
 
 function TeamDetails(props) {
     const teamName = "Team Alpha";
@@ -17,7 +18,7 @@ function TeamDetails(props) {
                 <img alt="team-logo" src={temporaryTeamLogo} className="team-image"></img>
             </div>
             <div className="team-stats">
-                <Label labelText={"lv. "+teamLevel}/>
+                <Label labelText={"lv. "+teamLevel} color={colors.fire}/>
                 <Typography className={props.isItem ? "team-name team-item-text" : "team-name"}>{teamName}</Typography>
                 <div className={props.isItem ? "team-level-bar item-width" : "team-level-bar card-width"}>
                     <ProgressBar progress={60}/>

@@ -1,9 +1,9 @@
-.modal-content {
+.new-task-modal-content {
     font-family: 'Roboto', sans-serif !important;
     text-align: left;
     padding: 20px 20px;
     width: 875px;
-    height: 570px;
+    height: 500px;
 }
 
 .grouping{
@@ -19,14 +19,7 @@
     font-size: 40px;
     line-height: 20px;
     color: #3D3D3D;
-}
-
-.task-number{
-    font-weight: 600 !important;
-    font-size: 40px;
-    line-height: 20px;
-    color: #898989;
-    padding-right: 30px;
+    padding-bottom: 25px;
 }
 
 .right-align{
@@ -121,6 +114,7 @@
     color: #ffffff;
     text-align: center;
     font-size: 15px;
+    margin-top: 25px;
     padding: 15px 15px;
 
     transition: 0.5s;
