@@ -143,7 +143,7 @@ namespace pokematic_backend.Controllers
             return NotFound(serviceMessage);
         }
 
-        [HttpPut("updateTask/{teamName}/{goalName}/{taskName}")]
+        [HttpPut("updateTask/{teamName}/{goalName}/{taskToUpdateName}")]
         public ActionResult UpdateTask(string teamName, string goalName, string taskToUpdateName, Task updatedTask)
         {
             var serviceMessage = _teamService.UpdateTask(teamName, goalName, taskToUpdateName, updatedTask);
