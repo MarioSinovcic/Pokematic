@@ -1,5 +1,6 @@
 import React from 'react';
-import StatusDropdown from '../StatusDropdown'
+import StatusDropdown from '../StatusDropdown';
+import {deleteTask} from '../../../apiHandler';
 import "./TaskModalContent.css"
 
 function ModalContent (props) {
@@ -11,9 +12,8 @@ function ModalContent (props) {
     // };
 
 
-    function handleDelete() {
-        //note: this should call the API first
-
+    async function handleDelete() {
+        deleteTask(props.goalName, props.name);
         props.handleClose();
     };
 

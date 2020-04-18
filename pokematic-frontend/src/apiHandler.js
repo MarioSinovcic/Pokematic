@@ -15,11 +15,22 @@ import {HOST} from './constants';
 export async function createTask(newTask, goalName){
     var teamName = "Dummy Team"; //temporary
 
-    var APIcall = HOST + "team/createTask/" + teamName + "/" +goalName;
+    var APIcall = HOST + "team/createTask/" + teamName + "/" + goalName;
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newTask)
+    };
+
+    await fetch(APIcall, requestOptions);
+}
+
+export async function deleteTask(goalName, taskName){
+  var teamName = "Dummy Team"; //temporary
+
+  var APIcall = HOST + "team/deleteTask/" + teamName + "/" + goalName  + "/" + taskName;
+    const requestOptions = {
+        method: 'DELETE'
     };
 
     await fetch(APIcall, requestOptions);
