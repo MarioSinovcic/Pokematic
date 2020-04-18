@@ -46,6 +46,6 @@ class PokedexItem extends React.Component {
   }
 
 }
-}
+
 
 export default PokedexItem;
