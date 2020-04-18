@@ -185,7 +185,41 @@ namespace pokematic_backend.Services
             Update(teamName, team);
 
             return "success";
+        }
+        
+        public string UpdateTask(string teamName, string goalName, string taskToUpdateName, Models.Task updatedTask)
+        {
+            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
+
+            if (team == null)
+            {
+                return "No team with that team name";
+            }
+
+            var goal = team.Goals.FirstOrDefault(goal => goal.Name == goalName);
+
+            if (goal == null)
+            {
+                return "No goal with that goal name exists for the " + teamName + " team ";
+            }
+
+            if (goal.Tasks == null)
+            {
+                return "No task with that task name exists for the goal with the name " + goalName;
+            }
             
+            var taskToUpdate = goal.Tasks.FirstOrDefault(task => task.Name == taskToUpdateName);
+
+            if (taskToUpdate == null)
+            {
+                return "No task with that task name exists for the goal with the name " + goalName;
+            }
+
+            goal.Tasks[goal.Tasks.FindIndex(task => taskToUpdate.Name == taskToUpdateName)] = updatedTask;
+            team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
+            Update(teamName, team);
+
+            return "success";
         }
         
 
@@ -306,5 +340,6 @@ namespace pokematic_backend.Services
             return "success";
         }
 
+     
     }
 }

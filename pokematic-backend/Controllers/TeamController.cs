@@ -5,7 +5,7 @@ using pokematic_backend.Services;
 
 // TO DO
 /*
- * updating task, updating goal (or progress of that goal)
+ * updating goal (or progress of that goal)
  * approving tasks (PMs), updating EXP/LVL for teams, users to switch roles,
  * check for existing team (when trying to search for teams to be added into), login stuff,
  * adding a pokemon to team when they get a new pokemon, get all pokemon of that team’s collection,
@@ -14,7 +14,7 @@ using pokematic_backend.Services;
 // DONE
 /*
  * Get all teams, create team, get goals, get tasks, create goals,
- * create tasks, get user, create user, join a team,
+ * create tasks, get user, create user, join a team,updating task,
  * 
  */
 
@@ -82,7 +82,6 @@ namespace pokematic_backend.Controllers
             return goal;
         }
         
-        
 
         /**
          * Task endpoints
@@ -142,13 +141,23 @@ namespace pokematic_backend.Controllers
             }
 
             return NotFound(serviceMessage);
-
         }
 
+        [HttpPut("deleteTask/{teamName}/{goalName}/{taskName}")]
+        public ActionResult UpdateTask(string teamName, string goalName, string taskToUpdateName, Task updatedTask)
+        {
+            var serviceMessage = _teamService.UpdateTask(teamName, goalName, taskToUpdateName, updatedTask);
 
+            if (serviceMessage == "success")
+            {
+                return Ok();
+            }
+
+            return NotFound(serviceMessage);
+        }
 
         /*
-         * Update task and goal status
+         * update goal status
          */
         
         
