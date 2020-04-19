@@ -98,7 +98,6 @@ export async function fetchPokemonData() {
   await fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151")
     .then(response => response.json())
     .then(data => {
-      console.log(data);
       results = data.results;
     })
 
