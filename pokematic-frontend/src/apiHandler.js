@@ -26,9 +26,7 @@ export async function createTask(newTask, goalName){
 }
 
 export async function updateTask(updatedTask, goalName, taskName){
-  //https://localhost:5001/api/team/updateTask/Dummy Team/Dummy Goal/Tame
-  var teamName = "Dummy Team"; //temporary
-
+    var teamName = "Dummy Team"; //temporary
     var APIcall = HOST + "team/updateTask/" + teamName + "/" + goalName  + "/" + taskName;
     const requestOptions = {
         method: 'PUT',
@@ -37,8 +35,6 @@ export async function updateTask(updatedTask, goalName, taskName){
     };
 
     await fetch(APIcall, requestOptions);
-
-  
 }
 
 export async function deleteTask(goalName, taskName){

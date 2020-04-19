@@ -40,19 +40,20 @@ function TaskCard(props) {
       setOpen(false);
     };
 
-    async function handleChangeStatus() {
+    async function changeStatus(newStatus) {
+        console.log(newStatus);
         const updatedTask = {
             name: props.name,
             taskNumber: props.taskNumber, 
             description: props.description,
             experiencePoints: parseInt(props.storyPoints),
-            status: "TODO", //TODO
+            status: newStatus,
             storyPoints: parseInt(props.storyPoints),
             assignees: props.assignees, 
             approved: props.approved,
         };
-        updateTask(updatedTask, props.goalName, props.name);
-        props.populatePage();
+        await updateTask(updatedTask, props.goalName, props.name);
+        await props.populatePage();
     };
 
 
@@ -66,7 +67,7 @@ function TaskCard(props) {
             <Assignees />
             <div className="TaskLabels">
                 <Label labelText={props.experiencePoints + " XP"} color={colors.fire}/>
-                <StatusDropdown />
+                <StatusDropdown changeStatus={changeStatus} currentStatus={props.status} />
             </div>
         </div>
         <div>
