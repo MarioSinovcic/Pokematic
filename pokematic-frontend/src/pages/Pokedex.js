@@ -114,24 +114,28 @@ class Pokedex extends React.Component {
                 <Grid component="label" container alignItems="center" spacing={1}>
                   <Grid item className="switch-text">COLLECTION</Grid>
                   <Grid item>
-                    <Switch  color="" name="checkedC" onChange={(event) => handleSwitch(event)} checked={this.props.pokemonCollection === this.props.pokemonData}/>
+                    <Switch
+                      color=""
+                      name="checkedC"
+                      onChange={(event) => handleSwitch(event)}
+                      checked={this.props.pokemonCollection === this.props.pokemonData} />
                   </Grid>
                   <Grid item className="switch-text">ALL POKEMON</Grid>
                 </Grid>
               </Typography>
+            </div>
+            <div className="right-cut" />
           </div>
-          <div className="right-cut" />
         </div>
-      </div>
-      <div className="team-card">
-        <TeamCard />
-      </div>
-      <div>
-        {this.props.pokemonCollection[0] ? <PokedexList pokemonCollection={this.props.pokemonCollection} /> : ""}
-      </div>
-      <div>
-        {/* Team Status */}
-      </div>
+        <div className="team-card">
+          <TeamCard />
+        </div>
+        <div>
+          {this.props.pokemonCollection[0] ? <PokedexList pokemonCollection={this.props.pokemonCollection} /> : ""}
+        </div>
+        <div>
+          {/* Team Status */}
+        </div>
       </div >
     );
   }
