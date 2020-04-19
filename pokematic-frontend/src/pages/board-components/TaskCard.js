@@ -8,8 +8,9 @@ import Label from './Label';
 import ModalConent from './Modals/TaskModalContent';
 import StatusDropdown from './StatusDropdown';
 import Assignees from './Assignees';
+import * as colors from '../../colors';
+import {updateTask} from '../../apiHandler';
 import './TaskCard.css';
-import * as colors from '../../colors'
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -38,6 +39,22 @@ function TaskCard(props) {
     const handleClose = () => {
       setOpen(false);
     };
+
+    async function handleChangeStatus() {
+        const updatedTask = {
+            name: props.name,
+            taskNumber: props.taskNumber, 
+            description: props.description,
+            experiencePoints: parseInt(props.storyPoints),
+            status: "TODO", //TODO
+            storyPoints: parseInt(props.storyPoints),
+            assignees: props.assignees, 
+            approved: props.approved,
+        };
+        updateTask(updatedTask, props.goalName, props.name);
+        props.populatePage();
+    };
+
 
     return (
         <div>

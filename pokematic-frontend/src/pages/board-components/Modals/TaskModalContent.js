@@ -5,18 +5,10 @@ import "./TaskModalContent.css"
 
 function ModalContent (props) {
 
-    // function handleSatus() {
-    //     //note: this should call the API first
-
-    //     props.handleClose();
-    // };
-
-
     async function handleDelete() {
         deleteTask(props.goalName, props.name);
         props.handleClose();
     };
-
 
     return (
         <div className="modal-content">
