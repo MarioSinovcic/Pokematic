@@ -16,7 +16,7 @@ class PokedexList extends React.Component {
       return typesArray[1];
     }
   }
-
+  
   render() {
     return (
       <div className="PokedexList">
