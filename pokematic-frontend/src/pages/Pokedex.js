@@ -5,10 +5,12 @@ import TeamCard from '../shared-components/TeamCard';
 import './Pokedex.css';
 import { connect } from 'react-redux';
 import { togglePokemonLoad, addPokemonData, addPokemonNames, addPokemonTypes, changeCollection } from '../actions/actions';
+import { Typography, Grid, Switch } from '@material-ui/core';
 
 class Pokedex extends React.Component {
 
   state = {
+    tempTeam: [],
     pokemonCollection: [],
   }
 
@@ -38,10 +40,11 @@ class Pokedex extends React.Component {
 
     // TEMP
     this.setState({
+      tempTeam: [this.props.pokemonData[54], this.props.pokemonData[103]],
       /* Uncomment below to switch between team collection to ALL pokemon
       */
-      pokemonCollection: this.props.pokemonData,
-      // pokemonCollection: [this.props.pokemonData[54], this.props.pokemonData[103]],
+      // pokemonCollection: this.props.pokemonData,
+      pokemonCollection: [this.props.pokemonData[54], this.props.pokemonData[103]],
     })
 
     this.props.changeCollection(this.state.pokemonCollection);
@@ -72,25 +75,64 @@ class Pokedex extends React.Component {
     return populatedPokemon;
   }
 
+  switchPokemon(event) {
+
+    if (!event.target.checked) {
+      // TODO: change to 
+      this.props.changeCollection([this.props.pokemonData[54], this.props.pokemonData[103]]);
+
+      this.setState({
+        pokemonCollection: [this.props.pokemonData[54], this.props.pokemonData[103]],
+      })
+
+    } else {
+      this.props.changeCollection(this.props.pokemonData);
+
+      this.setState({
+        pokemonCollection: this.props.pokemonData,
+      })
+    }
+  };
+
+
 
   render() {
 
+    const handleSwitch = this.switchPokemon.bind(this)
+
     return (
-      <div className="Pokedex">
+      <div className="pokedex">
 
         <div>
-          <Header />
-        </div>
-        <div className="TeamCard">
-          <TeamCard />
-        </div>
-        <div>
-          {this.props.pokemonCollection[0] ? <PokedexList pokemonCollection={this.props.pokemonCollection} /> : ""}
-        </div>
-        <div>
-          {/* Team Status */}
+          <div className="header">
+            <Header />
+          </div>
+          <div className="filter-shape">
+            <div className="left-cut" />
+            <div className="filter">
+              <Typography component="div">
+                <Grid component="label" container alignItems="center" spacing={1}>
+                  <Grid item className="switch-text">COLLECTION</Grid>
+                  <Grid item>
+                    <Switch  color="" name="checkedC" onChange={(event) => handleSwitch(event)}/>
+                  </Grid>
+                  <Grid item className="switch-text">ALL POKEMON</Grid>
+                </Grid>
+              </Typography>
+          </div>
+          <div className="right-cut" />
         </div>
       </div>
+      <div className="team-card">
+        <TeamCard />
+      </div>
+      <div>
+        {this.props.pokemonCollection[0] ? <PokedexList pokemonCollection={this.props.pokemonCollection} /> : ""}
+      </div>
+      <div>
+        {/* Team Status */}
+      </div>
+      </div >
     );
   }
 }

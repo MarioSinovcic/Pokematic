@@ -1,4 +1,4 @@
-.Pokedex{
+.pokedex{
    height: 100vh;
    background-color: whitesmoke;
    /* background-image: url("../images/background_pokeball.png");
@@ -6,10 +6,50 @@
    background-repeat: no-repeat; */
 }
 
-.TeamCard {
+.team-card {
     z-index: 5;
     position: fixed;
     left: 0;
     bottom: 0;
+}
+
+.filter {
+    background-color: #3C3C3C;
+    width: 60%;
+    height: 45px;
+    margin: 0px;
+    justify-content: center;
+    display:flex;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+}
+
+.filter-shape {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.left-cut {
+    height: 0px;
+    border-left: 45px solid transparent;
+    border-top: 45px solid #3C3C3C;
+}
+
+.right-cut {
+    height: 0px;
+    border-right: 45px solid transparent;
+    border-top: 45px solid #3C3C3C;
+}
+
+.switch-text {
+    color: #FFEA28;
+    font-family:  'pkmn_rbygscregular' !important;
+    font-size: 12px !important;
 }
 
