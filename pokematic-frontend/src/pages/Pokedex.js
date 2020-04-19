@@ -4,7 +4,7 @@ import Header from '../shared-components/Header'
 import TeamCard from '../shared-components/TeamCard';
 import './Pokedex.css';
 import { connect } from 'react-redux';
-import { togglePokemonLoad, addPokemonData, addPokemonNames, addPokemonTypes } from '../actions/actions';
+import { togglePokemonLoad, addPokemonData, addPokemonNames, addPokemonTypes, changeCollection } from '../actions/actions';
 
 class Pokedex extends React.Component {
 
@@ -34,7 +34,6 @@ class Pokedex extends React.Component {
       )
     })
 
-    // Add data to Redux Store
     this.props.addPokemonData(this.populatePokemon(this.props.pokemonMap));
 
     // TEMP
@@ -44,6 +43,9 @@ class Pokedex extends React.Component {
       pokemonCollection: this.props.pokemonData,
       // pokemonCollection: [this.props.pokemonData[54], this.props.pokemonData[103]],
     })
+
+    this.props.changeCollection(this.state.pokemonCollection);
+
   }
 
   async fetchPokemonTypes(pokemonURL) {
@@ -72,7 +74,6 @@ class Pokedex extends React.Component {
 
 
   render() {
-    console.log(this.state.pokemonCollection);
 
     return (
       <div className="Pokedex">
@@ -84,7 +85,7 @@ class Pokedex extends React.Component {
           <TeamCard />
         </div>
         <div>
-          {this.state.pokemonCollection[0] ? <PokedexList pokemonCollection={this.state.pokemonCollection} /> : ""}
+          {this.props.pokemonCollection[0] ? <PokedexList pokemonCollection={this.props.pokemonCollection} /> : ""}
         </div>
         <div>
           {/* Team Status */}
@@ -96,10 +97,11 @@ class Pokedex extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    pokemonMap: state.pokemonInfo,
+    pokemonMap: state.pokemonURL,
     pokemonTypes: state.pokemonTypes,
     pokemonData: state.pokemonData,
     isLoaded: state.isLoaded,
+    pokemonCollection: state.pokemonCollection,
   };
 }
 
@@ -116,7 +118,10 @@ const mapDispatchToProps = (dispatch) => {
     },
     addPokemonTypes: (pokemonName, pokemonType) => {
       dispatch(addPokemonTypes(pokemonName, pokemonType))
-    }
+    },
+    changeCollection: (collection) => {
+      dispatch(changeCollection(collection))
+    },
   }
 }
 
