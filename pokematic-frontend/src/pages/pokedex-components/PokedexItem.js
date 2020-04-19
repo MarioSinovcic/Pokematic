@@ -5,21 +5,10 @@ import PokemonMappingUtil from './PokemonMappingUtil';
 
 class PokedexItem extends React.Component {
 
-  getPokemonTypes(pokemonTypesList) {
-    const typesArray = pokemonTypesList.find(pokemon => 
-      this.props.pokemonName === pokemon[0]
-    )
-
-    if (typesArray) {
-      return typesArray[1];
-    } 
-
-  }
-
   render() {
     
-    const firstType = this.getPokemonTypes(this.props.pokemonType) && this.getPokemonTypes(this.props.pokemonType)[1];
-    const secondType = this.getPokemonTypes(this.props.pokemonType) && this.getPokemonTypes(this.props.pokemonType)[0]
+    const firstType = this.props.pokemonTypeList && this.props.pokemonTypeList[1];
+    const secondType = this.props.pokemonTypeList && this.props.pokemonTypeList[0];
 
     return (
       <div className="PokedexItem">

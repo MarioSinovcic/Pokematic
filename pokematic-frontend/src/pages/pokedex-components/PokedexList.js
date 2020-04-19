@@ -26,7 +26,6 @@ class PokedexList extends React.Component {
       .then(response => response.json())
       .then(data => {
         this.props.addPokemon(data.results);
-        console.log(data.results);
       })
 
     await this.props.pokemonMap.map((pokemon, i) => {
@@ -35,8 +34,8 @@ class PokedexList extends React.Component {
       )
     })
 
+    // Add data to Redux Store
     this.props.addPokemonData(this.populatePokemon());
-    console.log(this.props.pokemonData);
 
 
     this.setState({
@@ -69,13 +68,15 @@ class PokedexList extends React.Component {
     })
     return populatedPokemon;
   }
+  
 
-  getPokemonTypes(pokemonTypesList, pokemonData) {
+  getPokemonTypes(pokemonTypesList, pokemonName) {
     const typesArray = pokemonTypesList.find(pokemon =>
-      pokemonData[1] === pokemon[0]
+      pokemonName === pokemon[0]
     )
 
     if (typesArray) {
+      // Return an array of just the types without the pokemon name
       return typesArray[1];
     }
   }
@@ -87,8 +88,9 @@ class PokedexList extends React.Component {
       <div className="PokedexList">
         <div className="grid-container">
           {this.state.pokemon.map((pokemonData, i) => {
-            
-            const pokemonTypeList = this.getPokemonTypes(this.props.pokemonTypes, pokemonData);
+
+            const pokemonName = pokemonData[1];
+            const pokemonTypeList = this.getPokemonTypes(this.props.pokemonTypes, pokemonName);
             
             return (
 
@@ -96,6 +98,7 @@ class PokedexList extends React.Component {
               <div key={i} className="grid-item" style={{
                 backgroundColor: PokedexMappingUtil.mapTypeToBackgroundColors(
                   pokemonTypeList ?
+                  // Take the color of second type if it exists because it seems to usually be the main type of the pokemon
                     pokemonTypeList[1] ?
                       pokemonTypeList[1]
                       : pokemonTypeList[0]
@@ -105,9 +108,9 @@ class PokedexList extends React.Component {
               }}>
                 <PokedexItem
                   pokemonNumber={pokemonData[0]}
-                  pokemonName={pokemonData[1]}
+                  pokemonName={pokemonName}
                   pokemonImage={pokemonData[2]}
-                  pokemonType={this.props.pokemonTypes} />
+                  pokemonTypeList={pokemonTypeList} />
               </div>)
           })}
 
