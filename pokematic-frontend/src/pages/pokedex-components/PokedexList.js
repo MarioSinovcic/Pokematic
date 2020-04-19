@@ -70,6 +70,16 @@ class PokedexList extends React.Component {
     return populatedPokemon;
   }
 
+  getPokemonTypes(pokemonTypesList, pokemonData) {
+    const typesArray = pokemonTypesList.find(pokemon =>
+      pokemonData[1] === pokemon[0]
+    )
+
+    if (typesArray) {
+      return typesArray[1];
+    }
+  }
+
 
 
   render() {
@@ -77,16 +87,18 @@ class PokedexList extends React.Component {
       <div className="PokedexList">
         <div className="grid-container">
           {this.state.pokemon.map((pokemonData, i) => {
-
+            
+            const pokemonTypeList = this.getPokemonTypes(this.props.pokemonTypes, pokemonData);
+            
             return (
 
 
               <div key={i} className="grid-item" style={{
                 backgroundColor: PokedexMappingUtil.mapTypeToBackgroundColors(
-                  this.props.pokemonTypes[pokemonData[0]] ?
-                    this.props.pokemonTypes[pokemonData[0]][1][1] ?
-                      this.props.pokemonTypes[pokemonData[0]][1][1]
-                      : this.props.pokemonTypes[pokemonData[0]][1][0]
+                  pokemonTypeList ?
+                    pokemonTypeList[1] ?
+                      pokemonTypeList[1]
+                      : pokemonTypeList[0]
                     : ""
 
                 )
