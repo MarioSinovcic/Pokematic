@@ -1,5 +1,5 @@
 /*
-    To run the system without any API interation:
+    To run the system without any API interaction:
     1. uncomment the import below
     2. in the populateBoardPage method uncomment the "var response = fakeGoalResponse;" line
     3. comment out everything in the "comment out" section in that same method
@@ -7,7 +7,7 @@
 
 */
 
-//import fakeGoalResponse from './goalResponse.json';
+import fakeGoalResponse from './goalResponse.json';
 
 import {STATUSLIST} from './constants';
 import {HOST} from './constants';
@@ -27,17 +27,17 @@ export async function createTask(newTask, goalName){
 
 export async function populateBoardPage(){
     // --- comment out ----
-    var teamName = "Dummy Team"; //temporary
+    // var teamName = "Dummy Team"; //temporary
 
-    var APIcall = HOST + "team/goals/" + teamName;
-    var response = await fetch(APIcall)
-    .then(response => response.json())
-    .then(json => {
-        return json
-    });
+    // var APIcall = HOST + "team/goals/" + teamName;
+    // var response = await fetch(APIcall)
+    // .then(response => response.json())
+    // .then(json => {
+    //     return json
+    // });
     // --- comment out ----
 
-    // var response = fakeGoalResponse;
+    var response = fakeGoalResponse;
     
     var goalResponse = response;
     var gatheredTeamGoals= [];
@@ -86,5 +86,37 @@ export async function populateBoardPage(){
         inReviewList: gatheredInReviewList,
         doneList: gatheredDoneList
     }
+    return apiData;
+}
+
+
+export async function fetchPokemonData() {
+
+  var results;
+
+  // Get a list of pokemon Names and their URLs
+  await fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151")
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      results = data.results;
+    })
+
+  return results;
+}
+
+export async function fetchPokemonTypes(pokemonURL) {
+
+  var apiData;
+
+  await fetch(pokemonURL)
+    .then(response => response.json())
+    .then(data => {
+      apiData = {
+        name: data.name,
+        types: [data.types[0].type.name, (data.types[1] && data.types[1].type.name)],
+      }
+    })
+
     return apiData;
 }

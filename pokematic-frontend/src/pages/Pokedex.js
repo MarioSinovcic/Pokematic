@@ -6,6 +6,7 @@ import './Pokedex.css';
 import { connect } from 'react-redux';
 import { togglePokemonLoad, addPokemonData, addPokemonNames, addPokemonTypes, changeCollection } from '../actions/actions';
 import { Typography, Grid, Switch } from '@material-ui/core';
+import { fetchPokemonData, fetchPokemonTypes } from '../apiHandler';
 
 class Pokedex extends React.Component {
 
@@ -16,32 +17,32 @@ class Pokedex extends React.Component {
 
   componentWillMount() {
     if (!this.props.isLoaded) {
-      this.fetchPokemonData();
+      this.getPokemonData();
       this.props.togglePokemonHasLoaded();
     }
   }
 
-  async fetchPokemonData() {
+  async getPokemonData() {
 
     // Get a list of pokemon Names and their URLs
-    await fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151")
-      .then(response => response.json())
-      .then(data => {
-        this.props.addPokemon(data.results);
-      })
+    const results = await fetchPokemonData();
+    this.props.addPokemon(results);
 
     await this.props.pokemonMap.map((pokemon, i) => {
-      return (
-        this.fetchPokemonTypes(pokemon.url)
-      )
+        const getTypes = fetchPokemonTypes(pokemon.url);
+        return (
+        getTypes.then((data) => {
+          this.props.addPokemonTypes(data.name, data.types);
+        }));
     })
 
     this.props.addPokemonData(this.populatePokemon(this.props.pokemonMap));
 
-    // TEMP
     this.setState({
+      //TEMP
       tempTeam: [this.props.pokemonData[54], this.props.pokemonData[103]],
-      /* Uncomment below to switch between team collection to ALL pokemon
+      
+      /* Uncomment below to switch between team collection to ALL pokemon as default
       */
       // pokemonCollection: this.props.pokemonData,
       pokemonCollection: [this.props.pokemonData[54], this.props.pokemonData[103]],
@@ -51,15 +52,6 @@ class Pokedex extends React.Component {
 
   }
 
-  async fetchPokemonTypes(pokemonURL) {
-    await fetch(pokemonURL)
-      .then(response => response.json())
-      .then(data => {
-        const name = data.name;
-        const types = [data.types[0].type.name, (data.types[1] && data.types[1].type.name)];
-        this.props.addPokemonTypes(name, types);
-      })
-  }
 
   populatePokemon(pokemonCollection) {
     var populatedPokemon = []
@@ -77,8 +69,7 @@ class Pokedex extends React.Component {
 
   switchPokemon(event) {
 
-    if (!event.target.checked) {
-      // TODO: change to 
+    if (!event.target.checked) { 
       this.props.changeCollection([this.props.pokemonData[54], this.props.pokemonData[103]]);
 
       this.setState({
