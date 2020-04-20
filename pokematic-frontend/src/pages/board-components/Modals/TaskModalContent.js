@@ -1,9 +1,12 @@
 import React from 'react';
-import StatusDropdown from '../StatusDropdown';
 import {deleteTask} from '../../../apiHandler';
 import "./TaskModalContent.css"
 
 function ModalContent (props) {
+
+    async function handleApprove() {
+        //TODO: approveTask();
+    };
 
     async function handleDelete() {
         deleteTask(props.goalName, props.name);
@@ -28,10 +31,7 @@ function ModalContent (props) {
                 <p className="description">{props.description}</p>
             </div>  
             <div className="grouping">
-                <p className="status-label">STATUS</p>
-                <div>
-                    <StatusDropdown/>
-                </div>
+                <button className="approve-button" onClick={handleApprove}>APPROVE</button>
                 <div className="right-align">
                     <button className="bin-button" onClick={handleDelete}/>
                 </div>
