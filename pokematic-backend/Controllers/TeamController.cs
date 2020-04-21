@@ -25,7 +25,7 @@ using Task = System.Threading.Tasks.Task;
  * updating goal (or progress of that goal)
  * approving tasks (PMs), updating EXP/LVL for teams, users to switch roles,
  * check for existing team (when trying to search for teams to be added into), login stuff,
- * adding a pokemon to team when they get a new pokemon, get all pokemon of that team’s collection,
+ * adding a pokemon to team when they get a new pokemon, get all pokemon of that tteam’s collection,
  */
 
 // DONE
