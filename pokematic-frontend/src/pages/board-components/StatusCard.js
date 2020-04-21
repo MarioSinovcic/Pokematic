@@ -30,6 +30,7 @@ export class StatusCard extends React.Component {
                     assignees={taskData["assignees"]}
                     approved={taskData["approved"]}
                     goalName={taskData["goalName"]}
+                    populatePage={this.props.populatePage}
                     />
             )
 
