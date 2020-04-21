@@ -50,17 +50,17 @@ export async function deleteTask(goalName, taskName){
 
 export async function populateBoardPage(){
     // --- comment out ----
-    // var teamName = "Dummy Team"; //temporary
+    var teamName = "Dummy Team"; //temporary
 
-    // var APIcall = HOST + "team/goals/" + teamName;
-    // var response = await fetch(APIcall)
-    // .then(response => response.json())
-    // .then(json => {
-    //     return json
-    // });
+    var APIcall = HOST + "team/goals/" + teamName;
+    var response = await fetch(APIcall)
+    .then(response => response.json())
+    .then(json => {
+        return json
+    });
     // --- comment out ----
 
-    var response = fakeGoalResponse;
+    // var response = fakeGoalResponse;
     
     var goalResponse = response;
     var gatheredTeamGoals= [];
