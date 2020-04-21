@@ -214,8 +214,8 @@ namespace pokematic_backend.Services
             {
                 return "No task with that task name exists for the goal with the name " + goalName;
             }
-
-            goal.Tasks[goal.Tasks.FindIndex(task => taskToUpdate.Name == taskToUpdateName)] = updatedTask;
+            
+            goal.Tasks[goal.Tasks.FindIndex(task => task.Name == taskToUpdateName)] = updatedTask;
             team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
             Update(teamName, team);
 
