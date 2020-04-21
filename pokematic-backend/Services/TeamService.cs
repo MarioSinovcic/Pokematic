@@ -340,6 +340,89 @@ namespace pokematic_backend.Services
             return "success";
         }
 
-     
+        public List<Goal> GetGoals(string teamName)
+        {
+            var team =  _teams.AsQueryable().FirstAsync(team => team.Name == teamName).Result;
+            return team.Goals.ToList();
+        }
+        
+        public List<Models.Task> GetTasks(string teamName)
+        {
+            var team = _teams.AsQueryable().FirstAsync(team => team.Name == teamName).Result;
+            return team.Goals.SelectMany(goal => goal.Tasks).ToList();
+        }
+
+        public Goal CreateGoal(Goal goal, string teamName)
+        {
+            var team = _teams.AsQueryable().FirstAsync(team => team.Name == teamName).Result;
+            
+            if (team == null)
+            {
+                return null;
+            }
+
+            if (team.Goals == null)
+            {
+                var goals = new List<Goal> {goal};
+                team.Goals = goals;
+                Update(teamName, team);
+            }
+            else
+            {
+                team.Goals.Add(goal);
+                Update(teamName, team);
+            }
+
+            return goal;
+        }
+
+        public void CreateTask(Models.Task task, string teamName, string goalName)
+        {
+            var team = _teams.AsQueryable().FirstAsync(team => team.Name == teamName).Result;
+            var goal = team.Goals.First(goal => goal.Name == goalName);
+
+            if (goal == null)
+            {
+                return; 
+            }
+
+            if (goal.Tasks == null)
+            {
+                goal.Tasks = new List<Models.Task> {task};
+                team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
+                Update(teamName, team);
+            }
+            else
+            {
+                goal.Tasks.Add(task);
+                team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
+                Update(teamName, team);
+            }
+            
+        }
+
+
+        public void JoinTeam(string teamName, string username)
+        {
+            var team = _teams.AsQueryable().FirstAsync(team => team.Name == teamName).Result;
+            var user = _userService.Get(username);
+
+            if (team == null)
+            {
+                return;
+            }
+
+            if (team.Users == null)
+            {
+                team.Users = new List<User> {user};
+                Update(teamName, team);
+            }
+            else
+            {
+                team.Users.Add(user);
+                Update(teamName, team);
+            }
+
+        }
     }
 }

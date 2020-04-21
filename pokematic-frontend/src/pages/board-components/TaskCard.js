@@ -27,6 +27,20 @@ const useStyles = makeStyles((theme) => ({
       },
   }));
 
+const useStyles = makeStyles((theme) => ({
+    modal: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      paper: {
+        outline: 'none',
+        borderRadius: 15,
+        backgroundColor: theme.palette.background.paper,
+        boxShadow: theme.shadows[5],
+        padding: theme.spacing(2, 4, 3),
+      },
+  }));
 
 function TaskCard(props) {
     const classes = useStyles();
