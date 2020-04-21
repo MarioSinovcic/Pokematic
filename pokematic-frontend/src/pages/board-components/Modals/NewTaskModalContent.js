@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from '@material-ui/core/TextField';
-import StatusDropdown from '../StatusDropdown'
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import {createTask} from '../../../apiHandler';
 import "./NewTaskModalContent.css"
 
 const useStyles = makeStyles({
@@ -38,16 +41,33 @@ const useStyles = makeStyles({
     fontSize: 22,
     lineHeight: 1.3,
   },
-
+  dropDown:{
+    width: 320,
+    color: 'white'
+  },
+  dropDownMenu: {
+    paddingLeft: 10, 
+    borderRadius: 15,
+    fontFamily: 'pkmn_rbygscregular',
+    color: 'white'
+  },
+  dropDownItems:{
+    fontFamily: 'pkmn_rbygscregular',
+    color: 'white'
+  },
+  iconGrey: {
+    display: "none"
+  },
 });
 
 function ModalContent (props) {
     const classes = useStyles();
     const defaultDescription="As a user, \nI want, \nso that, ";
 
-    const [selectedTaskName, setSelectedTaskName] = useState("TASK - " + new Date());
-    const [selectedDescription, setSelectedDescription] = useState("");
-    const [selectedStoryPoints, setSelectedStoryPoints] = useState("");
+    const [selectedTaskName, setSelectedTaskName] = useState("NEW TASK");
+    const [selectedGoal, setSelectedGoal] = useState("ADD GOAL +");
+    const [selectedDescription, setSelectedDescription] = useState(defaultDescription);
+    const [selectedStoryPoints, setSelectedStoryPoints] = useState(1);
 
     // ----- HANDLERS FOR INPUT FIELDS -----
     const handleTaskNameChange = event => {
@@ -62,27 +82,45 @@ function ModalContent (props) {
         setSelectedStoryPoints(event.target.value);
     };
 
-    //TODO
-    const handleAddGoal = event => {
-        
+    const handleGoalChange = event => {
+        setSelectedGoal(event.target.value)
     }
 
-    //TODO
-    const handleAddTask = event => {
-        const newTask = {
-            name: selectedTaskName,
-            points: selectedStoryPoints,
-            description: selectedDescription,
-        };
+    const handleAddTask = async () => {
 
-        props.addNewTask(newTask);
+        if(selectedGoal === "ADD GOAL +"){
+            props.showErrorMessage("Task wasn't created, make sure you pick a goal");
+        }
+        else{
+            const newTask = {
+                name: selectedTaskName,
+                taskNumber: 6, //TODO
+                description: selectedDescription,
+                experiencePoints: parseInt(selectedStoryPoints),
+                status: "TODO", //TODO
+                storyPoints: parseInt(selectedStoryPoints),
+                assignees: [], //TODO
+                approved: false,
+            };
+            await createTask(newTask, selectedGoal);
+            await props.refreshBoardPage();
+        }
+        props.handleClose();
     };
 
+    var goalsToRender; //This is used to get the goals list dropdown items
+    if(!props.goalNames){
+        goalsToRender = <div>loading</div>
+    }
+    else{
+        goalsToRender = props.goalNames.map((goalData) => 
+            <MenuItem className={classes.dropDownItems} value={goalData}>{goalData}</MenuItem>
+        )
+    }
 
     return (
-        <div className="modal-content">
+        <div className="new-task-modal-content">
             <div className="grouping">
-                <p className="task-number">#65</p>
                 <div  className="task-title"> 
                     <TextField 
                         onChange={handleTaskNameChange}
@@ -98,8 +136,26 @@ function ModalContent (props) {
                 </div>
             </div>    
             <div className="grouping padding-bottom">
-                <div className="goal-name-input" 
-                    onClick={handleAddGoal}> + ADD GOAL </div>
+                <div className="goal-name-input">
+                <FormControl className={classes.dropDown}  >
+                        <Select
+                        className={classes.dropDownMenu}
+                        id="demo-simple-select-outlined"
+                        onChange={handleGoalChange}
+                        disableUnderline
+                        displayEmpty
+                        defaultValue={"ADD GOAL +"}
+                        inputProps={{
+                            classes: {
+                                icon: classes.iconGrey,
+                            },
+                        }}
+                        >
+                            <MenuItem className={classes.dropDownItems} value="ADD GOAL +">ADD GOAL +</MenuItem>
+                            {goalsToRender}
+                        </Select>
+                    </FormControl>
+                </div>
                 <div className="right-align">
                     <div className="story-points-label">STORY POINTS</div>
                     <div className="story-points">
@@ -130,7 +186,7 @@ function ModalContent (props) {
                         multiline={true}
                         defaultValue= {defaultDescription}
                         fullWidth
-                        rowsMax={8}
+                        rowsMax={7}
                         InputProps={{
                             classes: {
                                 input: classes.descriptionInput,
@@ -141,10 +197,10 @@ function ModalContent (props) {
                 </div>
             </div>  
             <div className="grouping">
-                <p className="status-label">STATUS</p>
+                {/* <p className="status-label">STATUS</p> // still needs to be implemented
                 <div>
                     <StatusDropdown/>
-                </div>
+                </div> */}
                 <div className="right-align">
                     <div className="done-button" onClick={handleAddTask}>DONE</div>
                 </div>

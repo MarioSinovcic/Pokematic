@@ -1,9 +1,9 @@
-.new-task-modal-content {
+.goal-modal-content {
     font-family: 'Roboto', sans-serif !important;
     text-align: left;
     padding: 20px 20px;
     width: 875px;
-    height: 500px;
+    height: 350px;
 }
 
 .grouping{
@@ -12,7 +12,7 @@
     display: flex;
 }
 
-.task-title{
+.goal-title{
     width: 100%;
     font-family: 'Roboto Mono', monospace !important;
     font-weight: 600 !important;
@@ -29,56 +29,11 @@
     justify-content: flex-end;
 }
 
-.padding-bottom{
-    padding-bottom: 30px;
-}
-
-.goal-name-input{
-    background: #3d3d3d;
-    border-radius: 15px;
-    
-    width:450px;
-    font-family: 'pkmn_rbygscregular', monospace !important;
-    color: #ffffff;
-    text-align: center;
-    font-size: 15px;
-    padding: 10px 15px;
-}
-
-.goal-name-input:hover{
-    background: #4e4e4e;
-}
-
-.goal-name-input:active{
-    background: #3D3D3D;
-    color: #dfdfdf;
-}
-
-.story-points-label{
-    text-align: right;
-    font-family: 'Roboto Condensed', monospace !important;
-    font-weight: 600 !important;
-    color: #3D3D3D;
-    font-size: 30px;
-    align-self: center;
-}
-
-.story-points{
-    text-align: right;
-    font-family: 'pkmn_rbygscregular';
-    font-weight: 600 !important;
-    line-height: 29px;
-    font-size: 30px;
-    color: #F74747;
-    padding-left: 15px;
-    width: 79px;
-    align-self: center;
-}
-
-.grey-group{
+.goal-grey-group{
     background: rgba(241, 241, 241, 0.69);
     padding: 10px 30px;
-    height: 250px;
+    height: 170px;
+    margin-bottom: 20px;
 }
 
 .description-label{
@@ -97,7 +52,7 @@
     line-height: 40px;
 }
 
-.status-label{
+.difficulty-label{
     font-family: 'Roboto Condensed', monospace !important;
     font-weight: 600 !important;
     color: #3D3D3D;
@@ -114,7 +69,6 @@
     color: #ffffff;
     text-align: center;
     font-size: 15px;
-    margin-top: 25px;
     padding: 15px 15px;
 
     transition: 0.5s;
@@ -133,9 +87,8 @@
 }
 
 
-
 @media (max-width:1000px){
-    .modal-content {
+    .goal-modal-content {
         width: 500px !important;
     }
 
@@ -143,11 +96,4 @@
         font-size: 30px;
         line-height: 35px;
     }
-
-    .story-points-label{
-        display: none;
-    }
-
-
-
 }

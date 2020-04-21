@@ -5,7 +5,9 @@ import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
+import AddIcon from '@material-ui/icons/Add';
 import Goal from './Goal';
+import ModalButton from '../../shared-components/ModalButton';
 import './GoalSideBar.css'
 
 const drawerWidth = 250;
@@ -34,23 +36,24 @@ const useStyles = makeStyles(theme => ({
 
 
 export class GoalSideBar extends React.Component {
+
   render (){
+    const classes = useStyles;
+    const newModalIcon = <AddIcon style={{fontSize: "35px", color: "#3D3D3D"}}/>;
 
     if (!this.props.goalsList){ 
-      return null;
+      return <div>laoding</div>;
     }
     else{         
-      console.log(this.props.goalsList);   
         var goalsToRender = this.props.goalsList.map((goalData) => 
             <Goal 
+                key={goalData["id"]} //not used: just avoiding warnings
                 id={goalData["id"]} 
                 name={goalData["name"]} 
                 experiencePoints={goalData["experiencePoints"]} 
                 progress={goalData["progress"]} 
                 />
-        )
-        const classes = useStyles;
-
+          )
       return(
         <div className={classes.root}>
           <Drawer
@@ -62,7 +65,6 @@ export class GoalSideBar extends React.Component {
           >
             <div className={classes.toolbar} />
             <List>
-            
                 <ListItem button key={"All Tasks"} className="TeamTabs TaskButton">
                 <Typography className="TaskFilter AllTasks">ALL TASKS</Typography>
                 </ListItem>
@@ -75,6 +77,9 @@ export class GoalSideBar extends React.Component {
             <List>
               {goalsToRender}
             </List>
+            <div className="NewGoalButton">
+              <ModalButton  icon={newModalIcon} theme="light" type="new-goal"/>
+            </div>
           </Drawer>
         </div>
       );

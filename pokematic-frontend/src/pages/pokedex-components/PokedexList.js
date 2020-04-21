@@ -1,34 +1,62 @@
 import React from 'react';
 import PokedexItem from './PokedexItem'
 import './PokedexList.css'
+import { connect } from 'react-redux';
+import PokedexMappingUtil from './PokemonMappingUtil';
 
-function PokedexList() {
+class PokedexList extends React.Component {
 
-  //request.open('GET', "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151");
-  
+  getPokemonTypes(pokemonTypesList, pokemonName) {
+    const typesArray = pokemonTypesList.find(pokemon =>
+      pokemonName === pokemon[0]
+    )
 
-  var fakePokemon = [];
-  for (var i = 1; i < 152; i++) {
-
-    fakePokemon.push(
-      [i,
-       "Pokemon "+i, 
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+i+".png",
-      ])
+    if (typesArray) {
+      // Return an array of just the types without the pokemon name
+      return typesArray[1];
+    }
   }
+  
+  render() {
+    return (
+      <div className="PokedexList">
+        <div className="grid-container">
+          {this.props.pokemonCollection.map((pokemonData, i) => {
 
-  var pokemonToRender = fakePokemon.map((pokemonData) => 
-    <div class="grid-item">
-      <PokedexItem pokemonNumber={pokemonData[0]} pokemonName={pokemonData[1]} pokemonImage={pokemonData[2]}/>
-    </div>)
+            const pokemonName = pokemonData[1];
+            const pokemonTypeList = this.getPokemonTypes(this.props.pokemonTypes, pokemonName);
+            
+            return (
+              <div key={i} className="grid-item" style={{
+                backgroundColor: PokedexMappingUtil.mapTypeToBackgroundColors(
+                  pokemonTypeList ?
+                  // Take the color of second type if it exists because it seems to usually be the main type of the pokemon
+                    pokemonTypeList[1] ?
+                      pokemonTypeList[1]
+                      : pokemonTypeList[0]
+                    : ""
 
-  return (
-    <div className="PokedexList">
-        <div class="grid-container">
-          {pokemonToRender}
+                )
+              }}>
+                <PokedexItem
+                  pokemonNumber={pokemonData[0]}
+                  pokemonName={pokemonName}
+                  pokemonImage={pokemonData[2]}
+                  pokemonTypeList={pokemonTypeList} />
+              </div>)
+          })}
+
         </div>
-    </div>
-  );
+      </div>
+    );
+  }
 }
 
-export default PokedexList;
+
+const mapStateToProps = (state) => {
+  return {
+    pokemonTypes: state.pokemonTypes,
+  };
+}
+
+export default connect(mapStateToProps)(PokedexList);
