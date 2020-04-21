@@ -41,7 +41,6 @@ function TaskCard(props) {
     };
 
     async function changeStatus(newStatus) {
-        console.log(newStatus);
         const updatedTask = {
             name: props.name,
             taskNumber: props.taskNumber, 
@@ -99,6 +98,7 @@ function TaskCard(props) {
                             approved={props.approved}
                             goalName={props.goalName}
                             handleClose={handleClose}
+                            populatePage={props.populatePage}
                             />
                     </div>
                 </Fade>

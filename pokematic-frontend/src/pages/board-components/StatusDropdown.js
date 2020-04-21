@@ -40,7 +40,6 @@ function StatusDropdown(props) {
   const handleStausChange = event => {
     setSelectedStatus(event.target.value);
     var newStatus = event.target.value;
-    console.log(newStatus);
     if(newStatus === 'TODO' || newStatus === 'In Progress' || newStatus === 'In Review' || newStatus === 'Done'){
       props.changeStatus(newStatus);
     }

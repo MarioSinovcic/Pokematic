@@ -2,14 +2,15 @@ import React from 'react';
 import {deleteTask} from '../../../apiHandler';
 import "./TaskModalContent.css"
 
-function ModalContent (props) {
+function TaskModalContent (props) {
 
     async function handleApprove() {
         //TODO: approveTask();
     };
 
     async function handleDelete() {
-        deleteTask(props.goalName, props.name);
+        await deleteTask(props.goalName, props.name);
+        await props.populatePage();
         props.handleClose();
     };
 
@@ -38,7 +39,5 @@ function ModalContent (props) {
             </div> 
         </div>
     );
-
-
 }
-export default ModalContent;
+export default TaskModalContent;
