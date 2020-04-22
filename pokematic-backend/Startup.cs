@@ -51,11 +51,6 @@ namespace pokematic_backend
                 app.UseDeveloperExceptionPage();
             }
             
-            app.UseCors(builder => {
-                builder.AllowAnyOrigin();
-                builder.AllowAnyMethod();
-                builder.AllowAnyHeader();
-            });
 
             app.UseSwagger();
             
@@ -70,6 +65,12 @@ namespace pokematic_backend
             app.UseRouting();
 
             app.UseAuthorization();
+            
+            app.UseCors(builder => {
+                builder.AllowAnyOrigin();
+                builder.AllowAnyMethod();
+                builder.AllowAnyHeader();
+            });
 
             app.UseEndpoints(endpoints =>
             {
