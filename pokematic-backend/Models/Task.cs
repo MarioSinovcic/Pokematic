@@ -9,7 +9,7 @@ namespace pokematic_backend.Models
     {
         [BsonElement("name")] public string Name { get; set; }
 
-        [BsonElement("number")] public int Number { get; set; }
+        [BsonElement("taskNumber")] public int Number { get; set; }
 
         [BsonElement("description")] public string Description { get; set; }
 
