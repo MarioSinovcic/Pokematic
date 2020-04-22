@@ -82,7 +82,7 @@ function ModalContent (props) {
         else{
             const newGoal = {
                 name: selectedGoalName,
-                //description: selectedDescription,
+                description: selectedDescription,
                 tasks: [],
                 experiencePoints: parseInt(selectedDifficulty),
                 progress: 0
