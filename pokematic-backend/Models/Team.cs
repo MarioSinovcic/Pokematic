@@ -18,7 +18,7 @@ namespace pokematic_backend.Models
         
         [BsonElement("experiencePoints")] public int ExperiencePoints { get; set; }
 
-        [BsonElement("pokemon")] public List<string> Pokemon { get; set; }
+        [BsonElement("pokemon")] public List<Pokemon> Pokemons { get; set; }
         
     }
 }

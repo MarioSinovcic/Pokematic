@@ -1,18 +1,22 @@
 import React from 'react';
-import {deleteTask} from '../../../apiHandler';
+import StatusDropdown from '../StatusDropdown'
 import "./TaskModalContent.css"
 
-function TaskModalContent (props) {
+function ModalContent (props) {
 
-    async function handleApprove() {
-        //TODO: approveTask();
-    };
+    // function handleSatus() {
+    //     //note: this should call the API first
 
-    async function handleDelete() {
-        await deleteTask(props.goalName, props.name);
-        await props.populatePage();
+    //     props.handleClose();
+    // };
+
+
+    function handleDelete() {
+        //note: this should call the API first
+
         props.handleClose();
     };
+
 
     return (
         <div className="modal-content">
@@ -32,12 +36,17 @@ function TaskModalContent (props) {
                 <p className="description">{props.description}</p>
             </div>  
             <div className="grouping">
-                <button className="approve-button" onClick={handleApprove}>APPROVE</button>
+                <p className="status-label">STATUS</p>
+                <div>
+                    <StatusDropdown/>
+                </div>
                 <div className="right-align">
                     <button className="bin-button" onClick={handleDelete}/>
                 </div>
             </div> 
         </div>
     );
+
+
 }
-export default TaskModalContent;
+export default ModalContent;

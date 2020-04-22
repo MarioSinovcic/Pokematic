@@ -1,5 +1,4 @@
 .SideBar {
-    min-width: 600px;
     flex-shrink: 0;
     background-color: black !important;
     box-shadow: #3D3D3D;
@@ -25,8 +24,6 @@
 }
 
 .AllTasks {
-    padding-top: 70px;
-    width: 225px;
     font-size: 35px !important; 
 }
 

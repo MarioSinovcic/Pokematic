@@ -1,5 +1,5 @@
 /*
-    To run the system without any API interaction:
+    To run the system without any API interation:
     1. uncomment the import below
     2. in the populateBoardPage method uncomment the "var response = fakeGoalResponse;" line
     3. comment out everything in the "comment out" section in that same method
@@ -7,46 +7,12 @@
 
 */
 
-import fakeGoalResponse from './goalResponse.json';
+//import fakeGoalResponse from './goalResponse.json';
 
 import {STATUSLIST} from './constants';
 import {HOST} from './constants';
 
-export async function createTask(newTask, goalName){
-    var teamName = "Dummy Team"; //temporary
-
-    var APIcall = HOST + "team/createTask/" + teamName + "/" + goalName;
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newTask)
-    };
-
-    await fetch(APIcall, requestOptions);
-}
-
-export async function updateTask(updatedTask, goalName, taskName){
-    var teamName = "Dummy Team"; //temporary
-    var APIcall = HOST + "team/updateTask/" + teamName + "/" + goalName  + "/" + taskName;
-    const requestOptions = {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(updatedTask)
-    };
-
-    await fetch(APIcall, requestOptions);
-}
-
-export async function deleteTask(goalName, taskName){
-  var teamName = "Dummy Team"; //temporary
-
-  var APIcall = HOST + "team/deleteTask/" + teamName + "/" + goalName  + "/" + taskName;
-    const requestOptions = {
-        method: 'DELETE'
-    };
-
-    await fetch(APIcall, requestOptions);
-}
+const teamName = "Dummy Team"; //temporary
 
 export async function populateBoardPage(){
     // --- comment out ----
@@ -130,34 +96,4 @@ export async function createGoal(newGoal){
   };
 
   await fetch(APIcall, requestOptions);
-}
-
-export async function fetchPokemonData() {
-
-  var results;
-
-  // Get a list of pokemon Names and their URLs
-  await fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151")
-    .then(response => response.json())
-    .then(data => {
-      results = data.results;
-    })
-
-  return results;
-}
-
-export async function fetchPokemonTypes(pokemonURL) {
-
-  var apiData;
-
-  await fetch(pokemonURL)
-    .then(response => response.json())
-    .then(data => {
-      apiData = {
-        name: data.name,
-        types: [data.types[0].type.name, (data.types[1] && data.types[1].type.name)],
-      }
-    })
-
-    return apiData;
 }

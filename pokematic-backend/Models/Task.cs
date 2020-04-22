@@ -6,10 +6,12 @@ using MongoDB.Bson.Serialization.Attributes;
 namespace pokematic_backend.Models
 {
     public class Task
-    {
+    { 
+        public ObjectId Id { get; set; }
+
         [BsonElement("name")] public string Name { get; set; }
 
-        [BsonElement("taskNumber")] public int Number { get; set; }
+        [BsonElement("taskNumber")] public int TaskNumber { get; set; }
 
         [BsonElement("description")] public string Description { get; set; }
 
@@ -18,6 +20,7 @@ namespace pokematic_backend.Models
         [BsonElement("status")] public string Status { get; set; }
 
         [BsonElement("storyPoints")] public int StoryPoints { get; set; }
+
         [BsonElement("assignees")] public List<User> Assignees { get; set; }
 
         [BsonElement("approved")] public bool Approved { get; set; }

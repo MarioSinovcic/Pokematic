@@ -30,11 +30,3 @@ export function togglePokemonLoad() {
       }
 }
 
-export function changeCollection(pokemonCollection) {
-    
-    return {
-        type: actionTypes.CHANGE_COLLECTION,
-        pokemonCollection,
-    }
-}
-

@@ -86,7 +86,7 @@ function ModalContent (props) {
         setSelectedGoal(event.target.value)
     }
 
-    const handleAddTask = async () => {
+    const handleAddTask = event => {
         if(selectedGoal === "ADD GOAL +"){
             props.showErrorMessage("Task wasn't created, make sure you pick a goal");
         }
@@ -101,8 +101,8 @@ function ModalContent (props) {
                 assignees: [], //TODO
                 approved: false,
             };
-            await createTask(newTask, selectedGoal);
-            await props.refreshBoardPage();
+            createTask(newTask, selectedGoal);
+            props.refreshBoardPage();
         }
         props.handleClose();
     };
@@ -112,6 +112,7 @@ function ModalContent (props) {
         goalsToRender = <div>loading</div>
     }
     else{
+        console.log(props.goalNames)
         goalsToRender = props.goalNames.map((goalData) => 
             <MenuItem className={classes.dropDownItems} value={goalData}>{goalData}</MenuItem>
         )

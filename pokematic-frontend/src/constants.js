@@ -10,6 +10,7 @@ export const HOST = "https://localhost:5001/api/";
 // MODEL ENUM FEILDS 
 export const STATUSLIST = ["TODO", "In Progress", "In Review", "Done"];
 
+
 export const POKEMONTYPES = {
     FIRE: "fire",
     WATER: "water",

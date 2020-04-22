@@ -8,9 +8,8 @@ import Label from './Label';
 import ModalConent from './Modals/TaskModalContent';
 import StatusDropdown from './StatusDropdown';
 import Assignees from './Assignees';
-import * as colors from '../../colors';
-import {updateTask} from '../../apiHandler';
 import './TaskCard.css';
+import * as colors from '../../colors'
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -27,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
       },
   }));
 
+
 function TaskCard(props) {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
@@ -39,22 +39,6 @@ function TaskCard(props) {
       setOpen(false);
     };
 
-    async function changeStatus(newStatus) {
-        const updatedTask = {
-            name: props.name,
-            taskNumber: props.taskNumber, 
-            description: props.description,
-            experiencePoints: parseInt(props.storyPoints),
-            status: newStatus,
-            storyPoints: parseInt(props.storyPoints),
-            assignees: props.assignees, 
-            approved: props.approved,
-        };
-        await updateTask(updatedTask, props.goalName, props.name);
-        await props.populatePage();
-    };
-
-
     return (
         <div>
         <div className="TaskCard" >
@@ -65,7 +49,7 @@ function TaskCard(props) {
             <Assignees />
             <div className="TaskLabels">
                 <Label labelText={props.experiencePoints + " XP"} color={colors.fire}/>
-                <StatusDropdown changeStatus={changeStatus} currentStatus={props.status} />
+                <StatusDropdown />
             </div>
         </div>
         <div>
@@ -97,7 +81,6 @@ function TaskCard(props) {
                             approved={props.approved}
                             goalName={props.goalName}
                             handleClose={handleClose}
-                            populatePage={props.populatePage}
                             />
                     </div>
                 </Fade>

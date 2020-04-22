@@ -58,10 +58,10 @@ class Board extends React.Component {
             </div>
             <div className="tasks-content">
               <div className="todo-status">
-              <StatusCard statusTitle={"TODO"} taskList={this.state.todoList} populatePage={this.populatePage}/>
-              <StatusCard statusTitle={"IN PROGRESS"} taskList={this.state.inProgressList} populatePage={this.populatePage}/>
-              <StatusCard statusTitle={"IN REVIEW"} taskList={this.state.inReviewList} populatePage={this.populatePage}/>
-              <StatusCard statusTitle={"DONE"} taskList={this.state.doneList} populatePage={this.populatePage}/>
+              <StatusCard statusTitle={"TODO"} taskList={this.state.todoList}/>
+              <StatusCard statusTitle={"IN PROGRESS"} taskList={this.state.inProgressList}/>
+              <StatusCard statusTitle={"IN REVIEW"} taskList={this.state.inReviewList}/>
+              <StatusCard statusTitle={"DONE"} taskList={this.state.doneList}/>
               </div>
             </div>
             <div className="new-task-button">

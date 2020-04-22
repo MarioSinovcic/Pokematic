@@ -4,8 +4,7 @@ import * as actionTypes from "../actions/actionTypes";
 // Note: You can remove this reducer and create your own reducer
 
 const initialState = {
-  pokemonCollection: [],
-  pokemonURL: [],
+  pokemonInfo: [],
   pokemonTypes: [],
   pokemonData: [],
   isLoaded: false
@@ -22,18 +21,11 @@ export default function pokemonReducer(state = initialState, action) {
         isLoaded: true,
       };
 
-    // Stores the current selected pokemon collection to be displayed
-    case actionTypes.CHANGE_COLLECTION:
-    return {
-      ...state,
-      pokemonCollection: action.pokemonCollection
-    };
-
     // Stores pokemon with [name, URL of their details (for further API call)]
     case actionTypes.ADD_POKEMON_NAMES:
       return {
         ...state,
-        pokemonURL: action.pokemonData
+        pokemonInfo: action.pokemonData
       };
 
     // Stores the FETCHED pokemon from previous API calls for re-rendeering

@@ -24,10 +24,6 @@ namespace pokematic_backend.Services
             _userService = new UserService(configuration);
             _teams = databaseContext.Database.GetCollection<Team>("Teams");
         }
-        
-        /**
-         * Team functionality 
-         */
 
         public List<Team> GetAllTeams()
         {
@@ -53,44 +49,21 @@ namespace pokematic_backend.Services
 
         public void Remove(string name)
         {
-            _teams.DeleteOneAsync(team => team.Name == name);
-        }
-        
-        
-        public void JoinTeam(string teamName, string username)
-        {
-            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
-            var user = _userService.Get(username);
-
-            if (team == null)
-            {
-                return;
-            }
-
-            if (team.Users == null)
-            {
-                team.Users = new List<User> {user};
-                Update(teamName, team);
-            }
-            else
-            {
-                team.Users.Add(user);
-                Update(teamName, team);
-            }
-
+            _teams.DeleteOneAsync(team => team.Name== name);
         }
 
-
-        /**
-         * Goal functionality
-         */
-        
         public List<Goal> GetGoals(string teamName)
         {
             var team =  _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
             return team.Goals.ToList();
         }
         
+        public List<Models.Task> GetTasks(string teamName)
+        {
+            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
+            return team.Goals.SelectMany(goal => goal.Tasks).ToList();
+        }
+
         public Goal CreateGoal(Goal goal, string teamName)
         {
             var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
@@ -114,17 +87,6 @@ namespace pokematic_backend.Services
 
             return goal;
         }
-        
-        /**
-         * Task functionality 
-         */
-        
-        public List<Models.Task> GetTasks(string teamName)
-        {
-            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
-            return team.Goals.SelectMany(goal => goal.Tasks).ToList();
-        }
-        
 
         public void CreateTask(Models.Task task, string teamName, string goalName)
         {
@@ -150,79 +112,30 @@ namespace pokematic_backend.Services
             }
             
         }
-        
-        public string DeleteTask(string teamName, string goalName, string taskName)
-        { 
-            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
 
-            if (team == null)
-            {
-                return "No team with that team name";
 
-            }
-
-            var goal = team.Goals.FirstOrDefault(goal => goal.Name == goalName);
-
-            if (goal == null)
-            {
-                return "No goal with that goal name exists for the " + teamName + " team ";
-            }
-
-            if (goal.Tasks == null)
-            {
-                return "No task with that task name exists for the goal with the name " + goalName;
-            }
-            
-            var task = goal.Tasks.FirstOrDefault(task => task.Name == taskName);
-
-            if (task == null)
-            {
-                return "No task with that task name exists for the goal with the name " + goalName;
-            }
-
-            goal.Tasks.Remove(goal.Tasks.Single(task => task.Name == taskName));
-            team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
-            Update(teamName, team);
-
-            return "success";
-        }
-        
-        public string UpdateTask(string teamName, string goalName, string taskToUpdateName, Models.Task updatedTask)
+        public void JoinTeam(string teamName, string username)
         {
             var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
+            var user = _userService.Get(username);
 
             if (team == null)
             {
-                return "No team with that team name";
+                return;
             }
 
-            var goal = team.Goals.FirstOrDefault(goal => goal.Name == goalName);
-
-            if (goal == null)
+            if (team.Users == null)
             {
-                return "No goal with that goal name exists for the " + teamName + " team ";
+                team.Users = new List<User> {user};
+                Update(teamName, team);
             }
-
-            if (goal.Tasks == null)
+            else
             {
-                return "No task with that task name exists for the goal with the name " + goalName;
+                team.Users.Add(user);
+                Update(teamName, team);
             }
-            
-            var taskToUpdate = goal.Tasks.FirstOrDefault(task => task.Name == taskToUpdateName);
 
-            if (taskToUpdate == null)
-            {
-                return "No task with that task name exists for the goal with the name " + goalName;
-            }
-            
-            goal.Tasks[goal.Tasks.FindIndex(task => task.Name == taskToUpdateName)] = updatedTask;
-            team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
-            Update(teamName, team);
-
-            return "success";
         }
-        
-
 
         public string AssignUserToTask(string teamName, string goalName, string taskName, string username)
         {
@@ -339,6 +252,5 @@ namespace pokematic_backend.Services
 
             return "success";
         }
-
     }
 }
