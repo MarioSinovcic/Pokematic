@@ -6,11 +6,12 @@ namespace pokematic_backend.Models
 {
     public class Goal
     {
-        public ObjectId Id { get; set; }
-
         [BsonElement("name")] public string Name { get; set; }
-        
         [BsonElement("tasks")] public List<Task> Tasks { get; set; }
+        
+        [BsonElement("number")] public int Number { get; set; }
+        
+        [BsonElement("description")] public string Description { get; set; }
 
         [BsonElement("experiencePoints")] public int ExperiencePoints { get; set; }
 
