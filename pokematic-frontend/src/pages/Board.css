@@ -15,7 +15,7 @@
     z-index: 5;
     position: fixed;
     left: 0;
-    bottom: 0;
+    bottom: 0; 
 }
 
 
@@ -41,4 +41,9 @@
     margin: 25px !important;
     size: 50px !important;
     z-index: 10;
+}
+
+.width-limit{
+    width:220px;
+    text-align: center;
 }

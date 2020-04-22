@@ -12,7 +12,7 @@ function Goal(props) {
     return (
         <div className="TeamTabs">
             <ListItem button key={props.text} className="TeamTabs">
-              <Typography className="TaskName">{props.name}</Typography>
+              <Typography className="width-limit TaskName">{props.name}</Typography>
               <ProgressBar progress={calculateProgress()} />
             </ListItem>
             <Divider className="GoalDivider" /> 
