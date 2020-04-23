@@ -9,6 +9,8 @@
     position: absolute;
     align-items: center;
     justify-self: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .title {
@@ -22,5 +24,29 @@
     display: flex;
     align-items: center;
     border-radius: 10px;
+    margin: 0 auto;
+}
 
+.new-level {
+    width: 150px;
+    height: 40px;
+    background-color: #F64747;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 18px;
+}
+
+.pokeball {
+    /* background-image: url('../../../images/pokeballPrize.png'); */
+    height: 400px;
+    width: 400px;
+    align-items: center;
+    margin: auto;
+    display: flex;
+    margin-top: -10px;
+    z-index: inherit+1;
 }

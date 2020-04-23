@@ -144,6 +144,7 @@ class Board extends React.Component {
             <Fade in={this.state.open}>
               <div>
                 <LevelUpModalContent
+                  handleClose={this.handleClose.bind(this)}
                 />
               </div>
             </Fade>
