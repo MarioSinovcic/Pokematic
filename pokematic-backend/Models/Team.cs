@@ -10,15 +10,15 @@ namespace pokematic_backend.Models
 
         [BsonElement("name")] public string Name { get; set; }
         
-        [BsonElement("users")] public List<User> Users { get; set; }
+        [BsonElement("users")] public List<User> Users = new List<User>();
 
-        [BsonElement("goals")] public List<Goal> Goals { get; set; }
+        [BsonElement("goals")] public List<Goal> Goals = new List<Goal>();
         
         [BsonElement("level")] public int Level { get; set; }
         
         [BsonElement("experiencePoints")] public int ExperiencePoints { get; set; }
 
-        [BsonElement("pokemon")] public List<string> Pokemon { get; set; }
+        [BsonElement("pokemon")] public List<string> Pokemon = new List<string>(); 
         
     }
 }

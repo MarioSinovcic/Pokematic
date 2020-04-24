@@ -24,7 +24,7 @@ namespace pokematic_backend.Services
             _userService = new UserService(configuration);
             _teams = databaseContext.Database.GetCollection<Team>("Teams");
         }
-        
+            
         /**
          * Team functionality 
          */
@@ -102,12 +102,24 @@ namespace pokematic_backend.Services
 
             if (team.Goals == null)
             {
+                goal.Number = 0;
                 var goals = new List<Goal> {goal};
                 team.Goals = goals;
                 Update(teamName, team);
             }
             else
             {
+                var biggestGoalNumber = 0;
+
+                foreach (var g in team.Goals)
+                {
+                    if (g.Number > biggestGoalNumber)
+                    {
+                        biggestGoalNumber = g.Number;
+                    }
+                }
+
+                goal.Number = biggestGoalNumber + 1;
                 team.Goals.Add(goal);
                 Update(teamName, team);
             }
@@ -129,6 +141,12 @@ namespace pokematic_backend.Services
         public void CreateTask(Models.Task task, string teamName, string goalName)
         {
             var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
+
+            if (team == null)
+            {
+                return;
+            }
+            
             var goal = team.Goals.FirstOrDefault(goal => goal.Name == goalName);
 
             if (goal == null)
@@ -138,12 +156,24 @@ namespace pokematic_backend.Services
 
             if (goal.Tasks == null)
             {
+                task.Number = 0;
                 goal.Tasks = new List<Models.Task> {task};
                 team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
                 Update(teamName, team);
             }
             else
             {
+                var biggestTaskNumber = 0;
+
+                foreach (var t in goal.Tasks)
+                {
+                    if (t.Number > biggestTaskNumber)
+                    {
+                        biggestTaskNumber = t.Number;
+                    }
+                }
+                
+                task.Number = biggestTaskNumber + 1;
                 goal.Tasks.Add(task);
                 team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
                 Update(teamName, team);

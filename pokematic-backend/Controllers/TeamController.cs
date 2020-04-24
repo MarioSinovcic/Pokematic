@@ -61,7 +61,7 @@ namespace pokematic_backend.Controllers
         }
         
         [HttpPost("createTeam")]
-        public  Team CreateTeam(Team team)
+        public Team CreateTeam(Team team)
         {
             _teamService.Create(team);
             return team;
