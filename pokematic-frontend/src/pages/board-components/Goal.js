@@ -50,7 +50,7 @@ function Goal(props) {
             >
               <div className="delete-modal">
               <DialogTitle disableTypography id="alert-dialog-title">
-                <Typography className="delete-modal-title">Delete {props.name}?</Typography>
+                <Typography className="delete-modal-title">Delete "{props.name}"?</Typography>
               </DialogTitle>
               <DialogContent >
                 <DialogContentText disableTypography id="alert-dialog-description">

@@ -47,7 +47,7 @@ export class GoalSideBar extends React.Component {
     else{         
         var goalsToRender = this.props.goalsList.map((goalData) => 
             <Goal 
-                key={goalData["id"]} //not used: just avoiding warnings
+                key={goalData["name"]} //not used: just avoiding warnings
                 id={goalData["id"]} 
                 name={goalData["name"]} 
                 experiencePoints={goalData["experiencePoints"]} 

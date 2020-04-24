@@ -62,17 +62,15 @@ export async function createGoal(newGoal){
 
 export async function populateBoardPage(){
     // --- comment out ----
-    // var teamName = "Dummy Team"; //temporary
+    var teamName = "Dummy Team"; //temporary
 
-    // var APIcall = HOST + "team/goals/" + teamName;
-    // var response = await fetch(APIcall)
-    // .then(response => response.json())
-    // .then(json => {
-    //     return json
-    // });
+    var APIcall = HOST + "team/goals/" + teamName;
+    var response = await fetch(APIcall)
+    .then(response => response.json())
+    .then(json => {
+        return json
+    });
     // --- comment out ----
-
-    var response = fakeGoalResponse;
     
     var goalResponse = response;
     var gatheredTeamGoals= [];
@@ -82,8 +80,12 @@ export async function populateBoardPage(){
     for (var goal = 0; goal < goalResponse.length; goal++) {
       gatheredTeamGoals.push(goalResponse[goal]);
       gatheredGoalNames.push(goalResponse[goal]["name"]);
+      
+      if(goalResponse[goal]["tasks"] == null){
+        continue;
+      }
       var taskArray = goalResponse[goal]["tasks"];
-
+      
       for(var task = 0; task < taskArray.length; task++){
         var currentTask = taskArray[task];
         currentTask["goalName"] = goalResponse[goal]["name"];
