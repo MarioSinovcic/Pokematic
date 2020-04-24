@@ -7,7 +7,7 @@
 
 */
 
-import fakeGoalResponse from './goalResponse.json';
+//import fakeGoalResponse from './goalResponse.json';
 
 import {STATUSLIST} from './constants';
 import {HOST} from './constants';
@@ -60,6 +60,17 @@ export async function createGoal(newGoal){
   await fetch(APIcall, requestOptions);
 }
 
+export async function deleteGoal(goalName){
+  var teamName = "Dummy Team"; //temporary
+
+  var APIcall = HOST + "team/deleteGoal/" + teamName + "/" + goalName;
+    const requestOptions = {
+        method: 'DELETE'
+    };
+
+    await fetch(APIcall, requestOptions);
+}
+
 export async function populateBoardPage(){
     // --- comment out ----
     var teamName = "Dummy Team"; //temporary
@@ -80,10 +91,7 @@ export async function populateBoardPage(){
     for (var goal = 0; goal < goalResponse.length; goal++) {
       gatheredTeamGoals.push(goalResponse[goal]);
       gatheredGoalNames.push(goalResponse[goal]["name"]);
-      
-      if(goalResponse[goal]["tasks"] == null){
-        continue;
-      }
+    
       var taskArray = goalResponse[goal]["tasks"];
       
       for(var task = 0; task < taskArray.length; task++){

@@ -1,12 +1,12 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { Typography, Divider, ListItem } from '@material-ui/core';
 import ProgressBar from '../../shared-components/ProgressBar';
+import {deleteGoal} from '../../apiHandler';
 import './Goal.css';
 
 function Goal(props) {
@@ -20,7 +20,9 @@ function Goal(props) {
     setOpen(false);
   };
 
-  const handleDeleteGoal = () => {
+  async function handleDeleteGoal(){
+    await deleteGoal(props.name);
+    await props.populatePage();
     setOpen(false);
   }
 

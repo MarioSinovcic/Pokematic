@@ -52,6 +52,7 @@ export class GoalSideBar extends React.Component {
                 name={goalData["name"]} 
                 experiencePoints={goalData["experiencePoints"]} 
                 progress={goalData["progress"]} 
+                populatePage={this.props.populatePage}
                 />
           )
       return(
