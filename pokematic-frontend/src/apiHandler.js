@@ -7,7 +7,7 @@
 
 */
 
-//import fakeGoalResponse from './goalResponse.json';
+import fakeGoalResponse from './goalResponse.json';
 
 import {STATUSLIST} from './constants';
 import {HOST} from './constants';
@@ -62,17 +62,17 @@ export async function createGoal(newGoal){
 
 export async function populateBoardPage(){
     // --- comment out ----
-    var teamName = "Dummy Team"; //temporary
+    // var teamName = "Dummy Team"; //temporary
 
-    var APIcall = HOST + "team/goals/" + teamName;
-    var response = await fetch(APIcall)
-    .then(response => response.json())
-    .then(json => {
-        return json
-    });
+    // var APIcall = HOST + "team/goals/" + teamName;
+    // var response = await fetch(APIcall)
+    // .then(response => response.json())
+    // .then(json => {
+    //     return json
+    // });
     // --- comment out ----
 
-    // var response = fakeGoalResponse;
+    var response = fakeGoalResponse;
     
     var goalResponse = response;
     var gatheredTeamGoals= [];
