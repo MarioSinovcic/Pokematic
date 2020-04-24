@@ -1,7 +1,6 @@
 .modal-content {
     font-family: 'pkmn_rbygscregular' !important;
     text-align: center;
-    padding: 20px 20px;
     width: 100vw !important;
     height: 100vh;
     align-self: center;
@@ -46,7 +45,59 @@
     width: 400px;
     align-items: center;
     margin: auto;
-    display: flex;
-    margin-top: -10px;
+    /* display: flex; */
+    margin-top: -25px;
     z-index: inherit+1;
+}
+
+.reward-circle {
+    background-color: rgb(255, 255, 255);
+    border: 20px solid;
+    border-radius: 300px;
+    border-color: rgb(245, 210, 15);
+    margin-left: -20px;
+}
+
+.pokeball-bg{
+    width: 300px;
+    height: 300px;
+    opacity: 0.15;
+    position: relative;
+    left: 45px;
+    background-image: url('../../../images/background_pokeball_white.png');
+    background-repeat: no-repeat;
+    background-size: 300px;
+    
+}
+
+.pokemon-reward {
+    height: 500px;
+    width: 500px;
+    z-index: 20;
+    margin-top: -50px !important;
+}
+
+.action-button-container {
+    justify-content: space-between;
+    display: flex;
+    margin-top: 20px;
+    width: 500px !important;
+    min-width: auto;
+    margin-left: -50px;
+}
+
+.reward-button {
+    background-color: #363636 !important;
+    color: white !important;
+    font-family: 'pkmn_rbygscregular' !important;
+    padding: 12px !important;
+    
+}
+
+.blocks {
+    margin-bottom: 150px;
+}
+
+.hidden {
+    margin-top: 10px;
 }
