@@ -149,7 +149,6 @@ namespace pokematic_backend.Services
             
             var goal = team.Goals.FirstOrDefault(goal => goal.Name == goalName);
 
-
             if (goal == null)
             {
                 return; 
