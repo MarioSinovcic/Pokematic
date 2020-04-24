@@ -99,6 +99,19 @@ namespace pokematic_backend.Controllers
             return goal;
         }
         
+        [HttpDelete("deleteGoal/{teamName}/{goalName}")]
+        public ActionResult DeleteGoal(string teamName, string goalName)
+        {
+            var serviceMessage = _teamService.DeleteGoal(teamName, goalName);
+
+            if (serviceMessage == "success")
+            {
+                return Ok();
+            }
+
+            return NotFound(serviceMessage);
+        }
+        
 
         /**
          * Task endpoints
