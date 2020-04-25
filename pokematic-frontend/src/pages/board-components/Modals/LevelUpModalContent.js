@@ -18,18 +18,16 @@ class LevelUpModalContent extends React.Component {
     }
 
     switchToReward() {
-        this.setState({
-            showReward: true,
-            // Temporary static values
-            rewardName: "Squirtle",
-        })
+        // this.setState({
+        //     showReward: true,
+        //     // Temporary static values
+        //     rewardName: "Squirtle",
+        // })
 
     }
 
     toPokedex() {
         this.context.router.push('/pokedex');
-        // const history = useHistory();
-        // history.push("/pokedex");
     }
 
     generatePokemon(){

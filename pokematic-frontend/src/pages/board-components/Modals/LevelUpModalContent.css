@@ -71,10 +71,10 @@
 }
 
 .pokemon-reward {
-    height: 500px;
-    width: 500px;
+    height: 400px;
+    width: 400px;
     z-index: 20;
-    margin-top: -100px !important;
+    margin-top: -50px !important;
 }
 
 .action-button-container {
