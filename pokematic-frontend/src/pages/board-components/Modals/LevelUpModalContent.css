@@ -91,7 +91,10 @@
     color: white !important;
     font-family: 'pkmn_rbygscregular' !important;
     padding: 12px !important;
-    
+}
+
+.reward-button:active{
+    text-decoration: none;
 }
 
 .blocks {

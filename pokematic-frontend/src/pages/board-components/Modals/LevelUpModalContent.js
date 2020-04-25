@@ -1,9 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { Button } from '@material-ui/core';
 import "./TaskModalContent.css"
 import "./LevelUpModalContent.css"
-import { Button } from '@material-ui/core';
-import { useHistory } from "react-router-dom";
-
 
 class LevelUpModalContent extends React.Component {
 
@@ -28,8 +27,13 @@ class LevelUpModalContent extends React.Component {
     }
 
     toPokedex() {
-        const history = useHistory();
-        history.push("/pokedex");
+        this.context.router.push('/pokedex');
+        // const history = useHistory();
+        // history.push("/pokedex");
+    }
+
+    generatePokemon(){
+        return Math.floor(Math.random() * 152)
     }
 
 
@@ -65,11 +69,13 @@ class LevelUpModalContent extends React.Component {
                             <div className="reward-circle pokeball">
                             <div className="pokemon-reward-name">Squirtle
                                     </div>
-                                    <img className="pokemon-image pokemon-reward" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png" alt=""></img>
+                                    <img className="pokemon-image pokemon-reward" src={"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+this.generatePokemon()+".png"} alt="newPokemon"></img>
                                 
                             </div>
                             <div className="action-button-container">
-                                <Button className="reward-button" onClick={() => this.toPokedex()} >View Collection</Button>
+                                <Link to="/pokedex" replace>
+                                    <Button className="reward-button">View Collection</Button>
+                                </Link>
                                 <Button className="reward-button" onClick={this.props.handleClose}>Done</Button>
                             </div>
 
