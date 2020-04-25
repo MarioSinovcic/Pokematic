@@ -12,9 +12,9 @@
 import {STATUSLIST} from './constants';
 import {HOST} from './constants';
 
-export async function createTask(newTask, goalName){
-    var teamName = "Dummy Team"; //temporary
+var teamName = "Dummy Team"; //temporary
 
+export async function createTask(newTask, goalName){
     var APIcall = HOST + "team/createTask/" + teamName + "/" + goalName;
     const requestOptions = {
         method: 'POST',
@@ -26,7 +26,6 @@ export async function createTask(newTask, goalName){
 }
 
 export async function updateTask(updatedTask, goalName, taskName){
-    var teamName = "Dummy Team"; //temporary
     var APIcall = HOST + "team/updateTask/" + teamName + "/" + goalName  + "/" + taskName;
     const requestOptions = {
         method: 'PUT',
@@ -38,8 +37,6 @@ export async function updateTask(updatedTask, goalName, taskName){
 }
 
 export async function deleteTask(goalName, taskName){
-  var teamName = "Dummy Team"; //temporary
-
   var APIcall = HOST + "team/deleteTask/" + teamName + "/" + goalName  + "/" + taskName;
     const requestOptions = {
         method: 'DELETE'
@@ -49,7 +46,6 @@ export async function deleteTask(goalName, taskName){
 }
 
 export async function createGoal(newGoal){
-  var teamName = "Dummy Team"; //temporary
   var APIcall = HOST + "team/createGoal/" + teamName;
   const requestOptions = {
       method: 'POST',
@@ -61,8 +57,6 @@ export async function createGoal(newGoal){
 }
 
 export async function deleteGoal(goalName){
-  var teamName = "Dummy Team"; //temporary
-
   var APIcall = HOST + "team/deleteGoal/" + teamName + "/" + goalName;
     const requestOptions = {
         method: 'DELETE'
@@ -73,8 +67,6 @@ export async function deleteGoal(goalName){
 
 export async function populateBoardPage(){
     // --- comment out ----
-    var teamName = "Dummy Team"; //temporary
-
     var APIcall = HOST + "team/goals/" + teamName;
     var response = await fetch(APIcall)
     .then(response => response.json())
