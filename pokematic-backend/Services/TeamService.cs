@@ -48,8 +48,17 @@ namespace pokematic_backend.Services
         public string UpdateTeam(string teamName, Team teamToUpdate)
         {
             var filter = Filter.Eq(team => team.Name, teamName);
-            _teams.ReplaceOneAsync(filter, teamToUpdate);
+            try
+            {
+                _teams.ReplaceOneAsync(filter, teamToUpdate);
+            }
+            catch (Exception e)
+            {
+                return "Request failed, not team with that team name or team object invalid";
+            }
+            
             return "success";
+
         }
         
         public string DeleteTeam(string teamName)
@@ -68,9 +77,7 @@ namespace pokematic_backend.Services
             }
             
         }
-        
-        
-        
+
         public void JoinTeam(string teamName, string username)
         {
             var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
