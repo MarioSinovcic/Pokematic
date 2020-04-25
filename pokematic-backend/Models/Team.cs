@@ -6,7 +6,9 @@ namespace pokematic_backend.Models
 {
     public class Team
     {
-        [BsonRepresentation(BsonType.String)] public ObjectId Id { get; set; }
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
 
         [BsonElement("name")] public string Name { get; set; }
         
