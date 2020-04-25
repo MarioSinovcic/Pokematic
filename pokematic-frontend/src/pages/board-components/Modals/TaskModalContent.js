@@ -7,11 +7,15 @@ import "./TaskModalContent.css"
 
 function TaskModalContent (props) {
     var renderApprovalCheckbox = false;
+    var disableCheckBox = false;
     const [showBinButton, setShowBinButton] = useState(true);
     const [selectedApproved, setSelectedApproved] = useState(false);
 
     if(props.status === "Done"){
         renderApprovalCheckbox = true;
+        if(props.approved){
+            disableCheckBox = true;
+        }
     }
 
     function handleCheckBox(){
@@ -63,12 +67,13 @@ function TaskModalContent (props) {
                 {renderApprovalCheckbox && 
                 <div className="approved-section">
                     <FormControlLabel
-                    value="start"
-                    control={<Checkbox color={"grey"} onChange={handleCheckBox}/>}
-                    label={
-                        <Typography className="approved-label"> APPROVED? </Typography>
-                    }
-                    labelPlacement="start"
+                        disabled={disableCheckBox}
+                        value="start"
+                        control={<Checkbox color={"default"} onChange={handleCheckBox} defaultChecked={disableCheckBox}/>}
+                        label={
+                            <Typography className="approved-label"> APPROVED? </Typography>
+                        }
+                        labelPlacement="start"
                     />
                 </div>
                 }
