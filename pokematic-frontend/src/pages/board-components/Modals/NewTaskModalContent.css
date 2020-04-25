@@ -12,7 +12,7 @@
     display: flex;
 }
 
-.task-title{
+.new-task-title{
     width: 100%;
     font-family: 'Roboto Mono', monospace !important;
     font-weight: 600 !important;
@@ -135,7 +135,7 @@
 
 
 @media (max-width:1000px){
-    .modal-content {
+    .new-task-modal-content {
         width: 500px !important;
     }
 

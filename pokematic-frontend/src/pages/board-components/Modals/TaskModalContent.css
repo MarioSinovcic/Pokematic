@@ -19,15 +19,18 @@
     line-height: 20px;
     margin-top: 25px;
     color: #3D3D3D;
+    margin-bottom: 15px;
 }
 
 .task-number{
     font-weight: 600 !important;
     font-size: 40px;
     line-height: 20px;
-    margin-top: 0px;
+    margin-top: 5px;
     color: #898989;
     padding-right: 30px;
+    margin-bottom: 15px;
+
 }
 
 .right-align{

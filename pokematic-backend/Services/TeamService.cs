@@ -370,5 +370,26 @@ namespace pokematic_backend.Services
             return "success";
         }
 
+        public string DeleteGoal(string teamName, string goalName)
+        {
+            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
+
+            if (team == null)
+            {
+                return "No team with that team name";
+            }
+
+            var goal = team.Goals.FirstOrDefault(goal => goal.Name == goalName);
+
+            if (goal == null)
+            {
+                return "No goal with that goal name exists for the " + teamName + " team ";
+            }
+
+            team.Goals.Remove(team.Goals.Single(goal => goal.Name == goalName));
+            Update(teamName, team);
+
+            return "success";
+        }
     }
 }

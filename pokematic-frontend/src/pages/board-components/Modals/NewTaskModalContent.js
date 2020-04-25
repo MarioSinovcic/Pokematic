@@ -121,7 +121,7 @@ function ModalContent (props) {
     return (
         <div className="new-task-modal-content">
             <div className="grouping">
-                <div  className="task-title"> 
+                <div  className="new-task-title"> 
                     <TextField 
                         onChange={handleTaskNameChange}
                         defaultValue="Task Name"
