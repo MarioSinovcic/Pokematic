@@ -34,7 +34,7 @@ namespace pokematic_backend.Services
             return _teams.AsQueryable().ToList();
         }
 
-        public Team Get(string teamName)
+        public Team GetTeam(string teamName)
         {
             var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
             return team;
@@ -45,16 +45,30 @@ namespace pokematic_backend.Services
             _teams.InsertOneAsync(team);
         }
 
-        public void Update(string teamName, Team team)
+        public string UpdateTeam(string teamName, Team teamToUpdate)
         {
             var filter = Filter.Eq(team => team.Name, teamName);
-            _teams.ReplaceOneAsync(filter, team);
+            _teams.ReplaceOneAsync(filter, teamToUpdate);
+            return "success";
         }
-
-        public void Remove(string name)
+        
+        public string DeleteTeam(string teamName)
         {
-            _teams.DeleteOneAsync(team => team.Name == name);
+            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
+            var filter = Filter.Eq(team => team.Name, teamName);
+            
+            if (team == null)
+            {
+                return "No team with that team name";
+            }
+            else
+            {
+                _teams.DeleteOneAsync(filter);
+                return "success";
+            }
+            
         }
+        
         
         
         public void JoinTeam(string teamName, string username)
@@ -70,12 +84,12 @@ namespace pokematic_backend.Services
             if (team.Users == null)
             {
                 team.Users = new List<User> {user};
-                Update(teamName, team);
+                UpdateTeam(teamName, team);
             }
             else
             {
                 team.Users.Add(user);
-                Update(teamName, team);
+                UpdateTeam(teamName, team);
             }
 
         }
@@ -85,12 +99,25 @@ namespace pokematic_backend.Services
          * Goal functionality
          */
         
-        public List<Goal> GetGoals(string teamName)
+        public List<Goal> GetAllGoals(string teamName)
         {
             var team =  _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
             return team.Goals.ToList();
         }
-        
+
+        public Goal GetGoal(string teamName, string goalName)
+        {
+            var team =  _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
+            
+            if (team != null)
+            {
+                var goal = team.Goals.FirstOrDefault(goal => goal.Name == goalName);
+                return goal;
+            }
+
+            return null;
+        }
+ 
         public Goal CreateGoal(Goal goal, string teamName)
         {
             var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
@@ -105,7 +132,7 @@ namespace pokematic_backend.Services
                 goal.Number = 0;
                 var goals = new List<Goal> {goal};
                 team.Goals = goals;
-                Update(teamName, team);
+                UpdateTeam(teamName, team);
             }
             else
             {
@@ -121,7 +148,7 @@ namespace pokematic_backend.Services
 
                 goal.Number = biggestGoalNumber + 1;
                 team.Goals.Add(goal);
-                Update(teamName, team);
+                UpdateTeam(teamName, team);
             }
 
             return goal;
@@ -159,7 +186,7 @@ namespace pokematic_backend.Services
                 task.Number = 0;
                 goal.Tasks = new List<Models.Task> {task};
                 team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
-                Update(teamName, team);
+                UpdateTeam(teamName, team);
             }
             else
             {
@@ -176,7 +203,7 @@ namespace pokematic_backend.Services
                 task.Number = biggestTaskNumber + 1;
                 goal.Tasks.Add(task);
                 team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
-                Update(teamName, team);
+                UpdateTeam(teamName, team);
             }
             
         }
@@ -212,7 +239,7 @@ namespace pokematic_backend.Services
 
             goal.Tasks.Remove(goal.Tasks.Single(task => task.Name == taskName));
             team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
-            Update(teamName, team);
+            UpdateTeam(teamName, team);
 
             return "success";
         }
@@ -247,7 +274,7 @@ namespace pokematic_backend.Services
             
             goal.Tasks[goal.Tasks.FindIndex(task => task.Name == taskToUpdateName)] = updatedTask;
             team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
-            Update(teamName, team);
+            UpdateTeam(teamName, team);
 
             return "success";
         }
@@ -298,7 +325,7 @@ namespace pokematic_backend.Services
                 task.Assignees = new List<User> {user};
                 goal.Tasks[goal.Tasks.FindIndex(task => task.Name == taskName)] = task;
                 team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
-                Update(teamName, team);
+                UpdateTeam(teamName, team);
             }
             else if (assignees.Exists(user => user.Username == username))
             {
@@ -310,7 +337,7 @@ namespace pokematic_backend.Services
                 task.Assignees = assignees;
                 goal.Tasks[goal.Tasks.FindIndex(task => task.Name == taskName)] = task;
                 team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
-                Update(teamName, team);
+                UpdateTeam(teamName, team);
             }
 
             return "success";
@@ -365,7 +392,7 @@ namespace pokematic_backend.Services
             task.Assignees = assignees;
             goal.Tasks[goal.Tasks.FindIndex(task => task.Name == taskName)] = task;
             team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
-            Update(teamName, team);
+            UpdateTeam(teamName, team);
 
             return "success";
         }
@@ -387,9 +414,33 @@ namespace pokematic_backend.Services
             }
 
             team.Goals.Remove(team.Goals.Single(goal => goal.Name == goalName));
-            Update(teamName, team);
+            UpdateTeam(teamName, team);
 
             return "success";
         }
+
+        public string UpdateGoal(string teamName, string goalToUpdateName, Goal updatedGoal)
+        {
+            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
+
+            if (team == null)
+            {
+                return "No team with that team name";
+            }
+
+            var goalToUpdate = team.Goals.FirstOrDefault(goal => goal.Name == goalToUpdateName);
+
+            if (goalToUpdate == null)
+            {
+                return "Trying to update goal that doesn't exist";
+            }
+
+            team.Goals[team.Goals.FindIndex(goal => goal.Name == goalToUpdateName)] = updatedGoal;
+            UpdateTeam(teamName, team);
+
+            return "success";
+        }
+
+
     }
 }
