@@ -16,7 +16,7 @@ namespace pokematic_backend.Models
 
         [BsonElement("experiencePoints")] public int ExperiencePoints { get; set; }
 
-        [BsonElement("progress")] public int Progress { get; set; }
+        [BsonElement("progress")] public double Progress { get; set; }
 
 
     }
