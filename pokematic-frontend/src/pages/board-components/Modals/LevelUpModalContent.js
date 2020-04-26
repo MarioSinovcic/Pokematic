@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import "./TaskModalContent.css"
 import "./LevelUpModalContent.css"
+import { connect } from 'react-redux';
 
 class LevelUpModalContent extends React.Component {
 
@@ -12,9 +13,15 @@ class LevelUpModalContent extends React.Component {
 
         this.state = {
             showReward: false,
-            rewardName: "",
+            pokemonReward: [],
             newLevel: 21,
         }
+    }
+
+    componentDidMount() {
+        this.setState({
+            pokemonReward: this.generatePokemon(),
+        });
     }
 
     switchToReward() {
@@ -31,7 +38,14 @@ class LevelUpModalContent extends React.Component {
     }
 
     generatePokemon(){
-        return Math.floor(Math.random() * 152)
+        const randomNum = Math.floor(Math.random() * 152);
+        const randomPokemon = this.props.pokemonData[randomNum];
+
+        const pokemon = {
+            name: randomPokemon[1],
+            number: randomPokemon[0]+1,
+        }
+        return pokemon;
     }
 
 
@@ -65,9 +79,9 @@ class LevelUpModalContent extends React.Component {
                             <div class="flip-card-back">
                             <div className="pokeball">
                             <div className="reward-circle pokeball">
-                            <div className="pokemon-reward-name">Squirtle
+                            <div className="pokemon-reward-name">{this.state.pokemonReward.name}
                                     </div>
-                                    <img className="pokemon-image pokemon-reward" src={"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+this.generatePokemon()+".png"} alt="newPokemon"></img>
+                                    <img className="pokemon-image pokemon-reward" src={"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+this.state.pokemonReward.number+".png"} alt="newPokemon"></img>
                                 
                             </div>
                             <div className="action-button-container">
@@ -85,4 +99,15 @@ class LevelUpModalContent extends React.Component {
         );
     }
 }
-export default LevelUpModalContent;
+
+const mapStateToProps = (state) => {
+    return {
+      pokemonMap: state.pokemonURL,
+      pokemonTypes: state.pokemonTypes,
+      pokemonData: state.pokemonData,
+      pokemonCollection: state.pokemonCollection,
+    };
+  }
+  
+  export default connect(mapStateToProps)(LevelUpModalContent);
+
