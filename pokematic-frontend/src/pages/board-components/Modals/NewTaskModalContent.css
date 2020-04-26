@@ -139,15 +139,7 @@
         width: 500px !important;
     }
 
-    .task-title{
-        font-size: 30px;
-        line-height: 35px;
-    }
-
     .story-points-label{
         display: none;
     }
-
-
-
 }

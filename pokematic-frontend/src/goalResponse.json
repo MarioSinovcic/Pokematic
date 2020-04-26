@@ -94,7 +94,7 @@
                 "status": "Done",
                 "storyPoints": 10,
                 "assignees": null,
-                "approved": false
+                "approved": true
             }
         ],
         "experiencePoints": 20,
