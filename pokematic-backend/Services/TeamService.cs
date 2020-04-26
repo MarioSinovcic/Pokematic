@@ -173,7 +173,7 @@ namespace pokematic_backend.Services
         
 
         
-        // update progress of goal
+        
         public void CreateTask(Models.Task task, string teamName, string goalName)
         {
             var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
@@ -211,14 +211,23 @@ namespace pokematic_backend.Services
                 
                 task.Number = biggestTaskNumber + 1;
                 goal.Tasks.Add(task);
+                goal.Progress = CalculateGoalProgress(goal);
                 team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
                 UpdateTeam(teamName, team);
             }
             
         }
-        
-        
-        // update progress of goal
+
+        private double CalculateGoalProgress(Goal goal)
+        {
+            double numberOfTasks = goal.Tasks.Count;
+            double numberOfApprovedTasks = goal.Tasks.Count(task => task.Approved == true);
+
+            return numberOfApprovedTasks / numberOfTasks;
+        }
+
+
+      
         public string DeleteTask(string teamName, string goalName, string taskName)
         { 
             var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
@@ -249,6 +258,7 @@ namespace pokematic_backend.Services
             }
 
             goal.Tasks.Remove(goal.Tasks.Single(task => task.Name == taskName));
+            goal.Progress = CalculateGoalProgress(goal);
             team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
             UpdateTeam(teamName, team);
 
@@ -256,7 +266,7 @@ namespace pokematic_backend.Services
         }
         
         
-        // update progress of goal if set to approved
+        
         public string UpdateTask(string teamName, string goalName, string taskToUpdateName, Models.Task updatedTask)
         {
             var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
@@ -286,9 +296,10 @@ namespace pokematic_backend.Services
             }
             
             goal.Tasks[goal.Tasks.FindIndex(task => task.Name == taskToUpdateName)] = updatedTask;
+            goal.Progress = CalculateGoalProgress(goal);
             team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
             UpdateTeam(teamName, team);
-
+            
             return "success";
         }
         
