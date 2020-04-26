@@ -54,7 +54,7 @@ namespace pokematic_backend.Services
             }
             catch (Exception e)
             {
-                return "Request failed, not team with that team name or team object invalid";
+                return "Request failed, no team with that team name or team object invalid";
             }
             
             return "success";
@@ -172,6 +172,8 @@ namespace pokematic_backend.Services
         }
         
 
+        
+        // update progress of goal
         public void CreateTask(Models.Task task, string teamName, string goalName)
         {
             var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
@@ -215,6 +217,8 @@ namespace pokematic_backend.Services
             
         }
         
+        
+        // update progress of goal
         public string DeleteTask(string teamName, string goalName, string taskName)
         { 
             var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
@@ -251,6 +255,8 @@ namespace pokematic_backend.Services
             return "success";
         }
         
+        
+        // update progress of goal if set to approved
         public string UpdateTask(string teamName, string goalName, string taskToUpdateName, Models.Task updatedTask)
         {
             var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
