@@ -26,10 +26,6 @@ function Goal(props) {
     setOpen(false);
   }
 
-  const calculateProgress = () => {
-    return (props.progress / props.experiencePoints *100);
-  }
-
     return (
       <div>
         <div className="team-tabs">
@@ -38,7 +34,7 @@ function Goal(props) {
                 <Typography className="name-width sidebar-goal-name">{props.name}</Typography>
                 <button className="delete-goal-button" onClick={openDeleteGoalModal}></button>
               </div>
-                <ProgressBar progress={calculateProgress()} />
+                <ProgressBar progress={props.progress *100} />
 
             </ListItem>
             <Divider className="goal-divider" /> 

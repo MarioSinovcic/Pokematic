@@ -54,7 +54,7 @@ namespace pokematic_backend.Services
             }
             catch (Exception e)
             {
-                return "Request failed, not team with that team name or team object invalid";
+                return "Request failed, no team with that team name or team object invalid";
             }
             
             return "success";
@@ -172,6 +172,8 @@ namespace pokematic_backend.Services
         }
         
 
+        
+        
         public void CreateTask(Models.Task task, string teamName, string goalName)
         {
             var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
@@ -209,12 +211,23 @@ namespace pokematic_backend.Services
                 
                 task.Number = biggestTaskNumber + 1;
                 goal.Tasks.Add(task);
+                goal.Progress = CalculateGoalProgress(goal);
                 team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
                 UpdateTeam(teamName, team);
             }
             
         }
-        
+
+        private double CalculateGoalProgress(Goal goal)
+        {
+            double numberOfTasks = goal.Tasks.Count;
+            double numberOfApprovedTasks = goal.Tasks.Count(task => task.Approved == true);
+
+            return numberOfApprovedTasks / numberOfTasks;
+        }
+
+
+      
         public string DeleteTask(string teamName, string goalName, string taskName)
         { 
             var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
@@ -245,11 +258,14 @@ namespace pokematic_backend.Services
             }
 
             goal.Tasks.Remove(goal.Tasks.Single(task => task.Name == taskName));
+            goal.Progress = CalculateGoalProgress(goal);
             team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
             UpdateTeam(teamName, team);
 
             return "success";
         }
+        
+        
         
         public string UpdateTask(string teamName, string goalName, string taskToUpdateName, Models.Task updatedTask)
         {
@@ -280,9 +296,10 @@ namespace pokematic_backend.Services
             }
             
             goal.Tasks[goal.Tasks.FindIndex(task => task.Name == taskToUpdateName)] = updatedTask;
+            goal.Progress = CalculateGoalProgress(goal);
             team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
             UpdateTeam(teamName, team);
-
+            
             return "success";
         }
         
