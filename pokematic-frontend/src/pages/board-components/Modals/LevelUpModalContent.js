@@ -19,18 +19,14 @@ class LevelUpModalContent extends React.Component {
     }
 
     componentDidMount() {
+        const newPokemonReward = this.generatePokemon();
+
+        // TODO: call API to add this pokemon to the team's collection so it can be displayed in the pokedex
+        // eg. apiHandler.addToCollection(newPokemonReward)
+
         this.setState({
-            pokemonReward: this.generatePokemon(),
+            pokemonReward: newPokemonReward,
         });
-    }
-
-    switchToReward() {
-        // this.setState({
-        //     showReward: true,
-        //     // Temporary static values
-        //     rewardName: "Squirtle",
-        // })
-
     }
 
     toPokedex() {
@@ -38,7 +34,7 @@ class LevelUpModalContent extends React.Component {
     }
 
     generatePokemon(){
-        const randomNum = Math.floor(Math.random() * 152);
+        const randomNum = Math.floor(Math.random() * 151);
         const randomPokemon = this.props.pokemonData[randomNum];
 
         const pokemon = {
@@ -57,24 +53,10 @@ class LevelUpModalContent extends React.Component {
                     <div className="title">
                         {!this.state.showReward ? "Level Up!" : this.state.rewardName}
                     </div>
-                    {/* {!this.state.showReward ?
-                        <div className="pokeball"><img src="/images/pokeballPrize.png" alt="prize" className="pokeball hidden" onClick={this.switchToReward.bind(this)} /></div>
-                        : <div className="pokeball">
-                            <div className="reward-circle pokeball">
-                                //TODO: Change this image to dynamically change depending on the pokemon received
-                                    <img className="pokemon-image pokemon-reward" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png" alt=""></img>
-                                
-                            </div>
-                            <div className="action-button-container">
-                                <Button className="reward-button" onClick={() => this.toPokedex()} >View Collection</Button>
-                                <Button className="reward-button" onClick={this.props.handleClose}>Done</Button>
-                            </div>
-
-                        </div>} */}
                     <div class="flip-card">
                         <div class="flip-card-inner">
                             <div class="flip-card-front">
-                            <div className="pokeball"><img src="/images/pokeballPrize.png" alt="prize" className="pokeball hidden" onClick={this.switchToReward.bind(this)} /></div>
+                            <div className="pokeball"><img src="/images/pokeballPrize.png" alt="prize" className="pokeball hidden" /></div>
                             </div>
                             <div class="flip-card-back">
                             <div className="pokeball">
