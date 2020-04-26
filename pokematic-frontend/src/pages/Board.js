@@ -5,11 +5,12 @@ import StatusCard from './board-components/StatusCard';
 import ModalButton from '../shared-components/ModalButton';
 import Header from '../shared-components/Header';
 import AddIcon from '@material-ui/icons/Add';
-import { populateBoardPage } from '.././apiHandler';
+import { populateBoardPage, fetchPokemonData, fetchPokemonTypes } from '.././apiHandler';
 import './Board.css'
 import LevelUpModalContent from './board-components/Modals/LevelUpModalContent';
 import { Modal, Backdrop, Fade, Button } from '@material-ui/core';
 import { connect } from 'react-redux';
+import { togglePokemonLoad, addPokemonData, addPokemonNames, addPokemonTypes, changeCollection } from '../actions/actions';
 
 class Board extends React.Component {
   constructor(props) {
@@ -30,6 +31,43 @@ class Board extends React.Component {
 
   componentDidMount() {
     this.populatePage();
+    if (!this.props.isLoaded) {
+      this.getPokemonData();
+      this.props.togglePokemonHasLoaded();
+    }
+  }
+
+  async getPokemonData() {
+
+    // Get a list of pokemon Names and their URLs
+    await fetchPokemonData().then((results)=> {this.props.addPokemon(results)});
+    
+
+    await this.props.pokemonMap.map((pokemon, i) => {
+        const getTypes = fetchPokemonTypes(pokemon.url);
+        return (
+        getTypes.then((data) => {
+          this.props.addPokemonTypes(data.name, data.types);
+        }));
+    })
+
+    this.props.addPokemonData(this.populatePokemon(this.props.pokemonMap));
+
+  }
+
+
+  populatePokemon(pokemonCollection) {
+    var populatedPokemon = []
+    pokemonCollection.map((pokemonData, i) => {
+      return (
+        populatedPokemon.push(
+          [i,
+            pokemonData && pokemonData.name,
+            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + (i + 1) + ".png",
+          ])
+      );
+    })
+    return populatedPokemon;
   }
 
 
@@ -37,7 +75,6 @@ class Board extends React.Component {
     this.setState({
       open: true,
     })
-    console.log("Open");
   };
 
   handleClose() {
@@ -133,9 +170,34 @@ class Board extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
+    pokemonMap: state.pokemonURL,
+    pokemonTypes: state.pokemonTypes,
     pokemonData: state.pokemonData,
+    isLoaded: state.isLoaded,
     pokemonCollection: state.pokemonCollection,
   };
 }
 
-export default connect(mapStateToProps)(Board);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    togglePokemonHasLoaded: () => {
+      dispatch(togglePokemonLoad())
+    },
+    addPokemonData: (pokemon) => {
+      dispatch(addPokemonData(pokemon))
+    },
+    addPokemon: (pokemon) => {
+      dispatch(addPokemonNames(pokemon))
+    },
+    addPokemonTypes: (pokemonName, pokemonType) => {
+      dispatch(addPokemonTypes(pokemonName, pokemonType))
+    },
+    changeCollection: (collection) => {
+      dispatch(changeCollection(collection))
+    },
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Board);
+
+
