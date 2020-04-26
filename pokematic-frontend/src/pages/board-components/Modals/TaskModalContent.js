@@ -6,16 +6,18 @@ import {deleteTask, updateTask} from '../../../apiHandler';
 import "./TaskModalContent.css"
 
 function TaskModalContent (props) {
-    var renderApprovalCheckbox = false;
     var disableCheckBox = false;
+    var defaultStatus = false;
     const [showBinButton, setShowBinButton] = useState(true);
     const [selectedApproved, setSelectedApproved] = useState(false);
 
-    if(props.status === "Done"){
-        renderApprovalCheckbox = true;
-        if(props.approved){
-            disableCheckBox = true;
-        }
+    if(props.status !== "Done"){
+        disableCheckBox = true;
+    }
+
+    if(props.approved){
+        disableCheckBox = true;
+        defaultStatus= true; 
     }
 
     function handleCheckBox(){
@@ -64,19 +66,17 @@ function TaskModalContent (props) {
                 <p className="description">{props.description}</p>
             </div>  
             <div className="grouping">
-                {renderApprovalCheckbox && 
                 <div className="approved-section">
                     <FormControlLabel
                         disabled={disableCheckBox}
                         value="start"
-                        control={<Checkbox color={"default"} onChange={handleCheckBox} defaultChecked={disableCheckBox}/>}
+                        control={<Checkbox color={"default"} onChange={handleCheckBox} defaultChecked={defaultStatus}/>}
                         label={
                             <Typography className="approved-label"> APPROVED? </Typography>
                         }
                         labelPlacement="start"
                     />
                 </div>
-                }
                 <div className="right-align">
                     {showBinButton && <button className="bin-button" onClick={handleDelete}/>}
                     {!showBinButton && <button className="save-button" onClick={handleSave}>SAVE</button>}
