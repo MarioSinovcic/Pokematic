@@ -12,7 +12,7 @@
 import {STATUSLIST} from './constants';
 import {HOST} from './constants';
 
-var teamName = "Dummy Team"; //temporary
+var teamName = "Dummy Team2"; //temporary
 
 export async function createTask(newTask, goalName){
     var APIcall = HOST + "team/createTask/" + teamName + "/" + goalName;
@@ -63,6 +63,24 @@ export async function deleteGoal(goalName){
     };
 
     await fetch(APIcall, requestOptions);
+}
+
+export async function populateProfilePage(){
+  var APIcall = HOST + "team";
+  var response = await fetch(APIcall)
+  .then(response => response.json())
+  .then(json => {
+      return json
+  });
+
+  var teamResponse = response;
+  var gatheredTeams= [];
+
+  for (var team = 0; team < teamResponse.length; team++) {
+    gatheredTeams.push(teamResponse[team]);
+  }
+
+  return(gatheredTeams);
 }
 
 export async function populateBoardPage(){
