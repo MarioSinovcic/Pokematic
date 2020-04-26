@@ -12,7 +12,7 @@
 import {STATUSLIST} from './constants';
 import {HOST} from './constants';
 
-var teamName = "Dummy Team"; //temporary
+var teamName = "Dummy Team2"; //temporary
 
 export async function createTask(newTask, goalName){
     var APIcall = HOST + "team/createTask/" + teamName + "/" + goalName;
