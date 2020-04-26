@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import "./TaskModalContent.css"
 import "./LevelUpModalContent.css"
-import { connect } from 'react-redux';
 
 class LevelUpModalContent extends React.Component {
 
@@ -82,14 +81,6 @@ class LevelUpModalContent extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-      pokemonMap: state.pokemonURL,
-      pokemonTypes: state.pokemonTypes,
-      pokemonData: state.pokemonData,
-      pokemonCollection: state.pokemonCollection,
-    };
-  }
   
-  export default connect(mapStateToProps)(LevelUpModalContent);
+  export default LevelUpModalContent
 

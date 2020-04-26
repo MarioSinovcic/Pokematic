@@ -9,6 +9,7 @@ import { populateBoardPage } from '.././apiHandler';
 import './Board.css'
 import LevelUpModalContent from './board-components/Modals/LevelUpModalContent';
 import { Modal, Backdrop, Fade, Button } from '@material-ui/core';
+import { connect } from 'react-redux';
 
 class Board extends React.Component {
   constructor(props) {
@@ -112,9 +113,14 @@ class Board extends React.Component {
             >
               <Fade in={this.state.open}>
                 <div>
+
+                  {/* Temporary error handling to load pokedex first */}
+                  {this.props.pokemonData[1] ? 
                   <LevelUpModalContent
                     handleClose={this.handleClose.bind(this)}
+                    pokemonData={this.props.pokemonData}
                   />
+                  : ""}
                 </div>
               </Fade>
             </Modal>
@@ -125,4 +131,11 @@ class Board extends React.Component {
   }
 }
 
-export default Board;
+const mapStateToProps = (state) => {
+  return {
+    pokemonData: state.pokemonData,
+    pokemonCollection: state.pokemonCollection,
+  };
+}
+
+export default connect(mapStateToProps)(Board);
