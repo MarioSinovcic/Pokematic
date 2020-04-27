@@ -15,6 +15,7 @@ class Board extends React.Component {
     this.populatePage = this.populatePage.bind(this);
 
     this.state = {
+      teamName: this.props.match.params.teamName,
       goalsList: [],
       goalNames: [],
       todoList: [],
@@ -29,7 +30,7 @@ class Board extends React.Component {
   }
 
   populatePage = async () => {
-    var apiData = populateBoardPage();
+    var apiData = populateBoardPage(this.state.teamName);
 
     this.setState({
       goalsList: (await apiData).goalsList,
@@ -49,7 +50,7 @@ class Board extends React.Component {
     return (
         <div>
           <div className="board-page">
-          <Header />
+          <Header teamName={this.state.teamName}/>
           <div className="team-card">
                 <TeamCard />
           </div>

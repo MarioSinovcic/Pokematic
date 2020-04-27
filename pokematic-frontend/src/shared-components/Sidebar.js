@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
@@ -36,13 +37,15 @@ export default function Sidebar(props) {
 
 
   var teamsToRender = props.teamsList.map((teamData) => 
-                 <TeamDetails 
-                   key={teamData["name"]} //not used: just avoiding warnings
-                   id={teamData["id"]} 
-                   name={teamData["name"]} 
-                   level={teamData["level"]}
-                   experiencePoints={teamData["experiencePoints"]}
-                   isItem={true}/>
+                <Link key={teamData["id"]}  to={{pathname: `board/${teamData["name"]}`}} style={{ textDecoration: 'none' }}>
+                  <TeamDetails 
+                    //not used: just avoiding warnings
+                    id={teamData["id"]} 
+                    name={teamData["name"]} 
+                    level={teamData["level"]}
+                    experiencePoints={teamData["experiencePoints"]}
+                    isItem={true}/>
+                </Link>
   )
 
   return (
