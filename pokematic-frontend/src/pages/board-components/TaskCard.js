@@ -50,8 +50,9 @@ function TaskCard(props) {
             assignees: props.assignees, 
             approved: props.approved,
         };
-        await updateTask(updatedTask, props.goalName, props.name);
-        await props.populatePage();
+        await updateTask(updatedTask, props.teamName, props.goalName, props.name);
+        await props.populatePage(props.teamName);
+        window.location.reload(false);
     };
 
 
@@ -88,6 +89,7 @@ function TaskCard(props) {
                         <ModalConent 
                             id={props.id}
                             name={props.name} 
+                            teamName={props.teamName}
                             taskNumber={props.taskNumber} 
                             description={props.description} 
                             experiencePoints={props.experiencePoints} 
