@@ -66,7 +66,7 @@ class LevelUpModalContent extends React.Component {
                                 
                             </div>
                             <div className="action-button-container">
-                                <Link to="/pokedex" replace>
+                                <Link to="/pokedex" replace style={{ textDecoration: 'none' }} >
                                     <Button className="reward-button">View Collection</Button>
                                 </Link>
                                 <Button className="reward-button" onClick={this.props.handleClose}>Done</Button>
