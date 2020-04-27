@@ -21,7 +21,7 @@ function Goal(props) {
   };
 
   async function handleDeleteGoal(){
-    await deleteGoal(props.name);
+    await deleteGoal(props.teamName, props.name);
     await props.populatePage();
     setOpen(false);
   }

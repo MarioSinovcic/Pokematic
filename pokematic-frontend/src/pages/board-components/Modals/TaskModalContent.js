@@ -26,8 +26,9 @@ function TaskModalContent (props) {
     }
 
     async function handleDelete() {
-        await deleteTask(props.goalName, props.name);
-        await props.populatePage();
+        await deleteTask(props.teamName, props.goalName, props.name);
+        await props.populatePage(props.teamName);
+        window.location.reload(false);
         props.handleClose();
     };
 
@@ -42,9 +43,9 @@ function TaskModalContent (props) {
             assignees: props.assignees, 
             approved: selectedApproved,
         };
-        await updateTask(updatedTask, props.goalName, props.name);
-        await props.populatePage();
-
+        await updateTask(updatedTask, props.teamName, props.goalName, props.name);
+        await props.populatePage(props.teamName);
+        window.location.reload(false);
         props.handleClose();
     };
 

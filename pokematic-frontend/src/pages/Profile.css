@@ -8,7 +8,7 @@
 }
 
 .menu {
-    display: inline-block;
+    display: flex;
 }
 
 .profile-card {
@@ -18,7 +18,9 @@
 
 
 .profile-content {
+    position: absolute;
     left: 250px;
+    width: 80%;
 }
 
 
