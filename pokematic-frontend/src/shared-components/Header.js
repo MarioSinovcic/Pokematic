@@ -10,11 +10,11 @@ const Header = (props) => {
   }
 
   function handlePokedex() {
-    history.push("/pokedex" +"/"+ props.teamName);
+    history.push("/pokedex/"+ props.teamName);
   }
 
   function handleBoard() {
-    history.push("/board" +"/"+ props.teamName);
+    history.push("/board/"+ props.teamName);
   }
 
   function renderHeader(currentPage) {
