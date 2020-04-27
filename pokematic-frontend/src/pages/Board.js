@@ -52,7 +52,7 @@ class Board extends React.Component {
           <div className="board-page">
           <Header teamName={this.state.teamName}/>
           <div className="team-card">
-                <TeamCard />
+                <TeamCard teamName={this.state.teamName}/>
           </div>
             <div className="menu">
             <GoalSidebar populatePage={this.populatePage} goalNames ={this.state.goalNames} goalsList={this.state.goalsList}/>

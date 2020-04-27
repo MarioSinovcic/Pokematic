@@ -65,6 +65,23 @@ export async function deleteGoal(goalName){
     await fetch(APIcall, requestOptions);
 }
 
+export async function getTeamInfo(teamName){
+  var APIcall = HOST + "team/" + teamName;
+  var response = await fetch(APIcall)
+  .then(response => response.json())
+  .then(json => {
+      return json
+  });
+
+  var apiData = {
+    name: response["name"], 
+    level: response["level"], 
+    experiencePoints: response["experiencePoints"]
+  }
+
+  return apiData;
+}
+
 export async function populateProfilePage(){
   var APIcall = HOST + "team";
   var response = await fetch(APIcall)
