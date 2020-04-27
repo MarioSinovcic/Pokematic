@@ -11,7 +11,7 @@ import { fetchPokemonData, fetchPokemonTypes } from '../apiHandler';
 class Pokedex extends React.Component {
 
   state = {
-    tempTeam: [],
+    teamName: this.props.match.params.teamName,
     pokemonCollection: [],
   }
 
@@ -96,7 +96,7 @@ class Pokedex extends React.Component {
 
         <div>
           <div className="header">
-            <Header />
+            <Header teamName={this.state.teamName}/>
           </div>
           <div className="filter-shape">
             <div className="left-cut" />
@@ -119,13 +119,10 @@ class Pokedex extends React.Component {
           </div>
         </div>
         <div className="team-card">
-          <TeamCard />
+          <TeamCard teamName={this.state.teamName}/>
         </div>
         <div>
           {this.props.pokemonCollection[0] ? <PokedexList pokemonCollection={this.props.pokemonCollection} /> : ""}
-        </div>
-        <div>
-          {/* Team Status */}
         </div>
       </div >
     );

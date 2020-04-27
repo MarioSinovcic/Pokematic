@@ -37,7 +37,6 @@ class TeamCard extends React.Component {
                         name={this.state.teamData["name"]}
                         level={this.state.teamData["level"]}
                         experiencePoints={this.state.teamData["experiencePoints"]}
-                        isItem={true}
                         />
                 </div>
                 <div className="bottom-support"></div>

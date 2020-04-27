@@ -10,7 +10,7 @@ const Header = (props) => {
   }
 
   function handlePokedex() {
-    history.push("/pokedex");
+    history.push("/pokedex" +"/"+ props.teamName);
   }
 
   function handleBoard() {
