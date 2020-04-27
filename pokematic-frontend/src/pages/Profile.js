@@ -43,7 +43,7 @@ render(){
       <div>
         <header className="App-header">
         <Header />
-        
+        </header>
         <div className="profile-background"></div>
           <div className="menu">
             <Sidebar 
@@ -56,11 +56,10 @@ render(){
               <ModalButton icon={searchTeamIcon} theme="light" type="search-team"/>
               <ModalButton icon={newTeamIcon} theme="light" type="new-team"/>
             </div>
+            <div className="profile-content">
+              <ProfileCard className="profile-card"/>
+            </div>
           </div>
-          <div className="profile-content">
-            <ProfileCard className="profile-card"/>
-          </div>
-        </header>
       </div>
     );
   }
