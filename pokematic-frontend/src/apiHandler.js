@@ -12,7 +12,9 @@
 import {STATUSLIST} from './constants';
 import {HOST} from './constants';
 
-export async function createTask(teamName, newTask, goalName){
+var teamName = "Dummy Team2"; //temporary
+
+export async function createTask(newTask, goalName){
     var APIcall = HOST + "team/createTask/" + teamName + "/" + goalName;
     const requestOptions = {
         method: 'POST',
@@ -23,7 +25,7 @@ export async function createTask(teamName, newTask, goalName){
     await fetch(APIcall, requestOptions);
 }
 
-export async function updateTask(updatedTask, teamName, goalName, taskName){
+export async function updateTask(updatedTask, goalName, taskName){
     var APIcall = HOST + "team/updateTask/" + teamName + "/" + goalName  + "/" + taskName;
     const requestOptions = {
         method: 'PUT',
@@ -34,7 +36,7 @@ export async function updateTask(updatedTask, teamName, goalName, taskName){
     await fetch(APIcall, requestOptions);
 }
 
-export async function deleteTask(teamName, goalName, taskName){
+export async function deleteTask(goalName, taskName){
   var APIcall = HOST + "team/deleteTask/" + teamName + "/" + goalName  + "/" + taskName;
     const requestOptions = {
         method: 'DELETE'
@@ -43,7 +45,7 @@ export async function deleteTask(teamName, goalName, taskName){
     await fetch(APIcall, requestOptions);
 }
 
-export async function createGoal(teamName, newGoal){
+export async function createGoal(newGoal){
   var APIcall = HOST + "team/createGoal/" + teamName;
   const requestOptions = {
       method: 'POST',
@@ -54,7 +56,7 @@ export async function createGoal(teamName, newGoal){
   await fetch(APIcall, requestOptions);
 }
 
-export async function deleteGoal(teamName, goalName){
+export async function deleteGoal(goalName){
   var APIcall = HOST + "team/deleteGoal/" + teamName + "/" + goalName;
     const requestOptions = {
         method: 'DELETE'
@@ -63,44 +65,9 @@ export async function deleteGoal(teamName, goalName){
     await fetch(APIcall, requestOptions);
 }
 
-export async function getTeamInfo(teamName){
-  var APIcall = HOST + "team/" + teamName;
-  var response = await fetch(APIcall)
-  .then(response => response.json())
-  .then(json => {
-      return json
-  });
-
-  var apiData = {
-    name: response["name"], 
-    level: response["level"], 
-    experiencePoints: response["experiencePoints"]
-  }
-
-  return apiData;
-}
-
-export async function populateProfilePage(){
-  var APIcall = HOST + "team";
-  var response = await fetch(APIcall)
-  .then(response => response.json())
-  .then(json => {
-      return json
-  });
-
-  var teamResponse = response;
-  var gatheredTeams= [];
-
-  for (var team = 0; team < teamResponse.length; team++) {
-    gatheredTeams.push(teamResponse[team]);
-  }
-
-  return(gatheredTeams);
-}
-
-export async function populateBoardPage(teamName2){
+export async function populateBoardPage(){
     // --- comment out ----
-    var APIcall = HOST + "team/goals/" + teamName2;
+    var APIcall = HOST + "team/goals/" + teamName;
     var response = await fetch(APIcall)
     .then(response => response.json())
     .then(json => {

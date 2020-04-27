@@ -11,11 +11,21 @@ const Routes = () => {
     return (
         <Switch>
             <Route exact path="/" component={Login} />
-            <Route path="/login" component={Login}/>
-            <Route path="/team-search" component={TeamSearch}/>
-            <Route path="/profile" component={Profile}/>
-            <Route name="pokedex" path="/pokedex/:teamName" component={Pokedex}/>
-            <Route name="board" path="/board/:teamName" component={Board}/>
+            <Route path="/login">
+                    <Login />
+            </Route>
+            <Route path="/team-search">
+                    <TeamSearch />
+            </Route>
+            <Route path="/profile">
+                    <Profile />
+            </Route>
+            <Route path="/pokedex">
+                    <Pokedex />
+            </Route>
+            <Route path="/board">
+                    <Board />
+            </Route>
             <Route path="/login" component={Login} />
             <Route component={NotFound} />
         </Switch>

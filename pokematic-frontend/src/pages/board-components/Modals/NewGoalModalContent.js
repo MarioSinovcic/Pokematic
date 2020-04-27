@@ -87,9 +87,8 @@ function ModalContent (props) {
                 experiencePoints: parseInt(selectedDifficulty),
                 progress: 0
             };
-            await createGoal(props.teamName, newGoal);
-            await props.refreshBoardPage(props.teamName);
-            window.location.reload(false);
+            await createGoal(newGoal);
+            await props.refreshBoardPage();
         }
         props.handleClose();
     };

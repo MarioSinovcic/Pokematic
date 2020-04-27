@@ -102,9 +102,8 @@ function ModalContent (props) {
                 assignees: [], //TODO
                 approved: false,
             };
-            await createTask(props.teamName, newTask, selectedGoal);
-            await props.refreshBoardPage(props.teamName);
-            window.location.reload(false);
+            await createTask(newTask, selectedGoal);
+            await props.refreshBoardPage();
         }
         props.handleClose();
     };
