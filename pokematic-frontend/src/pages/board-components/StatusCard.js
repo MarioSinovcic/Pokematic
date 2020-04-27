@@ -22,6 +22,7 @@ export class StatusCard extends React.Component {
                     key={taskData["name"]} //not used: just avoiding warnings
                     id={taskData["id"]} 
                     name={taskData["name"]} 
+                    teamName={this.props.teamName}
                     taskNumber={taskData["taskNumber"]} 
                     description={taskData["description"]} 
                     experiencePoints={taskData["experiencePoints"]} 

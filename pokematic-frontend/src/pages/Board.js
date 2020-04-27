@@ -55,20 +55,26 @@ class Board extends React.Component {
                 <TeamCard teamName={this.state.teamName}/>
           </div>
             <div className="menu">
-            <GoalSidebar populatePage={this.populatePage} goalNames ={this.state.goalNames} goalsList={this.state.goalsList}/>
+            <GoalSidebar 
+              populatePage={this.populatePage} 
+              goalNames ={this.state.goalNames} 
+              goalsList={this.state.goalsList} 
+              teamName={this.state.teamName}
+            />
             </div>
             <div className="tasks-content">
               <div className="todo-status">
-              <StatusCard statusTitle={"TODO"} taskList={this.state.todoList} populatePage={this.populatePage}/>
-              <StatusCard statusTitle={"IN PROGRESS"} taskList={this.state.inProgressList} populatePage={this.populatePage}/>
-              <StatusCard statusTitle={"IN REVIEW"} taskList={this.state.inReviewList} populatePage={this.populatePage}/>
-              <StatusCard statusTitle={"DONE"} taskList={this.state.doneList} populatePage={this.populatePage}/>
+              <StatusCard statusTitle={"TODO"} taskList={this.state.todoList} populatePage={this.populatePage} teamName={this.state.teamName}/>
+              <StatusCard statusTitle={"IN PROGRESS"} taskList={this.state.inProgressList} populatePage={this.populatePage} teamName={this.state.teamName}/>
+              <StatusCard statusTitle={"IN REVIEW"} taskList={this.state.inReviewList} populatePage={this.populatePage} teamName={this.state.teamName}/>
+              <StatusCard statusTitle={"DONE"} taskList={this.state.doneList} populatePage={this.populatePage} teamName={this.state.teamName}/>
               </div>
             </div>
             <div className="new-task-button">
               <ModalButton 
                 populatePage={this.populatePage} 
                 goalNames ={this.state.goalNames} 
+                teamName={this.state.teamName}
                 icon={<AddIcon style={{fontSize: "35px"}}/>} theme="dark" type="new-task"
               />
             </div>

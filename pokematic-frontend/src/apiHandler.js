@@ -12,9 +12,7 @@
 import {STATUSLIST} from './constants';
 import {HOST} from './constants';
 
-var teamName = "Dummy Team2"; //temporary
-
-export async function createTask(newTask, goalName){
+export async function createTask(teamName, newTask, goalName){
     var APIcall = HOST + "team/createTask/" + teamName + "/" + goalName;
     const requestOptions = {
         method: 'POST',
@@ -25,7 +23,7 @@ export async function createTask(newTask, goalName){
     await fetch(APIcall, requestOptions);
 }
 
-export async function updateTask(updatedTask, goalName, taskName){
+export async function updateTask(updatedTask, teamName, goalName, taskName){
     var APIcall = HOST + "team/updateTask/" + teamName + "/" + goalName  + "/" + taskName;
     const requestOptions = {
         method: 'PUT',
@@ -36,7 +34,7 @@ export async function updateTask(updatedTask, goalName, taskName){
     await fetch(APIcall, requestOptions);
 }
 
-export async function deleteTask(goalName, taskName){
+export async function deleteTask(teamName, goalName, taskName){
   var APIcall = HOST + "team/deleteTask/" + teamName + "/" + goalName  + "/" + taskName;
     const requestOptions = {
         method: 'DELETE'
@@ -45,7 +43,7 @@ export async function deleteTask(goalName, taskName){
     await fetch(APIcall, requestOptions);
 }
 
-export async function createGoal(newGoal){
+export async function createGoal(teamName, newGoal){
   var APIcall = HOST + "team/createGoal/" + teamName;
   const requestOptions = {
       method: 'POST',
@@ -56,7 +54,7 @@ export async function createGoal(newGoal){
   await fetch(APIcall, requestOptions);
 }
 
-export async function deleteGoal(goalName){
+export async function deleteGoal(teamName, goalName){
   var APIcall = HOST + "team/deleteGoal/" + teamName + "/" + goalName;
     const requestOptions = {
         method: 'DELETE'
