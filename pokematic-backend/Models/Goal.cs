@@ -12,11 +12,14 @@ namespace pokematic_backend.Models
         
         [BsonElement("number")] public int Number { get; set; }
         
-        [BsonElement("description")] public string Description { get; set; }
+        [BsonElement("description")]
+        public string Description { get; set; }
 
         [BsonElement("experiencePoints")] public int ExperiencePoints { get; set; }
 
-        [BsonElement("progress")] public double Progress { get; set; }
+        [BsonElement("progress")] 
+        [BsonRepresentation((BsonType.Double), AllowTruncation = true)] 
+        public double Progress { get; set; }
 
 
     }
