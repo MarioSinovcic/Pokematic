@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory, useLocation} from "react-router-dom";
 import './Header.css'
 
-const Header = (props) => {
+const Header = () => {
   const history = useHistory();
 
   function handleProfile() {
@@ -10,11 +10,11 @@ const Header = (props) => {
   }
 
   function handlePokedex() {
-    history.push("/pokedex/"+ props.teamName);
+    history.push("/pokedex");
   }
 
   function handleBoard() {
-    history.push("/board/"+ props.teamName);
+    history.push("/board");
   }
 
   function renderHeader(currentPage) {
@@ -23,9 +23,11 @@ const Header = (props) => {
       case "/profile":
         return (    
           <div className="Header">
+              <div className="left-icon board-image" onClick={handleBoard}/>
               <div className="middle-section">
-                <img className="logo" src="https://imgur.com/MOQ5TEp.png" alt="Pokematic"/>
+                <img className="logo" src="https://imgur.com/MOQ5TEp.png" alt="Pokematic" onClick={handleBoard}/>
               </div>
+              <div className="right-icon pokedex-image" onClick={handlePokedex}/>
           </div>);
 
       case "/board":

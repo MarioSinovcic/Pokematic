@@ -1,13 +1,13 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
-import TeamDetails from './TeamDetails';
 import './Sidebar.css'
+import Goal from '../pages/board-components/Goal';
+import TeamDetails from './TeamDetails';
 
 const drawerWidth = 250;
 
@@ -35,19 +35,6 @@ const useStyles = makeStyles(theme => ({
 export default function Sidebar(props) {
   const classes = useStyles();
 
-
-  var teamsToRender = props.teamsList.map((teamData) => 
-                <Link key={teamData["id"]}  to={{pathname: `board/${teamData["name"]}`}} style={{ textDecoration: 'none' }}>
-                  <TeamDetails 
-                    //not used: just avoiding warnings
-                    id={teamData["id"]} 
-                    name={teamData["name"]} 
-                    level={teamData["level"]}
-                    experiencePoints={teamData["experiencePoints"]}
-                    isItem={true}/>
-                </Link>
-  )
-
   return (
     <div className={classes.root}>
       <Drawer
@@ -59,9 +46,11 @@ export default function Sidebar(props) {
       >
         <div className={classes.toolbar} />
         <List>
+         
             <ListItem button key={"title"} className="TeamTabs TaskButton">
             <Typography className="TaskFilter AllTasks">{props.title}</Typography>
             </ListItem>
+
             {props.subTitle && 
              <ListItem button key={"subtitle"} className="TeamTabs">
              <Typography className="TaskFilter MyTasks">{props.subTitle}</Typography>
@@ -69,7 +58,12 @@ export default function Sidebar(props) {
         </List>
         <Divider className="SideBarDivider"/>
         <List>
-              {teamsToRender}
+          {/* Dynamically fetch goals/teams here */}
+          {props.items.map((text, index) => (
+            props.itemType === "GOAL" ? 
+              <Goal text={text} key={index}/> 
+              : <TeamDetails isItem={true}/>
+          ))}
         </List>
       </Drawer>
     </div>

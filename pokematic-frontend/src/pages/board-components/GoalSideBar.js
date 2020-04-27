@@ -50,7 +50,6 @@ export class GoalSideBar extends React.Component {
                 key={goalData["name"]} //not used: just avoiding warnings
                 id={goalData["id"]} 
                 name={goalData["name"]} 
-                teamName={this.props.teamName}
                 experiencePoints={goalData["experiencePoints"]} 
                 progress={goalData["progress"]} 
                 populatePage={this.props.populatePage}
@@ -81,7 +80,6 @@ export class GoalSideBar extends React.Component {
             </List>
             <div className="NewGoalButton">
               <ModalButton 
-                  teamName={this.props.teamName}
                   populatePage={this.props.populatePage}
                   goalNames ={this.props.goalNames} 
                   icon={newModalIcon} 
