@@ -5,7 +5,11 @@ import StatusCard from './board-components/StatusCard';
 import ModalButton from '../shared-components/ModalButton';
 import Header from '../shared-components/Header';
 import AddIcon from '@material-ui/icons/Add';
-import {populateBoardPage} from '.././apiHandler';
+import { populateBoardPage, fetchPokemonData, fetchPokemonTypes } from '.././apiHandler';
+import LevelUpModalContent from './board-components/Modals/LevelUpModalContent';
+import { Modal, Backdrop, Fade, Button } from '@material-ui/core';
+import { connect } from 'react-redux';
+import { togglePokemonLoad, addPokemonData, addPokemonNames, addPokemonTypes, changeCollection } from '../actions/actions';
 import './Board.css'
 
 class Board extends React.Component {
@@ -22,11 +26,45 @@ class Board extends React.Component {
       inProgressList: [],
       inReviewList: [],
       doneList: [],
+      open: false,
     }
   }
 
   componentDidMount(){
     this.populatePage();
+    if (!this.props.isLoaded) {
+      this.getPokemonData();
+      this.props.togglePokemonHasLoaded();
+    }
+  }
+
+  async getPokemonData() {
+    // Get a list of pokemon Names and their URLs
+    await fetchPokemonData().then((results)=> {this.props.addPokemon(results)});
+
+    await this.props.pokemonMap.map((pokemon, i) => {
+        const getTypes = fetchPokemonTypes(pokemon.url);
+        return (
+        getTypes.then((data) => {
+          this.props.addPokemonTypes(data.name, data.types);
+        }));
+    })
+
+    this.props.addPokemonData(this.populatePokemon(this.props.pokemonMap));
+  }
+
+  populatePokemon(pokemonCollection) {
+    var populatedPokemon = []
+    pokemonCollection.map((pokemonData, i) => {
+      return (
+        populatedPokemon.push(
+          [i,
+            pokemonData && pokemonData.name,
+            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + (i + 1) + ".png",
+          ])
+      );
+    })
+    return populatedPokemon;
   }
 
   populatePage = async () => {
@@ -41,6 +79,18 @@ class Board extends React.Component {
       doneList: (await apiData).doneList,
     })
   }
+a
+  handleOpen() {
+    this.setState({
+      open: true,
+    })
+  };
+
+  handleClose() {
+    this.setState({
+      open: false,
+    })
+  };
   
   render(){
     if(this.state.response === []){
@@ -77,7 +127,37 @@ class Board extends React.Component {
                 teamName={this.state.teamName}
                 icon={<AddIcon style={{fontSize: "35px"}}/>} theme="dark" type="new-task"
               />
+              <Button style={{ size: "50px", backgroundColor: "red" }} onClick={() => this.handleOpen()} > Level up! </Button>
             </div>
+          </div>
+          <div>
+            <Modal
+              aria-labelledby="transition-modal-title"
+              aria-describedby="transition-modal-description"
+              // className={classes.modal}
+              open={this.state.open}
+              disableAutoFocus={true}
+              onBackdropClick={() => this.handleClose()}
+              onClose={() => this.handleClose()}
+              closeAfterTransition
+              BackdropComponent={Backdrop}
+              BackdropProps={{
+                timeout: 500,
+              }}
+            >
+              <Fade in={this.state.open}>
+                <div>
+                  {/* Temporary error handling to load pokedex first */}
+                  {this.props.pokemonData[1] ? 
+                  <LevelUpModalContent
+                    teamName={this.state.teamName}
+                    handleClose={this.handleClose.bind(this)}
+                    pokemonData={this.props.pokemonData}
+                  />
+                  : ""}
+                </div>
+              </Fade>
+            </Modal>
           </div>
         </div>
      );
@@ -85,4 +165,34 @@ class Board extends React.Component {
 }
 }
 
-export default Board;
+const mapStateToProps = (state) => {
+  return {
+    pokemonMap: state.pokemonURL,
+    pokemonTypes: state.pokemonTypes,
+    pokemonData: state.pokemonData,
+    isLoaded: state.isLoaded,
+    pokemonCollection: state.pokemonCollection,
+  };
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    togglePokemonHasLoaded: () => {
+      dispatch(togglePokemonLoad())
+    },
+    addPokemonData: (pokemon) => {
+      dispatch(addPokemonData(pokemon))
+    },
+    addPokemon: (pokemon) => {
+      dispatch(addPokemonNames(pokemon))
+    },
+    addPokemonTypes: (pokemonName, pokemonType) => {
+      dispatch(addPokemonTypes(pokemonName, pokemonType))
+    },
+    changeCollection: (collection) => {
+      dispatch(changeCollection(collection))
+    },
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Board);
