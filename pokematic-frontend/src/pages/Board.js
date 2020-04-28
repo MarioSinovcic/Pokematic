@@ -5,19 +5,19 @@ import StatusCard from './board-components/StatusCard';
 import ModalButton from '../shared-components/ModalButton';
 import Header from '../shared-components/Header';
 import AddIcon from '@material-ui/icons/Add';
+import {populateBoardPage} from '.././apiHandler';
 import './Board.css'
-
-import {STATUSLIST} from '../constants';
-import {LOCALHOST} from '../constants';
-import fakeGoalResponse from '../goalResponse.json';
 
 class Board extends React.Component {
   constructor(props){
     super(props);
 
+    this.populatePage = this.populatePage.bind(this);
+
     this.state = {
       response: [],
       goalsList: [],
+      goalNames: [],
       todoList: [],
       inProgressList: [],
       inReviewList: [],
@@ -25,77 +25,28 @@ class Board extends React.Component {
     }
   }
 
-  async componentDidMount(){
-    this.getTeamGoals();
+  componentDidMount(){
+    this.populatePage();
   }
 
-  async getTeamGoals(){
-    var APIcall = LOCALHOST + "team/goals/" + "Dummy Team"
-    const APIresponse = await fetch(APIcall)
-      .then(APIresponse => APIresponse.json()
-      );
+  populatePage = async () => {
+    var apiData = populateBoardPage();
 
     this.setState({
-      response: APIresponse,
-    })
-    
-    var goalResponse = this.state.response;
-
-    const gatheredTeamGoals= [];
-    var gatheredTasksForGoals= [];
-
-    for (var goal = 0; goal < goalResponse.length; goal++) {
-      gatheredTeamGoals.push(goalResponse[goal]);
-      var taskArray = goalResponse[goal]["tasks"];
-
-      for(var task = 0; task < taskArray.length; task++){
-        var currentTask = taskArray[task];
-        currentTask["goalName"] = goalResponse[goal]["name"];
-        gatheredTasksForGoals.push(currentTask);
-      }
-    }
-    this.sortTasks(gatheredTasksForGoals);
-    
-    this.setState({
-      goalsList: gatheredTeamGoals
+      goalsList: (await apiData).goalsList,
+      goalNames: (await apiData).goalNames,
+      todoList: (await apiData).todoList,
+      inProgressList: (await apiData).inProgressList,
+      inReviewList: (await apiData).inReviewList,
+      doneList: (await apiData).doneList,
     })
   }
-
-  sortTasks(tasks){
-    const gatheredTodoList = [];
-    const gatheredInProgressList = [];
-    const gatheredInReviewList = [];
-    const gatheredDoneList = [];
-    
-    for (var i = 0; i < tasks.length; i++) {
-      if(tasks[i]["status"] === STATUSLIST[0]){
-        gatheredTodoList.push(tasks[i]);
-      }
-      if(tasks[i]["status"] === STATUSLIST[1]){
-        gatheredInProgressList.push(tasks[i]);
-      }
-      if(tasks[i]["status"] === STATUSLIST[2]){
-        gatheredInReviewList.push(tasks[i]);
-      }
-      if(tasks[i]["status"] === STATUSLIST[3]){
-        gatheredDoneList.push(tasks[i]);
-      }
-    }
-        
-    this.setState({
-      todoList: gatheredTodoList,
-      inProgressList: gatheredInProgressList,
-      inReviewList: gatheredInReviewList,
-      doneList: gatheredDoneList,
-    })
-  }
-
+  
   render(){
     if(this.state.response === []){
       return(<div>loading</div>)
     }
     else{
-      console.log(this.state.response)
     return (
         <div>
           <div className="board-page">
@@ -108,14 +59,18 @@ class Board extends React.Component {
             </div>
             <div className="tasks-content">
               <div className="todo-status">
-              <StatusCard statusTitle={"TODO"} taskList={this.state.todoList}/>
-              <StatusCard statusTitle={"IN PROGRESS"} taskList={this.state.inProgressList}/>
-              <StatusCard statusTitle={"IN REVIEW"} taskList={this.state.inReviewList}/>
-              <StatusCard statusTitle={"DONE"} taskList={this.state.doneList}/>
+              <StatusCard statusTitle={"TODO"} taskList={this.state.todoList} populatePage={this.populatePage}/>
+              <StatusCard statusTitle={"IN PROGRESS"} taskList={this.state.inProgressList} populatePage={this.populatePage}/>
+              <StatusCard statusTitle={"IN REVIEW"} taskList={this.state.inReviewList} populatePage={this.populatePage}/>
+              <StatusCard statusTitle={"DONE"} taskList={this.state.doneList} populatePage={this.populatePage}/>
               </div>
             </div>
             <div className="new-task-button">
-              <ModalButton icon={<AddIcon style={{fontSize: "35px"}}/>} theme="dark" type="new-task"/>
+              <ModalButton 
+                populatePage={this.populatePage} 
+                goalNames ={this.state.goalNames} 
+                icon={<AddIcon style={{fontSize: "35px"}}/>} theme="dark" type="new-task"
+              />
             </div>
           </div>
         </div>

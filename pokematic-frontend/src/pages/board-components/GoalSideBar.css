@@ -58,3 +58,10 @@
     padding-bottom: 10px;
     font-size: 10px;
 }
+
+.NewGoalButton{
+    padding-left: 20px;
+    top: 76%;
+    z-index: 20;
+    position: absolute;
+}
