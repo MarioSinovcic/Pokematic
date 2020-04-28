@@ -22,18 +22,20 @@ class Pokedex extends React.Component {
   switchPokemon(event) {
 
     if (!event.target.checked) { 
-      this.props.changeCollection([this.props.pokemonData[54], this.props.pokemonData[103]]);
-
       this.setState({
         pokemonCollection: [this.props.pokemonData[54], this.props.pokemonData[103]],
       })
 
-    } else {
-      this.props.changeCollection(this.props.pokemonData);
+      this.props.changeCollection([this.props.pokemonData[54], this.props.pokemonData[103]]);
 
+
+    } else {
       this.setState({
         pokemonCollection: this.props.pokemonData,
       })
+
+      this.props.changeCollection(this.props.pokemonData);
+      
     }
   };
 

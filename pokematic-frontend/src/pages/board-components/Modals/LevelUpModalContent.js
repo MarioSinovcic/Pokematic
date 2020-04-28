@@ -48,12 +48,12 @@ class LevelUpModalContent extends React.Component {
                     <div className="pokemon-modal-title">
                         {!this.state.showReward ? "Level Up!" : this.state.rewardName}
                     </div>
-                    <div class="flip-card">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front">
+                    <div className="flip-card">
+                        <div className="flip-card-inner">
+                            <div className="flip-card-front">
                             <div className="pokeball"><img src="/images/pokeballPrize.png" alt="prize" className="pokeball hidden" /></div>
                             </div>
-                            <div class="flip-card-back">
+                            <div className="flip-card-back">
                             <div className="pokeball">
                             <div className="reward-circle pokeball">
                             <div className="pokemon-reward-name">{this.state.pokemonReward.name}
