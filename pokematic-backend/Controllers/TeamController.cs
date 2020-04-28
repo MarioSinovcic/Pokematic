@@ -76,19 +76,7 @@ namespace pokematic_backend.Controllers
             }
 
             return NotFound(serviceMessage);
-        }
-        
-        [HttpPost("createGoal/{teamName}")]
-        public  Goal CreateGoal(Goal goal, string teamName)
-        {
-            _teamService.CreateGoal(goal, teamName);
-            return goal;
-        }
-        
-
-        /**
-         * Task endpoints
-         */
+        } 
 
         [HttpDelete("deleteTeam/{teamName}")]
         public ActionResult DeleteTeam(string teamName)
