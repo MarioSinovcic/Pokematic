@@ -4,6 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import {createGoal} from '../../../apiHandler';
 import "./NewGoalModalContent.css"
 
 const useStyles = makeStyles({
@@ -53,9 +54,9 @@ function ModalContent (props) {
     const classes = useStyles();
     const defaultDescription = "This goal encapsulates ...."
 
-    const [selectedGoalName, setSelectedGoalName] = useState("GOAL: " + new Date());
+    const [selectedGoalName, setSelectedGoalName] = useState("Goal Name");
     const [selectedDescription, setSelectedDescription] = useState("No description added");
-    const [selectedDifficulty, setSelectedDifficulty] = useState(30);
+    const [selectedDifficulty, setSelectedDifficulty] = useState(0);
 
     // ----- HANDLERS FOR INPUT FIELDS -----
     const handleGoalNameChange = event => {
@@ -70,17 +71,27 @@ function ModalContent (props) {
         setSelectedDifficulty(event.target.value);
     };
 
-    //TODO
-    const handleAddGoal = event => {
-        const newGoal = {
-            name: selectedGoalName,
-            description: selectedDescription,
-            tasks: [],
-            experiencePoints: selectedDifficulty,
-            progress: 0
-        };
-
-        props.addNewGoal(newGoal);
+    const handleAddGoal = async () => {
+        var currentGoalsForATeam = props.goalNames;
+        if(currentGoalsForATeam.includes(selectedGoalName.trim())){
+           props.showErrorMessage("Goal wasn't created, goal name already in use");
+        }
+        else if(selectedGoalName === "Goal Name" || selectedDifficulty === 0){
+            props.showErrorMessage("Goal wasn't created, as a property was not filled in");
+        }
+        else{
+            const newGoal = {
+                name: selectedGoalName.trim(),
+                description: selectedDescription,
+                tasks: [],
+                experiencePoints: parseInt(selectedDifficulty),
+                progress: 0
+            };
+            await createGoal(props.teamName, newGoal);
+            await props.refreshBoardPage(props.teamName);
+            window.location.reload(false);
+        }
+        props.handleClose();
     };
 
     return (

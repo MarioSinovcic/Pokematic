@@ -28,7 +28,7 @@ namespace pokematic_backend.Services
 
         public User Get(string username)
         {
-            var user = _users.AsQueryable().FirstAsync(user => user.Username == username).Result;
+            var user = _users.AsQueryable().FirstOrDefault(user => user.Username == username);
             return user;
         }
         

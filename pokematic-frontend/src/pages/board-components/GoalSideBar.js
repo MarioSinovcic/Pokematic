@@ -47,11 +47,13 @@ export class GoalSideBar extends React.Component {
     else{         
         var goalsToRender = this.props.goalsList.map((goalData) => 
             <Goal 
-                key={goalData["id"]} //not used: just avoiding warnings
+                key={goalData["name"]} //not used: just avoiding warnings
                 id={goalData["id"]} 
                 name={goalData["name"]} 
+                teamName={this.props.teamName}
                 experiencePoints={goalData["experiencePoints"]} 
                 progress={goalData["progress"]} 
+                populatePage={this.props.populatePage}
                 />
           )
       return(
@@ -78,7 +80,13 @@ export class GoalSideBar extends React.Component {
               {goalsToRender}
             </List>
             <div className="NewGoalButton">
-              <ModalButton  icon={newModalIcon} theme="light" type="new-goal"/>
+              <ModalButton 
+                  teamName={this.props.teamName}
+                  populatePage={this.props.populatePage}
+                  goalNames ={this.props.goalNames} 
+                  icon={newModalIcon} 
+                  theme="light" 
+                  type="new-goal"/>
             </div>
           </Drawer>
         </div>

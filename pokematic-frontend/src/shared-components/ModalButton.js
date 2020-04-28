@@ -4,9 +4,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
+import NewGoalModalContent from '../pages/board-components/Modals/NewGoalModalContent'
 import NewTaskModalContent from '../pages/board-components/Modals/NewTaskModalContent'
 import ErrorMessage from './ErrorMessage'
-import NewGoalModalContent from '../pages/board-components/Modals/NewGoalModalContent'
 import './ModalButton.css';
 
 
@@ -46,14 +46,7 @@ function ModalButton(props) {
   }
 
   async function refreshBoardPage() {
-    props.populatePage();
-    setOpen(false);
-  };
-
-  const addNewGoal = (newGoal) => {
-    //TODO
-    console.log("New goal added called: " + newGoal.experiencePoints)
-
+    props.populatePage(props.teamName);
     setOpen(false);
   };
 
@@ -62,6 +55,7 @@ function ModalButton(props) {
 
     case "new-task":
     renderModal = <NewTaskModalContent 
+                    teamName={props.teamName}
                     goalNames={props.goalNames} 
                     refreshBoardPage={refreshBoardPage}
                     handleClose={handleClose}
@@ -78,7 +72,13 @@ function ModalButton(props) {
     break;
 
     case "new-goal":
-    renderModal = <NewGoalModalContent addNewGoal={addNewGoal}/>
+    renderModal = <NewGoalModalContent      
+                    teamName={props.teamName}               
+                    goalNames={props.goalNames} 
+                    refreshBoardPage={refreshBoardPage}
+                    handleClose={handleClose}
+                    showErrorMessage={showErrorMessage}
+                    /> 
     break;
 
     default:
