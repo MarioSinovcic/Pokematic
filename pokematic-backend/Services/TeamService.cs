@@ -79,10 +79,6 @@ namespace pokematic_backend.Services
         }
         
         
-        public void JoinTeam(string teamName, string username)
-        {
-            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
-            var user = _userService.Get(username);
 
         public void JoinTeam(string teamName, string username)
         {
@@ -166,6 +162,59 @@ namespace pokematic_backend.Services
 
             return goal;
         }
+
+        
+        public string DeleteGoal(string teamName, string goalName)
+        {
+            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
+
+            if (team == null)
+            {
+                return "No team with that team name";
+            }
+
+            var goal = team.Goals.FirstOrDefault(goal => goal.Name == goalName);
+
+            if (goal == null)
+            {
+                return "No goal with that goal name exists for the " + teamName + " team ";
+            }
+
+            team.Goals.Remove(team.Goals.Single(goal => goal.Name == goalName));
+            UpdateTeam(teamName, team);
+
+            return "success";
+        }
+
+        public string UpdateGoal(string teamName, string goalToUpdateName, Goal updatedGoal)
+        {
+            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
+
+            if (team == null)
+            {
+                return "No team with that team name";
+            }
+
+            var goalToUpdate = team.Goals.FirstOrDefault(goal => goal.Name == goalToUpdateName);
+
+            if (goalToUpdate == null)
+            {
+                return "Trying to update goal that doesn't exist";
+            }
+
+            team.Goals[team.Goals.FindIndex(goal => goal.Name == goalToUpdateName)] = updatedGoal;
+            UpdateTeam(teamName, team);
+
+            return "success";
+        }
+
+        private double CalculateGoalProgress(Goal goal)
+        {
+            double numberOfTasks = goal.Tasks.Count;
+            double numberOfApprovedTasks = goal.Tasks.Count(task => task.Approved == true);
+
+            return numberOfApprovedTasks / numberOfTasks;
+        }
         
         /**
          * Task functionality 
@@ -223,20 +272,6 @@ namespace pokematic_backend.Services
             }
             
         }
-        
-        public string DeleteTask(string teamName, string goalName, string taskName)
-        { 
-            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
-
-        private double CalculateGoalProgress(Goal goal)
-        {
-            double numberOfTasks = goal.Tasks.Count;
-            double numberOfApprovedTasks = goal.Tasks.Count(task => task.Approved == true);
-
-            return numberOfApprovedTasks / numberOfTasks;
-        }
-
-
       
         public string DeleteTask(string teamName, string goalName, string taskName)
         { 
@@ -435,49 +470,6 @@ namespace pokematic_backend.Services
             return "success";
         }
 
-        public string DeleteGoal(string teamName, string goalName)
-        {
-            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
-
-            if (team == null)
-            {
-                return "No team with that team name";
-            }
-
-            var goal = team.Goals.FirstOrDefault(goal => goal.Name == goalName);
-
-            if (goal == null)
-            {
-                return "No goal with that goal name exists for the " + teamName + " team ";
-            }
-
-            team.Goals.Remove(team.Goals.Single(goal => goal.Name == goalName));
-            UpdateTeam(teamName, team);
-
-            return "success";
-        }
-
-        public string UpdateGoal(string teamName, string goalToUpdateName, Goal updatedGoal)
-        {
-            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
-
-            if (team == null)
-            {
-                return "No team with that team name";
-            }
-
-            var goalToUpdate = team.Goals.FirstOrDefault(goal => goal.Name == goalToUpdateName);
-
-            if (goalToUpdate == null)
-            {
-                return "Trying to update goal that doesn't exist";
-            }
-
-            team.Goals[team.Goals.FindIndex(goal => goal.Name == goalToUpdateName)] = updatedGoal;
-            UpdateTeam(teamName, team);
-
-            return "success";
-        }
 
     }
 }
