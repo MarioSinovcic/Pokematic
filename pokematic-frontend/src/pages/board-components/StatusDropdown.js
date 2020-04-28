@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
@@ -35,10 +35,8 @@ const useStyles = makeStyles({
 
 function StatusDropdown(props) {
   const classes = useStyles();
-  const [selectedStatus, setSelectedStatus] = useState("DEFUALT");
 
   const handleStausChange = event => {
-    setSelectedStatus(event.target.value);
     var newStatus = event.target.value;
     if(newStatus === 'TODO' || newStatus === 'In Progress' || newStatus === 'In Review' || newStatus === 'Done'){
       props.changeStatus(newStatus);

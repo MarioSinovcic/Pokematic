@@ -6,19 +6,20 @@ import ModalButton from '../shared-components/ModalButton';
 import Header from '../shared-components/Header';
 import AddIcon from '@material-ui/icons/Add';
 import { populateBoardPage, fetchPokemonData, fetchPokemonTypes } from '.././apiHandler';
-import './Board.css'
 import LevelUpModalContent from './board-components/Modals/LevelUpModalContent';
 import { Modal, Backdrop, Fade, Button } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { togglePokemonLoad, addPokemonData, addPokemonNames, addPokemonTypes, changeCollection } from '../actions/actions';
+import './Board.css'
 
 class Board extends React.Component {
-  constructor(props) {
+  constructor(props){
     super(props);
 
     this.populatePage = this.populatePage.bind(this);
 
     this.state = {
+      teamName: this.props.match.params.teamName,
       goalsList: [],
       goalNames: [],
       todoList: [],
@@ -29,7 +30,7 @@ class Board extends React.Component {
     }
   }
 
-  componentDidMount() {
+  componentDidMount(){
     this.populatePage();
     if (!this.props.isLoaded) {
       this.getPokemonData();
@@ -38,10 +39,8 @@ class Board extends React.Component {
   }
 
   async getPokemonData() {
-
     // Get a list of pokemon Names and their URLs
     await fetchPokemonData().then((results)=> {this.props.addPokemon(results)});
-    
 
     await this.props.pokemonMap.map((pokemon, i) => {
         const getTypes = fetchPokemonTypes(pokemon.url);
@@ -52,9 +51,7 @@ class Board extends React.Component {
     })
 
     this.props.addPokemonData(this.populatePokemon(this.props.pokemonMap));
-
   }
-
 
   populatePokemon(pokemonCollection) {
     var populatedPokemon = []
@@ -70,7 +67,19 @@ class Board extends React.Component {
     return populatedPokemon;
   }
 
+  populatePage = async () => {
+    var apiData = populateBoardPage(this.state.teamName);
 
+    this.setState({
+      goalsList: (await apiData).goalsList,
+      goalNames: (await apiData).goalNames,
+      todoList: (await apiData).todoList,
+      inProgressList: (await apiData).inProgressList,
+      inReviewList: (await apiData).inReviewList,
+      doneList: (await apiData).doneList,
+    })
+  }
+a
   handleOpen() {
     this.setState({
       open: true,
@@ -82,55 +91,43 @@ class Board extends React.Component {
       open: false,
     })
   };
-
-
-  populatePage = async () => {
-    var apiData = populateBoardPage();
-
-    this.setState({
-      goalsList: (await apiData).goalsList,
-      goalNames: (await apiData).goalNames,
-      todoList: (await apiData).todoList,
-      inProgressList: (await apiData).inProgressList,
-      inReviewList: (await apiData).inReviewList,
-      doneList: (await apiData).doneList,
-    })
-  }
-
-
-  render() {
-    if (this.state.response === []) {
-      return (<div>loading</div>)
+  
+  render(){
+    if(this.state.response === []){
+      return(<div>loading</div>)
     }
-    else {
-
-      return (
+    else{
+    return (
         <div>
-          <div>
-            <div className="board-page">
-              <Header />
-              <div className="team-card">
-                <TeamCard />
+          <div className="board-page">
+          <Header teamName={this.state.teamName}/>
+          <div className="team-card">
+                <TeamCard teamName={this.state.teamName}/>
+          </div>
+            <div className="menu">
+            <GoalSidebar 
+              populatePage={this.populatePage} 
+              goalNames ={this.state.goalNames} 
+              goalsList={this.state.goalsList} 
+              teamName={this.state.teamName}
+            />
+            </div>
+            <div className="tasks-content">
+              <div className="todo-status">
+              <StatusCard statusTitle={"TODO"} taskList={this.state.todoList} populatePage={this.populatePage} teamName={this.state.teamName}/>
+              <StatusCard statusTitle={"IN PROGRESS"} taskList={this.state.inProgressList} populatePage={this.populatePage} teamName={this.state.teamName}/>
+              <StatusCard statusTitle={"IN REVIEW"} taskList={this.state.inReviewList} populatePage={this.populatePage} teamName={this.state.teamName}/>
+              <StatusCard statusTitle={"DONE"} taskList={this.state.doneList} populatePage={this.populatePage} teamName={this.state.teamName}/>
               </div>
-              <div className="menu">
-                <GoalSidebar populatePage={this.populatePage} goalNames={this.state.goalNames} goalsList={this.state.goalsList} />
-              </div>
-              <div className="tasks-content">
-                <div className="todo-status">
-                  <StatusCard statusTitle={"TODO"} taskList={this.state.todoList} populatePage={this.populatePage} />
-                  <StatusCard statusTitle={"IN PROGRESS"} taskList={this.state.inProgressList} populatePage={this.populatePage} />
-                  <StatusCard statusTitle={"IN REVIEW"} taskList={this.state.inReviewList} populatePage={this.populatePage} />
-                  <StatusCard statusTitle={"DONE"} taskList={this.state.doneList} populatePage={this.populatePage} />
-                </div>
-              </div>
-              <div className="new-task-button">
-                <ModalButton
-                  populatePage={this.populatePage}
-                  goalNames={this.state.goalNames}
-                  icon={<AddIcon style={{ fontSize: "35px" }} />} theme="dark" type="new-task"
-                />              {/* // TEMP LEVEL UP BUTTON */}
-                <Button style={{ size: "50px", backgroundColor: "red" }} onClick={() => this.handleOpen()} > Level up! </Button>
-              </div>
+            </div>
+            <div className="new-task-button">
+              <ModalButton 
+                populatePage={this.populatePage} 
+                goalNames ={this.state.goalNames} 
+                teamName={this.state.teamName}
+                icon={<AddIcon style={{fontSize: "35px"}}/>} theme="dark" type="new-task"
+              />
+              <Button style={{ size: "50px", backgroundColor: "red" }} onClick={() => this.handleOpen()} > Level up! </Button>
             </div>
           </div>
           <div>
@@ -150,10 +147,10 @@ class Board extends React.Component {
             >
               <Fade in={this.state.open}>
                 <div>
-
                   {/* Temporary error handling to load pokedex first */}
                   {this.props.pokemonData[1] ? 
                   <LevelUpModalContent
+                    teamName={this.state.teamName}
                     handleClose={this.handleClose.bind(this)}
                     pokemonData={this.props.pokemonData}
                   />
@@ -163,9 +160,9 @@ class Board extends React.Component {
             </Modal>
           </div>
         </div>
-      );
-    }
+     );
   }
+}
 }
 
 const mapStateToProps = (state) => {
@@ -199,5 +196,3 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Board);
-
-

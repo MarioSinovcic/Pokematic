@@ -46,7 +46,7 @@ function ModalButton(props) {
   }
 
   async function refreshBoardPage() {
-    props.populatePage();
+    props.populatePage(props.teamName);
     setOpen(false);
   };
 
@@ -55,6 +55,7 @@ function ModalButton(props) {
 
     case "new-task":
     renderModal = <NewTaskModalContent 
+                    teamName={props.teamName}
                     goalNames={props.goalNames} 
                     refreshBoardPage={refreshBoardPage}
                     handleClose={handleClose}
@@ -71,7 +72,8 @@ function ModalButton(props) {
     break;
 
     case "new-goal":
-    renderModal = <NewGoalModalContent                     
+    renderModal = <NewGoalModalContent      
+                    teamName={props.teamName}               
                     goalNames={props.goalNames} 
                     refreshBoardPage={refreshBoardPage}
                     handleClose={handleClose}

@@ -10,7 +10,7 @@ import { Typography, Grid, Switch } from '@material-ui/core';
 class Pokedex extends React.Component {
 
   state = {
-    tempTeam: [],
+    teamName: this.props.match.params.teamName,
     pokemonCollection: [],
   }
 
@@ -18,7 +18,7 @@ class Pokedex extends React.Component {
     // TEMPORARY TEAM
     this.props.changeCollection([this.props.pokemonData[54], this.props.pokemonData[103]]);
   } 
-
+  
   switchPokemon(event) {
 
     if (!event.target.checked) { 
@@ -48,7 +48,7 @@ class Pokedex extends React.Component {
 
         <div>
           <div className="header">
-            <Header />
+            <Header currentPage={"/pokedex"} teamName={this.state.teamName}/>
           </div>
           <div className="filter-shape">
             <div className="left-cut" />
@@ -71,13 +71,10 @@ class Pokedex extends React.Component {
           </div>
         </div>
         <div className="team-card">
-          <TeamCard />
+          <TeamCard teamName={this.state.teamName}/>
         </div>
         <div>
           {this.props.pokemonCollection[0] ? <PokedexList pokemonCollection={this.props.pokemonCollection} /> : ""}
-        </div>
-        <div>
-          {/* Team Status */}
         </div>
       </div >
     );

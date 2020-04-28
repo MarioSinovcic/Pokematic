@@ -28,10 +28,6 @@ class LevelUpModalContent extends React.Component {
         });
     }
 
-    toPokedex() {
-        this.context.router.push('/pokedex');
-    }
-
     generatePokemon(){
         const randomNum = Math.floor(Math.random() * 151);
         const randomPokemon = this.props.pokemonData[randomNum];
@@ -63,10 +59,10 @@ class LevelUpModalContent extends React.Component {
                             <div className="pokemon-reward-name">{this.state.pokemonReward.name}
                                     </div>
                                     <img className="pokemon-image pokemon-reward" src={"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+this.state.pokemonReward.number+".png"} alt="newPokemon"></img>
-                                
+
                             </div>
                             <div className="action-button-container">
-                                <Link to="/pokedex" replace style={{ textDecoration: 'none' }} >
+                                <Link to={"/pokedex/"+this.props.teamName} replace style={{ textDecoration: 'none' }} >
                                     <Button className="reward-button">View Collection</Button>
                                 </Link>
                                 <Button className="reward-button" onClick={this.props.handleClose}>Done</Button>
@@ -80,7 +76,4 @@ class LevelUpModalContent extends React.Component {
         );
     }
 }
-
-  
   export default LevelUpModalContent
-

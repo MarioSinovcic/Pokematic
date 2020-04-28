@@ -67,7 +67,7 @@
     background-image: url('../../../images/background_pokeball_white.png');
     background-repeat: no-repeat;
     background-size: 300px;
-    
+
 }
 
 .pokemon-reward {
@@ -115,7 +115,7 @@
     height: 400px;
     perspective: 1000px; 
   }
-  
+
 
   .flip-card-inner {
     position: relative;
@@ -125,12 +125,12 @@
     transition: transform 0.8s;
     transform-style: preserve-3d;
   }
-  
+
 
   .flip-card:hover .flip-card-inner {
     transform: rotateY(180deg);
   }
-  
+
 
   .flip-card-front, .flip-card-back {
     position: absolute;
@@ -139,8 +139,8 @@
     -webkit-backface-visibility: hidden; 
     backface-visibility: hidden;
   }
-  
-  
+
+
 
   .flip-card-back {
     color: #363636;
@@ -156,4 +156,4 @@
       justify-content: center;
       display: flex;
       font-size: 4vw;
-  }
+  } 

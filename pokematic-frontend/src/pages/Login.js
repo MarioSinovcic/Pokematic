@@ -8,9 +8,7 @@ function Login() {
         <p>
           Login
         </p>
-        {/* NOTE: REMOVE THIS AND ITS CLASS WHEN READY */}
-        {/* <Counter /> */}
-        <NavLink to="/board" >Log In</NavLink>
+        <NavLink to="/profile" >Log In</NavLink>
       </header>
     </div>
   );
