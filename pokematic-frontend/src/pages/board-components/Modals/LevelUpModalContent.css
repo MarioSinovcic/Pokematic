@@ -1,4 +1,4 @@
-.modal-content {
+.pokemon-modal-content {
     font-family: 'pkmn_rbygscregular' !important;
     text-align: center;
     width: 100vw !important;
@@ -12,7 +12,7 @@
     flex-direction: column;
 }
 
-.title {
+.pokemon-modal-title {
     width: 525px;
     background-color: #363636;
     justify-content: center;
@@ -155,5 +155,5 @@
       text-transform: capitalize;
       justify-content: center;
       display: flex;
-      font-size: 5vw;
+      font-size: 4vw;
   }
