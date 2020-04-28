@@ -6,34 +6,18 @@ using Task = System.Threading.Tasks.Task;
 
 // TO DO
 /*
- * updating task, updating goal (or progress of that goal)
- * approving tasks (PMs), updating EXP/LVL for teams, users to switch roles,
+ *users to switch roles,
  * check for existing team (when trying to search for teams to be added into), login stuff,
- * adding a pokemon to team when they get a new pokemon, get all pokemon of that team’s collection,
  */
 
 // DONE
 /*
  * Get all teams, create team, get goals, get tasks, create goals,
- * create tasks, get user, create user, join a team,
- * 
+ * create tasks, get user, create user, join a team, updating task, updating goal (or progress of that goal)
+ * updating task, updating goal (or progress of that goal),approving tasks (PMs), get all pokemon of that team’s collection,
+ * adding a pokemon to team when they get a new pokemon, 
  */
 
-
-// TO DO
-/*
- * updating goal (or progress of that goal)
- * approving tasks (PMs), updating EXP/LVL for teams, users to switch roles,
- * check for existing team (when trying to search for teams to be added into), login stuff,
- * adding a pokemon to team when they get a new pokemon, get all pokemon of that tteam’s collection,
- */
-
-// DONE
-/*
- * Get all teams, create team, get goals, get tasks, create goals,
- * create tasks, get user, create user, join a team,updating task,
- * 
- */
 
 
 namespace pokematic_backend.Controllers
@@ -61,7 +45,7 @@ namespace pokematic_backend.Controllers
         }
         
         [HttpPost("createTeam")]
-        public  Team CreateTeam(Team team)
+        public Team CreateTeam(Team team)
         {
             _teamService.Create(team);
             return team;
@@ -70,7 +54,7 @@ namespace pokematic_backend.Controllers
         [HttpGet("{teamName}")]
         public Team GetTeam(string teamName)
         {
-            var team = _teamService.Get(teamName);
+            var team = _teamService.GetTeam(teamName);
             return team;
         }
         
@@ -80,7 +64,33 @@ namespace pokematic_backend.Controllers
             _teamService.JoinTeam(teamName, username);
             return Ok();
         }
-        
+
+        [HttpPut("updateTeam/{teamToUpdateName}")]
+        public ActionResult UpdateTeam(string teamToUpdateName, Team updatedTeam)
+        {
+            var serviceMessage = _teamService.UpdateTeam(teamToUpdateName, updatedTeam);
+
+            if (serviceMessage == "success")
+            {
+                return Ok(updatedTeam);
+            }
+
+            return NotFound(serviceMessage);
+        }
+
+        [HttpDelete("deleteTeam/{teamName}")]
+        public ActionResult DeleteTeam(string teamName)
+        {
+            var serviceMessage = _teamService.DeleteTeam(teamName);
+
+            if (serviceMessage == "success")
+            {
+                return Ok();
+            }
+
+            return NotFound(serviceMessage);
+        }
+
         /**
          * Goal endpoints
          */
@@ -88,7 +98,7 @@ namespace pokematic_backend.Controllers
         [HttpGet("goals/{teamName}")]
         public List<Goal> GetGoals(string teamName)
         {
-            var goals = _teamService.GetGoals(teamName);
+            var goals = _teamService.GetAllGoals(teamName);
             return goals;
         }
         
@@ -99,6 +109,32 @@ namespace pokematic_backend.Controllers
             return goal;
         }
         
+        [HttpDelete("deleteGoal/{teamName}/{goalName}")]
+        public ActionResult DeleteGoal(string teamName, string goalName)
+        {
+            var serviceMessage = _teamService.DeleteGoal(teamName, goalName);
+
+            if (serviceMessage == "success")
+            {
+                return Ok();
+            }
+
+            return NotFound(serviceMessage);
+        }
+
+        [HttpPut("updateGoal/{teamName}/{goalToUpdateName}")]
+        public ActionResult UpdateGoal(string teamName, string goalToUpdateName, Goal updatedGoal)
+        {
+            var serviceMessage = _teamService.UpdateGoal(teamName, goalToUpdateName, updatedGoal);
+
+            if (serviceMessage == "success")
+            {
+                return Ok(updatedGoal);
+            }
+
+            return NotFound(serviceMessage);
+        }
+
 
         /**
          * Task endpoints
@@ -172,16 +208,6 @@ namespace pokematic_backend.Controllers
 
             return NotFound(serviceMessage);
         }
-
-        /*
-         * update goal status
-         */
-        
-        
-        /*
-         * Approving tasks
-         */
-        
         
         
     }

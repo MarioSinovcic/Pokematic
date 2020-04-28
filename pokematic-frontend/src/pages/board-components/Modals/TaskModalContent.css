@@ -3,31 +3,34 @@
     text-align: left;
     padding: 20px 20px;
     width: 875px;
-    height: 550px;
+    height: 500px;
 }
 
 .grouping{
     align-items: center;
     width: 100%;
     display: flex;
+    padding-bottom: 30px;
 }
 
-.task-title{
+.modal-task-title{
     font-family: 'Roboto Mono', monospace !important;
     font-weight: 600 !important;
     font-size: 40px;
     line-height: 20px;
-    margin-top: 25px;
+    margin-top: 15px;
     color: #3D3D3D;
+    margin-bottom: 15px;
 }
 
 .task-number{
     font-weight: 600 !important;
     font-size: 40px;
     line-height: 20px;
-    margin-top: 0px;
+    margin-top: 15px;
     color: #898989;
     padding-right: 30px;
+    margin-bottom: 15px;
 }
 
 .right-align{
@@ -93,17 +96,25 @@
     line-height: 40px;
 }
 
-.approve-button{
+.approved-section{
     margin-top: 20px;
-    font-family: 'Roboto Light', monospace !important;
-    font-weight: 600 !important;
-    color: #3D3D3D;
-    font-size: 30px;
-    text-align: center;
+}
 
-    background-color: #ffffff;
-    background-size: 30px 30px;
-    background-position: center;
+.approved-label{
+    font-family: 'Roboto Condensed', monospace !important;
+    font-weight: 600 !important;
+    font-size: 22px !important;
+}
+
+.save-button{
+    font-family: 'pkmn_rbygscregular', monospace !important;
+    color: white;
+    font-size: 16px !important;
+
+    margin-top: 20px;
+    width: 120px;
+    height: 50px;  
+    background-color: #3d3d3d;
     border-radius: 10px;
     outline: none;
     border: none;
@@ -146,11 +157,6 @@
 @media (max-width:1000px){
     .modal-content {
         width: 500px !important;
-    }
-
-    .task-title{
-        font-size: 30px;
-        line-height: 35px;
     }
 
     .story-points-label{

@@ -46,10 +46,10 @@ class LevelUpModalContent extends React.Component {
 
     render() {
         return (
-            <div className="modal-content">
+            <div className="pokemon-modal-content">
                 <div className="blocks">
                     <div className="new-level">LV. {this.state.newLevel}</div>
-                    <div className="title">
+                    <div className="pokemon-modal-title">
                         {!this.state.showReward ? "Level Up!" : this.state.rewardName}
                     </div>
                     <div class="flip-card">
