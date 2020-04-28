@@ -42,7 +42,7 @@ render(){
       
       <div>
         <header className="App-header">
-        <Header />
+        <Header currentPage="/profile"/>
         </header>
         <div className="profile-background"></div>
           <div className="menu">

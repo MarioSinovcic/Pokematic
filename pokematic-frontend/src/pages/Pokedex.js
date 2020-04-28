@@ -48,7 +48,7 @@ class Pokedex extends React.Component {
 
         <div>
           <div className="header">
-            <Header teamName={this.state.teamName}/>
+            <Header currentPage={"/pokedex"} teamName={this.state.teamName}/>
           </div>
           <div className="filter-shape">
             <div className="left-cut" />

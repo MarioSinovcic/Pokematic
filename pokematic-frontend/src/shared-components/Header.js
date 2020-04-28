@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory, useLocation} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import './Header.css'
 
 const Header = (props) => {
@@ -58,14 +58,13 @@ const Header = (props) => {
             </div>
             <div className="right-icon pokedex-image" onClick={handlePokedex}/>
         </div>);
-
     }
   }
 
 
   return (
     <div className="Header">
-       {renderHeader(useLocation().pathname)}
+       {renderHeader(props.currentPage)}
     </div>
   );
 }
