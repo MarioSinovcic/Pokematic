@@ -52,7 +52,7 @@ function TaskCard(props) {
         };
         await updateTask(updatedTask, props.teamName, props.goalName, props.name);
         await props.populatePage(props.teamName);
-        window.location.reload(false);
+        await props.populatePage(props.teamName);
     };
 
 
