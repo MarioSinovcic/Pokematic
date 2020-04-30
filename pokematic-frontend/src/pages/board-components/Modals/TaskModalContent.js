@@ -53,7 +53,7 @@ function TaskModalContent (props) {
     async function handleSave() {
         const updatedTask = {
             name: props.name,
-            taskNumber: props.taskNumber, 
+            number: props.number, 
             description: selectedDescription,
             experiencePoints: parseInt(props.storyPoints),
             status: props.status,
@@ -70,7 +70,7 @@ function TaskModalContent (props) {
     return (
         <div className="modal-content">
             <div className="grouping">
-                <p className="task-number">#{props.taskNumber}</p>
+                <p className="task-number">#{props.number}</p>
                 <p className="modal-task-title">{props.name}</p>
             </div>    
             <div className="grouping padding-bottom-p">
