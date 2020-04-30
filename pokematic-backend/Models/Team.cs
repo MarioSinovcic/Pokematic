@@ -16,6 +16,8 @@ namespace pokematic_backend.Models
 
         [BsonElement("goals")] public List<Goal> Goals = new List<Goal>();
         
+        [BsonElement("completed")] public bool Completed { get; set; }
+        
         [BsonElement("level")] public int Level { get; set; }
         
         [BsonElement("experiencePoints")] public int ExperiencePoints { get; set; }
