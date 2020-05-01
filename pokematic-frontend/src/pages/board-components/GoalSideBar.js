@@ -42,19 +42,22 @@ export class GoalSideBar extends React.Component {
     const newModalIcon = <AddIcon style={{fontSize: "35px", color: "#3D3D3D"}}/>;
 
     if (!this.props.goalsList){ 
-      return <div>laoding</div>;
+      return <div>loading</div>;
     }
     else{         
         var goalsToRender = this.props.goalsList.map((goalData) => 
+        <div>
             <Goal 
                 key={goalData["name"]} //not used: just avoiding warnings
                 id={goalData["id"]} 
                 name={goalData["name"]} 
                 teamName={this.props.teamName}
+                completed={goalData["completed"]}
                 experiencePoints={goalData["experiencePoints"]} 
                 progress={goalData["progress"]} 
                 populatePage={this.props.populatePage}
                 />
+        </div>
           )
       return(
         <div className={classes.root}>

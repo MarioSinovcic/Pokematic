@@ -83,13 +83,14 @@ function ModalContent (props) {
             const newGoal = {
                 name: selectedGoalName.trim(),
                 description: selectedDescription,
+                completed: false,
                 tasks: [],
                 experiencePoints: parseInt(selectedDifficulty),
                 progress: 0
             };
             await createGoal(props.teamName, newGoal);
             await props.refreshBoardPage(props.teamName);
-            window.location.reload(false);
+            await props.refreshBoardPage(props.teamName);
         }
         props.handleClose();
     };

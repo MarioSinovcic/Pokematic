@@ -43,6 +43,17 @@ export async function deleteTask(teamName, goalName, taskName){
     await fetch(APIcall, requestOptions);
 }
 
+export async function updateGoal(updatedGoal, teamName, goalName){
+  var APIcall = HOST + "team/updateGoal/" + teamName + "/" + goalName ;
+  const requestOptions = {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updatedGoal)
+  };
+
+  await fetch(APIcall, requestOptions);
+}
+
 export async function createGoal(teamName, newGoal){
   var APIcall = HOST + "team/createGoal/" + teamName;
   const requestOptions = {
@@ -115,7 +126,9 @@ export async function populateBoardPage(teamName){
 
     for (var goal = 0; goal < goalResponse.length; goal++) {
       gatheredTeamGoals.push(goalResponse[goal]);
-      gatheredGoalNames.push(goalResponse[goal]["name"]);
+      if(!goalResponse[goal]["completed"]){
+        gatheredGoalNames.push(goalResponse[goal]["name"]);
+      }
     
       var taskArray = goalResponse[goal]["tasks"];
       
