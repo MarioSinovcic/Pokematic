@@ -1,42 +1,60 @@
 import React, { useState } from 'react';
+import { makeStyles } from "@material-ui/core/styles";
+import TextField from '@material-ui/core/TextField';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { Typography } from '@material-ui/core';
 import {deleteTask, updateTask} from '../../../apiHandler';
 import "./TaskModalContent.css"
 
+const useStyles = makeStyles({
+    underline: {
+      "&&&:before": {
+        borderBottom: "none"
+      },
+      "&&:after": {
+        borderBottom: "none"
+      }
+    },
+    descriptionInput: {
+        fontFamily: [
+            'Roboto Condensed Light', 
+            'monospace'
+          ].join(','),
+        fontSize: 22,
+        lineHeight: 1.3,
+    },
+})
+
 function TaskModalContent (props) {
-    var disableCheckBox = false;
-    var defaultStatus = false;
+    const classes = useStyles();
+    var disableCheckBox = (props.status !== "Done" || props.approved );
+    var defaultStatus = (props.approved);
     const [showBinButton, setShowBinButton] = useState(true);
-    const [selectedApproved, setSelectedApproved] = useState(false);
+    const [selectedApproved, setSelectedApproved] = useState(props.approved);
+    const [selectedDescription, setSelectedDescription] = useState(props.description);
 
-    if(props.status !== "Done"){
-        disableCheckBox = true;
+    const handleDescriptionChange = event => {
+        setShowBinButton(false);
+        setSelectedDescription(event.target.value);
     }
 
-    if(props.approved){
-        disableCheckBox = true;
-        defaultStatus= true; 
-    }
-
-    function handleCheckBox(){
+    const handleCheckBox = event => {
+        setShowBinButton(false);
         setSelectedApproved(!selectedApproved);
-        setShowBinButton(!showBinButton);
     }
 
     async function handleDelete() {
         await deleteTask(props.teamName, props.goalName, props.name);
         await props.populatePage(props.teamName);
-        window.location.reload(false);
         props.handleClose();
-    };
+    }
 
     async function handleSave() {
         const updatedTask = {
             name: props.name,
-            taskNumber: props.taskNumber, 
-            description: props.description,
+            number: props.number, 
+            description: selectedDescription,
             experiencePoints: parseInt(props.storyPoints),
             status: props.status,
             storyPoints: parseInt(props.storyPoints),
@@ -45,14 +63,14 @@ function TaskModalContent (props) {
         };
         await updateTask(updatedTask, props.teamName, props.goalName, props.name);
         await props.populatePage(props.teamName);
-        window.location.reload(false);
+        await props.populatePage(props.teamName);
         props.handleClose();
-    };
+    }
 
     return (
         <div className="modal-content">
             <div className="grouping">
-                <p className="task-number">#{props.taskNumber}</p>
+                <p className="task-number">#{props.number}</p>
                 <p className="modal-task-title">{props.name}</p>
             </div>    
             <div className="grouping padding-bottom-p">
@@ -64,7 +82,22 @@ function TaskModalContent (props) {
             </div>  
             <div className="grey-group">
                 <p className="description-label">Description</p>
-                <p className="description">{props.description}</p>
+                <p className="description">
+                <TextField
+                        onChange={handleDescriptionChange}
+                        id="description-input"
+                        multiline={true}
+                        defaultValue= {props.description}
+                        fullWidth
+                        rowsMax={7}
+                        InputProps={{
+                            classes: {
+                                input: classes.descriptionInput,
+                                underline: classes.underline
+                            },
+                        }}
+                    />
+                </p>
             </div>  
             <div className="grouping">
                 <div className="approved-section">

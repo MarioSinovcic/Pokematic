@@ -42,7 +42,7 @@ function TaskCard(props) {
     async function changeStatus(newStatus) {
         const updatedTask = {
             name: props.name,
-            taskNumber: props.taskNumber, 
+            number: props.number,
             description: props.description,
             experiencePoints: parseInt(props.storyPoints),
             status: newStatus,
@@ -52,7 +52,7 @@ function TaskCard(props) {
         };
         await updateTask(updatedTask, props.teamName, props.goalName, props.name);
         await props.populatePage(props.teamName);
-        window.location.reload(false);
+        await props.populatePage(props.teamName);
     };
 
 
@@ -90,7 +90,7 @@ function TaskCard(props) {
                             id={props.id}
                             name={props.name} 
                             teamName={props.teamName}
-                            taskNumber={props.taskNumber} 
+                            number={props.number} 
                             description={props.description} 
                             experiencePoints={props.experiencePoints} 
                             status={props.status} 
