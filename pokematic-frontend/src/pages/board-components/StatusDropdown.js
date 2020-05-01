@@ -58,7 +58,7 @@ function StatusDropdown(props) {
             },
         }}
       > 
-          <MenuItem className={classes.dropDownItems} value={'TODO'}>TODO</MenuItem>
+          <MenuItem className={classes.dropDownItems} value={'TODO'}>To Do</MenuItem>
           <MenuItem className={classes.dropDownItems} value={'In Progress'}>In Progress</MenuItem>
           <MenuItem className={classes.dropDownItems} value={'In Review'}>In Review</MenuItem>
           <MenuItem className={classes.dropDownItems} value={'Done'}>Done</MenuItem>

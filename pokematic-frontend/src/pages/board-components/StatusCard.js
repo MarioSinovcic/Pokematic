@@ -23,7 +23,7 @@ export class StatusCard extends React.Component {
                     id={taskData["id"]} 
                     name={taskData["name"]} 
                     teamName={this.props.teamName}
-                    taskNumber={taskData["taskNumber"]} 
+                    number={taskData["number"]} 
                     description={taskData["description"]} 
                     experiencePoints={taskData["experiencePoints"]} 
                     status={taskData["status"]} 

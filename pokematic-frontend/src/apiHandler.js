@@ -98,9 +98,9 @@ export async function populateProfilePage(){
   return(gatheredTeams);
 }
 
-export async function populateBoardPage(teamName2){
+export async function populateBoardPage(teamName){
     // --- comment out ----
-    var APIcall = HOST + "team/goals/" + teamName2;
+    var APIcall = HOST + "team/goals/" + teamName;
     var response = await fetch(APIcall)
     .then(response => response.json())
     .then(json => {
