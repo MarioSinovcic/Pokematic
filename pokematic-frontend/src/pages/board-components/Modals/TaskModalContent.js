@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { Typography } from '@material-ui/core';
-import {deleteTask, updateTask} from '../../../apiHandler';
+import {deleteTask, updateTask, handleApproval} from '../../../apiHandler';
 import "./TaskModalContent.css"
 
 const useStyles = makeStyles({
@@ -63,7 +63,11 @@ function TaskModalContent (props) {
         };
         await updateTask(updatedTask, props.teamName, props.goalName, props.name);
         await props.populatePage(props.teamName);
-        await props.populatePage(props.teamName);
+
+        if(selectedApproved){
+            await handleApproval(props.teamName, props.goalName)
+            await props.populatePage(props.teamName);
+        }
         props.handleClose();
     }
 

@@ -102,6 +102,13 @@ namespace pokematic_backend.Controllers
             return goals;
         }
         
+        [HttpGet("goals/{teamName}/{goalName}")]
+        public Goal GetAGoal(string teamName, string goalName)
+        {
+            var goal = _teamService.GetGoal(teamName, goalName);
+            return goal;
+        }
+        
         [HttpPost("createGoal/{teamName}")]
         public  Goal CreateGoal(Goal goal, string teamName)
         {

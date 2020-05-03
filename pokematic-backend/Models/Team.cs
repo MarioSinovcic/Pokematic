@@ -15,7 +15,7 @@ namespace pokematic_backend.Models
         [BsonElement("users")] public List<User> Users = new List<User>();
 
         [BsonElement("goals")] public List<Goal> Goals = new List<Goal>();
-        
+
         [BsonElement("level")] public int Level { get; set; }
         
         [BsonElement("experiencePoints")] public int ExperiencePoints { get; set; }
