@@ -98,6 +98,53 @@ export async function populateProfilePage(){
   return(gatheredTeams);
 }
 
+export async function handleApproval(teamName, goalName){
+  var goalInfoCall = HOST + "team/goals/" + teamName + "/" + goalName;
+  var goalData = await fetch(goalInfoCall)
+  .then(response => response.json())
+  .then(json => {
+      return json
+  });
+
+  if(goalData["progress"] === 1.0){
+    goalData["completed"] = true;
+
+    var updateGoal = HOST + "team/updateGoal/" + teamName + "/" + goalName;
+    const requestOptions = {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(goalData)
+    };
+    await fetch(updateGoal, requestOptions);
+
+    var teamInfoCall = HOST + "team/" + teamName;
+    var teamData = await fetch(teamInfoCall)
+    .then(response => response.json())
+    .then(json => {
+        return json
+    });
+    var teamXP = teamData["experiencePoints"] + goalData["experiencePoints"];
+    var teamLevel = teamData["level"];
+
+    while(teamXP >= (teamLevel * 5)){
+      teamXP = teamXP - (teamLevel * 5);
+      teamLevel++;
+      //triggerLevelUpScreen()
+    }
+    teamData["level"] = teamLevel;
+    teamData["experiencePoints"] = teamXP;
+
+    var updateTeam = HOST + "team/updateTeam/" + teamName;
+    const requestOptions2 = {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(teamData)
+    };
+      
+    await fetch(updateTeam, requestOptions2);
+  }
+}       
+
 export async function populateBoardPage(teamName){
     // --- comment out ----
     var APIcall = HOST + "team/goals/" + teamName;
@@ -115,7 +162,9 @@ export async function populateBoardPage(teamName){
 
     for (var goal = 0; goal < goalResponse.length; goal++) {
       gatheredTeamGoals.push(goalResponse[goal]);
-      gatheredGoalNames.push(goalResponse[goal]["name"]);
+      if(!goalResponse[goal]["completed"]){
+        gatheredGoalNames.push(goalResponse[goal]["name"]);
+      }
     
       var taskArray = goalResponse[goal]["tasks"];
       

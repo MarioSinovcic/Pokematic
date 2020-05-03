@@ -71,6 +71,7 @@ class Board extends React.Component {
     var apiData = populateBoardPage(this.state.teamName);
 
     this.setState({
+      teamName: this.props.match.params.teamName,
       goalsList: (await apiData).goalsList,
       goalNames: (await apiData).goalNames,
       todoList: (await apiData).todoList,
@@ -79,7 +80,7 @@ class Board extends React.Component {
       doneList: (await apiData).doneList,
     })
   }
-a
+  
   handleOpen() {
     this.setState({
       open: true,
