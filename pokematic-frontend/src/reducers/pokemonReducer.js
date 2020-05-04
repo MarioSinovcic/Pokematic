@@ -4,6 +4,7 @@ import * as actionTypes from "../actions/actionTypes";
 // Note: You can remove this reducer and create your own reducer
 
 const initialState = {
+  teamPokemon: [],
   pokemonCollection: [],
   pokemonURL: [],
   pokemonTypes: [],
@@ -21,6 +22,13 @@ export default function pokemonReducer(state = initialState, action) {
         ...state,
         isLoaded: true,
       };
+
+    // Adds to the current TEAM'S pokemon collection
+    case actionTypes.ADD_TO_COLLECTION:
+    return {
+      ...state,
+      teamPokemon: [...state.teamPokemon, action.pokemonData]
+    };
 
     // Stores the current selected pokemon collection to be displayed
     case actionTypes.CHANGE_COLLECTION:

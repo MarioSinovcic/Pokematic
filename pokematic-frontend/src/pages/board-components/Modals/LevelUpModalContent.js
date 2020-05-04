@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@material-ui/core';
+import { connect } from 'react-redux';
 import "./TaskModalContent.css"
 import "./LevelUpModalContent.css"
+import { addToCollection, changeCollection } from '../../../actions/actions';
 
 class LevelUpModalContent extends React.Component {
 
@@ -32,6 +34,8 @@ class LevelUpModalContent extends React.Component {
         const randomNum = Math.floor(Math.random() * 151);
         const randomPokemon = this.props.pokemonData[randomNum];
 
+        this.props.addToCollection(randomPokemon);
+
         const pokemon = {
             name: randomPokemon[1],
             number: randomPokemon[0]+1,
@@ -48,12 +52,12 @@ class LevelUpModalContent extends React.Component {
                     <div className="pokemon-modal-title">
                         {!this.state.showReward ? "Level Up!" : this.state.rewardName}
                     </div>
-                    <div className="flip-card">
-                        <div className="flip-card-inner">
-                            <div className="flip-card-front">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
                             <div className="pokeball"><img src="/images/pokeballPrize.png" alt="prize" className="pokeball hidden" /></div>
                             </div>
-                            <div className="flip-card-back">
+                            <div class="flip-card-back">
                             <div className="pokeball">
                             <div className="reward-circle pokeball">
                             <div className="pokemon-reward-name">{this.state.pokemonReward.name}
@@ -76,4 +80,22 @@ class LevelUpModalContent extends React.Component {
         );
     }
 }
-  export default LevelUpModalContent
+const mapStateToProps = (state) => {
+    return {
+      pokemonData: state.pokemonData,
+      teamPokemon: state.teamPokemon,
+    };
+  }
+  
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      changeCollection: (collection) => {
+        dispatch(changeCollection(collection))
+      },
+      addToCollection: (pokemon) => {
+        dispatch(addToCollection(pokemon))
+      },
+    }
+  }
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(LevelUpModalContent);

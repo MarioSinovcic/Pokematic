@@ -38,3 +38,11 @@ export function changeCollection(pokemonCollection) {
     }
 }
 
+export function addToCollection(pokemonData) {
+    
+    return {
+        type: actionTypes.ADD_TO_COLLECTION,
+        pokemonData,
+    }
+}
+
