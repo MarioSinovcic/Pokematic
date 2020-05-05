@@ -4,7 +4,7 @@ import Header from '../shared-components/Header'
 import TeamCard from '../shared-components/TeamCard';
 import './Pokedex.css';
 import { connect } from 'react-redux';
-import { toggleCollection, addToCollection, setCollection } from '../actions/actions';
+import { toggleCollection, setCollection } from '../actions/actions';
 import { Typography, Grid, Switch } from '@material-ui/core';
 import { getTeamInfo } from '../apiHandler';
 
@@ -116,9 +116,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     toggleCollection: (collection) => {
       dispatch(toggleCollection(collection))
-    },
-    addToCollection: (pokemon) => {
-      dispatch(addToCollection(pokemon))
     },
     setCollection: (pokemon) => {
       dispatch(setCollection(pokemon))

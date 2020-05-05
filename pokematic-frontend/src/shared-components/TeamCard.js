@@ -27,9 +27,6 @@ class TeamCard extends React.Component {
         this.setState({
             teamData: (await apiData)
         })
-        this.mapPokemon();
-
-        console.log(this.state.teamData)
     }
 
     render(){

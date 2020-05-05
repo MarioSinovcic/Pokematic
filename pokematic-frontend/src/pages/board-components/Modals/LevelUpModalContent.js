@@ -4,7 +4,7 @@ import { Button } from '@material-ui/core';
 import { connect } from 'react-redux';
 import "./TaskModalContent.css"
 import "./LevelUpModalContent.css"
-import { addToCollection, toggleCollection } from '../../../actions/actions';
+import { addToCollection } from '../../../actions/actions';
 import { saveTeamCollection } from '../../../apiHandler';
 
 class LevelUpModalContent extends React.Component {
@@ -87,9 +87,6 @@ const mapStateToProps = (state) => {
   
   const mapDispatchToProps = (dispatch) => {
     return {
-      toggleCollection: (collection) => {
-        dispatch(toggleCollection(collection))
-      },
       addToCollection: (pokemon) => {
         dispatch(addToCollection(pokemon))
       },

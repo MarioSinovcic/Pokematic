@@ -190,9 +190,6 @@ const mapDispatchToProps = (dispatch) => {
     addPokemonTypes: (pokemonName, pokemonType) => {
       dispatch(addPokemonTypes(pokemonName, pokemonType))
     },
-    toggleCollection: (collection) => {
-      dispatch(toggleCollection(collection))
-    },
   }
 }
 

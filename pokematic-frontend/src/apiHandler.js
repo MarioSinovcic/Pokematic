@@ -261,8 +261,5 @@ export async function saveTeamCollection(newPokemon, teamName) {
           pokemon: apiData.pokemon.unshift(newPokemon),
           ...apiData,
       };
-
-      console.log(updatedTeam);
-
       await updateTeam(updatedTeam, teamName);
   }
