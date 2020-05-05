@@ -255,9 +255,10 @@ export async function fetchPokemonTypes(pokemonURL) {
 export async function saveTeamCollection(newPokemon, teamName) {
       var apiData = await getTeamInfo(teamName);
       const updatedTeam = {
-          name: apiData.name, 
-          level: apiData.level + 1, 
-          experiencePoints: 0,
+          // TODO: uncomment these if you want to update level up stats as well
+          // name: apiData.name, 
+          // level: apiData.level + 1, 
+          // experiencePoints: 0,
           pokemon: apiData.pokemon.unshift(newPokemon),
           ...apiData,
       };
