@@ -23,8 +23,7 @@ class PokedexList extends React.Component {
         <div className="grid-container">
           {this.props.pokemonCollection.map((pokemonData, i) => {
 
-            const pokemonName = pokemonData[1];
-            const pokemonTypeList = this.getPokemonTypes(this.props.pokemonTypes, pokemonName);
+            const pokemonTypeList = this.getPokemonTypes(this.props.pokemonTypes, pokemonData.name);
             
             return (
               <div key={i} className="grid-item" style={{
@@ -39,9 +38,9 @@ class PokedexList extends React.Component {
                 )
               }}>
                 <PokedexItem
-                  pokemonNumber={pokemonData[0]}
-                  pokemonName={pokemonName}
-                  pokemonImage={pokemonData[2]}
+                  pokemonNumber={pokemonData.number}
+                  pokemonName={pokemonData.name}
+                  pokemonImage={pokemonData.sprite}
                   pokemonTypeList={pokemonTypeList} />
               </div>)
           })}
