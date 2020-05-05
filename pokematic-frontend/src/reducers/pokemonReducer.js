@@ -30,8 +30,15 @@ export default function pokemonReducer(state = initialState, action) {
       teamPokemon: [...state.teamPokemon, action.pokemonData]
     };
 
-    // Stores the current selected pokemon collection to be displayed
-    case actionTypes.CHANGE_COLLECTION:
+    // Adds to the current TEAM'S pokemon collection
+    case actionTypes.SET_COLLECTION:
+    return {
+      ...state,
+      teamPokemon: action.pokemonData
+    };
+
+    // Stores a cache for current selected pokemon collection to be displayed
+    case actionTypes.TOGGLE_COLLECTION:
     return {
       ...state,
       pokemonCollection: action.pokemonCollection

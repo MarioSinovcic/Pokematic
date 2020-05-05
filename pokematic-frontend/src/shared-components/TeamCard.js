@@ -2,6 +2,8 @@ import React from 'react';
 import {getTeamInfo} from '.././apiHandler';
 import TeamDetails from './TeamDetails';
 import './TeamCard.css';
+import { addToCollection, setCollection } from '../actions/actions';
+import { connect } from 'react-redux';
 
 
 class TeamCard extends React.Component {
@@ -25,6 +27,7 @@ class TeamCard extends React.Component {
         this.setState({
             teamData: (await apiData)
         })
+        this.mapPokemon();
 
         console.log(this.state.teamData)
     }
@@ -46,4 +49,22 @@ class TeamCard extends React.Component {
     }
 }
 
-export default TeamCard;
+const mapStateToProps = (state) => {
+    return {
+      teamCollection: state.teamCollection,
+      pokemonData: state.pokemonData,
+    };
+}
+  
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      addToCollection: (pokemon) => {
+        dispatch(addToCollection(pokemon))
+      },
+      setCollection: (pokemon) => {
+        dispatch(setCollection(pokemon))
+      },
+    }
+}
+  
+export default connect(mapStateToProps, mapDispatchToProps)(TeamCard);

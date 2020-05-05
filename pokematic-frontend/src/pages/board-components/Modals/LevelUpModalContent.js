@@ -4,7 +4,8 @@ import { Button } from '@material-ui/core';
 import { connect } from 'react-redux';
 import "./TaskModalContent.css"
 import "./LevelUpModalContent.css"
-import { addToCollection, changeCollection } from '../../../actions/actions';
+import { addToCollection, toggleCollection } from '../../../actions/actions';
+import { saveTeamCollection } from '../../../apiHandler';
 
 class LevelUpModalContent extends React.Component {
 
@@ -22,23 +23,20 @@ class LevelUpModalContent extends React.Component {
     componentDidMount() {
         const newPokemonReward = this.generatePokemon();
 
-        // TODO: call API to add this pokemon to the team's collection so it can be displayed in the pokedex
-        // eg. apiHandler.addToCollection(newPokemonReward)
-
         this.setState({
             pokemonReward: newPokemonReward,
         });
+
+        saveTeamCollection(newPokemonReward.name, this.props.teamName);
     }
 
     generatePokemon(){
         const randomNum = Math.floor(Math.random() * 151);
         const randomPokemon = this.props.pokemonData[randomNum];
-
-        this.props.addToCollection(randomPokemon);
-
+        this.props.addToCollection(randomPokemon.name);
         const pokemon = {
-            name: randomPokemon[1],
-            number: randomPokemon[0]+1,
+            name: randomPokemon.name,
+            number: randomPokemon.number + 1,
         }
         return pokemon;
     }
@@ -89,8 +87,8 @@ const mapStateToProps = (state) => {
   
   const mapDispatchToProps = (dispatch) => {
     return {
-      changeCollection: (collection) => {
-        dispatch(changeCollection(collection))
+      toggleCollection: (collection) => {
+        dispatch(toggleCollection(collection))
       },
       addToCollection: (pokemon) => {
         dispatch(addToCollection(pokemon))

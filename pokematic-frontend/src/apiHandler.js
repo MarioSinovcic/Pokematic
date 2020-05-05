@@ -74,10 +74,23 @@ export async function getTeamInfo(teamName){
   var apiData = {
     name: response["name"], 
     level: response["level"], 
-    experiencePoints: response["experiencePoints"]
+    experiencePoints: response["experiencePoints"],
+    pokemon: response["pokemon"],
+    ...response,
   }
 
   return apiData;
+}
+
+export async function updateTeam(updatedTeam, teamName){
+  var APIcall = HOST + "team/updateTeam/" + teamName;
+  const requestOptions = {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updatedTeam)
+  };
+
+  await fetch(APIcall, requestOptions);
 }
 
 export async function populateProfilePage(){
@@ -238,3 +251,18 @@ export async function fetchPokemonTypes(pokemonURL) {
 
     return apiData;
 }
+
+export async function saveTeamCollection(newPokemon, teamName) {
+      var apiData = await getTeamInfo(teamName);
+      const updatedTeam = {
+          name: apiData.name, 
+          level: apiData.level + 1, 
+          experiencePoints: 0,
+          pokemon: apiData.pokemon.unshift(newPokemon),
+          ...apiData,
+      };
+
+      console.log(updatedTeam);
+
+      await updateTeam(updatedTeam, teamName);
+  }
