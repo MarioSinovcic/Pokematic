@@ -211,12 +211,12 @@ export async function populateBoardPage(teamName){
     }
 
     var apiData = {
-        goalsList:gatheredTeamGoals, 
-        goalNames:gatheredGoalNames, 
-        todoList: gatheredTodoList,
-        inProgressList: gatheredInProgressList,
-        inReviewList: gatheredInReviewList,
-        doneList: gatheredDoneList
+        goalsList:gatheredTeamGoals.reverse(), 
+        goalNames:gatheredGoalNames.reverse(), 
+        todoList: gatheredTodoList.reverse(),
+        inProgressList: gatheredInProgressList.reverse(),
+        inReviewList: gatheredInReviewList.reverse(),
+        doneList: gatheredDoneList.reverse()
     }
     return apiData;
 }
