@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Header from '../shared-components/Header';
 import './Login.css';
+import { Typography } from '@material-ui/core';
 
 class Login extends React.Component {
 
@@ -9,18 +10,38 @@ class Login extends React.Component {
     super(props);
 
     this.state = {
-      teamName: this.props.match.params.teamName,
     }
   }
-  
+
 
   render() {
     return (
       <div className="App">
-        <div className="board-page">
-          <Header teamName={this.state.teamName} />
+        <Header />
+
+        <div>
+          <div className="login-background"></div>
+          <div className="login-space">
+            <div className="login-card-shape">
+              <div className="login-base-shape">
+                <div className="login-card-title">
+                  <Typography className="login-card-title">Log In</Typography>
+                </div>
+                <div className="credentials-shape">
+                <div className="pokeball-img-login"></div>
+                </div>
+              </div>
+              <div className="login-edge">
+              <div className="login-cut"></div>
+              <div className="login-bottom"></div>
+            </div>
+            </div>
+            
+          </div>
+
         </div>
-        <div className="login-background"></div>
+
+
         <div className="team-card">
           <NavLink to="/profile" >Log In</NavLink>
         </div>
@@ -29,4 +50,4 @@ class Login extends React.Component {
   }
 }
 
-  export default Login;
+export default Login;
