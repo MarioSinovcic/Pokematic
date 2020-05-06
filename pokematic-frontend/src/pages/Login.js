@@ -1,17 +1,30 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import Header from '../shared-components/Header';
 
-function Login() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Login
-        </p>
-        <NavLink to="/profile" >Log In</NavLink>
-      </header>
-    </div>
-  );
+class Login extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      teamName: this.props.match.params.teamName,
+    }
+  }
+  
+
+  render() {
+    return (
+      <div className="App">
+        <div className="board-page">
+          <Header teamName={this.state.teamName} />
+        </div>
+        <div className="team-card">
+          <NavLink to="/profile" >Log In</NavLink>
+        </div>
+      </div>
+    );
+  }
 }
 
-export default Login;
+  export default Login;
