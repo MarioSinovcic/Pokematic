@@ -1,0 +1,13 @@
+.login-background {
+    justify-content: space-evenly;
+    background-image:  url('../images/PokedexBG.png');
+    background-size: 100%;
+    margin-top:100px;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: -10 !important;
+    position: fixed;
+    opacity: 0.25;
+}

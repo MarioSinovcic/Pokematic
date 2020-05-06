@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Header from '../shared-components/Header';
+import './Login.css';
 
 class Login extends React.Component {
 
@@ -19,6 +20,7 @@ class Login extends React.Component {
         <div className="board-page">
           <Header teamName={this.state.teamName} />
         </div>
+        <div className="login-background"></div>
         <div className="team-card">
           <NavLink to="/profile" >Log In</NavLink>
         </div>
