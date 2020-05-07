@@ -126,6 +126,9 @@ function ModalContent (props) {
                         onChange={handleTaskNameChange}
                         defaultValue="Task Name"
                         fullWidth
+                        inputProps={{
+                            maxLength: 18,
+                        }}
                         InputProps={{
                             classes: {
                                 input: classes.taskNameInput,

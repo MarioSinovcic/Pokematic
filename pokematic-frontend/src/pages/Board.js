@@ -9,7 +9,7 @@ import { populateBoardPage, fetchPokemonData, fetchPokemonTypes } from '.././api
 import LevelUpModalContent from './board-components/Modals/LevelUpModalContent';
 import { Modal, Backdrop, Fade, Button } from '@material-ui/core';
 import { connect } from 'react-redux';
-import { togglePokemonLoad, addPokemonData, addPokemonNames, addPokemonTypes, changeCollection } from '../actions/actions';
+import { togglePokemonLoad, addPokemonData, addPokemonNames, addPokemonTypes } from '../actions/actions';
 import './Board.css'
 
 class Board extends React.Component {
@@ -54,14 +54,14 @@ class Board extends React.Component {
   }
 
   populatePokemon(pokemonCollection) {
-    var populatedPokemon = []
+    var populatedPokemon = [];
     pokemonCollection.map((pokemonData, i) => {
       return (
-        populatedPokemon.push(
-          [i,
-            pokemonData && pokemonData.name,
-            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + (i + 1) + ".png",
-          ])
+        populatedPokemon.push({
+            number: i,
+            name: pokemonData && pokemonData.name,
+            sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + (i + 1) + ".png",
+        })
       );
     })
     return populatedPokemon;
@@ -189,9 +189,6 @@ const mapDispatchToProps = (dispatch) => {
     },
     addPokemonTypes: (pokemonName, pokemonType) => {
       dispatch(addPokemonTypes(pokemonName, pokemonType))
-    },
-    changeCollection: (collection) => {
-      dispatch(changeCollection(collection))
     },
   }
 }

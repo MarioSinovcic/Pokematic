@@ -76,7 +76,7 @@ namespace pokematic_backend.Controllers
             }
 
             return NotFound(serviceMessage);
-        }
+        } 
 
         [HttpDelete("deleteTeam/{teamName}")]
         public ActionResult DeleteTeam(string teamName)

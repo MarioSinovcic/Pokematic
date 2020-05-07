@@ -4,8 +4,9 @@ import Header from '../shared-components/Header'
 import TeamCard from '../shared-components/TeamCard';
 import './Pokedex.css';
 import { connect } from 'react-redux';
-import { changeCollection } from '../actions/actions';
+import { toggleCollection, setCollection } from '../actions/actions';
 import { Typography, Grid, Switch } from '@material-ui/core';
+import { getTeamInfo } from '../apiHandler';
 
 class Pokedex extends React.Component {
 
@@ -15,18 +16,25 @@ class Pokedex extends React.Component {
   }
 
   componentWillMount() {
-    // TEMPORARY TEAM
-    this.props.changeCollection([this.props.pokemonData[54], this.props.pokemonData[103]]);
+    this.mapPokemon().then(() => {
+      this.props.toggleCollection(this.props.teamPokemon);
+      this.setState({
+        pokemonCollection: this.props.pokemonCollection,
+      })
+    });
   } 
+
+  componentDidMount() {
+    this.mapPokemon();
+  }
   
   switchPokemon(event) {
-
     if (!event.target.checked) { 
       this.setState({
-        pokemonCollection: [this.props.pokemonData[54], this.props.pokemonData[103]],
+        pokemonCollection: this.props.teamPokemon,
       })
 
-      this.props.changeCollection([this.props.pokemonData[54], this.props.pokemonData[103]]);
+      this.props.toggleCollection(this.props.teamPokemon);
 
 
     } else {
@@ -34,18 +42,31 @@ class Pokedex extends React.Component {
         pokemonCollection: this.props.pokemonData,
       })
 
-      this.props.changeCollection(this.props.pokemonData);
+      this.props.toggleCollection(this.props.pokemonData);
       
     }
   };
 
+  // Convert the API pokemon collection from names into objects to store in collection
+  async mapPokemon() {
+    var apiData = await getTeamInfo(this.state.teamName);
+    const teamPokemonNames = apiData.pokemon;
 
+    const teamCollection = [];
+    for (let i = 0; i < teamPokemonNames.length; i++) {
+        const teamPokemon = teamPokemonNames[i];
+        let pokemonToAdd = this.props.pokemonData.find(pokemon => pokemon.name === teamPokemon.toLowerCase())
+
+        teamCollection.push(pokemonToAdd);
+    }
+    await this.props.setCollection(teamCollection);
+}
 
   render() {
 
     const handleSwitch = this.switchPokemon.bind(this)
-
     return (
+
       <div className="pokedex">
 
         <div>
@@ -76,7 +97,7 @@ class Pokedex extends React.Component {
           <TeamCard teamName={this.state.teamName}/>
         </div>
         <div>
-          {this.props.pokemonCollection[0] ? <PokedexList pokemonCollection={this.props.pokemonCollection} /> : ""}
+          {this.props.pokemonCollection && this.props.pokemonCollection[0] ? <PokedexList pokemonCollection={this.props.pokemonCollection} /> : ""}
         </div>
       </div >
     );
@@ -87,13 +108,17 @@ const mapStateToProps = (state) => {
   return {
     pokemonData: state.pokemonData,
     pokemonCollection: state.pokemonCollection,
+    teamPokemon: state.teamPokemon,
   };
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    changeCollection: (collection) => {
-      dispatch(changeCollection(collection))
+    toggleCollection: (collection) => {
+      dispatch(toggleCollection(collection))
+    },
+    setCollection: (pokemon) => {
+      dispatch(setCollection(pokemon))
     },
   }
 }

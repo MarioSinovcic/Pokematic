@@ -102,6 +102,9 @@ function ModalContent (props) {
                         onChange={handleGoalNameChange}
                         defaultValue="Goal Name"
                         fullWidth
+                        inputProps={{
+                            maxLength: 10,
+                        }}
                         InputProps={{
                             classes: {
                                 input: classes.goalNameInput,
