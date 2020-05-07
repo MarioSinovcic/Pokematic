@@ -1,0 +1,114 @@
+.login-background {
+    justify-content: space-evenly;
+    background-image:  url('../images/PokedexBG.png');
+    background-size: 100%;
+    margin-top:100px;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: -10 !important;
+    position: fixed;
+    opacity: 0.25;
+}
+
+.login-space {
+    display: flex;
+    flex-direction: row;
+}
+
+.login-card-shape {
+    display: flex;
+    flex-direction: row;
+    width: 400px;
+    height: 600px;
+    padding: 100px 25px 0 25px;
+    margin-top: 100px;
+    justify-content: center;
+    align-content: center;
+    align-self: center;
+    justify-self: center;
+    margin: auto;
+}
+
+.login-headers {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between
+}
+
+.login-edge {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-card-title {
+    margin: 35px 0 0 25px !important;
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-size: 40px !important;
+    font-weight: 600 !important;
+    color: white !important;
+    text-transform: uppercase !important;
+}
+
+.login-base-shape {
+    width: 450px;
+    height: 600px;
+    background: #EF5959;
+    /* box-shadow: 5px 5px 5px grey; */
+    /* position: absolute; */
+}
+
+.login-bottom {
+    height: 625px;
+    background:#EF5959;
+    /* position: relative; */
+    /* top:10px;
+    right:300px; */
+    /* box-shadow: 5px 5px 5px grey; */
+
+}
+
+.login-cut {
+
+
+    /* position: relative; */
+    /* bottom: 69px;
+    right: 300px; */
+    border-right: 75px solid transparent;
+    border-bottom: 75px solid #EF5959;
+}
+
+.credentials-shape {
+    background-color: #3D3D3D;
+    width: 300px;
+    height: 375px;
+    display: flex;
+    margin: 25px 0 0 50px !important;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.pokeball-img-login {
+    position: relative;
+    left: 200px;
+    bottom: 160px;
+    width: 300px;
+    height: 300px;
+    z-index: 50 !important;
+    transform: rotate(-30deg);
+    /* opacity: 0.15; */
+
+    background-image: url('../images/background_pokeball_white.png');
+    background-repeat: no-repeat;
+    background-size: 225px;
+    background-position: fixed;
+}
+
+.login-button {
+    background-color: #F64747;
+    height: 50px;
+    width: 1500px;
+    font-size: 60px;
+}
