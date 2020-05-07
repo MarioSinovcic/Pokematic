@@ -152,8 +152,6 @@
     background-color: rgba(215, 215, 215);
  }
 
-
-
 @media (max-width:1000px){
     .modal-content {
         width: 500px !important;
@@ -162,7 +160,4 @@
     .story-points-label{
         display: none;
     }
-
-
-
 }

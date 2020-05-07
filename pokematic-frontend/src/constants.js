@@ -32,5 +32,5 @@ export const POKEMONTYPES = {
 }
 
 // API CALLS 
-export const HOST = "https://localhost:5001/api/";
+export const HOST = "https://pokematicapi.azurewebsites.net/api/";
 
