@@ -85,20 +85,30 @@
     height: 375px;
     display: flex;
     margin: 25px 0 0 50px !important;
+    justify-content: center;
+    align-items: center;
+
 }
 
 .pokeball-img-login {
     position: relative;
-    left: 155px;
-    top: 180px;
-    width: 1500px;
-    height: 350px;
+    left: 200px;
+    bottom: 160px;
+    width: 300px;
+    height: 300px;
     z-index: 50 !important;
-    transform: rotate(-45deg);
+    transform: rotate(-30deg);
     /* opacity: 0.15; */
 
     background-image: url('../images/background_pokeball_white.png');
     background-repeat: no-repeat;
     background-size: 225px;
     background-position: fixed;
+}
+
+.login-button {
+    background-color: #F64747;
+    height: 50px;
+    width: 1500px;
+    font-size: 60px;
 }

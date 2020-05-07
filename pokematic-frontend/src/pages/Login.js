@@ -1,8 +1,12 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import Header from '../shared-components/Header';
+import Label from './board-components/Label';
 import './Login.css';
-import { Typography } from '@material-ui/core';
+import { Typography, Button } from '@material-ui/core';
+import * as colors from '../colors'
+import { Link } from 'react-router-dom';
+
+
 
 class Login extends React.Component {
 
@@ -11,6 +15,11 @@ class Login extends React.Component {
 
     this.state = {
     }
+  }
+
+
+  logIn() {
+
   }
 
 
@@ -28,22 +37,23 @@ class Login extends React.Component {
                   <Typography className="login-card-title">Log In</Typography>
                 </div>
                 <div className="credentials-shape">
-                <div className="pokeball-img-login"></div>
+                  <Link to={"/profile"} replace style={{ textDecoration: 'none' }} >
+                    <Button style={{ backgroundColor: colors.fire, height: "50px", width: "150px", fontSize: "60px", marginTop: "-200px" }}
+                      className="team-label pokemon-label"
+                      onClick={this.logIn}>
+                      LOGIN!
+                 </Button>
+                  </Link>
                 </div>
+                <div className="pokeball-img-login"></div>
+
               </div>
               <div className="login-edge">
-              <div className="login-cut"></div>
-              <div className="login-bottom"></div>
+                <div className="login-cut"></div>
+                <div className="login-bottom"></div>
+              </div>
             </div>
-            </div>
-            
           </div>
-
-        </div>
-
-
-        <div className="team-card">
-          <NavLink to="/profile" >Log In</NavLink>
         </div>
       </div>
     );
