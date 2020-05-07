@@ -30,11 +30,27 @@ export function togglePokemonLoad() {
       }
 }
 
-export function changeCollection(pokemonCollection) {
+export function toggleCollection(pokemonCollection) {
     
     return {
-        type: actionTypes.CHANGE_COLLECTION,
+        type: actionTypes.TOGGLE_COLLECTION,
         pokemonCollection,
+    }
+}
+
+export function addToCollection(pokemonData) {
+    
+    return {
+        type: actionTypes.ADD_TO_COLLECTION,
+        pokemonData,
+    }
+}
+
+export function setCollection(pokemonData) {
+    
+    return {
+        type: actionTypes.SET_COLLECTION,
+        pokemonData,
     }
 }
 
