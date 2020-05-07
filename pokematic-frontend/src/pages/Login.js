@@ -26,7 +26,7 @@ class Login extends React.Component {
   render() {
     return (
       <div className="App">
-        <Header />
+        <Header currentPage=""/>
 
         <div>
           <div className="login-background"></div>
