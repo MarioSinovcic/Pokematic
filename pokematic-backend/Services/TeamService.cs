@@ -267,6 +267,7 @@ namespace pokematic_backend.Services
                 task.Number = biggestTaskNumber + 1;
                 goal.Tasks.Add(task);
                 goal.Progress = CalculateGoalProgress(goal);
+                goal.ExperiencePoints += task.ExperiencePoints;
                 team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
                 UpdateTeam(teamName, team);
             }
@@ -304,6 +305,7 @@ namespace pokematic_backend.Services
 
             goal.Tasks.Remove(goal.Tasks.Single(task => task.Name == taskName));
             goal.Progress = CalculateGoalProgress(goal);
+            goal.ExperiencePoints -= task.ExperiencePoints;
             team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
             UpdateTeam(teamName, team);
 
@@ -342,6 +344,8 @@ namespace pokematic_backend.Services
             
             goal.Tasks[goal.Tasks.FindIndex(task => task.Name == taskToUpdateName)] = updatedTask;
             goal.Progress = CalculateGoalProgress(goal);
+            goal.ExperiencePoints -= taskToUpdate.ExperiencePoints; // Update goals experience points with updated task experience point
+            goal.ExperiencePoints += updatedTask.ExperiencePoints;
             team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
             UpdateTeam(teamName, team);
             
