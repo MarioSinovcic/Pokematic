@@ -77,6 +77,8 @@ namespace pokematic_backend.Services
             }
             
         }
+        
+        
 
         public void JoinTeam(string teamName, string username)
         {
@@ -160,6 +162,59 @@ namespace pokematic_backend.Services
 
             return goal;
         }
+
+        
+        public string DeleteGoal(string teamName, string goalName)
+        {
+            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
+
+            if (team == null)
+            {
+                return "No team with that team name";
+            }
+
+            var goal = team.Goals.FirstOrDefault(goal => goal.Name == goalName);
+
+            if (goal == null)
+            {
+                return "No goal with that goal name exists for the " + teamName + " team ";
+            }
+
+            team.Goals.Remove(team.Goals.Single(goal => goal.Name == goalName));
+            UpdateTeam(teamName, team);
+
+            return "success";
+        }
+
+        public string UpdateGoal(string teamName, string goalToUpdateName, Goal updatedGoal)
+        {
+            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
+
+            if (team == null)
+            {
+                return "No team with that team name";
+            }
+
+            var goalToUpdate = team.Goals.FirstOrDefault(goal => goal.Name == goalToUpdateName);
+
+            if (goalToUpdate == null)
+            {
+                return "Trying to update goal that doesn't exist";
+            }
+
+            team.Goals[team.Goals.FindIndex(goal => goal.Name == goalToUpdateName)] = updatedGoal;
+            UpdateTeam(teamName, team);
+
+            return "success";
+        }
+
+        private double CalculateGoalProgress(Goal goal)
+        {
+            double numberOfTasks = goal.Tasks.Count;
+            double numberOfApprovedTasks = goal.Tasks.Count(task => task.Approved == true);
+
+            return numberOfApprovedTasks / numberOfTasks;
+        }
         
         /**
          * Task functionality 
@@ -212,21 +267,12 @@ namespace pokematic_backend.Services
                 task.Number = biggestTaskNumber + 1;
                 goal.Tasks.Add(task);
                 goal.Progress = CalculateGoalProgress(goal);
+                goal.ExperiencePoints += task.ExperiencePoints;
                 team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
                 UpdateTeam(teamName, team);
             }
             
         }
-
-        private double CalculateGoalProgress(Goal goal)
-        {
-            double numberOfTasks = goal.Tasks.Count;
-            double numberOfApprovedTasks = goal.Tasks.Count(task => task.Approved == true);
-
-            return numberOfApprovedTasks / numberOfTasks;
-        }
-
-
       
         public string DeleteTask(string teamName, string goalName, string taskName)
         { 
@@ -259,6 +305,7 @@ namespace pokematic_backend.Services
 
             goal.Tasks.Remove(goal.Tasks.Single(task => task.Name == taskName));
             goal.Progress = CalculateGoalProgress(goal);
+            goal.ExperiencePoints -= task.ExperiencePoints;
             team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
             UpdateTeam(teamName, team);
 
@@ -297,6 +344,8 @@ namespace pokematic_backend.Services
             
             goal.Tasks[goal.Tasks.FindIndex(task => task.Name == taskToUpdateName)] = updatedTask;
             goal.Progress = CalculateGoalProgress(goal);
+            goal.ExperiencePoints -= taskToUpdate.ExperiencePoints; // Update goals experience points with updated task experience point
+            goal.ExperiencePoints += updatedTask.ExperiencePoints;
             team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
             UpdateTeam(teamName, team);
             
@@ -350,6 +399,10 @@ namespace pokematic_backend.Services
                 goal.Tasks[goal.Tasks.FindIndex(task => task.Name == taskName)] = task;
                 team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
                 UpdateTeam(teamName, team);
+            }
+            else if (assignees.Exists(user => user.Username == username))
+            {
+                return "User is already assigned to this task";
             }
             else if (assignees.Exists(user => user.Username == username))
             {
@@ -416,50 +469,6 @@ namespace pokematic_backend.Services
             task.Assignees = assignees;
             goal.Tasks[goal.Tasks.FindIndex(task => task.Name == taskName)] = task;
             team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
-            UpdateTeam(teamName, team);
-
-            return "success";
-        }
-
-        public string DeleteGoal(string teamName, string goalName)
-        {
-            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
-
-            if (team == null)
-            {
-                return "No team with that team name";
-            }
-
-            var goal = team.Goals.FirstOrDefault(goal => goal.Name == goalName);
-
-            if (goal == null)
-            {
-                return "No goal with that goal name exists for the " + teamName + " team ";
-            }
-
-            team.Goals.Remove(team.Goals.Single(goal => goal.Name == goalName));
-            UpdateTeam(teamName, team);
-
-            return "success";
-        }
-
-        public string UpdateGoal(string teamName, string goalToUpdateName, Goal updatedGoal)
-        {
-            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
-
-            if (team == null)
-            {
-                return "No team with that team name";
-            }
-
-            var goalToUpdate = team.Goals.FirstOrDefault(goal => goal.Name == goalToUpdateName);
-
-            if (goalToUpdate == null)
-            {
-                return "Trying to update goal that doesn't exist";
-            }
-
-            team.Goals[team.Goals.FindIndex(goal => goal.Name == goalToUpdateName)] = updatedGoal;
             UpdateTeam(teamName, team);
 
             return "success";
