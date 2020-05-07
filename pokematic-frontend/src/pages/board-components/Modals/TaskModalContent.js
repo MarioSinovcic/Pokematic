@@ -65,7 +65,7 @@ function TaskModalContent (props) {
         await props.populatePage(props.teamName);
 
         if(selectedApproved){
-            await handleApproval(props.teamName, props.goalName)
+            await handleApproval(props.teamName, props.goalName, props.experiencePoints)
             await props.populatePage(props.teamName);
         }
         props.handleClose();
