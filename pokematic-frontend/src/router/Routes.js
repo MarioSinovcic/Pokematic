@@ -18,7 +18,6 @@ const Routes = () => {
             <Route path="/profile" component={Profile}/>
             <Route name="pokedex" path="/pokedex/:teamName" component={Pokedex}/>
             <Route name="board" path="/board/:teamName" component={Board}/>
-            <Route path="/login" component={Login} />
             <Route component={NotFound} />
         </Switch>
     );

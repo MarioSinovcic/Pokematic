@@ -32,20 +32,11 @@ class Board extends React.Component {
   }
 
   componentDidMount(){
-    if (!auth0Client.isAuthenticated()) {
-      auth0Client.signIn();
-    }
-
     this.populatePage();
     if (!this.props.isLoaded) {
       this.getPokemonData();
       this.props.togglePokemonHasLoaded();
     }
-  }
-
-  signOut = () => {
-    auth0Client.signOut();
-    this.props.history.replace('/');
   }
 
   async getPokemonData() {

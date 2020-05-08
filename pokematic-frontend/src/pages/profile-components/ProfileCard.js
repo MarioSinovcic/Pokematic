@@ -8,7 +8,6 @@ function ProfileCard() {
     const userName = "Sean Spires";
     const role = "Product Manager";
 
-
     const handleIconChange = event => {
        //TODO: Change icon here
     };
