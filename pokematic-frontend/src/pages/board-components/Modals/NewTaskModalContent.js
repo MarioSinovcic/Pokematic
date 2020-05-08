@@ -103,7 +103,7 @@ function ModalContent (props) {
             };
             await createTask(props.teamName, newTask, selectedGoal);
             await props.refreshBoardPage(props.teamName);
-            window.location.reload(false);
+            await props.refreshBoardPage(props.teamName);
         }
         props.handleClose();
     };
