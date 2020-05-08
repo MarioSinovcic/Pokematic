@@ -89,7 +89,7 @@ function ModalContent (props) {
             };
             await createGoal(props.teamName, newGoal);
             await props.refreshBoardPage(props.teamName);
-            window.location.reload(false);
+            await props.refreshBoardPage(props.teamName);
         }
         props.handleClose();
     };
@@ -148,9 +148,9 @@ function ModalContent (props) {
                         }}
                         > {/* need to validate this input (value === 0) should defualt to 10 */}
                             <MenuItem className={classes.dropDownItems} value={0}><em>DIFFICULTY</em></MenuItem>
-                            <MenuItem className={classes.dropDownItems} value={10}>EASY</MenuItem>
-                            <MenuItem className={classes.dropDownItems} value={20}>MEDIUM</MenuItem>
-                            <MenuItem className={classes.dropDownItems} value={30}>HARD</MenuItem>
+                            <MenuItem className={classes.dropDownItems} value={2}>EASY</MenuItem>
+                            <MenuItem className={classes.dropDownItems} value={3}>MEDIUM</MenuItem>
+                            <MenuItem className={classes.dropDownItems} value={5}>HARD</MenuItem>
                         </Select>
                     </FormControl>
                 <div className="right-align">

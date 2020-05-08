@@ -111,7 +111,7 @@ export async function populateProfilePage(){
   return(gatheredTeams);
 }
 
-export async function handleApproval(teamName, goalName){
+export async function handleApproval(teamName, goalName, taskXP){
   var goalInfoCall = HOST + "team/goals/" + teamName + "/" + goalName;
   var goalData = await fetch(goalInfoCall)
   .then(response => response.json())
@@ -119,6 +119,7 @@ export async function handleApproval(teamName, goalName){
       return json
   });
 
+  var goalXP = 0;
   if(goalData["progress"] === 1.0){
     goalData["completed"] = true;
 
@@ -129,33 +130,35 @@ export async function handleApproval(teamName, goalName){
         body: JSON.stringify(goalData)
     };
     await fetch(updateGoal, requestOptions);
+    goalXP = goalData["experiencePoints"];
+  } 
 
-    var teamInfoCall = HOST + "team/" + teamName;
-    var teamData = await fetch(teamInfoCall)
-    .then(response => response.json())
-    .then(json => {
-        return json
-    });
-    var teamXP = teamData["experiencePoints"] + goalData["experiencePoints"];
-    var teamLevel = teamData["level"];
+  var teamInfoCall = HOST + "team/" + teamName;
+  var teamData = await fetch(teamInfoCall)
+  .then(response => response.json())
+  .then(json => {
+      return json
+  });
 
-    while(teamXP >= (teamLevel * 5)){
-      teamXP = teamXP - (teamLevel * 5);
-      teamLevel++;
-      //triggerLevelUpScreen()
-    }
-    teamData["level"] = teamLevel;
-    teamData["experiencePoints"] = teamXP;
+  var newteamXP = teamData["experiencePoints"] + goalXP + taskXP;
+  var teamLevel = teamData["level"];
 
-    var updateTeam = HOST + "team/updateTeam/" + teamName;
-    const requestOptions2 = {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(teamData)
-    };
-      
-    await fetch(updateTeam, requestOptions2);
+  while(newteamXP >= (teamLevel * 5)){
+    newteamXP = newteamXP - (teamLevel * 5);
+    teamLevel++;
+    //TODO: triggerLevelUpScreen()
   }
+  teamData["level"] = teamLevel;
+  teamData["experiencePoints"] = newteamXP;
+
+  var updateTeam = HOST + "team/updateTeam/" + teamName;
+  const requestOptions2 = {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(teamData)
+  };
+      
+  await fetch(updateTeam, requestOptions2);
 }       
 
 export async function populateBoardPage(teamName){
