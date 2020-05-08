@@ -22,6 +22,10 @@ class Auth {
     return this.profile;
   }
 
+  getIdToken() {
+    return this.idToken;
+  }
+
   isAuthenticated() {
     return new Date().getTime() < this.expiresAt;
   }
@@ -37,6 +41,7 @@ class Auth {
         if (!authResult || !authResult.idToken) {
           return reject(err);
         }
+        this.idToken = authResult.idToken;
         this.profile = authResult.idTokenPayload;
         this.expiresAt = authResult.idTokenPayload.exp * 500;
         resolve();
@@ -45,6 +50,7 @@ class Auth {
   }
 
   signOut() {
+    this.idToken = null;
     this.profile = null;
     this.expiresAt = null;
     this.auth0.logout({
