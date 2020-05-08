@@ -102,7 +102,7 @@ class Board extends React.Component {
     return (
         <div>
           <div className="board-page">
-          <Header teamName={this.state.teamName}/>
+          <Header teamName={this.state.teamName} currentPage="/board"/>
           <div className="team-card">
                 <TeamCard teamName={this.state.teamName}/>
           </div>
