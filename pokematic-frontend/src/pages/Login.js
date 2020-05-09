@@ -5,6 +5,7 @@ import './Login.css';
 import { Typography, Button } from '@material-ui/core';
 import * as colors from '../colors'
 import { Link } from 'react-router-dom';
+import auth0Client from '../Auth0/Auth';
 
 
 
@@ -16,12 +17,6 @@ class Login extends React.Component {
     this.state = {
     }
   }
-
-
-  logIn() {
-
-  }
-
 
   render() {
     return (
@@ -40,7 +35,7 @@ class Login extends React.Component {
                   <Link to={"/profile"} replace style={{ textDecoration: 'none' }} >
                     <Button style={{ backgroundColor: colors.fire, height: "50px", width: "150px", fontSize: "60px", marginTop: "-200px" }}
                       className="team-label pokemon-label"
-                      onClick={this.logIn}>
+                      onClick={() => auth0Client.signIn()}>
                       LOGIN!
                  </Button>
                   </Link>
@@ -59,5 +54,7 @@ class Login extends React.Component {
     );
   }
 }
+
+
 
 export default Login;

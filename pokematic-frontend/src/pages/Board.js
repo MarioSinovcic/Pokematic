@@ -10,6 +10,7 @@ import LevelUpModalContent from './board-components/Modals/LevelUpModalContent';
 import { Modal, Backdrop, Fade, Button } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { togglePokemonLoad, addPokemonData, addPokemonNames, addPokemonTypes } from '../actions/actions';
+import auth0Client from '../Auth0/Auth';
 import './Board.css'
 
 class Board extends React.Component {
