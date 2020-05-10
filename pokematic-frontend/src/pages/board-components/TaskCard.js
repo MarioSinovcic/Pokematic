@@ -11,6 +11,7 @@ import Assignees from './Assignees';
 import * as colors from '../../colors';
 import {updateTask} from '../../apiHandler';
 import './TaskCard.css';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -61,7 +62,7 @@ function TaskCard(props) {
         <div className="TaskCard" >
             <div className="TaskHeaders" onClick={handlOpen}>
             <Typography className="TaskTitleText">{props.name}</Typography>
-                <Typography className="TaskIDText StoryPoint">{props.storyPoints}</Typography>
+                {props.approved ? <Typography className="TaskIDText StoryPoint"><CheckCircleIcon /></Typography> : "" }
             </div>
             <Assignees />
             <div className="TaskLabels">

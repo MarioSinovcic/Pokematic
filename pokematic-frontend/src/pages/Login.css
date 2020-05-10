@@ -21,7 +21,7 @@
     display: flex;
     flex-direction: row;
     width: 400px;
-    height: 600px;
+    height: 500px;
     padding: 100px 25px 0 25px;
     margin-top: 100px;
     justify-content: center;
@@ -53,14 +53,14 @@
 
 .login-base-shape {
     width: 450px;
-    height: 600px;
+    height: 400px;
     background: #EF5959;
     /* box-shadow: 5px 5px 5px grey; */
     /* position: absolute; */
 }
 
 .login-bottom {
-    height: 625px;
+    height: 325px;
     background:#EF5959;
     /* position: relative; */
     /* top:10px;
@@ -82,7 +82,7 @@
 .credentials-shape {
     background-color: #3D3D3D;
     width: 300px;
-    height: 375px;
+    height: 225px;
     display: flex;
     margin: 25px 0 0 50px !important;
     justify-content: center;
@@ -92,8 +92,8 @@
 
 .pokeball-img-login {
     position: relative;
-    left: 200px;
-    bottom: 160px;
+    left: 250px;
+    bottom: 170px;
     width: 300px;
     height: 300px;
     z-index: 50 !important;
@@ -102,7 +102,7 @@
 
     background-image: url('../images/background_pokeball_white.png');
     background-repeat: no-repeat;
-    background-size: 225px;
+    background-size: 175px;
     background-position: fixed;
 }
 
