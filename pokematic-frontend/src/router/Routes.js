@@ -13,7 +13,7 @@ const Routes = () => {
         <Switch>
             <Route exact path="/" component={Login} />
             <Route path="/login" component={Login}/>
-            <Route exact path='/callback' component={Callback} exact />
+            <Route exact path='/callback' component={Callback}  />
             <Route path="/team-search" component={TeamSearch}/>
             <Route path="/profile" component={Profile}/>
             <Route name="pokedex" path="/pokedex/:teamName" component={Pokedex}/>
