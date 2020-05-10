@@ -66,15 +66,14 @@ function TaskModalContent (props) {
         await updateTask(updatedTask, props.teamName, props.goalName, props.name);
         await props.populatePage(props.teamName);
 
-        var levelUp = false;
         if(selectedApproved){
-            levelUp = await handleApproval(props.teamName, props.goalName, props.experiencePoints);
+            var levelUp = await handleApproval(props.teamName, props.goalName, props.experiencePoints);
             await props.populatePage(props.teamName);
+            if(levelUp){
+                props.openLevelUp();
+            }
         }
         props.handleClose();
-        if(levelUp){
-            props.openLevelUp();
-        }
     }
 
     return (
