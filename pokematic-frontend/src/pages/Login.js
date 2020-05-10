@@ -33,10 +33,10 @@ class Login extends React.Component {
                 </div>
                 <div className="credentials-shape">
                   <Link to={"/profile"} replace style={{ textDecoration: 'none' }} >
-                    <Button style={{ backgroundColor: colors.fire, height: "50px", width: "150px", fontSize: "60px", marginTop: "-200px" }}
+                    <Button style={{ backgroundColor: colors.fire, height: "50px", width: "225px", fontSize: "60px", marginTop: "-125px", border: "white 3px solid" }}
                       className="team-label pokemon-label"
                       onClick={() => auth0Client.signIn()}>
-                      LOGIN!
+                      Enter Pokematic!
                  </Button>
                   </Link>
                 </div>
