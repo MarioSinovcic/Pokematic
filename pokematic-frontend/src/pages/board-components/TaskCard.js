@@ -100,6 +100,7 @@ function TaskCard(props) {
                             goalName={props.goalName}
                             handleClose={handleClose}
                             populatePage={props.populatePage}
+                            openLevelUp={props.openLevelUp}
                             />
                     </div>
                 </Fade>

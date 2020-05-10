@@ -32,6 +32,7 @@ export class StatusCard extends React.Component {
                     approved={taskData["approved"]}
                     goalName={taskData["goalName"]}
                     populatePage={this.props.populatePage}
+                    openLevelUp={this.props.openLevelUp}
                     />
             )
 

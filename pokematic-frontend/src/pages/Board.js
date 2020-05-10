@@ -17,6 +17,7 @@ class Board extends React.Component {
     super(props);
 
     this.populatePage = this.populatePage.bind(this);
+    this.handleOpenLevelUpModal = this.handleOpenLevelUpModal.bind(this);
 
     this.state = {
       teamName: this.props.match.params.teamName,
@@ -26,7 +27,7 @@ class Board extends React.Component {
       inProgressList: [],
       inReviewList: [],
       doneList: [],
-      open: false,
+      openLevelUp: false,
     }
   }
 
@@ -81,15 +82,15 @@ class Board extends React.Component {
     })
   }
   
-  handleOpen() {
+  handleOpenLevelUpModal() {
     this.setState({
-      open: true,
+      openLevelUp: true,
     })
   };
 
-  handleClose() {
+  handleCloseLevelUpModa() {
     this.setState({
-      open: false,
+      openLevelUp: false,
     })
   };
   
@@ -115,10 +116,10 @@ class Board extends React.Component {
             </div>
             <div className="tasks-content">
               <div className="todo-status">
-              <StatusCard statusTitle={"TODO"} taskList={this.state.todoList} populatePage={this.populatePage} teamName={this.state.teamName}/>
-              <StatusCard statusTitle={"IN PROGRESS"} taskList={this.state.inProgressList} populatePage={this.populatePage} teamName={this.state.teamName}/>
-              <StatusCard statusTitle={"IN REVIEW"} taskList={this.state.inReviewList} populatePage={this.populatePage} teamName={this.state.teamName}/>
-              <StatusCard statusTitle={"DONE"} taskList={this.state.doneList} populatePage={this.populatePage} teamName={this.state.teamName}/>
+              <StatusCard statusTitle={"TODO"} taskList={this.state.todoList} populatePage={this.populatePage} openLevelUp={this.handleOpenLevelUpModal}  teamName={this.state.teamName}/>
+              <StatusCard statusTitle={"IN PROGRESS"} taskList={this.state.inProgressList} populatePage={this.populatePage} openLevelUp={this.handleOpenLevelUpModal} teamName={this.state.teamName}/>
+              <StatusCard statusTitle={"IN REVIEW"} taskList={this.state.inReviewList} populatePage={this.populatePage} openLevelUp={this.handleOpenLevelUpModal} teamName={this.state.teamName}/>
+              <StatusCard statusTitle={"DONE"} taskList={this.state.doneList} populatePage={this.populatePage} openLevelUp={this.handleOpenLevelUpModal} teamName={this.state.teamName}/>
               </div>
             </div>
             <div className="new-task-button">
@@ -135,24 +136,23 @@ class Board extends React.Component {
             <Modal
               aria-labelledby="transition-modal-title"
               aria-describedby="transition-modal-description"
-              // className={classes.modal}
-              open={this.state.open}
+              open={this.state.openLevelUp}
               disableAutoFocus={true}
-              onBackdropClick={() => this.handleClose()}
-              onClose={() => this.handleClose()}
+              onBackdropClick={() => this.handleOpenLevelUpModa()}
+              onClose={() => this.handleCloseLevelUpModa()}
               closeAfterTransition
               BackdropComponent={Backdrop}
               BackdropProps={{
                 timeout: 500,
               }}
             >
-              <Fade in={this.state.open}>
+              <Fade in={this.state.openLevelUp}>
                 <div>
                   {/* Temporary error handling to load pokedex first */}
                   {this.props.pokemonData[1] ? 
                   <LevelUpModalContent
                     teamName={this.state.teamName}
-                    handleClose={this.handleClose.bind(this)}
+                    handleClose={this.handleCloseLevelUpModa.bind(this)}
                     pokemonData={this.props.pokemonData}
                   />
                   : ""}

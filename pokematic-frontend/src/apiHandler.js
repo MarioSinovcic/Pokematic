@@ -141,14 +141,14 @@ export async function handleApproval(teamName, goalName, taskXP){
   });
 
   var newteamXP = teamData["experiencePoints"] + goalXP + taskXP;
-  var teamLevel = teamData["level"];
+  var initalTemLevel = teamData["level"];
+  var newTeamLevel = teamData["level"];
 
-  while(newteamXP >= (teamLevel * 5)){
-    newteamXP = newteamXP - (teamLevel * 5);
-    teamLevel++;
-    //TODO: triggerLevelUpScreen()
+  while(newteamXP >= (newTeamLevel * 5)){
+    newteamXP = newteamXP - (newTeamLevel * 5);
+    newTeamLevel++;
   }
-  teamData["level"] = teamLevel;
+  teamData["level"] = newTeamLevel;
   teamData["experiencePoints"] = newteamXP;
 
   var updateTeam = HOST + "team/updateTeam/" + teamName;
@@ -159,6 +159,8 @@ export async function handleApproval(teamName, goalName, taskXP){
   };
       
   await fetch(updateTeam, requestOptions2);
+
+  return (initalTemLevel < newTeamLevel);
 }       
 
 export async function populateBoardPage(teamName){
