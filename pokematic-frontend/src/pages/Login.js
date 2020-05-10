@@ -1,13 +1,10 @@
 import React from 'react';
 import Header from '../shared-components/Header';
-import Label from './board-components/Label';
-import './Login.css';
 import { Typography, Button } from '@material-ui/core';
 import * as colors from '../colors'
 import { Link } from 'react-router-dom';
 import auth0Client from '../Auth0/Auth';
-
-
+import './Login.css';
 
 class Login extends React.Component {
 

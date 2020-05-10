@@ -48,6 +48,8 @@ function TaskModalContent (props) {
         await deleteTask(props.teamName, props.goalName, props.name);
         await props.populatePage(props.teamName);
         props.handleClose();
+        props.openLevelUp();
+
     }
 
     async function handleSave() {
@@ -65,8 +67,11 @@ function TaskModalContent (props) {
         await props.populatePage(props.teamName);
 
         if(selectedApproved){
-            await handleApproval(props.teamName, props.goalName, props.experiencePoints)
+            var levelUp = await handleApproval(props.teamName, props.goalName, props.experiencePoints);
             await props.populatePage(props.teamName);
+            if(levelUp){
+                props.openLevelUp();
+            }
         }
         props.handleClose();
     }
