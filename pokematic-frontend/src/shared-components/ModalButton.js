@@ -56,6 +56,7 @@ function ModalButton(props) {
     case "new-task":
     renderModal = <NewTaskModalContent 
                     teamName={props.teamName}
+                    taskNames={props.taskNames}
                     goalNames={props.goalNames} 
                     refreshBoardPage={refreshBoardPage}
                     handleClose={handleClose}

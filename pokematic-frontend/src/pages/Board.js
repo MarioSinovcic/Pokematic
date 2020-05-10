@@ -23,6 +23,7 @@ class Board extends React.Component {
       teamName: this.props.match.params.teamName,
       goalsList: [],
       goalNames: [],
+      taskNames: [],
       todoList: [],
       inProgressList: [],
       inReviewList: [],
@@ -75,6 +76,7 @@ class Board extends React.Component {
       teamName: this.props.match.params.teamName,
       goalsList: (await apiData).goalsList,
       goalNames: (await apiData).goalNames,
+      taskNames: (await apiData).taskNames,
       todoList: (await apiData).todoList,
       inProgressList: (await apiData).inProgressList,
       inReviewList: (await apiData).inReviewList,
@@ -125,6 +127,7 @@ class Board extends React.Component {
             <div className="new-task-button">
               <ModalButton 
                 populatePage={this.populatePage} 
+                taskNames={this.state.taskNames}
                 goalNames ={this.state.goalNames} 
                 teamName={this.state.teamName}
                 icon={<AddIcon style={{fontSize: "35px"}}/>} theme="dark" type="new-task"

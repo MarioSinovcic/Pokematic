@@ -177,6 +177,7 @@ export async function populateBoardPage(teamName){
     var gatheredTeamGoals= [];
     var gatheredTasksForGoals= [];
     var gatheredGoalNames= [];
+    var gatheredTaskNames= [];
 
     for (var goal = 0; goal < goalResponse.length; goal++) {
       gatheredTeamGoals.push(goalResponse[goal]);
@@ -189,6 +190,7 @@ export async function populateBoardPage(teamName){
       for(var task = 0; task < taskArray.length; task++){
         var currentTask = taskArray[task];
         currentTask["goalName"] = goalResponse[goal]["name"];
+        gatheredTaskNames.push(currentTask["name"]);
         gatheredTasksForGoals.push(currentTask);
       }
     }
@@ -216,8 +218,9 @@ export async function populateBoardPage(teamName){
     }
 
     var apiData = {
-        goalsList:gatheredTeamGoals.reverse(), 
-        goalNames:gatheredGoalNames.reverse(), 
+        goalsList: gatheredTeamGoals.reverse(), 
+        goalNames: gatheredGoalNames.reverse(), 
+        taskNames: gatheredTaskNames.reverse(), 
         todoList: gatheredTodoList.reverse(),
         inProgressList: gatheredInProgressList.reverse(),
         inReviewList: gatheredInReviewList.reverse(),
