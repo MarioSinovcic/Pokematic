@@ -16,7 +16,7 @@ class Auth {
     this.isAuthenticated = this.isAuthenticated.bind(this);
     this.signIn = this.signIn.bind(this);
     this.signOut = this.signOut.bind(this);
-    this.checkSession = this.checkSession.bind(this);
+    this.silentAuth = this.silentAuth.bind(this);
   }
 
   getProfile() {
@@ -27,20 +27,16 @@ class Auth {
     return this.idToken;
   }
 
-  checkSession() {
-    auth0.checkSession(
-      {
-        scope: "openid profile email"
-      },
-      function (err, authResult) {
-        // err if automatic parseHash fails
-        if (err !== undefined && err) {
-          console.error(err);
-          return;
-        }
-
-        resolve(authResult);
+  silentAuth() {
+    return new Promise((resolve, reject) => {
+      this.auth0.checkSession({}, (err, authResult) => {
+        if (err) return reject(err);
+        this.idToken = authResult.idToken;
+        this.profile = authResult.idTokenPayload;
+        this.expiresAt = authResult.idTokenPayload.exp * 1000;
+        resolve();
       });
+    });
   }
 
   isAuthenticated() {
@@ -60,7 +56,7 @@ class Auth {
         }
         this.idToken = authResult.idToken;
         this.profile = authResult.idTokenPayload;
-        this.expiresAt = authResult.idTokenPayload.exp * 500;
+        this.expiresAt = authResult.idTokenPayload.exp * 1000;
         resolve();
       });
     })
