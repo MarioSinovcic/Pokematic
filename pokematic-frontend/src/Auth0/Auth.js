@@ -16,6 +16,7 @@ class Auth {
     this.isAuthenticated = this.isAuthenticated.bind(this);
     this.signIn = this.signIn.bind(this);
     this.signOut = this.signOut.bind(this);
+    this.checkSession = this.checkSession.bind(this);
   }
 
   getProfile() {
@@ -24,6 +25,22 @@ class Auth {
 
   getIdToken() {
     return this.idToken;
+  }
+
+  checkSession() {
+    auth0.checkSession(
+      {
+        scope: "openid profile email"
+      },
+      function (err, authResult) {
+        // err if automatic parseHash fails
+        if (err !== undefined && err) {
+          console.error(err);
+          return;
+        }
+
+        resolve(authResult);
+      });
   }
 
   isAuthenticated() {
