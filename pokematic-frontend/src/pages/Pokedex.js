@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { toggleCollection, setCollection } from '../actions/actions';
 import { Typography, Grid, Switch } from '@material-ui/core';
 import { getTeamInfo } from '../apiHandler';
+import auth0Client from '../Auth0/Auth';
 
 class Pokedex extends React.Component {
 
@@ -16,6 +17,7 @@ class Pokedex extends React.Component {
   }
 
   componentWillMount() {
+    auth0Client.silentAuth();
     this.mapPokemon().then(() => {
       this.props.toggleCollection(this.props.teamPokemon);
       this.setState({

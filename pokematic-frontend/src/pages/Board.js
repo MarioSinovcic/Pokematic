@@ -11,6 +11,7 @@ import { Modal, Backdrop, Fade, Button } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { togglePokemonLoad, addPokemonData, addPokemonNames, addPokemonTypes } from '../actions/actions';
 import './Board.css'
+import auth0Cilent from '../Auth0/Auth';
 
 class Board extends React.Component {
   constructor(props){
@@ -33,6 +34,8 @@ class Board extends React.Component {
   }
 
   componentDidMount(){
+    auth0Cilent.silentAuth();
+    console.log(auth0Cilent);
     this.populatePage();
     if (!this.props.isLoaded) {
       this.getPokemonData();
