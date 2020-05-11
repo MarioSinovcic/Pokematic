@@ -21,9 +21,9 @@ class Profile extends React.Component {
   }
 
   componentDidMount() {
-    console.log("User logged in");
     // auth0Client.profile contains user information
-    console.log(auth0Client.profile.aud);
+    auth0Client.silentAuth();
+    console.log(auth0Client);
     this.populatePage();
   }
 
