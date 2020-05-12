@@ -16,14 +16,18 @@ class Profile extends React.Component {
     this.populatePage = this.populatePage.bind(this);
 
     this.state = {
-      teamsList: []
+      teamsList: [],
+      nickname: "",
+      picture: ""
     }
   }
 
   componentDidMount() {
     // auth0Client.profile contains user information
-    auth0Client.silentAuth();
-    console.log(auth0Client.profile);
+    auth0Client.silentAuth().then(() => this.setState({
+        nickname: auth0Client.profile.nickname,
+        picture: auth0Client.profile.picture
+    }));
     this.populatePage();
   }
 
@@ -67,7 +71,7 @@ class Profile extends React.Component {
             <ModalButton icon={newTeamIcon} theme="light" type="new-team" />
           </div>
           <div className="profile-content">
-            <ProfileCard className="profile-card" user={auth0Client} />
+            <ProfileCard className="profile-card" username={this.state.nickname} picture={this.state.picture} />
           </div>
         </div>
       </div>

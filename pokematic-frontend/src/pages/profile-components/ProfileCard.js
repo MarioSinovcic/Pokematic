@@ -14,9 +14,9 @@ function ProfileCard(props) {
             <div className="profile-headers">
                 <div className="info">
                     <div className="user-icon">
-                        <img className="user-image" src={props.user.profile ? props.user.profile.picture : ""} alt={"User Profile"}/>
+                        <img className="user-image" src={props.picture} alt={"User Profile"}/>
                     </div>
-                    <Typography className="user-name">{props.user.profile ? props.user.profile.nickname : ""}</Typography>
+                    <Typography className="user-name">{props.nickname}</Typography>
                 </div>
                 <Button className="TeamLabel role-button">{role}</Button>
             </div>
