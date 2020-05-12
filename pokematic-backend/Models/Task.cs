@@ -19,7 +19,7 @@ namespace pokematic_backend.Models
 
         [BsonElement("storyPoints")] public int StoryPoints { get; set; }
         
-        [BsonElement("assignees")] public List<User> Assignees = new List<User>(); 
+        [BsonElement("assignees")] public List<string> Assignees = new List<string>(); 
 
         [BsonElement("approved")] public bool Approved { get; set; }
 
