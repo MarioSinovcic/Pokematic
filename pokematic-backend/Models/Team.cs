@@ -12,7 +12,9 @@ namespace pokematic_backend.Models
         public ObjectId Id { get; set; }
         [BsonElement("name")] public string Name { get; set; }
         
-        [BsonElement("users")] public List<User> Users = new List<User>();
+        [BsonElement("image")] public string ImageUri { get; set; }
+        
+        [BsonElement("users")] public List<string> Users = new List<string>();
 
         [BsonElement("goals")] public List<Goal> Goals = new List<Goal>();
 
