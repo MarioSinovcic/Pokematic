@@ -81,7 +81,8 @@ namespace pokematic_backend.Services
         public void JoinTeam(string teamName, string username)
         {
             var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
-
+            
+            
             if (team == null)
             {
                 return;
@@ -350,12 +351,12 @@ namespace pokematic_backend.Services
                 return "No team with that team name";
 
             }
-            
-            var user = _userService.Get(username);
+
+            var user = team.Users.FirstOrDefault(user => user == username);
 
             if (user == null)
             {
-                return "No user with that username";
+                return "No user with that username in this team";
             }
             
             var goal = team.Goals.FirstOrDefault(goal => goal.Name == goalName);
@@ -381,16 +382,16 @@ namespace pokematic_backend.Services
 
             if (assignees == null)
             {
-                task.Assignees = new List<User> {user};
+                task.Assignees.Add(username);
                 goal.Tasks[goal.Tasks.FindIndex(task => task.Name == taskName)] = task;
                 team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
                 UpdateTeam(teamName, team);
             }
-            else if (assignees.Exists(user => user.Username == username))
+            else if (assignees.Exists(user => user == username))
             {
                 return "User is already assigned to this task";
             }
-            else if (assignees.Exists(user => user.Username == username))
+            else if (assignees.Exists(user => user == username))
             {
                 return "User is already assigned to this task";
             }
@@ -418,11 +419,11 @@ namespace pokematic_backend.Services
 
             }
             
-            var user = _userService.Get(username);
+            var user = team.Users.FirstOrDefault(user => user == username);
 
             if (user == null)
             {
-                return "No user with that username";
+                return "No user with that username in this team";
             }
             
             var goal = team.Goals.FirstOrDefault(goal => goal.Name == goalName);
@@ -446,12 +447,12 @@ namespace pokematic_backend.Services
                 return "User is not assigned to this task";
             }
 
-            if (!assignees.Exists(user => user.Username == username))
+            if (!assignees.Exists(user => user == username))
             {
                 return "User is not assigned to this task";
             }
 
-            assignees.Remove(assignees.Single(user => user.Username == username));
+            assignees.Remove(assignees.Single(user => user == username));
             task.Assignees = assignees;
             goal.Tasks[goal.Tasks.FindIndex(task => task.Name == taskName)] = task;
             team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
