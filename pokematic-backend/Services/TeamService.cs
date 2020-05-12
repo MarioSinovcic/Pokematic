@@ -90,17 +90,6 @@ namespace pokematic_backend.Services
                 return;
             }
 
-            if (team.Users == null)
-            {
-                team.Users = new List<User> {user};
-                UpdateTeam(teamName, team);
-            }
-            else
-            {
-                team.Users.Add(user);
-                UpdateTeam(teamName, team);
-            }
-
         }
 
 
