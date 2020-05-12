@@ -78,16 +78,25 @@ namespace pokematic_backend.Services
         
         
 
-        public void JoinTeam(string teamName, string username)
+        public string JoinTeam(string teamName, string username)
         {
             var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
             
-            
             if (team == null)
             {
-                return;
+                return "No team with that team name";
             }
-
+            
+            if (team.Users.Contains(username))
+            {
+                return "User already part of team";
+            }
+            else
+            {
+                team.Users.Add(username);
+                UpdateTeam(teamName, team);
+                return "success";
+            }
         }
 
 

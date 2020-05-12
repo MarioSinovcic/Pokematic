@@ -61,8 +61,14 @@ namespace pokematic_backend.Controllers
         [HttpPost("joinTeam/{teamName}/{username}")]
         public ActionResult JoinTeam(string teamName, string username)
         {
-            _teamService.JoinTeam(teamName, username);
-            return Ok();
+            var serviceMessage = _teamService.JoinTeam(teamName, username);
+            
+            if (serviceMessage == "success")
+            {
+                return Ok();
+            }
+
+            return NotFound(serviceMessage);
         }
 
         [HttpPut("updateTeam/{teamToUpdateName}")]
