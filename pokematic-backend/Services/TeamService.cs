@@ -16,12 +16,10 @@ namespace pokematic_backend.Services
     public class TeamService
     {
         private readonly IMongoCollection<Team> _teams;
-        private readonly UserService _userService;
         
         public TeamService(IConfiguration configuration)
         {
             var databaseContext = new DatabaseContext(configuration);
-            _userService = new UserService(configuration);
             _teams = databaseContext.Database.GetCollection<Team>("Teams");
         }
             
@@ -83,7 +81,6 @@ namespace pokematic_backend.Services
         public void JoinTeam(string teamName, string username)
         {
             var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
-            var user = _userService.Get(username);
 
             if (team == null)
             {
