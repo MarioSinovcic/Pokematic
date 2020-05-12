@@ -23,7 +23,7 @@ class Profile extends React.Component {
   componentDidMount() {
     // auth0Client.profile contains user information
     auth0Client.silentAuth();
-    console.log(auth0Client);
+    console.log(auth0Client.profile);
     this.populatePage();
   }
 
@@ -67,7 +67,7 @@ class Profile extends React.Component {
             <ModalButton icon={newTeamIcon} theme="light" type="new-team" />
           </div>
           <div className="profile-content">
-            <ProfileCard className="profile-card" />
+            <ProfileCard className="profile-card" user={auth0Client} />
           </div>
         </div>
       </div>
