@@ -52,9 +52,14 @@
 .user-name {
     font-family: 'pkmn_rbygscregular' !important;
     color: white;
-    font-size: 40px !important;
+    font-size: 30px !important;
     text-align: center;
     width: 120%;
+}
+
+.user-image{
+    width: 100%;
+    border-radius: 300px;
 }
 
 .user-icon{
@@ -66,9 +71,6 @@
     margin-bottom: 30px;
     margin-top: 40px;
  
-    /* Temporary Icon image from Sarah TechraNova https://twitter.com/i/events/1138898764117282817?lang=gu*/
-    background-image: url('../../images/fennekinIcon.jpeg');
-    background-repeat: no-repeat;
     background-color: whitesmoke;
     background-size: 280px 280px;
     background-position: center;

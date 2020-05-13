@@ -2,15 +2,10 @@ import React from 'react';
 import './ProfileCard.css';
 import { Typography, Button } from '@material-ui/core';
 
-function ProfileCard() {
+function ProfileCard(props) {
 
     // TEMP: fetch user details & change role into enum/object
-    const userName = "Sean Spires";
-    const role = "Product Manager";
-
-    const handleIconChange = event => {
-       //TODO: Change icon here
-    };
+    const role = "Developer";
 
     return (
         <div className="profile-card-shape">
@@ -18,8 +13,10 @@ function ProfileCard() {
             <div className="profile-base-shape">
             <div className="profile-headers">
                 <div className="info">
-                    <div className="user-icon" onClick={handleIconChange}/>
-                    <Typography className="user-name">{userName}</Typography>
+                    <div className="user-icon">
+                        <img className="user-image" src={props.picture} alt={"User Profile"}/>
+                    </div>
+                    <Typography className="user-name">{props.nickname}</Typography>
                 </div>
                 <Button className="TeamLabel role-button">{role}</Button>
             </div>
@@ -30,7 +27,7 @@ function ProfileCard() {
                 <div className="profile-bottom"></div> 
             </div>
         </div>
-)
+    )
 }
 
 export default ProfileCard;
