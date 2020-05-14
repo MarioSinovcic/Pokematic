@@ -6,6 +6,7 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import NewGoalModalContent from '../pages/board-components/Modals/NewGoalModalContent'
 import NewTaskModalContent from '../pages/board-components/Modals/NewTaskModalContent'
+import NewTeamModalContent from '../pages/profile-components/Modals/NewTeamModalContent'
 import ErrorMessage from './ErrorMessage'
 import './ModalButton.css';
 
@@ -50,6 +51,11 @@ function ModalButton(props) {
     setOpen(false);
   };
 
+  async function refreshProfilePage() {
+    props.refreshProfilePage();
+    setOpen(false);
+  };
+
   let renderModal;
   switch(props.type) {
 
@@ -69,7 +75,12 @@ function ModalButton(props) {
       break; 
 
     case "new-team":
-    renderModal = "To be Completed";
+    renderModal = <NewTeamModalContent      
+                    userId={props.userId}
+                    handleClose={handleClose}
+                    showErrorMessage={showErrorMessage}
+                    refreshProfilePage={refreshProfilePage}
+                    /> 
     break;
 
     case "new-goal":

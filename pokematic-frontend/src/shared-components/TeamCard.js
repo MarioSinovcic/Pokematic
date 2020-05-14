@@ -15,7 +15,6 @@ class TeamCard extends React.Component {
             teamData: [],
         }
     }
-       
 
     componentDidMount(){
         this.getTeamData();
@@ -35,6 +34,7 @@ class TeamCard extends React.Component {
                 <div className="base-shape shape-content">
                     <TeamDetails 
                         name={this.state.teamData["name"]}
+                        imageUri={this.state.teamData["imageUri"]}
                         level={this.state.teamData["level"]}
                         experiencePoints={this.state.teamData["experiencePoints"]}
                         />

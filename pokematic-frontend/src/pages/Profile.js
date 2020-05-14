@@ -18,6 +18,7 @@ class Profile extends React.Component {
     this.state = {
       teamsList: [],
       nickname: "",
+      name: "",
       picture: ""
     }
   }
@@ -26,6 +27,7 @@ class Profile extends React.Component {
     // auth0Client.profile contains user information
     auth0Client.silentAuth().then(() => this.setState({
         nickname: auth0Client.profile.nickname,
+        name: String(auth0Client.profile.name),
         picture: auth0Client.profile.picture
     }));
     this.populatePage();
@@ -47,7 +49,6 @@ class Profile extends React.Component {
 
   render() {
     const sidebarTitle = 'TEAMS';
-    const teams = ["yes", "hello"];
 
     const searchTeamIcon = <SearchIcon style={{ fontSize: "35px", color: "#3D3D3D" }} />;
     const newTeamIcon = <AddIcon style={{ fontSize: "35px", color: "#3D3D3D" }} />;
@@ -61,14 +62,13 @@ class Profile extends React.Component {
         <div className="profile-background"></div>
         <div className="menu">
           <Sidebar
-            items={teams}
             title={sidebarTitle}
             itemType="TEAM"
             teamsList={this.state.teamsList}
           />
           <div className="team-buttons">
-            <ModalButton icon={searchTeamIcon} theme="light" type="search-team" />
-            <ModalButton icon={newTeamIcon} theme="light" type="new-team" />
+            <ModalButton icon={searchTeamIcon} theme="light" type="search-team"/>
+            <ModalButton icon={newTeamIcon} theme="light" type="new-team"  userId={this.state.name} refreshProfilePage={this.populatePage} />
           </div>
           <div className="profile-content">
             <ProfileCard className="profile-card" username={this.state.nickname} picture={this.state.picture} />

@@ -7,7 +7,7 @@ import Header from '../shared-components/Header';
 import AddIcon from '@material-ui/icons/Add';
 import { populateBoardPage, fetchPokemonData, fetchPokemonTypes } from '.././apiHandler';
 import LevelUpModalContent from './board-components/Modals/LevelUpModalContent';
-import { Modal, Backdrop, Fade, Button } from '@material-ui/core';
+import { Modal, Backdrop, Fade } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { togglePokemonLoad, addPokemonData, addPokemonNames, addPokemonTypes } from '../actions/actions';
 import './Board.css'
@@ -135,7 +135,6 @@ class Board extends React.Component {
                 teamName={this.state.teamName}
                 icon={<AddIcon style={{fontSize: "35px"}}/>} theme="dark" type="new-task"
               />
-              <Button style={{ size: "50px", backgroundColor: "red" }} onClick={() => this.handleOpen()} > Level up! </Button>
             </div>
           </div>
           <div>
