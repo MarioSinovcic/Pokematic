@@ -71,7 +71,7 @@ class Profile extends React.Component {
             <ModalButton icon={newTeamIcon} theme="light" type="new-team"  userId={this.state.name} refreshProfilePage={this.populatePage} />
           </div>
           <div className="profile-content">
-            <ProfileCard className="profile-card" username={this.state.nickname} picture={this.state.picture} />
+            <ProfileCard className="profile-card" nickname={this.state.nickname} picture={this.state.picture} />
           </div>
         </div>
       </div>
