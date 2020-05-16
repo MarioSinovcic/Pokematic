@@ -1,5 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`shared components snapshot matching Label matches snapshot 1`] = `
+<div
+  id="Label"
+>
+  <button
+    className="MuiButtonBase-root MuiButton-root MuiButton-text team-label pokemon-label"
+    disabled={false}
+    onBlur={[Function]}
+    onDragLeave={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+    style={
+      Object {
+        "backgroundColor": undefined,
+      }
+    }
+    tabIndex={0}
+    type="button"
+  >
+    <span
+      className="MuiButton-label"
+    />
+  </button>
+</div>
+`;
+
 exports[`shared components snapshot matching Modal Button matches snapshot 1`] = `
 <div>
   <div>

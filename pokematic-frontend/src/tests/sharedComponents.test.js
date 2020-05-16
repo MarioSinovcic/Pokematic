@@ -9,8 +9,7 @@ import ModalButton from '../shared-components/ModalButton';
 import ProgressBar from '../shared-components/ProgressBar';
 import Sidebar from '../shared-components/Sidebar';
 import TeamDetails from '../shared-components/TeamDetails';
-
-
+import Label from '../shared-components/Label';
 
 
 describe('shared components', () => {
@@ -67,6 +66,13 @@ describe('shared components', () => {
                 <TeamDetails />
             </Provider>).toJSON();
             expect(details).toMatchSnapshot();
+        });
+
+        it('Label matches snapshot' , () => {
+            const label = renderer.create(<Provider store={store}>
+                <Label />
+            </Provider>).toJSON();
+            expect(label).toMatchSnapshot();
         });
 
 

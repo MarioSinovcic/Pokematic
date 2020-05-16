@@ -2,7 +2,7 @@ import React from 'react';
 import ProgressBar from './ProgressBar';
 import { Typography, Divider } from '@material-ui/core';
 import './TeamDetails.css';
-import Label from '../pages/board-components/Label';
+import Label from './Label';
 import * as colors from '../colors'
 
 function TeamDetails(props) {
