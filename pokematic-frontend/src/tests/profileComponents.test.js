@@ -5,15 +5,12 @@ import { createStore } from 'redux';
 import rootReducers from '../reducers';
 import ProfileCard from '../pages/profile-components/ProfileCard';
 
-
-
 describe('profile components', () => {
 
     let store;
     beforeEach(() => {
         store = createStore(rootReducers)
     })
-
 
     describe('snapshot matching', () => {
 
@@ -25,11 +22,5 @@ describe('profile components', () => {
         });
 
     })
-
-
-    
-
-
-
 
 });
