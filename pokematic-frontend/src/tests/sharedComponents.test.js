@@ -10,6 +10,7 @@ import ProgressBar from '../shared-components/ProgressBar';
 import Sidebar from '../shared-components/Sidebar';
 import TeamDetails from '../shared-components/TeamDetails';
 import Label from '../shared-components/Label';
+import ErrorMessage from '../shared-components/ErrorMessage';
 
 
 describe('shared components', () => {
@@ -75,6 +76,12 @@ describe('shared components', () => {
             expect(label).toMatchSnapshot();
         });
 
+        xit('Error Message matches snapshot' , () => {
+            const msg = renderer.create(<Provider store={store}>
+                <ErrorMessage  message="hello"/>
+            </Provider>).toJSON();
+            expect(msg).toMatchSnapshot();
+        });
 
     })
 

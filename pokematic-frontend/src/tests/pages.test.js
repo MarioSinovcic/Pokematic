@@ -5,15 +5,42 @@ import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
 import { createStore } from 'redux';
 import rootReducers from '../reducers';
+import NotFound from '../pages/NotFound';
+import TeamSearch from '../pages/TeamSearch';
 
 //The following code includes examples for snapshot testing components.
 //Please try following the naming convetions shown in these examples
 
 //Docs : https://enzymejs.github.io/enzyme/
 
-xdescribe('Board', () => {
 
+describe('pages', () => {
     
+    let store;
+    beforeEach(() => {
+        store = createStore(rootReducers)
+    })
+
+    describe('snapshot tests', () => {
+        it ('displays error page', () => {
+            const notFound = renderer.create(<Provider store={store}>
+                <NotFound />
+            </Provider>).toJSON();
+            expect(notFound).toMatchSnapshot();
+        })
+
+        it ('team search', () => {
+            const team = renderer.create(<Provider store={store}>
+                <TeamSearch />
+            </Provider>).toJSON();
+            expect(team).toMatchSnapshot();
+        })
+    })
+})
+
+
+// TODO: test router pages
+xdescribe('Board', () => {
 
     //this tests if the component renders without errors
     it('should render without throwing an error', () => {
