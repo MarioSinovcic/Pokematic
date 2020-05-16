@@ -82,6 +82,29 @@ export async function getTeamInfo(teamName){
   return apiData;
 }
 
+export async function checkTeamName(teamName){
+  teamName = teamName.trim().split(' ').join('%20');
+  var APIcall = HOST + "team/" + teamName;
+  var response = await fetch(APIcall)
+
+  if(response.status === 204){
+    return false;
+  }else{
+    return true;
+  }
+}
+
+export async function createTeam(newTeam){
+  var APIcall = HOST + "team/createTeam";
+  const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newTeam)
+  };
+
+  await fetch(APIcall, requestOptions);
+}
+
 export async function updateTeam(updatedTeam, teamName){
   var APIcall = HOST + "team/updateTeam/" + teamName;
   const requestOptions = {

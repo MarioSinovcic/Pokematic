@@ -42,6 +42,7 @@ export default function Sidebar(props) {
                     //not used: just avoiding warnings
                     id={teamData["id"]} 
                     name={teamData["name"]} 
+                    imageUri={teamData["imageUri"]}
                     level={teamData["level"]}
                     experiencePoints={teamData["experiencePoints"]}
                     isItem={true}/>

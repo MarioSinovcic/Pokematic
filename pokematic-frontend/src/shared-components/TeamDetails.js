@@ -6,10 +6,6 @@ import Label from '../pages/board-components/Label';
 import * as colors from '../colors'
 
 function TeamDetails(props) {
-    // const teamName = "Team Alpha";
-    // const teamLevel= "20";
-    const temporaryTeamLogo = "/images/eevee.png";
-
     function calculateProgress(){
         return ((props.experiencePoints / (props.level *5))*100);
     }
@@ -18,7 +14,7 @@ function TeamDetails(props) {
         <div className={props.isItem && "items"}>
         <div className="team-details">
             <div className="team-icon-bg">
-                <img alt="team-logo" src={temporaryTeamLogo} className="team-image"></img>
+                <img alt="team-logo" src={props.imageUri} className="team-image"></img>
             </div>
             <div className="team-stats">
                 <Label labelText={"lv. "+ props.level} color={colors.fire}/>
