@@ -66,7 +66,7 @@ function NewTeamModalContent (props) {
                     <TextField 
                         className="team-name"
                         onChange={handleTeamNameChange}
-                        defaultValue=" "
+                        defaultValue="Team Name"
                         fullWidth
                         inputProps={{
                             maxLength: 16,
