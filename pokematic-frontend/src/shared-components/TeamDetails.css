@@ -35,7 +35,8 @@
     font-size: 20px !important;
     color: black;
     padding-bottom: 0 !important;
-    width: 200% !important;
+    min-width: 100px;
+    width: 200%;
 }
 
 .team-level-bar {

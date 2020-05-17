@@ -16,7 +16,7 @@ class Profile extends React.Component {
     this.populatePage = this.populatePage.bind(this);
 
     this.state = {
-      teamsList: [],
+      teamsList: [], //personal teamlist added below
       nickname: "",
       name: "",
       picture: ""
@@ -67,7 +67,7 @@ class Profile extends React.Component {
             teamsList={this.state.teamsList}
           />
           <div className="team-buttons">
-            <ModalButton icon={searchTeamIcon} theme="light" type="search-team"/>
+            <ModalButton icon={searchTeamIcon} theme="light" type="search-team" teamsList={this.state.teamsList} userId={this.state.name} refreshProfilePage={this.populatePage}/>
             <ModalButton icon={newTeamIcon} theme="light" type="new-team"  userId={this.state.name} refreshProfilePage={this.populatePage} />
           </div>
           <div className="profile-content">

@@ -105,6 +105,31 @@ export async function createTeam(newTeam){
   await fetch(APIcall, requestOptions);
 }
 
+export async function AddUserToTeam(userId, teamName){
+  teamName = teamName.trim().split(' ').join('%20');
+  var APIcall = HOST + "team/" + teamName;
+  var response = await fetch(APIcall)
+  
+  var updatedTeam = response;
+  var newTeamList = response["users"];
+  newTeamList.push(userId)
+  updatedTeam["users"] = newTeamList;
+
+  console.log()
+  
+
+  // await fetch(APIcall, requestOptions);
+  
+  // var APIcall = HOST + "team/updateTeam/" + teamName;
+  // const requestOptions = {
+  //     method: 'PUT',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify(updatedTeam)
+  // };
+
+  // await fetch(APIcall, requestOptions);
+}
+
 export async function updateTeam(updatedTeam, teamName){
   var APIcall = HOST + "team/updateTeam/" + teamName;
   const requestOptions = {
