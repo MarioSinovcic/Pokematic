@@ -5,7 +5,7 @@ import ProfileCard from './profile-components/ProfileCard';
 import ModalButton from '../shared-components/ModalButton';
 import AddIcon from '@material-ui/icons/Add';
 import SearchIcon from '@material-ui/icons/Search';
-import { populateProfilePage } from '.././apiHandler';
+import { getAllTeamsForAUser } from '.././apiHandler';
 import auth0Client from '../Auth0/Auth';
 import './Profile.css';
 
@@ -23,9 +23,9 @@ class Profile extends React.Component {
     }
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     // auth0Client.profile contains user information
-    auth0Client.silentAuth().then(() => this.setState({
+    await auth0Client.silentAuth().then(() => this.setState({
         nickname: auth0Client.profile.nickname,
         name: String(auth0Client.profile.name),
         picture: auth0Client.profile.picture
@@ -34,7 +34,7 @@ class Profile extends React.Component {
   }
 
   populatePage = async () => {
-    var apiData = populateProfilePage();
+    var apiData = getAllTeamsForAUser(this.state.name);
 
     this.setState({
       teamsList: (await apiData)

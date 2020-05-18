@@ -141,7 +141,27 @@ export async function updateTeam(updatedTeam, teamName){
   await fetch(APIcall, requestOptions);
 }
 
-export async function populateProfilePage(){
+export async function getAllTeamsForAUser(userId){
+  var APIcall = HOST + "team";
+  var response = await fetch(APIcall)
+  .then(response => response.json())
+  .then(json => {
+      return json
+  });
+
+  var teamResponse = response;
+  var gatheredTeams= [];
+
+  for (var team = 0; team < teamResponse.length; team++) {
+    if(teamResponse[team]["users"].includes(userId)){
+      gatheredTeams.push(teamResponse[team]);
+    }
+  }
+
+  return(gatheredTeams);
+}
+
+export async function getAllTeams(){
   var APIcall = HOST + "team";
   var response = await fetch(APIcall)
   .then(response => response.json())
