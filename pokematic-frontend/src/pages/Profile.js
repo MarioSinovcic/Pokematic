@@ -5,7 +5,7 @@ import ProfileCard from './profile-components/ProfileCard';
 import ModalButton from '../shared-components/ModalButton';
 import AddIcon from '@material-ui/icons/Add';
 import SearchIcon from '@material-ui/icons/Search';
-import { getAllTeamsForAUser } from '.././apiHandler';
+import { getAllTeamsForAUser, getAllTeams } from '.././apiHandler';
 import auth0Client from '../Auth0/Auth';
 import './Profile.css';
 
@@ -17,6 +17,7 @@ class Profile extends React.Component {
 
     this.state = {
       teamsList: [], //personal teamlist added below
+      allTeamsList: [],
       nickname: "",
       name: "",
       picture: ""
@@ -34,10 +35,12 @@ class Profile extends React.Component {
   }
 
   populatePage = async () => {
-    var apiData = getAllTeamsForAUser(this.state.name);
+    var apiData =  getAllTeamsForAUser(this.state.name);
+    var allTeams =  getAllTeams();
 
     this.setState({
-      teamsList: (await apiData)
+      teamsList: (await apiData),
+      allTeamsList: (await allTeams)
     })
   }
 
@@ -67,7 +70,7 @@ class Profile extends React.Component {
             teamsList={this.state.teamsList}
           />
           <div className="team-buttons">
-            <ModalButton icon={searchTeamIcon} theme="light" type="search-team" teamsList={this.state.teamsList} userId={this.state.name} refreshProfilePage={this.populatePage}/>
+            <ModalButton icon={searchTeamIcon} theme="light" type="search-team" teamsList={this.state.allTeamsList} userId={this.state.name} refreshProfilePage={this.populatePage}/>
             <ModalButton icon={newTeamIcon} theme="light" type="new-team"  userId={this.state.name} refreshProfilePage={this.populatePage} />
           </div>
           <div className="profile-content">
