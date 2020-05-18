@@ -7,15 +7,14 @@ import "./SearchTeamModalContent.css"
 
 function SearchTeamModalContent (props) {
     
-    const handleAddUserToTeam = async () => {
-        //console.log(props.userId, teamName)
-        //await AddUserToTeam(props.userId, teamName);
+    const handleAddUserToTeam = async teamName => {
+        await AddUserToTeam(props.userId, teamName);
         await props.refreshProfilePage();
         props.handleClose();
     }
 
     var teamsToJoin = props.teamsList.map((teamData) => 
-        <ListItem button key={"title"} className="TeamTabs TaskButton" onClick={handleAddUserToTeam}>
+        <ListItem button key={teamData["name"]} className="TeamTabs TaskButton" onClick={() => handleAddUserToTeam(teamData["name"])}>
             <TeamDetails 
             id={teamData["id"]} //not used: just avoiding warnings
             name={teamData["name"]} 
