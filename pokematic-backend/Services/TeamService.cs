@@ -446,7 +446,6 @@ namespace pokematic_backend.Services
 
             return "success";
         }
-        
         /**
          * User functionality
          */
