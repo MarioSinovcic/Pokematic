@@ -75,6 +75,8 @@ namespace pokematic_backend.Services
             }
             
         }
+        
+        
 
 
         /**
@@ -378,6 +380,10 @@ namespace pokematic_backend.Services
                 return "User is already assigned to this task";
             }
             else if (assignees.Exists(user => user == username))
+            {
+                return "User is already assigned to this task";
+            }
+            else if (assignees.Exists(user => user.Username == username))
             {
                 return "User is already assigned to this task";
             }
