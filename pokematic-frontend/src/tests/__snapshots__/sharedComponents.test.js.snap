@@ -149,7 +149,6 @@ exports[`shared components snapshot matching Team Card matches snapshot 1`] = `
           <img
             alt="team-logo"
             className="team-image"
-            src="/images/eevee.png"
           />
         </div>
         <div
@@ -246,7 +245,6 @@ exports[`shared components snapshot matching Team Details matches snapshot 1`] =
       <img
         alt="team-logo"
         className="team-image"
-        src="/images/eevee.png"
       />
     </div>
     <div
