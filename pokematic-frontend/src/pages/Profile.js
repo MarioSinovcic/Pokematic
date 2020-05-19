@@ -14,6 +14,7 @@ class Profile extends React.Component {
     super(props);
 
     this.populatePage = this.populatePage.bind(this);
+    this.signOut = this.signOut.bind(this);
 
     this.state = {
       teamsList: [], //personal teamlist added below
@@ -74,7 +75,7 @@ class Profile extends React.Component {
             <ModalButton icon={newTeamIcon} theme="light" type="new-team"  userId={this.state.name} refreshProfilePage={this.populatePage} />
           </div>
           <div className="profile-content">
-            <ProfileCard className="profile-card" nickname={this.state.nickname} picture={this.state.picture} />
+            <ProfileCard className="profile-card" nickname={this.state.nickname} picture={this.state.picture} signOut={this.signOut} />
           </div>
         </div>
       </div>

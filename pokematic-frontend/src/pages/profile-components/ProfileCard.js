@@ -15,7 +15,7 @@ function ProfileCard(props) {
                     </div>
                     <Typography className="user-name">{props.nickname}</Typography>
                 </div>
-                <Button className="sign-out-button">Sign out</Button>
+                <Button className="sign-out-button" onClick={props.signOut}>Sign out</Button>
             </div>
     
             </div>
