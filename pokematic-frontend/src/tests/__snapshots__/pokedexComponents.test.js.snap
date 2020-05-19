@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`pokedex components snapshot matching Pokedex Item matches snapshot 1`] = `
+<div
+  className="PokedexItem"
+>
+  <div
+    className="pokeball-background"
+  />
+  <div
+    className="background-enabler"
+  >
+    <div
+      className="pokemon-number"
+    >
+      #
+      NaN
+    </div>
+    <div
+      className="pokemon-name"
+    />
+    <div
+      className="pokemon-image-wrapper"
+    >
+      <img
+        alt=""
+        className="pokemon-image"
+      />
+    </div>
+    <div
+      className="pokemon-type"
+    >
+      <div
+        id="Label"
+      >
+        <button
+          className="MuiButtonBase-root MuiButton-root MuiButton-text team-label pokemon-label"
+          disabled={false}
+          onBlur={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              "backgroundColor": null,
+            }
+          }
+          tabIndex={0}
+          type="button"
+        >
+          <span
+            className="MuiButton-label"
+          />
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`pokedex components snapshot matching Pokedex List matches snapshot 1`] = `
+<div
+  className="PokedexList"
+>
+  <div
+    className="grid-container"
+  />
+</div>
+`;

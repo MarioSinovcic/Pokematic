@@ -1,0 +1,304 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`board components snapshot matching Assignees matches snapshot 1`] = `
+<div
+  className="AvatarContent"
+>
+  <div
+    className="MuiAvatarGroup-root"
+  >
+    <div
+      className="MuiAvatar-root MuiAvatar-circle MuiAvatarGroup-avatar MuiAvatar-colorDefault"
+      style={
+        Object {
+          "marginLeft": null,
+          "zIndex": 4,
+        }
+      }
+    >
+      M
+    </div>
+    <div
+      className="MuiAvatar-root MuiAvatar-circle MuiAvatarGroup-avatar MuiAvatar-colorDefault"
+      style={
+        Object {
+          "marginLeft": null,
+          "zIndex": 3,
+        }
+      }
+    >
+      V
+    </div>
+    <div
+      className="MuiAvatar-root MuiAvatar-circle MuiAvatarGroup-avatar MuiAvatar-colorDefault"
+      style={
+        Object {
+          "marginLeft": null,
+          "zIndex": 2,
+        }
+      }
+    >
+      C
+    </div>
+    <div
+      className="MuiAvatar-root MuiAvatar-circle MuiAvatarGroup-avatar MuiAvatar-colorDefault"
+      style={
+        Object {
+          "marginLeft": null,
+          "zIndex": 0,
+        }
+      }
+    >
+      +
+      1
+    </div>
+  </div>
+</div>
+`;
+
+exports[`board components snapshot matching Goal Side Bar matches snapshot 1`] = `
+<div>
+  laoding
+</div>
+`;
+
+exports[`board components snapshot matching Goal matches snapshot 1`] = `
+<div>
+  <div
+    className="team-tabs"
+  >
+    <li
+      className="MuiListItem-root team-tabs MuiListItem-gutters"
+      disabled={false}
+    >
+      <div
+        className="goal-heading"
+      >
+        <p
+          className="MuiTypography-root name-width sidebar-goal-name MuiTypography-body1"
+        />
+        <button
+          className="delete-goal-button"
+          onClick={[Function]}
+        />
+      </div>
+      <div
+        className="progress-bar"
+      >
+        <div
+          aria-valuenow={NaN}
+          className="MuiLinearProgress-root MuiLinearProgress-colorPrimary goal-progress-bar MuiLinearProgress-determinate"
+          role="progressbar"
+        >
+          <div
+            className="MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Determinate"
+            style={
+              Object {
+                "transform": "translateX(NaN%)",
+              }
+            }
+          />
+        </div>
+      </div>
+    </li>
+    <hr
+      className="MuiDivider-root goal-divider"
+    />
+  </div>
+  <div />
+</div>
+`;
+
+exports[`board components snapshot matching Status Card matches snapshot 1`] = `null`;
+
+exports[`board components snapshot matching Status DropDown matches snapshot 1`] = `
+<div
+  className="MuiFormControl-root makeStyles-dropDown-95"
+>
+  <div
+    className="MuiInputBase-root MuiInput-root makeStyles-dropDownMenu-96 MuiInputBase-formControl MuiInput-formControl"
+    onClick={[Function]}
+  >
+    <div
+      aria-haspopup="listbox"
+      aria-labelledby="demo-simple-select-outlined-label demo-simple-select-outlined"
+      className="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input"
+      id="demo-simple-select-outlined"
+      onBlur={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onMouseDown={[Function]}
+      role="button"
+      tabIndex={0}
+    >
+      In Progress
+    </div>
+    <input
+      onAnimationStart={[Function]}
+      type="hidden"
+      value="In Progress"
+    />
+    <svg
+      aria-hidden="true"
+      className="MuiSvgIcon-root MuiSelect-icon makeStyles-icon-98"
+      focusable="false"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M7 10l5 5 5-5z"
+      />
+    </svg>
+  </div>
+</div>
+`;
+
+exports[`board components snapshot matching Taskcard matches snapshot 1`] = `
+<div>
+  <div
+    className="TaskCard"
+  >
+    <div
+      className="TaskHeaders"
+      onClick={[Function]}
+    >
+      <p
+        className="MuiTypography-root TaskTitleText MuiTypography-body1"
+      />
+      
+    </div>
+    <div
+      className="AvatarContent"
+    >
+      <div
+        className="MuiAvatarGroup-root"
+      >
+        <div
+          className="MuiAvatar-root MuiAvatar-circle MuiAvatarGroup-avatar MuiAvatar-colorDefault"
+          style={
+            Object {
+              "marginLeft": null,
+              "zIndex": 4,
+            }
+          }
+        >
+          M
+        </div>
+        <div
+          className="MuiAvatar-root MuiAvatar-circle MuiAvatarGroup-avatar MuiAvatar-colorDefault"
+          style={
+            Object {
+              "marginLeft": null,
+              "zIndex": 3,
+            }
+          }
+        >
+          V
+        </div>
+        <div
+          className="MuiAvatar-root MuiAvatar-circle MuiAvatarGroup-avatar MuiAvatar-colorDefault"
+          style={
+            Object {
+              "marginLeft": null,
+              "zIndex": 2,
+            }
+          }
+        >
+          C
+        </div>
+        <div
+          className="MuiAvatar-root MuiAvatar-circle MuiAvatarGroup-avatar MuiAvatar-colorDefault"
+          style={
+            Object {
+              "marginLeft": null,
+              "zIndex": 0,
+            }
+          }
+        >
+          +
+          1
+        </div>
+      </div>
+    </div>
+    <div
+      className="TaskLabels"
+    >
+      <div
+        id="Label"
+      >
+        <button
+          className="MuiButtonBase-root MuiButton-root MuiButton-text team-label pokemon-label"
+          disabled={false}
+          onBlur={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              "backgroundColor": "#F64747",
+            }
+          }
+          tabIndex={0}
+          type="button"
+        >
+          <span
+            className="MuiButton-label"
+          >
+            undefined XP
+          </span>
+        </button>
+      </div>
+      <div
+        className="MuiFormControl-root makeStyles-dropDown-95"
+      >
+        <div
+          className="MuiInputBase-root MuiInput-root makeStyles-dropDownMenu-96 MuiInputBase-formControl MuiInput-formControl"
+          onClick={[Function]}
+        >
+          <div
+            aria-haspopup="listbox"
+            aria-labelledby="demo-simple-select-outlined-label demo-simple-select-outlined"
+            className="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input"
+            id="demo-simple-select-outlined"
+            onBlur={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onMouseDown={[Function]}
+            role="button"
+            tabIndex={0}
+          >
+            <span
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "&#8203;",
+                }
+              }
+            />
+          </div>
+          <input
+            onAnimationStart={[Function]}
+            type="hidden"
+          />
+          <svg
+            aria-hidden="true"
+            className="MuiSvgIcon-root MuiSelect-icon makeStyles-icon-98"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M7 10l5 5 5-5z"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div />
+</div>
+`;

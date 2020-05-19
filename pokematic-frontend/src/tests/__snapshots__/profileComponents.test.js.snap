@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`profile components snapshot matching Profile Card matches snapshot 1`] = `
+<div
+  className="profile-card-shape"
+>
+  <div
+    className="profile-card-shadow"
+  />
+  <div
+    className="profile-base-shape"
+  >
+    <div
+      className="profile-headers"
+    >
+      <div
+        className="info"
+      >
+        <div
+          className="user-icon"
+        >
+          <img
+            alt="User Profile"
+            className="user-image"
+          />
+        </div>
+        <p
+          className="MuiTypography-root user-name MuiTypography-body1"
+        />
+      </div>
+      <button
+        className="MuiButtonBase-root MuiButton-root MuiButton-text TeamLabel role-button"
+        disabled={false}
+        onBlur={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex={0}
+        type="button"
+      >
+        <span
+          className="MuiButton-label"
+        >
+          Developer
+        </span>
+      </button>
+    </div>
+  </div>
+  <div
+    className="profile-edge"
+  >
+    <div
+      className="profile-cut"
+    />
+    <div
+      className="profile-bottom"
+    />
+  </div>
+</div>
+`;

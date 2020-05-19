@@ -1,39 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Board should render correctly in with no props 1`] = `
+exports[`pages snapshot tests displays error page 1`] = `
 <div
-  className="Board"
+  className="App"
 >
   <header
     className="App-header"
   >
     <p>
-      Board
+      404 Cheif
     </p>
-    <NavLink
-      to="/login"
-    >
-      Login One
-    </NavLink>
   </header>
 </div>
 `;
 
-exports[`Board should render correctly in with props 1`] = `
+exports[`pages snapshot tests team search 1`] = `
 <div
-  className="Board"
+  className="App"
 >
   <header
     className="App-header"
   >
     <p>
-      Board
+      TeamSearch
     </p>
-    <NavLink
-      to="/login"
-    >
-      Login One
-    </NavLink>
   </header>
 </div>
 `;
