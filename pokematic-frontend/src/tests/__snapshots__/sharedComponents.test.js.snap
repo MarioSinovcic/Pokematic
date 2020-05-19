@@ -1,0 +1,328 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`shared components snapshot matching Label matches snapshot 1`] = `
+<div
+  id="Label"
+>
+  <button
+    className="MuiButtonBase-root MuiButton-root MuiButton-text team-label pokemon-label"
+    disabled={false}
+    onBlur={[Function]}
+    onDragLeave={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+    style={
+      Object {
+        "backgroundColor": undefined,
+      }
+    }
+    tabIndex={0}
+    type="button"
+  >
+    <span
+      className="MuiButton-label"
+    />
+  </button>
+</div>
+`;
+
+exports[`shared components snapshot matching Modal Button matches snapshot 1`] = `
+<div>
+  <div>
+    <button
+      aria-label="add"
+      className="MuiButtonBase-root MuiFab-root dark-theme-bg MuiFab-secondary"
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragLeave={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      tabIndex={0}
+      type="button"
+    >
+      <span
+        className="MuiFab-label"
+      />
+      <span
+        className="MuiTouchRipple-root"
+      />
+    </button>
+  </div>
+  <div />
+</div>
+`;
+
+exports[`shared components snapshot matching Progress Bar matches snapshot 1`] = `
+<div
+  className="progress-bar"
+>
+  <div
+    className="MuiLinearProgress-root MuiLinearProgress-colorPrimary goal-progress-bar MuiLinearProgress-determinate"
+    role="progressbar"
+  >
+    <div
+      className="MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Determinate"
+      style={Object {}}
+    />
+  </div>
+</div>
+`;
+
+exports[`shared components snapshot matching Sidebar matches snapshot 1`] = `
+<div
+  className="makeStyles-root-113"
+>
+  <div
+    className="MuiDrawer-root MuiDrawer-docked SideBar"
+  >
+    <div
+      className="MuiPaper-root MuiDrawer-paper makeStyles-drawerPaper-116 MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft MuiPaper-elevation0"
+    >
+      <div
+        className="makeStyles-toolbar-118"
+      />
+      <ul
+        className="MuiList-root MuiList-padding"
+      >
+        <div
+          aria-disabled={false}
+          className="MuiButtonBase-root MuiListItem-root TeamTabs TaskButton MuiListItem-gutters MuiListItem-button"
+          onBlur={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          role="button"
+          tabIndex={0}
+        >
+          <p
+            className="MuiTypography-root TaskFilter AllTasks MuiTypography-body1"
+          />
+        </div>
+      </ul>
+      <hr
+        className="MuiDivider-root SideBarDivider"
+      />
+      <ul
+        className="MuiList-root MuiList-padding"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`shared components snapshot matching Team Card matches snapshot 1`] = `
+<div
+  id="CardShape"
+>
+  <div
+    className="base-shape shape-content"
+  >
+    <div>
+      <div
+        className="team-details"
+      >
+        <div
+          className="team-icon-bg"
+        >
+          <img
+            alt="team-logo"
+            className="team-image"
+            src="/images/eevee.png"
+          />
+        </div>
+        <div
+          className="team-stats"
+        >
+          <div
+            id="Label"
+          >
+            <button
+              className="MuiButtonBase-root MuiButton-root MuiButton-text team-label pokemon-label"
+              disabled={false}
+              onBlur={[Function]}
+              onDragLeave={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchEnd={[Function]}
+              onTouchMove={[Function]}
+              onTouchStart={[Function]}
+              style={
+                Object {
+                  "backgroundColor": "#F64747",
+                }
+              }
+              tabIndex={0}
+              type="button"
+            >
+              <span
+                className="MuiButton-label"
+              >
+                lv. undefined
+              </span>
+            </button>
+          </div>
+          <p
+            className="MuiTypography-root team-name MuiTypography-body1"
+          />
+          <div
+            className="team-level-bar card-width"
+          >
+            <div
+              className="progress-bar"
+            >
+              <div
+                aria-valuenow={NaN}
+                className="MuiLinearProgress-root MuiLinearProgress-colorPrimary goal-progress-bar MuiLinearProgress-determinate"
+                role="progressbar"
+              >
+                <div
+                  className="MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Determinate"
+                  style={
+                    Object {
+                      "transform": "translateX(NaN%)",
+                    }
+                  }
+                />
+              </div>
+            </div>
+            <p
+              className="MuiTypography-root EXP EXP-text MuiTypography-body1"
+            >
+              EXP: 
+              / 
+              NaN
+            </p>
+          </div>
+        </div>
+      </div>
+      <hr
+        className="MuiDivider-root GoalDivider"
+      />
+    </div>
+  </div>
+  <div
+    className="bottom-support"
+  />
+  <div
+    className="triangle-cut"
+  />
+</div>
+`;
+
+exports[`shared components snapshot matching Team Details matches snapshot 1`] = `
+<div>
+  <div
+    className="team-details"
+  >
+    <div
+      className="team-icon-bg"
+    >
+      <img
+        alt="team-logo"
+        className="team-image"
+        src="/images/eevee.png"
+      />
+    </div>
+    <div
+      className="team-stats"
+    >
+      <div
+        id="Label"
+      >
+        <button
+          className="MuiButtonBase-root MuiButton-root MuiButton-text team-label pokemon-label"
+          disabled={false}
+          onBlur={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              "backgroundColor": "#F64747",
+            }
+          }
+          tabIndex={0}
+          type="button"
+        >
+          <span
+            className="MuiButton-label"
+          >
+            lv. undefined
+          </span>
+          <span
+            className="MuiTouchRipple-root"
+          />
+        </button>
+      </div>
+      <p
+        className="MuiTypography-root team-name MuiTypography-body1"
+      />
+      <div
+        className="team-level-bar card-width"
+      >
+        <div
+          className="progress-bar"
+        >
+          <div
+            aria-valuenow={NaN}
+            className="MuiLinearProgress-root MuiLinearProgress-colorPrimary goal-progress-bar MuiLinearProgress-determinate"
+            role="progressbar"
+          >
+            <div
+              className="MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Determinate"
+              style={
+                Object {
+                  "transform": "translateX(NaN%)",
+                }
+              }
+            />
+          </div>
+        </div>
+        <p
+          className="MuiTypography-root EXP EXP-text MuiTypography-body1"
+        >
+          EXP: 
+          / 
+          NaN
+        </p>
+      </div>
+    </div>
+  </div>
+  <hr
+    className="MuiDivider-root GoalDivider"
+  />
+</div>
+`;

@@ -92,18 +92,24 @@ function ModalContent (props) {
             props.showErrorMessage("Task wasn't created, make sure you pick a goal");
         }
         else{
-            const newTask = {
-                name: selectedTaskName,
-                description: selectedDescription,
-                experiencePoints: parseInt(selectedStoryPoints),
-                status: "TODO",
-                storyPoints: parseInt(selectedStoryPoints),
-                assignees: [], //TODO
-                approved: false,
-            };
-            await createTask(props.teamName, newTask, selectedGoal);
-            await props.refreshBoardPage(props.teamName);
-            window.location.reload(false);
+            var currentTaskNames = props.taskNames;
+            if(currentTaskNames.includes(selectedTaskName.trim())){
+               props.showErrorMessage("Task wasn't created, task name already in use");
+            }
+            else{
+                const newTask = {
+                    name: selectedTaskName.trim(),
+                    description: selectedDescription,
+                    experiencePoints: parseInt(selectedStoryPoints),
+                    status: "TODO",
+                    storyPoints: parseInt(selectedStoryPoints),
+                    assignees: [], //TODO
+                    approved: false,
+                };
+                await createTask(props.teamName, newTask, selectedGoal);
+                await props.refreshBoardPage(props.teamName);
+                await props.refreshBoardPage(props.teamName);
+            }
         }
         props.handleClose();
     };

@@ -1,6 +1,6 @@
 import React from 'react';
 import './PokedexItem.css'
-import Label from '../board-components/Label';
+import Label from '../../shared-components/Label';
 import PokemonMappingUtil from './PokemonMappingUtil';
 
 class PokedexItem extends React.Component {

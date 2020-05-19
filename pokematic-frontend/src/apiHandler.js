@@ -82,6 +82,56 @@ export async function getTeamInfo(teamName){
   return apiData;
 }
 
+export async function checkTeamName(teamName){
+  teamName = teamName.trim().split(' ').join('%20');
+  var APIcall = HOST + "team/" + teamName;
+  var response = await fetch(APIcall)
+
+  if(response.status === 204){
+    return false;
+  }else{
+    return true;
+  }
+}
+
+export async function createTeam(newTeam){
+  var APIcall = HOST + "team/createTeam";
+  const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newTeam)
+  };
+
+  await fetch(APIcall, requestOptions);
+}
+
+export async function AddUserToTeam(userId, teamName){
+  teamName = teamName.trim().split(' ').join('%20');
+  var APIcall = HOST + "team/" + teamName;
+  var response = await fetch(APIcall)
+  .then(response => response.json())
+  .then(json => {
+      return json
+  });
+  
+  var updatedTeam = await response;
+  var newTeamList = await response["users"];
+
+  if(!newTeamList.includes(userId)){
+    newTeamList.push(userId);
+    updatedTeam["users"] = newTeamList;
+  }  
+  
+  var putCall = HOST + "team/updateTeam/" + teamName;
+  const requestOptions = {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updatedTeam)
+  };
+
+  await fetch(putCall, requestOptions);
+}
+
 export async function updateTeam(updatedTeam, teamName){
   var APIcall = HOST + "team/updateTeam/" + teamName;
   const requestOptions = {
@@ -93,7 +143,27 @@ export async function updateTeam(updatedTeam, teamName){
   await fetch(APIcall, requestOptions);
 }
 
-export async function populateProfilePage(){
+export async function getAllTeamsForAUser(userId){
+  var APIcall = HOST + "team";
+  var response = await fetch(APIcall)
+  .then(response => response.json())
+  .then(json => {
+      return json
+  });
+
+  var teamResponse = response;
+  var gatheredTeams= [];
+
+  for (var team = 0; team < teamResponse.length; team++) {
+    if(teamResponse[team]["users"].includes(userId)){
+      gatheredTeams.push(teamResponse[team]);
+    }
+  }
+
+  return(gatheredTeams);
+}
+
+export async function getAllTeams(){
   var APIcall = HOST + "team";
   var response = await fetch(APIcall)
   .then(response => response.json())
@@ -111,7 +181,7 @@ export async function populateProfilePage(){
   return(gatheredTeams);
 }
 
-export async function handleApproval(teamName, goalName){
+export async function handleApproval(teamName, goalName, taskXP){
   var goalInfoCall = HOST + "team/goals/" + teamName + "/" + goalName;
   var goalData = await fetch(goalInfoCall)
   .then(response => response.json())
@@ -119,6 +189,7 @@ export async function handleApproval(teamName, goalName){
       return json
   });
 
+  var goalXP = 0;
   if(goalData["progress"] === 1.0){
     goalData["completed"] = true;
 
@@ -129,33 +200,37 @@ export async function handleApproval(teamName, goalName){
         body: JSON.stringify(goalData)
     };
     await fetch(updateGoal, requestOptions);
+    goalXP = goalData["experiencePoints"];
+  } 
 
-    var teamInfoCall = HOST + "team/" + teamName;
-    var teamData = await fetch(teamInfoCall)
-    .then(response => response.json())
-    .then(json => {
-        return json
-    });
-    var teamXP = teamData["experiencePoints"] + goalData["experiencePoints"];
-    var teamLevel = teamData["level"];
+  var teamInfoCall = HOST + "team/" + teamName;
+  var teamData = await fetch(teamInfoCall)
+  .then(response => response.json())
+  .then(json => {
+      return json
+  });
 
-    while(teamXP >= (teamLevel * 5)){
-      teamXP = teamXP - (teamLevel * 5);
-      teamLevel++;
-      //triggerLevelUpScreen()
-    }
-    teamData["level"] = teamLevel;
-    teamData["experiencePoints"] = teamXP;
+  var newteamXP = teamData["experiencePoints"] + goalXP + taskXP;
+  var initalTemLevel = teamData["level"];
+  var newTeamLevel = teamData["level"];
 
-    var updateTeam = HOST + "team/updateTeam/" + teamName;
-    const requestOptions2 = {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(teamData)
-    };
-      
-    await fetch(updateTeam, requestOptions2);
+  while(newteamXP >= (newTeamLevel * 5)){
+    newteamXP = newteamXP - (newTeamLevel * 5);
+    newTeamLevel++;
   }
+  teamData["level"] = newTeamLevel;
+  teamData["experiencePoints"] = newteamXP;
+
+  var updateTeam = HOST + "team/updateTeam/" + teamName;
+  const requestOptions2 = {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(teamData)
+  };
+      
+  await fetch(updateTeam, requestOptions2);
+
+  return (initalTemLevel < newTeamLevel);
 }       
 
 export async function populateBoardPage(teamName){
@@ -172,6 +247,7 @@ export async function populateBoardPage(teamName){
     var gatheredTeamGoals= [];
     var gatheredTasksForGoals= [];
     var gatheredGoalNames= [];
+    var gatheredTaskNames= [];
 
     for (var goal = 0; goal < goalResponse.length; goal++) {
       gatheredTeamGoals.push(goalResponse[goal]);
@@ -184,6 +260,7 @@ export async function populateBoardPage(teamName){
       for(var task = 0; task < taskArray.length; task++){
         var currentTask = taskArray[task];
         currentTask["goalName"] = goalResponse[goal]["name"];
+        gatheredTaskNames.push(currentTask["name"]);
         gatheredTasksForGoals.push(currentTask);
       }
     }
@@ -211,8 +288,9 @@ export async function populateBoardPage(teamName){
     }
 
     var apiData = {
-        goalsList:gatheredTeamGoals.reverse(), 
-        goalNames:gatheredGoalNames.reverse(), 
+        goalsList: gatheredTeamGoals.reverse(), 
+        goalNames: gatheredGoalNames.reverse(), 
+        taskNames: gatheredTaskNames.reverse(), 
         todoList: gatheredTodoList.reverse(),
         inProgressList: gatheredInProgressList.reverse(),
         inReviewList: gatheredInReviewList.reverse(),

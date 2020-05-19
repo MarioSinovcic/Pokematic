@@ -57,13 +57,6 @@ namespace pokematic_backend.Controllers
             var team = _teamService.GetTeam(teamName);
             return team;
         }
-        
-        [HttpPost("joinTeam/{teamName}/{username}")]
-        public ActionResult JoinTeam(string teamName, string username)
-        {
-            _teamService.JoinTeam(teamName, username);
-            return Ok();
-        }
 
         [HttpPut("updateTeam/{teamToUpdateName}")]
         public ActionResult UpdateTeam(string teamToUpdateName, Team updatedTeam)
@@ -216,6 +209,36 @@ namespace pokematic_backend.Controllers
             return NotFound(serviceMessage);
         }
         
+        /**
+         * User functionality
+         */
         
+        [HttpPost("joinTeam/{teamName}/{username}")]
+        public ActionResult JoinTeam(string teamName, string username)
+        {
+            var serviceMessage = _teamService.JoinTeam(teamName, username);
+            
+            if (serviceMessage == "success")
+            {
+                return Ok();
+            }
+
+            return NotFound(serviceMessage);
+        }
+
+        [HttpGet("teamsForUser/{username}")]
+        public ActionResult GetAllTeamsForUser(string username)
+        {
+            var (teams, serviceMessage) = _teamService.GetAllTeamsForUser(username);
+            
+            if (serviceMessage == "success")
+            {
+                return Ok(teams);
+            }
+
+            return NotFound(serviceMessage);
+        }
+
+
     }
 }

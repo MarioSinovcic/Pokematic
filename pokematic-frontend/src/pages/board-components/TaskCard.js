@@ -4,13 +4,14 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import Label from './Label';
+import Label from '../../shared-components/Label';
 import ModalConent from './Modals/TaskModalContent';
 import StatusDropdown from './StatusDropdown';
 import Assignees from './Assignees';
 import * as colors from '../../colors';
 import {updateTask} from '../../apiHandler';
 import './TaskCard.css';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -61,7 +62,7 @@ function TaskCard(props) {
         <div className="TaskCard" >
             <div className="TaskHeaders" onClick={handlOpen}>
             <Typography className="TaskTitleText">{props.name}</Typography>
-                <Typography className="TaskIDText StoryPoint">{props.storyPoints}</Typography>
+                {props.approved ? <Typography className="TaskIDText StoryPoint"><CheckCircleIcon /></Typography> : "" }
             </div>
             <Assignees />
             <div className="TaskLabels">
@@ -100,6 +101,7 @@ function TaskCard(props) {
                             goalName={props.goalName}
                             handleClose={handleClose}
                             populatePage={props.populatePage}
+                            openLevelUp={props.openLevelUp}
                             />
                     </div>
                 </Fade>

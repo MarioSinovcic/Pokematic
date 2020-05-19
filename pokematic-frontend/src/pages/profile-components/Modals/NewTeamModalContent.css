@@ -1,0 +1,28 @@
+.team-modal-content{
+    width: 600px !important;
+    height: 200px !important;
+    padding: 20px 20px;
+}
+
+.new-team-label{
+    padding-top: 10px;
+    padding-bottom: 20px;
+    font-family: 'Roboto Condensed', monospace !important;
+    font-weight: 600 !important;
+    color: #3D3D3D;
+    font-size: 30px;
+}
+
+.grey-group-team{
+    background: rgba(241, 241, 241, 0.69);
+    padding: 10px 30px;
+    height: 40px;
+
+    font-family: 'Roboto Condensed Light', monospace !important;
+    font-weight: 600 !important;
+    color: #3D3D3D;
+    font-size: 22px;
+    line-height: 40px;
+}
+
+

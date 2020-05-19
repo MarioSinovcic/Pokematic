@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory, useLocation} from "react-router-dom";
+import { useHistory} from "react-router-dom";
 import './Header.css'
 
 const Header = (props) => {
@@ -52,12 +52,10 @@ const Header = (props) => {
       default:
       return (    
         <div className="Header">
-            <div className="left-icon profile-image" onClick={handleProfile}/>
-            <div className="middle-section">
-              <img className="logo" src="https://imgur.com/MOQ5TEp.png" alt="Pokematic" onClick={handleBoard}/>
-            </div>
-            <div className="right-icon pokedex-image" onClick={handlePokedex}/>
-        </div>);
+              <div className="middle-section">
+                <img className="logo" src="https://imgur.com/MOQ5TEp.png" alt="Pokematic"/>
+              </div>
+          </div>);
     }
   }
 
