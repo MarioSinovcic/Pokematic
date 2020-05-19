@@ -52,7 +52,7 @@
 .user-name {
     font-family: 'pkmn_rbygscregular' !important;
     color: white;
-    font-size: 30px !important;
+    font-size: 27px !important;
     text-align: center;
     width: 120%;
 }
@@ -85,7 +85,7 @@
     margin-left: 80px;
     display: flex;
     flex-direction: column;
-     align-items: center;
+    align-items: center;
 }
 
 
