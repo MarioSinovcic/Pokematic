@@ -7,6 +7,7 @@ import Fade from '@material-ui/core/Fade';
 import NewGoalModalContent from '../pages/board-components/Modals/NewGoalModalContent'
 import NewTaskModalContent from '../pages/board-components/Modals/NewTaskModalContent'
 import NewTeamModalContent from '../pages/profile-components/Modals/NewTeamModalContent'
+import SearchTeamModalContent from '../pages/profile-components/Modals/SearchTeamModalContent'
 import ErrorMessage from './ErrorMessage'
 import './ModalButton.css';
 
@@ -60,37 +61,43 @@ function ModalButton(props) {
   switch(props.type) {
 
     case "new-task":
-    renderModal = <NewTaskModalContent 
-                    teamName={props.teamName}
-                    taskNames={props.taskNames}
-                    goalNames={props.goalNames} 
-                    refreshBoardPage={refreshBoardPage}
-                    handleClose={handleClose}
-                    showErrorMessage={showErrorMessage}
-                  />
+      renderModal = <NewTaskModalContent 
+        teamName={props.teamName}
+        taskNames={props.taskNames}
+        goalNames={props.goalNames} 
+        refreshBoardPage={refreshBoardPage}
+        handleClose={handleClose}
+        showErrorMessage={showErrorMessage}
+        />
     break;
 
     case "search-team":
-    renderModal = "To be Completed";
+      renderModal = <SearchTeamModalContent      
+        userId={props.userId}
+        teamsList={props.teamsList}
+        handleClose={handleClose}
+        showErrorMessage={showErrorMessage}
+        refreshProfilePage={refreshProfilePage}
+        /> 
       break; 
 
     case "new-team":
-    renderModal = <NewTeamModalContent      
-                    userId={props.userId}
-                    handleClose={handleClose}
-                    showErrorMessage={showErrorMessage}
-                    refreshProfilePage={refreshProfilePage}
-                    /> 
+      renderModal = <NewTeamModalContent      
+        userId={props.userId}
+        handleClose={handleClose}
+        showErrorMessage={showErrorMessage}
+        refreshProfilePage={refreshProfilePage}
+        /> 
     break;
 
     case "new-goal":
-    renderModal = <NewGoalModalContent      
-                    teamName={props.teamName}               
-                    goalNames={props.goalNames} 
-                    refreshBoardPage={refreshBoardPage}
-                    handleClose={handleClose}
-                    showErrorMessage={showErrorMessage}
-                    /> 
+      renderModal = <NewGoalModalContent      
+        teamName={props.teamName}               
+        goalNames={props.goalNames} 
+        refreshBoardPage={refreshBoardPage}
+        handleClose={handleClose}
+        showErrorMessage={showErrorMessage}
+        /> 
     break;
 
     default:
