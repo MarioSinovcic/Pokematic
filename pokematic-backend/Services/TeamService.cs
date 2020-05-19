@@ -383,7 +383,7 @@ namespace pokematic_backend.Services
             {
                 return "User is already assigned to this task";
             }
-            else if (assignees.Exists(user => user.Username == username))
+            else if (assignees.Exists(user => user == username))
             {
                 return "User is already assigned to this task";
             }
@@ -452,7 +452,34 @@ namespace pokematic_backend.Services
 
             return "success";
         }
-
-
+        /**
+         * User functionality
+         */
+        public string JoinTeam(string teamName, string username)
+        {
+            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
+            
+            if (team == null)
+            {
+                return "No team with that team name";
+            }
+            
+            if (team.Users.Contains(username))
+            {
+                return "User already part of team";
+            }
+            else
+            {
+                team.Users.Add(username);
+                UpdateTeam(teamName, team);
+                return "success";
+            }
+        }
+        
+        public (List<Team>, string) GetAllTeamsForUser(string username)
+        {
+            var teams = _teams.AsQueryable().Where(team => team.Users.Contains(username)).ToList();
+            return (teams, "success");
+        }
     }
 }
