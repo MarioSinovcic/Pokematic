@@ -94,10 +94,9 @@ function ModalContent (props) {
         else{
             const newTask = {
                 name: selectedTaskName,
-                taskNumber: 6, //TODO
                 description: selectedDescription,
                 experiencePoints: parseInt(selectedStoryPoints),
-                status: "TODO", //TODO
+                status: "TODO",
                 storyPoints: parseInt(selectedStoryPoints),
                 assignees: [], //TODO
                 approved: false,
@@ -127,6 +126,9 @@ function ModalContent (props) {
                         onChange={handleTaskNameChange}
                         defaultValue="Task Name"
                         fullWidth
+                        inputProps={{
+                            maxLength: 18,
+                        }}
                         InputProps={{
                             classes: {
                                 input: classes.taskNameInput,
@@ -198,10 +200,6 @@ function ModalContent (props) {
                 </div>
             </div>  
             <div className="grouping">
-                {/* <p className="status-label">STATUS</p> // still needs to be implemented
-                <div>
-                    <StatusDropdown/>
-                </div> */}
                 <div className="right-align">
                     <div className="done-button" onClick={handleAddTask}>DONE</div>
                 </div>
