@@ -9,7 +9,7 @@ import Label from '../shared-components/Label';
 import ModalConent from './Modals/TaskModalContent';
 import StatusDropdown from './StatusDropdown';
 import Assignees from './Assignees';
-import * as colors from '../../colors';
+import * as colors from '../shared-components/colors';
 import {updateTask} from '../../api/tasks';
 import './TaskCard.css';
 
