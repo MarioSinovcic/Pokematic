@@ -68,11 +68,11 @@ export class GoalSideBar extends React.Component {
             <div className={classes.toolbar} />
             <List>
                 <ListItem button key={"All Tasks"} className="TeamTabs TaskButton">
-                <Typography className="TaskFilter AllTasks">ALL TASKS</Typography>
+                <Typography className="TaskFilter AllTasks">GOALS</Typography>
                 </ListItem>
 
                 <ListItem button key={"My Tasks"} className="TeamTabs">
-                <Typography className="TaskFilter MyTasks">MY TASKS</Typography>
+                <Typography className="TaskFilter MyTasks">TEAM GOALS</Typography>
                 </ListItem>
             </List>
             <Divider className="SideBarDivider"/>
