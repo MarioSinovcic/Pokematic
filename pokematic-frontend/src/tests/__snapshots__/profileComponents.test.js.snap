@@ -29,7 +29,7 @@ exports[`profile components snapshot matching Profile Card matches snapshot 1`] 
         />
       </div>
       <button
-        className="MuiButtonBase-root MuiButton-root MuiButton-text TeamLabel role-button"
+        className="MuiButtonBase-root MuiButton-root MuiButton-text sign-out-button"
         disabled={false}
         onBlur={[Function]}
         onDragLeave={[Function]}
@@ -48,7 +48,7 @@ exports[`profile components snapshot matching Profile Card matches snapshot 1`] 
         <span
           className="MuiButton-label"
         >
-          Developer
+          Sign out
         </span>
       </button>
     </div>
