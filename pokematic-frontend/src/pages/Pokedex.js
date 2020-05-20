@@ -1,13 +1,13 @@
 import React from 'react';
 import PokedexList from './pokedex-components/PokedexList'
-import Header from '../shared-components/Header'
-import TeamCard from '../shared-components/TeamCard';
-import './Pokedex.css';
+import Header from './shared-components/Header'
+import TeamCard from './shared-components/TeamCard';
 import { connect } from 'react-redux';
 import { toggleCollection, setCollection } from '../actions/actions';
 import { Typography, Grid, Switch } from '@material-ui/core';
-import { getTeamInfo } from '../apiHandler';
+import { getTeamInfo } from '../api/teams';
 import auth0Client from '../Auth0/Auth';
+import './Pokedex.css';
 
 class Pokedex extends React.Component {
 

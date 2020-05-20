@@ -5,8 +5,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { Typography, Divider, ListItem } from '@material-ui/core';
-import ProgressBar from '../../shared-components/ProgressBar';
-import {deleteGoal} from '../../apiHandler';
+import ProgressBar from '.././shared-components/ProgressBar';
+import {deleteGoal} from '../../api/goals';
 import './Goal.css';
 
 function Goal(props) {
