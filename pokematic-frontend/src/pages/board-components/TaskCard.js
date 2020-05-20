@@ -7,7 +7,6 @@ import Fade from '@material-ui/core/Fade';
 import Label from '../../shared-components/Label';
 import ModalConent from './Modals/TaskModalContent';
 import StatusDropdown from './StatusDropdown';
-import Assignees from './Assignees';
 import * as colors from '../../colors';
 import {updateTask} from '../../apiHandler';
 import './TaskCard.css';
@@ -64,7 +63,6 @@ function TaskCard(props) {
             <Typography className="TaskTitleText">{props.name}</Typography>
                 {props.approved ? <Typography className="TaskIDText StoryPoint"><CheckCircleIcon /></Typography> : "" }
             </div>
-            <Assignees />
             <div className="TaskLabels">
                 <Label labelText={props.experiencePoints + " XP"} color={colors.fire}/>
                 <StatusDropdown changeStatus={changeStatus} currentStatus={props.status} />
