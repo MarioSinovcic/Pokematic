@@ -3,7 +3,7 @@ Pokematic is a web application that fosters team collaboration and is designed t
 
 ## Technical Layout
 
-The project consists of two main code bases: a backend (in pokematic-backend) and a frontend (in pokematic-frontend). The backend is a web api created with ASP.NET Core (coding language is C#). The frontend is a ReactJS project that interacts with the  the backend API as well as the [pokeapi](https://pokeapi.co/)
+The project consists of two main code bases: a backend (in pokematic-backend) and a frontend (in pokematic-frontend). The backend is a web api created with ASP.NET Core (coding language is C#). The frontend is a ReactJS project that interacts with the  the backend API as well as the [pokeapi](https://pokeapi.co/).
 
 ## Get Started!
 
