@@ -3,14 +3,14 @@ import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
 import { createStore } from 'redux';
 import rootReducers from '../reducers';
-import TeamCard from '../shared-components/TeamCard';
-import Header from '../shared-components/Header';
-import ModalButton from '../shared-components/ModalButton';
-import ProgressBar from '../shared-components/ProgressBar';
-import Sidebar from '../shared-components/Sidebar';
-import TeamDetails from '../shared-components/TeamDetails';
-import Label from '../shared-components/Label';
-import ErrorMessage from '../shared-components/ErrorMessage';
+import TeamCard from '../pages/shared-components/TeamCard';
+import Header from '../pages/shared-components/Header';
+import ModalButton from '../pages/shared-components/ModalButton';
+import ProgressBar from '../pages/shared-components/ProgressBar';
+import Sidebar from '../pages/shared-components/Sidebar';
+import TeamDetails from '../pages/shared-components/TeamDetails';
+import Label from '../pages/shared-components/Label';
+import ErrorMessage from '../pages/shared-components/ErrorMessage';
 
 
 describe('shared components', () => {
