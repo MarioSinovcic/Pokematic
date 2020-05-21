@@ -1,10 +1,9 @@
 import React from 'react';
-import {getTeamInfo} from '.././apiHandler';
+import {getTeamInfo} from '../../api/teams';
 import TeamDetails from './TeamDetails';
-import './TeamCard.css';
-import { addToCollection, setCollection } from '../actions/actions';
+import { addToCollection, setCollection } from '../../actions/actions';
 import { connect } from 'react-redux';
-
+import './TeamCard.css';
 
 class TeamCard extends React.Component {
     constructor(props){

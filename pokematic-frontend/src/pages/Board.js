@@ -1,17 +1,18 @@
 import React from 'react';
+import auth0Cilent from '../Auth0/Auth';
 import GoalSidebar from './board-components/GoalSideBar';
-import TeamCard from '../shared-components/TeamCard';
+import TeamCard from './shared-components/TeamCard';
 import StatusCard from './board-components/StatusCard';
-import ModalButton from '../shared-components/ModalButton';
-import Header from '../shared-components/Header';
+import ModalButton from './shared-components/ModalButton';
+import Header from './shared-components/Header';
 import AddIcon from '@material-ui/icons/Add';
-import { populateBoardPage, fetchPokemonData, fetchPokemonTypes } from '.././apiHandler';
 import LevelUpModalContent from './board-components/Modals/LevelUpModalContent';
 import { Modal, Backdrop, Fade } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { togglePokemonLoad, addPokemonData, addPokemonNames, addPokemonTypes } from '../actions/actions';
+import { populateBoardPage } from '.././api/goals';
+import { fetchPokemonData, fetchPokemonTypes } from '.././api/pokemon';
 import './Board.css'
-import auth0Cilent from '../Auth0/Auth';
 
 class Board extends React.Component {
   constructor(props){

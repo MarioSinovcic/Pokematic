@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import { connect } from 'react-redux';
+import { addToCollection } from '../../../actions/actions';
+import { saveTeamCollection } from '../../../api/pokemon';
 import "./TaskModalContent.css"
 import "./LevelUpModalContent.css"
-import { addToCollection } from '../../../actions/actions';
-import { saveTeamCollection } from '../../../apiHandler';
 
 class LevelUpModalContent extends React.Component {
 

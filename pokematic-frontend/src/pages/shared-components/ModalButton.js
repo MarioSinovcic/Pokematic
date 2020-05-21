@@ -4,10 +4,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import NewGoalModalContent from '../pages/board-components/Modals/NewGoalModalContent'
-import NewTaskModalContent from '../pages/board-components/Modals/NewTaskModalContent'
-import NewTeamModalContent from '../pages/profile-components/Modals/NewTeamModalContent'
-import SearchTeamModalContent from '../pages/profile-components/Modals/SearchTeamModalContent'
+import NewGoalModalContent from '../board-components/Modals/NewGoalModalContent'
+import NewTaskModalContent from '../board-components/Modals/NewTaskModalContent'
+import NewTeamModalContent from '../profile-components/Modals/NewTeamModalContent'
+import SearchTeamModalContent from '../profile-components/Modals/SearchTeamModalContent'
 import ErrorMessage from './ErrorMessage'
 import './ModalButton.css';
 

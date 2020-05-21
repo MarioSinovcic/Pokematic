@@ -1,11 +1,12 @@
 import React from 'react';
-import Header from '../shared-components/Header';
-import Sidebar from '../shared-components/Sidebar';
+import Header from './shared-components/Header';
+import Sidebar from './shared-components/Sidebar';
 import ProfileCard from './profile-components/ProfileCard';
-import ModalButton from '../shared-components/ModalButton';
+import ModalButton from './shared-components/ModalButton';
 import AddIcon from '@material-ui/icons/Add';
 import SearchIcon from '@material-ui/icons/Search';
-import { getAllTeamsForAUser, getAllTeams } from '.././apiHandler';
+import { getAllTeamsForAUser } from '.././api/users';
+import { getAllTeams } from '.././api/teams';
 import auth0Client from '../Auth0/Auth';
 import './Profile.css';
 

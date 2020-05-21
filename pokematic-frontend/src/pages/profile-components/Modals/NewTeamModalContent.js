@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from '@material-ui/core/TextField';
-import {checkTeamName, createTeam} from '../../../apiHandler';
+import {checkTeamName, createTeam} from '../../../api/teams';
 import "./NewTeamModalContent.css";
 
 const useStyles = makeStyles({

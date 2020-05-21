@@ -7,7 +7,7 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import AddIcon from '@material-ui/icons/Add';
 import Goal from './Goal';
-import ModalButton from '../../shared-components/ModalButton';
+import ModalButton from '.././shared-components/ModalButton';
 import './GoalSideBar.css'
 
 const drawerWidth = 250;

@@ -1,15 +1,10 @@
 /*
     To run the system in production mdoe, swap the the HOST url to:
         https://pokematicapi.azurewebsites.net/api/
-
-    To run the system without any interation to the API checkout the apiHandler file
 */
-
-// MODEL ENUM FEILDS 
+export const HOST = "https://localhost:5001/api/";
 
 export const STATUSLIST = ["TODO", "In Progress", "In Review", "Done"];
-export const GETGOALS = "";
-export const GETTASKS = "";
 
 export const POKEMONTYPES = {
     FIRE: "fire",
@@ -30,7 +25,3 @@ export const POKEMONTYPES = {
     GHOST: "ghost",
     DRAGON: "dragon",
 }
-
-// API CALLS 
-export const HOST = "https://localhost:5001/api/";
-

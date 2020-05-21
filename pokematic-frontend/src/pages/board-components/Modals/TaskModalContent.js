@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { Typography } from '@material-ui/core';
-import {deleteTask, updateTask, handleApproval} from '../../../apiHandler';
+import {deleteTask, updateTask, handleApproval} from '../../../api/tasks';
 import "./TaskModalContent.css"
 
 const useStyles = makeStyles({

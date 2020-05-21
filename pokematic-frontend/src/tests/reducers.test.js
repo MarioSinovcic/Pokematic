@@ -1,7 +1,7 @@
 import rootReducers from '../reducers/index';
 import { createStore } from 'redux';
 import { togglePokemonLoad, addToCollection, addPokemonData, addPokemonNames, addPokemonTypes, setCollection, toggleCollection } from '../actions/actions';
-import { POKEMONTYPES } from '../constants';
+import { POKEMONTYPES } from '../api/constants';
 
 describe('pokemon reducers', () => {
 

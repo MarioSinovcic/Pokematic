@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from '../shared-components/Header';
+import Header from './shared-components/Header';
 import { Typography, Button } from '@material-ui/core';
-import * as colors from '../colors'
+import * as colors from './shared-components/colors'
 import { Link } from 'react-router-dom';
 import auth0Client from '../Auth0/Auth';
 import './Login.css';

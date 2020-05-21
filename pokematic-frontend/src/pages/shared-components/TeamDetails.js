@@ -3,7 +3,7 @@ import ProgressBar from './ProgressBar';
 import { Typography, Divider } from '@material-ui/core';
 import './TeamDetails.css';
 import Label from './Label';
-import * as colors from '../colors'
+import * as colors from './colors'
 
 function TeamDetails(props) {
     function calculateProgress(){

@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import {createTask} from '../../../apiHandler';
+import {createTask} from '../../../api/tasks';
 import "./NewTaskModalContent.css"
 
 const useStyles = makeStyles({
