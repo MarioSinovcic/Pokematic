@@ -3,7 +3,6 @@ import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
 import { createStore } from 'redux';
 import rootReducers from '../reducers';
-import Assignees from '../pages/board-components/Assignees';
 import Goal from '../pages/board-components/Goal';
 import GoalSideBar from '../pages/board-components/GoalSideBar';
 import StatusCard from '../pages/board-components/StatusCard';
@@ -20,13 +19,6 @@ describe('board components', () => {
     })
 
     describe('snapshot matching', () => {
-
-        it('Assignees matches snapshot' , () => {
-            const assignees = renderer.create(<Provider store={store}>
-                <Assignees />
-            </Provider>).toJSON();
-            expect(assignees).toMatchSnapshot();
-        });
 
         it('Goal matches snapshot' , () => {
             const goal = renderer.create(<Provider store={store}>

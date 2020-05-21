@@ -3,7 +3,7 @@ Pokematic is a web application that fosters team collaboration and is designed t
 
 ## Technical Layout
 
-The project consists of two main code bases: a backend (in pokematic-backend) and a frontend (in pokematic-frontend). The backend is a web api created with ASP.NET Core (coding language is C#). The frontend is a ReactJS project that interacts with the  the backend API as well as the [pokeapi](https://pokeapi.co/)
+The project consists of two main code bases: a backend (in pokematic-backend) and a frontend (in pokematic-frontend). The backend is a web api created with ASP.NET Core (coding language is C#). The frontend is a ReactJS project that interacts with the  the backend API as well as the [pokeapi](https://pokeapi.co/).
 
 ## Get Started!
 
@@ -23,4 +23,7 @@ To get the project running, follow these steps:
 5. Open a new tab/new instance of the command line and navigate using the 'cd' command into the frontend folder (pokematic-frontend)
 6. Execute the command 'npm install' to install required dependencies 
 6. Execute the command 'npm start' to start the React developmnet server
-7. Your browser should open (or you may have to open a link from the React command line tool). You should see the pokematic home page
+7. Your browser should open (or you may have to open a link from the React command line tool). You should see the pokematic home page prompting you to login.
+8. Feel free to create a new account. However, it is recommended that if you are testing pokematic, you should use a dummy account as this will help you see all the features of pokematic more easily. To log into the dummy account enter the following credentials,
+Login: mockaccount@test.com
+passowrd: TestAccount1!

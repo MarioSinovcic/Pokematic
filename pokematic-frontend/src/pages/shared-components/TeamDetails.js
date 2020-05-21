@@ -18,7 +18,7 @@ function TeamDetails(props) {
             </div>
             <div className="team-stats">
                 <Label labelText={"lv. "+ props.level} color={colors.fire}/>
-                <Typography className={props.isItem ? "team-name team-item-text" : "team-name"}>{props.name}</Typography>
+                <Typography className={props.isItem ? "team-name team-item-text" : "team-name extra-long-text"}>{props.name}</Typography>
                 <div className={props.isItem ? "team-level-bar item-width" : "team-level-bar card-width"}>
                     <ProgressBar progress={calculateProgress()}/>
                          <Typography className={props.isItem ? "EXP EXP-text item-text" : "EXP EXP-text"}>EXP: {props.experiencePoints}/ {props.level *5}</Typography>
