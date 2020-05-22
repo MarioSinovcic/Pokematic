@@ -12,6 +12,8 @@ import pokemonReducer from './pokemonReducer';
 //     defaultReducer
 // });
 
+
+
 const rootReducers = pokemonReducer;
 
 export default rootReducers;
