@@ -2,6 +2,18 @@
 
 // calling the default reducer to create a link
 import pokemonReducer from './pokemonReducer';
+import { persistReducer } from 'redux-persist';
+
+// Local storage in window browser for persistence
+import storage from 'redux-persist/lib/storage';
+
+
+const persistConfig = {
+    // Where in the reducer do we want to start storing?
+    key: 'root',
+    storage,
+  }
+
 
 /**
  * Add this code once you have multiple reducers
@@ -13,7 +25,6 @@ import pokemonReducer from './pokemonReducer';
 // });
 
 
-
 const rootReducers = pokemonReducer;
 
-export default rootReducers;
+export default persistReducer(persistConfig, rootReducers);
