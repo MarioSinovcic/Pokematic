@@ -86,42 +86,6 @@ exports[`shared components snapshot matching Progress Bar matches snapshot 1`] =
 </div>
 `;
 
-exports[`shared components snapshot matching Sidebar matches snapshot 1`] = `
-<div
-  className="makeStyles-root-113"
->
-  <div
-    className="MuiDrawer-root MuiDrawer-docked SideBar"
-  >
-    <div
-      className="MuiPaper-root MuiDrawer-paper makeStyles-drawerPaper-116 MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft MuiPaper-elevation0"
-    >
-      <div
-        className="makeStyles-toolbar-118"
-      />
-      <ul
-        className="MuiList-root MuiList-padding"
-      >
-        <li
-          className="MuiListItem-root TeamTabs TaskButton MuiListItem-gutters"
-          disabled={false}
-        >
-          <p
-            className="MuiTypography-root TaskFilter AllTasks MuiTypography-body1"
-          />
-        </li>
-      </ul>
-      <hr
-        className="MuiDivider-root SideBarDivider"
-      />
-      <ul
-        className="MuiList-root MuiList-padding"
-      />
-    </div>
-  </div>
-</div>
-`;
-
 exports[`shared components snapshot matching Team Card matches snapshot 1`] = `
 <div
   id="CardShape"
