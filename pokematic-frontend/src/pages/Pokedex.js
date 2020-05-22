@@ -19,7 +19,6 @@ class Pokedex extends React.Component {
   componentWillMount() {
     auth0Client.silentAuth();
     this.mapPokemon().then(() => {
-      // this.props.toggleCollection(this.props.teamPokemon);
       this.setState({
         pokemonCollection: this.props.pokemonCollection,
       })
