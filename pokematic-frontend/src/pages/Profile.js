@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './shared-components/Header';
-import Sidebar from './shared-components/Sidebar';
+import TeamSidebar from './profile-components/TeamSidebar';
 import ProfileCard from './profile-components/ProfileCard';
 import ModalButton from './shared-components/ModalButton';
 import AddIcon from '@material-ui/icons/Add';
@@ -66,7 +66,7 @@ class Profile extends React.Component {
         </header>
         <div className="profile-background"></div>
         <div className="menu">
-          <Sidebar
+          <TeamSidebar
             title={sidebarTitle}
             itemType="TEAM"
             teamsList={this.state.teamsList}

@@ -7,7 +7,7 @@ import TeamCard from '../pages/shared-components/TeamCard';
 import Header from '../pages/shared-components/Header';
 import ModalButton from '../pages/shared-components/ModalButton';
 import ProgressBar from '../pages/shared-components/ProgressBar';
-import Sidebar from '../pages/shared-components/Sidebar';
+import TeamSidebar from '../pages/profile-components/TeamSidebar';
 import TeamDetails from '../pages/shared-components/TeamDetails';
 import Label from '../pages/shared-components/Label';
 import ErrorMessage from '../pages/shared-components/ErrorMessage';
@@ -56,7 +56,7 @@ describe('shared components', () => {
             const dummyTeamsList = [];
 
             const sidebar = renderer.create(<Provider store={store}>
-                <Sidebar 
+                <TeamSidebar
                 teamsList={dummyTeamsList}/>
             </Provider>).toJSON();
             expect(sidebar).toMatchSnapshot();
