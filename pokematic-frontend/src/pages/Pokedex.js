@@ -64,11 +64,6 @@ class Pokedex extends React.Component {
 }
 
   render() {
-
-    {console.log(this.props.pokemonCollection ? this.props.pokemonCollection === this.props.pokemonData : "hm")}
-    {console.log(this.props.pokemonCollection )}
-    {console.log(this.props.pokemonData)}
-
     const handleSwitch = this.switchPokemon.bind(this)
     return (
 
@@ -85,7 +80,6 @@ class Pokedex extends React.Component {
                 <Grid component="label" container alignItems="center" spacing={1}>
                   <Grid item className="switch-text">COLLECTION</Grid>
                   <Grid item>
-                  {console.log(this.props.pokemonCollection)}
                     <Switch
                       color=""
                       name="checkedC"
