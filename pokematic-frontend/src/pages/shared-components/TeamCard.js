@@ -1,7 +1,7 @@
 import React from 'react';
 import {getTeamInfo} from '../../api/teams';
 import TeamDetails from './TeamDetails';
-import { addToCollection, setCollection } from '../../actions/actions';
+import { addToCollection, setCollection } from '../../redux/actions/actions';
 import { connect } from 'react-redux';
 import './TeamCard.css';
 
