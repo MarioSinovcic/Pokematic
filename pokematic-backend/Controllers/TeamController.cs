@@ -11,6 +11,9 @@ namespace pokematic_backend.Controllers
     public class TeamController : ControllerBase
     {
         private readonly TeamService _teamService;
+        private readonly UserService _userService;
+        private readonly TaskService _taskService;
+        private readonly GoalService _goalService;
 
         public TeamController(TeamService teamService)
         {

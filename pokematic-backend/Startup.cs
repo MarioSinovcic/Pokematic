@@ -1,39 +1,25 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using pokematic_backend.Contexts;
 using pokematic_backend.Services;
-using Newtonsoft.Json;
-using Swashbuckle.AspNetCore.Swagger;
-using Swashbuckle.Swagger;
 
 namespace pokematic_backend
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
-        public IConfiguration Configuration { get; }
-
+        
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
             services.AddScoped<DatabaseContext>();
             services.AddScoped<TeamService>();
+            services.AddScoped<UserService>();
+            services.AddScoped<GoalService>();
+            services.AddScoped<TaskService>();
             services.AddControllers().AddNewtonsoftJson();
 
             services.AddSwaggerGen(c =>
