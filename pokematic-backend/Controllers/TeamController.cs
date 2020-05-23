@@ -2,22 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using pokematic_backend.Models;
 using pokematic_backend.Services;
-using Task = System.Threading.Tasks.Task;
-
-// TO DO
-/*
- *users to switch roles,
- * check for existing team (when trying to search for teams to be added into), login stuff,
- */
-
-// DONE
-/*
- * Get all teams, create team, get goals, get tasks, create goals,
- * create tasks, get user, create user, join a team, updating task, updating goal (or progress of that goal)
- * updating task, updating goal (or progress of that goal),approving tasks (PMs), get all pokemon of that team’s collection,
- * adding a pokemon to team when they get a new pokemon, 
- */
-
 
 
 namespace pokematic_backend.Controllers
@@ -32,11 +16,6 @@ namespace pokematic_backend.Controllers
         {
             _teamService = teamService;
         }
-        
-        
-        /*
-         * Team Endpoints
-         */
 
         [HttpGet]
         public List<Team> GetAllTeams()
@@ -83,10 +62,7 @@ namespace pokematic_backend.Controllers
 
             return NotFound(serviceMessage);
         }
-
-        /**
-         * Goal endpoints
-         */
+        
 
         [HttpGet("goals/{teamName}")]
         public List<Goal> GetGoals(string teamName)
@@ -134,14 +110,10 @@ namespace pokematic_backend.Controllers
 
             return NotFound(serviceMessage);
         }
-
-
-        /**
-         * Task endpoints
-         */
+        
 
         [HttpGet("tasks/{teamName}")]
-        public List<Models.Task> GetTasks(string teamName)
+        public List<Task> GetTasks(string teamName)
         {
             var tasks = _teamService.GetTasks(teamName);
             return tasks;
@@ -149,7 +121,7 @@ namespace pokematic_backend.Controllers
 
     
         [HttpPost("createTask/{teamName}/{goalName}")]
-        public Models.Task CreateTask(Models.Task task, string teamName, string goalName)
+        public Task CreateTask(Task task, string teamName, string goalName)
         {
              _teamService.CreateTask(task, teamName, goalName);
             return task;
@@ -197,7 +169,7 @@ namespace pokematic_backend.Controllers
         }
 
         [HttpPut("updateTask/{teamName}/{goalName}/{taskToUpdateName}")]
-        public ActionResult UpdateTask(string teamName, string goalName, string taskToUpdateName, Models.Task updatedTask)
+        public ActionResult UpdateTask(string teamName, string goalName, string taskToUpdateName, Task updatedTask)
         {
             var serviceMessage = _teamService.UpdateTask(teamName, goalName, taskToUpdateName, updatedTask);
 
@@ -208,10 +180,6 @@ namespace pokematic_backend.Controllers
 
             return NotFound(serviceMessage);
         }
-        
-        /**
-         * User functionality
-         */
         
         [HttpPost("joinTeam/{teamName}/{username}")]
         public ActionResult JoinTeam(string teamName, string username)

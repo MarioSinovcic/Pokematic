@@ -33,7 +33,6 @@ namespace pokematic_backend
         {
             services.AddControllers();
             services.AddScoped<DatabaseContext>();
-            services.AddScoped<UserService>();
             services.AddScoped<TeamService>();
             services.AddControllers().AddNewtonsoftJson();
 

@@ -19,10 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Tests\Tests.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Interfaces" />
   </ItemGroup>
 
