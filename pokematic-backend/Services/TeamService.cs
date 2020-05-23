@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
-using MongoDB.Driver.Linq;
 using pokematic_backend.Contexts;
 using pokematic_backend.Models;
 using static MongoDB.Driver.Builders<pokematic_backend.Models.Team>;
@@ -27,7 +26,7 @@ namespace pokematic_backend.Services
 
         public Team GetTeam(string teamName)
         {
-            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
+            var team = _teams.AsQueryable().FirstOrDefault(teamToFind => teamToFind.Name == teamName);
             return team;
         }
 
@@ -43,7 +42,7 @@ namespace pokematic_backend.Services
             {
                 _teams.ReplaceOneAsync(filter, teamToUpdate);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return "Request failed, no team with that team name or team object invalid";
             }
@@ -53,19 +52,17 @@ namespace pokematic_backend.Services
         
         public string DeleteTeam(string teamName)
         {
-            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
-            var filter = Filter.Eq(team => team.Name, teamName);
+            var team = _teams.AsQueryable().FirstOrDefault(teamToFind => teamToFind.Name == teamName);
+            var filter = Filter.Eq(teamToFind => teamToFind.Name, teamName);
             
             if (team == null)
             {
                 return "No team with that team name";
             }
-            else
-            {
-                _teams.DeleteOneAsync(filter);
-                return "success";
-            }
-            
+
+            _teams.DeleteOneAsync(filter);
+            return "success";
+
         }
     }
 }

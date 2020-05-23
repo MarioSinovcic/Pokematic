@@ -155,7 +155,7 @@ namespace pokematic_backend.Controllers
         [HttpPost("unassignTask/{teamName}/{goalName}/{taskName}/{username}")]
         public ActionResult UnassignUserToTask(string teamName, string goalName, string taskName, string username)
         {
-            var serviceMessage = _taskService.unassignUserToTask(teamName, goalName, taskName, username);
+            var serviceMessage = _taskService.UnassignUserToTask(teamName, goalName, taskName, username);
 
             if (serviceMessage == "success")
             {

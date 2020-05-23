@@ -19,24 +19,22 @@ namespace pokematic_backend.Services
             _teams = databaseContext.Database.GetCollection<Team>("Teams");
         }
         
-        private string UpdateTeam(string teamName, Team teamToUpdate)
+        private void UpdateTeam(string teamName, Team teamToUpdate)
         {
             var filter = Filter.Eq(team => team.Name, teamName);
             try
             {
                 _teams.ReplaceOneAsync(filter, teamToUpdate);
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                return "Request failed, no team with that team name or team object invalid";
+                // ignored
             }
-            
-            return "success";
         }
         
         public string JoinTeam(string teamName, string username)
         {
-            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
+            var team = _teams.AsQueryable().FirstOrDefault(teamToFind => teamToFind.Name == teamName);
             
             if (team == null)
             {
@@ -47,12 +45,10 @@ namespace pokematic_backend.Services
             {
                 return "User already part of team";
             }
-            else
-            {
-                team.Users.Add(username);
-                UpdateTeam(teamName, team);
-                return "success";
-            }
+
+            team.Users.Add(username);
+            UpdateTeam(teamName, team);
+            return "success";
         }
         
         public (List<Team>, string) GetAllTeamsForUser(string username)
