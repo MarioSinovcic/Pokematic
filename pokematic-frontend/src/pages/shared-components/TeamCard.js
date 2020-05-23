@@ -30,14 +30,23 @@ class TeamCard extends React.Component {
     }
 
     render(){
+        var teamLevel;
+        var XP;
+        if(!this.props.isComponentofBoard){
+            teamLevel = this.state.teamData["level"];
+            XP = this.state.teamData["experiencePoints"];
+        }else{
+            teamLevel = this.props.teamLevel;
+            XP = this.props.teamExp;
+        }
         return (
             <div id="CardShape">
                 <div className="base-shape shape-content">
                     <TeamDetails 
                         name={this.state.teamData["name"]}
                         imageUri={this.state.teamData["imageUri"]}
-                        level={this.props.teamLevel}
-                        experiencePoints={this.props.teamExp}
+                        level={teamLevel}
+                        experiencePoints={XP}
                         />
                 </div>
                 <div className="bottom-support"></div>
