@@ -22,14 +22,12 @@ export async function createGoal(teamName, newGoal){
   }
 
   export async function populateBoardPage(teamName){
-    // --- comment out ----
     var APIcall = HOST + "team/goals/" + teamName;
     var response = await fetch(APIcall)
     .then(response => response.json())
     .then(json => {
         return json
     });
-    // --- comment out ----
     
     var goalResponse = response;
     var gatheredTeamGoals= [];

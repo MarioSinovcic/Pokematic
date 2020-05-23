@@ -31,6 +31,7 @@ class Board extends React.Component {
       inReviewList: [],
       doneList: [],
       openLevelUp: false,
+      teamLevel: "",
     }
   }
 
@@ -88,9 +89,10 @@ class Board extends React.Component {
     })
   }
   
-  handleOpenLevelUpModal() {
+  handleOpenLevelUpModal(newTeamLevel) {
     this.setState({
       openLevelUp: true,
+      teamLevel: newTeamLevel
     })
   };
 
@@ -110,7 +112,7 @@ class Board extends React.Component {
           <div className="board-page">
           <Header teamName={this.state.teamName} currentPage="/board"/>
           <div className="team-card">
-                <TeamCard teamName={this.state.teamName}/>
+                <TeamCard teamName={this.state.teamName} goals={this.state.goalsList}/>
           </div>
             <div className="menu">
             <GoalSidebar 
@@ -158,6 +160,7 @@ class Board extends React.Component {
                   {this.props.pokemonData[1] ? 
                   <LevelUpModalContent
                     teamName={this.state.teamName}
+                    newTeamLevel={this.state.teamLevel}
                     handleClose={this.handleCloseLevelUpModa.bind(this)}
                     pokemonData={this.props.pokemonData}
                   />

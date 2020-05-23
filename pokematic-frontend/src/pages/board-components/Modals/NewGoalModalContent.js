@@ -5,6 +5,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import {createGoal} from '../../../api/goals';
+import {gatherAllTasks} from '../../../api/tasks';
 import "./NewGoalModalContent.css"
 
 const useStyles = makeStyles({
@@ -88,7 +89,7 @@ function ModalContent (props) {
                 progress: 0
             };
             await createGoal(props.teamName, newGoal);
-            await props.refreshBoardPage(props.teamName);
+            await gatherAllTasks(props.teamName);
             await props.refreshBoardPage(props.teamName);
         }
         props.handleClose();
