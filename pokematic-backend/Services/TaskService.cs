@@ -12,6 +12,7 @@ namespace pokematic_backend.Services
     public class TaskService
     {
         private readonly IMongoCollection<Team> _teams;
+
         public TaskService(IConfiguration configuration)
         {
             var databaseContext = new DatabaseContext(configuration);
@@ -30,7 +31,7 @@ namespace pokematic_backend.Services
                 // ignored
             }
         }
-        
+
         public List<Task> GetTasks(string teamName)
         {
             var team = _teams.AsQueryable().FirstOrDefault(teamToFind => teamToFind.Name == teamName);
@@ -45,20 +46,21 @@ namespace pokematic_backend.Services
 
             if (goal == null)
             {
-                return; 
+                return;
             }
 
-            if (goal.Tasks == null)
+            if (goal.Tasks == null) //No tasks for goals yet
             {
                 task.Number = 0;
                 goal.Tasks = new List<Task> {task};
-                team.Goals[team.Goals.FindIndex(goalToFind => goalToFind.Name == goalName)] = goal;
+                team.Goals[team.Goals.FindIndex(goalToFind => goalToFind.Name == goalName)] =
+                    goal; //replace goal with updated goal
                 UpdateTeam(teamName, team);
             }
             else
             {
                 var biggestTaskNumber = 0;
-
+                // Calculate what the new Task number should be
                 foreach (var t in goal.Tasks)
                 {
                     if (t.Number > biggestTaskNumber)
@@ -66,25 +68,23 @@ namespace pokematic_backend.Services
                         biggestTaskNumber = t.Number;
                     }
                 }
-                
+
                 task.Number = biggestTaskNumber + 1;
                 goal.Tasks.Add(task);
                 goal.Progress = CalculateGoalProgress(goal);
-                goal.ExperiencePoints += task.ExperiencePoints;
-                team.Goals[team.Goals.FindIndex(goalToFind => goalToFind.Name == goalName)] = goal;
+                goal.ExperiencePoints += task.ExperiencePoints; // add to the cumulative goal XP
+                team.Goals[team.Goals.FindIndex(goalToFind => goalToFind.Name == goalName)] = goal; // replace goal
                 UpdateTeam(teamName, team);
             }
-            
         }
-      
+
         public string DeleteTask(string teamName, string goalName, string taskName)
-        { 
+        {
             var team = _teams.AsQueryable().FirstOrDefault(teamToFind => teamToFind.Name == teamName);
 
             if (team == null)
             {
                 return "No team with that team name";
-
             }
 
             var goal = team.Goals.FirstOrDefault(goalToFind => goalToFind.Name == goalName);
@@ -98,7 +98,7 @@ namespace pokematic_backend.Services
             {
                 return "No task with that task name exists for the goal with the name " + goalName;
             }
-            
+
             var task = goal.Tasks.FirstOrDefault(taskToFind => taskToFind.Name == taskName);
 
             if (task == null)
@@ -108,13 +108,13 @@ namespace pokematic_backend.Services
 
             goal.Tasks.Remove(goal.Tasks.Single(taskToFind => taskToFind.Name == taskName));
             goal.Progress = CalculateGoalProgress(goal);
-            goal.ExperiencePoints -= task.ExperiencePoints;
-            team.Goals[team.Goals.FindIndex(goalToFind => goalToFind.Name == goalName)] = goal;
+            goal.ExperiencePoints -= task.ExperiencePoints; // remove from goal cumulative XP 
+            team.Goals[team.Goals.FindIndex(goalToFind => goalToFind.Name == goalName)] = goal; //replace goal
             UpdateTeam(teamName, team);
 
             return "success";
         }
-        
+
         public string UpdateTask(string teamName, string goalName, string taskToUpdateName, Task updatedTask)
         {
             var team = _teams.AsQueryable().FirstOrDefault(teamToFind => teamToFind.Name == teamName);
@@ -135,35 +135,32 @@ namespace pokematic_backend.Services
             {
                 return "No task with that task name exists for the goal with the name " + goalName;
             }
-            
+
             var taskToUpdate = goal.Tasks.FirstOrDefault(task => task.Name == taskToUpdateName);
 
             if (taskToUpdate == null)
             {
                 return "No task with that task name exists for the goal with the name " + goalName;
             }
-            
-            goal.Tasks[goal.Tasks.FindIndex(task => task.Name == taskToUpdateName)] = updatedTask;
+
+            goal.Tasks[goal.Tasks.FindIndex(task => task.Name == taskToUpdateName)] = updatedTask; // replace old task
             goal.Progress = CalculateGoalProgress(goal);
-            goal.ExperiencePoints -= taskToUpdate.ExperiencePoints; // Update goals experience points with updated task experience point
+            goal.ExperiencePoints -=
+                taskToUpdate.ExperiencePoints; // Update goals experience points with updated task experience point
             goal.ExperiencePoints += updatedTask.ExperiencePoints;
-            team.Goals[team.Goals.FindIndex(goalToFind => goalToFind.Name == goalName)] = goal;
+            team.Goals[team.Goals.FindIndex(goalToFind => goalToFind.Name == goalName)] = goal; // replace old goal
             UpdateTeam(teamName, team);
-            
             return "success";
         }
-        
 
 
         public string AssignUserToTask(string teamName, string goalName, string taskName, string username)
         {
-            
             var team = _teams.AsQueryable().FirstOrDefault(teamToFind => teamToFind.Name == teamName);
 
             if (team == null)
             {
                 return "No team with that team name";
-
             }
 
             var user = team.Users.FirstOrDefault(userToFind => userToFind == username);
@@ -172,7 +169,7 @@ namespace pokematic_backend.Services
             {
                 return "No user with that username in this team";
             }
-            
+
             var goal = team.Goals.FirstOrDefault(goalToFind => goalToFind.Name == goalName);
 
             if (goal == null)
@@ -184,7 +181,7 @@ namespace pokematic_backend.Services
             {
                 return "No task with that task name exists for the goal with the name " + goalName;
             }
-            
+
             var task = goal.Tasks.FirstOrDefault(taskToFind => taskToFind.Name == taskName);
 
             if (task == null)
@@ -215,8 +212,8 @@ namespace pokematic_backend.Services
             }
 
             return "success";
-
         }
+
         public string UnassignUserToTask(string teamName, string goalName, string taskName, string username)
         {
             var team = _teams.AsQueryable().FirstOrDefault(teamToFind => teamToFind.Name == teamName);
@@ -224,16 +221,15 @@ namespace pokematic_backend.Services
             if (team == null)
             {
                 return "No team with that team name";
-
             }
-            
+
             var user = team.Users.FirstOrDefault(userToFind => userToFind == username);
 
             if (user == null)
             {
                 return "No user with that username in this team";
             }
-            
+
             var goal = team.Goals.FirstOrDefault(goalToFind => goalToFind.Name == goalName);
 
             if (goal == null)
@@ -247,7 +243,7 @@ namespace pokematic_backend.Services
             {
                 return "No task with that task name exists for the goal with the name " + goalName;
             }
-            
+
             var assignees = task.Assignees;
 
             if (assignees == null)
@@ -267,7 +263,7 @@ namespace pokematic_backend.Services
             UpdateTeam(teamName, team);
             return "success";
         }
-        
+
         private static double CalculateGoalProgress(Goal goal)
         {
             double numberOfTasks = goal.Tasks.Count;

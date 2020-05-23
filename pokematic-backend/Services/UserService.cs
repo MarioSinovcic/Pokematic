@@ -18,7 +18,7 @@ namespace pokematic_backend.Services
             var databaseContext = new DatabaseContext(configuration);
             _teams = databaseContext.Database.GetCollection<Team>("Teams");
         }
-        
+
         private void UpdateTeam(string teamName, Team teamToUpdate)
         {
             var filter = Filter.Eq(team => team.Name, teamName);
@@ -31,16 +31,16 @@ namespace pokematic_backend.Services
                 // ignored
             }
         }
-        
+
         public string JoinTeam(string teamName, string username)
         {
             var team = _teams.AsQueryable().FirstOrDefault(teamToFind => teamToFind.Name == teamName);
-            
+
             if (team == null)
             {
                 return "No team with that team name";
             }
-            
+
             if (team.Users.Contains(username))
             {
                 return "User already part of team";
@@ -50,7 +50,7 @@ namespace pokematic_backend.Services
             UpdateTeam(teamName, team);
             return "success";
         }
-        
+
         public (List<Team>, string) GetAllTeamsForUser(string username)
         {
             var teams = _teams.AsQueryable().Where(team => team.Users.Contains(username)).ToList();

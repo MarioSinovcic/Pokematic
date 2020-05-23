@@ -64,7 +64,8 @@ namespace pokematic_backend.Services
             else
             {
                 var biggestGoalNumber = 0;
-
+                
+                //Calculate what the newly created Goal's number should be
                 foreach (var g in team.Goals)
                 {
                     if (g.Number > biggestGoalNumber)

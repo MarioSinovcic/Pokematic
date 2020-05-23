@@ -15,7 +15,8 @@ namespace pokematic_backend.Controllers
         private readonly TaskService _taskService;
         private readonly GoalService _goalService;
 
-        public TeamController(TeamService teamService, UserService userService, TaskService taskService, GoalService goalService)
+        public TeamController(TeamService teamService, UserService userService, TaskService taskService,
+            GoalService goalService)
         {
             _teamService = teamService;
             _userService = userService;
@@ -28,7 +29,7 @@ namespace pokematic_backend.Controllers
         {
             return _teamService.GetAllTeams();
         }
-        
+
         [HttpPost("createTeam")]
         public Team CreateTeam(Team team)
         {
@@ -54,7 +55,7 @@ namespace pokematic_backend.Controllers
             }
 
             return NotFound(serviceMessage);
-        } 
+        }
 
         [HttpDelete("deleteTeam/{teamName}")]
         public ActionResult DeleteTeam(string teamName)
@@ -78,21 +79,21 @@ namespace pokematic_backend.Controllers
             var goals = _goalService.GetAllGoals(teamName);
             return goals;
         }
-        
+
         [HttpGet("goals/{teamName}/{goalName}")]
         public Goal GetAGoal(string teamName, string goalName)
         {
             var goal = _goalService.GetGoal(teamName, goalName);
             return goal;
         }
-        
+
         [HttpPost("createGoal/{teamName}")]
-        public  Goal CreateGoal(Goal goal, string teamName)
+        public Goal CreateGoal(Goal goal, string teamName)
         {
             _goalService.CreateGoal(goal, teamName);
             return goal;
         }
-        
+
         [HttpDelete("deleteGoal/{teamName}/{goalName}")]
         public ActionResult DeleteGoal(string teamName, string goalName)
         {
@@ -118,7 +119,7 @@ namespace pokematic_backend.Controllers
 
             return NotFound(serviceMessage);
         }
-        
+
         /**
          * Tasks
          */
@@ -129,16 +130,15 @@ namespace pokematic_backend.Controllers
             return tasks;
         }
 
-    
+
         [HttpPost("createTask/{teamName}/{goalName}")]
         public Task CreateTask(Task task, string teamName, string goalName)
         {
             _taskService.CreateTask(task, teamName, goalName);
             return task;
         }
-        
-   
-        
+
+
         [HttpPost("assignTask/{teamName}/{goalName}/{taskName}/{username}")]
         public ActionResult AssignUserToTask(string teamName, string goalName, string taskName, string username)
         {
@@ -190,16 +190,15 @@ namespace pokematic_backend.Controllers
 
             return NotFound(serviceMessage);
         }
-        
+
         /**
          * User
          */
-        
         [HttpPost("joinTeam/{teamName}/{username}")]
         public ActionResult JoinTeam(string teamName, string username)
         {
             var serviceMessage = _userService.JoinTeam(teamName, username);
-            
+
             if (serviceMessage == "success")
             {
                 return Ok();
@@ -212,7 +211,7 @@ namespace pokematic_backend.Controllers
         public ActionResult GetAllTeamsForUser(string username)
         {
             var (teams, serviceMessage) = _userService.GetAllTeamsForUser(username);
-            
+
             if (serviceMessage == "success")
             {
                 return Ok(teams);
