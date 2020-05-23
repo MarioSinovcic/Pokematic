@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
 import { createStore } from 'redux';
-import rootReducers from '../reducers';
+import rootReducers from '../redux/reducers';
 import TeamCard from '../pages/shared-components/TeamCard';
 import Header from '../pages/shared-components/Header';
 import ModalButton from '../pages/shared-components/ModalButton';

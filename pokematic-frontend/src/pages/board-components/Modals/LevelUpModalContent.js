@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import { connect } from 'react-redux';
-import { addToCollection } from '../../../actions/actions';
+import { addToCollection } from '../../../redux/actions/actions';
 import { saveTeamCollection } from '../../../api/pokemon';
 import "./TaskModalContent.css"
 import "./LevelUpModalContent.css"
