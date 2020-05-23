@@ -3,7 +3,7 @@ import PokedexList from './pokedex-components/PokedexList'
 import Header from './shared-components/Header'
 import TeamCard from './shared-components/TeamCard';
 import { connect } from 'react-redux';
-import { toggleCollection, setCollection } from '../redux/actions/actions';
+import { toggleCollection, setCollection } from '../actions/actions';
 import { Typography, Grid, Switch } from '@material-ui/core';
 import { getTeamInfo } from '../api/teams';
 import auth0Client from '../Auth0/Auth';
@@ -19,6 +19,7 @@ class Pokedex extends React.Component {
   componentWillMount() {
     auth0Client.silentAuth();
     this.mapPokemon().then(() => {
+      this.props.toggleCollection(this.props.teamPokemon);
       this.setState({
         pokemonCollection: this.props.pokemonCollection,
       })
@@ -64,6 +65,7 @@ class Pokedex extends React.Component {
 }
 
   render() {
+
     const handleSwitch = this.switchPokemon.bind(this)
     return (
 
@@ -84,7 +86,7 @@ class Pokedex extends React.Component {
                       color=""
                       name="checkedC"
                       onChange={(event) => handleSwitch(event)}
-                      checked={JSON.stringify(this.props.pokemonCollection) === JSON.stringify(this.props.pokemonData)} />
+                      checked={this.props.pokemonCollection === this.props.pokemonData} />
                   </Grid>
                   <Grid item className="switch-text">ALL POKEMON</Grid>
                 </Grid>

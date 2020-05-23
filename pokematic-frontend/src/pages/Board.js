@@ -9,7 +9,7 @@ import AddIcon from '@material-ui/icons/Add';
 import LevelUpModalContent from './board-components/Modals/LevelUpModalContent';
 import { Modal, Backdrop, Fade } from '@material-ui/core';
 import { connect } from 'react-redux';
-import { togglePokemonLoad, addPokemonData, addPokemonNames, addPokemonTypes } from '../redux/actions/actions';
+import { togglePokemonLoad, addPokemonData, addPokemonNames, addPokemonTypes } from '../actions/actions';
 import { populateBoardPage } from '.././api/goals';
 import {getTeamInfo} from '.././api/teams';
 import { fetchPokemonData, fetchPokemonTypes } from '.././api/pokemon';

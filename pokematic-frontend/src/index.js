@@ -4,17 +4,20 @@ import { BrowserRouter as Router } from "react-router-dom";
 import Routes from "./router/Routes";
 import * as serviceWorker from "./serviceWorker";
 import './index.css';
+import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import  { store,  persistor }   from './redux/store';
-import { PersistGate } from 'redux-persist/integration/react';
+import rootReducers from './reducers';
+
+// creating a store for the redux structure
+const store = createStore(
+    rootReducers,
+);
 
 const RouteWrapper = () => {
   return (
     <Provider store={store}>
       <Router>
-        <PersistGate persistor={persistor}>
           <Routes />
-        </PersistGate>
       </Router>
     </Provider>
   );

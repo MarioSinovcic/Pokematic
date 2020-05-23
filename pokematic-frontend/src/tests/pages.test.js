@@ -4,7 +4,7 @@ import Board from '../pages/Board';
 import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
 import { createStore } from 'redux';
-import rootReducers from '../redux/reducers';
+import rootReducers from '../reducers';
 import NotFound from '../pages/NotFound';
 import TeamSearch from '../pages/TeamSearch';
 

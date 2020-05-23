@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
 import { createStore } from 'redux';
-import rootReducers from '../redux/reducers';
+import rootReducers from '../reducers';
 import PokedexItem from '../pages/pokedex-components/PokedexItem';
 import PokedexList from '../pages/pokedex-components/PokedexList';
 
