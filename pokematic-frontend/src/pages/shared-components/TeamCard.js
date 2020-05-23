@@ -12,11 +12,15 @@ class TeamCard extends React.Component {
 
         this.state = {
             teamData: [],
+            goals: [],
         }
     }
 
     componentDidMount(){
         this.getTeamData();
+        this.setState({
+            goals: this.props.goals
+        })
     }
     
     getTeamData = async ()  => {

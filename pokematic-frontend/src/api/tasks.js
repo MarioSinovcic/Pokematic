@@ -1,4 +1,5 @@
 import {HOST} from './constants';
+import {populateBoardPage} from './goals';
 
 export async function createTask(teamName, newTask, goalName){
     var APIcall = HOST + "team/createTask/" + teamName + "/" + goalName;
@@ -29,6 +30,10 @@ export async function deleteTask(teamName, goalName, taskName){
     };
 
     await fetch(APIcall, requestOptions);
+}
+
+export async function gatherAllTasks(teamName){
+    populateBoardPage(teamName); 
 }
 
 export async function handleApproval(teamName, goalName, taskXP){
@@ -79,6 +84,6 @@ export async function handleApproval(teamName, goalName, taskXP){
     };
         
     await fetch(updateTeam, requestOptions2);
-  
-    return (initalTemLevel < newTeamLevel);
+    var levelInfo = [initalTemLevel, newTeamLevel]
+    return (levelInfo);
   }   
