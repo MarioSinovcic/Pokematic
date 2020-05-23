@@ -69,6 +69,8 @@ function TaskModalContent (props) {
         if(selectedApproved){
             var levelInfo = await handleApproval(props.teamName, props.goalName, props.experiencePoints);
             await props.populatePage(props.teamName);
+            await props.populatePage(props.teamName);
+
             if(levelInfo[0] < levelInfo[1]){
                 props.openLevelUp(levelInfo[1]);
             }

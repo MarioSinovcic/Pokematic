@@ -115,7 +115,7 @@ class Board extends React.Component {
           <div className="board-page">
           <Header teamName={this.state.teamName} currentPage="/board"/>
           <div className="team-card">
-                <TeamCard teamName={this.state.teamName} teamLevel={this.state.teamLevel} teamExp={this.state.teamExp} goals={this.state.goalsList}/>
+                <TeamCard teamName={this.state.teamName} teamLevel={this.state.teamLevel} teamExp={this.state.teamExp} isComponentofBoard={true}/>
           </div>
             <div className="menu">
             <GoalSidebar 
