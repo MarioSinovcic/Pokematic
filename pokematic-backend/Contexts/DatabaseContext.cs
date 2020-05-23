@@ -5,7 +5,7 @@ namespace pokematic_backend.Contexts
 {
     public class DatabaseContext
     {
-        public IMongoDatabase Database { get; set; }
+        public IMongoDatabase Database { get; }
         
         public DatabaseContext(IConfiguration configuration)
         {
