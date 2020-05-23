@@ -20,10 +20,14 @@ class Pokedex extends React.Component {
     auth0Client.silentAuth();
     this.mapPokemon().then(() => {
       this.setState({
-        pokemonCollection: this.props.pokemonCollection,
+        pokemonCollection: this.props.teamPokemon,
       })
     });
   } 
+
+  componentDidUpdate() {
+    this.props.toggleCollection(this.state.pokemonCollection);
+  }
 
   componentDidMount() {
     this.mapPokemon();
@@ -60,7 +64,7 @@ class Pokedex extends React.Component {
 
         teamCollection.push(pokemonToAdd);
     }
-    await this.props.setCollection(teamCollection);
+    this.props.setCollection(teamCollection)
 }
 
   render() {
@@ -97,7 +101,7 @@ class Pokedex extends React.Component {
           <TeamCard teamName={this.state.teamName}/>
         </div>
         <div>
-          {this.props.pokemonCollection && this.props.pokemonCollection[0] ? <PokedexList pokemonCollection={this.props.pokemonCollection} /> : ""}
+          {this.props.pokemonCollection && this.props.pokemonCollection[0] ? <PokedexList pokemonCollection={this.state.pokemonCollection} /> : <div className="no-collection-text">No pokemon in collection. Complete tasks to level up and earn pokemon!</div>}
         </div>
       </div >
     );
