@@ -19,47 +19,39 @@ namespace pokematic_backend.Services
             _teams = databaseContext.Database.GetCollection<Team>("Teams");
         }
 
-        private string UpdateTeam(string teamName, Team teamToUpdate)
+        private void UpdateTeam(string teamName, Team teamToUpdate)
         {
             var filter = Filter.Eq(team => team.Name, teamName);
             try
             {
                 _teams.ReplaceOneAsync(filter, teamToUpdate);
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                return "Request failed, no team with that team name or team object invalid";
+                // ignored
             }
-            
-            return "success";
         }
 
         public List<Goal> GetAllGoals(string teamName)
         {
-            var team =  _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
-            return team.Goals.ToList();
+            var team =  _teams.AsQueryable().FirstOrDefault(teamToFind => teamToFind.Name == teamName);
+            return team?.Goals.ToList();
         }
 
         public Goal GetGoal(string teamName, string goalName)
         {
-            var team =  _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
-            
-            if (team != null)
-            {
-                var goal = team.Goals.FirstOrDefault(goal => goal.Name == goalName);
-                return goal;
-            }
-
-            return null;
+            var team =  _teams.AsQueryable().FirstOrDefault(teamToFind => teamToFind.Name == teamName);
+            var goal = team?.Goals.FirstOrDefault(goalToFind => goalToFind.Name == goalName);
+            return goal;
         }
  
-        public Goal CreateGoal(Goal goal, string teamName)
+        public void CreateGoal(Goal goal, string teamName)
         {
-            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
+            var team = _teams.AsQueryable().FirstOrDefault(teamToFind => teamToFind.Name == teamName);
             
             if (team == null)
             {
-                return null;
+                return;
             }
 
             if (team.Goals == null)
@@ -80,33 +72,29 @@ namespace pokematic_backend.Services
                         biggestGoalNumber = g.Number;
                     }
                 }
-
                 goal.Number = biggestGoalNumber + 1;
                 team.Goals.Add(goal);
                 UpdateTeam(teamName, team);
             }
-
-            return goal;
         }
-
         
         public string DeleteGoal(string teamName, string goalName)
         {
-            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
+            var team = _teams.AsQueryable().FirstOrDefault(teamToFind => teamToFind.Name == teamName);
 
             if (team == null)
             {
                 return "No team with that team name";
             }
 
-            var goal = team.Goals.FirstOrDefault(goal => goal.Name == goalName);
+            var goal = team.Goals.FirstOrDefault(goalToFind => goalToFind.Name == goalName);
 
             if (goal == null)
             {
                 return "No goal with that goal name exists for the " + teamName + " team ";
             }
 
-            team.Goals.Remove(team.Goals.Single(goal => goal.Name == goalName));
+            team.Goals.Remove(team.Goals.Single(goalToFind => goalToFind.Name == goalName));
             UpdateTeam(teamName, team);
 
             return "success";
@@ -114,7 +102,7 @@ namespace pokematic_backend.Services
 
         public string UpdateGoal(string teamName, string goalToUpdateName, Goal updatedGoal)
         {
-            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
+            var team = _teams.AsQueryable().FirstOrDefault(teamToFind => teamToFind.Name == teamName);
 
             if (team == null)
             {
@@ -130,7 +118,6 @@ namespace pokematic_backend.Services
 
             team.Goals[team.Goals.FindIndex(goal => goal.Name == goalToUpdateName)] = updatedGoal;
             UpdateTeam(teamName, team);
-
             return "success";
         }
     }
