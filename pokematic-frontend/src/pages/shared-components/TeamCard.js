@@ -15,16 +15,16 @@ class TeamCard extends React.Component {
         }
     }
 
-    componentDidMount(){
-        this.getTeamData();
+    async componentDidMount(){
+        await this.getTeamData().then((apiData) => {
+            this.setState({
+                teamData: (apiData)
+            })
+        });
     }
     
-    getTeamData = async ()  => {
-        var apiData = await getTeamInfo(this.props.teamName);
-
-        this.setState({
-            teamData: (await apiData)
-        })
+    getTeamData =  ()  => {
+        return getTeamInfo(this.props.teamName);
     }
 
     render(){
@@ -34,8 +34,8 @@ class TeamCard extends React.Component {
                     <TeamDetails 
                         name={this.state.teamData["name"]}
                         imageUri={this.state.teamData["imageUri"]}
-                        level={this.state.teamData["level"]}
-                        experiencePoints={this.state.teamData["experiencePoints"]}
+                        level={this.props.teamLevel}
+                        experiencePoints={this.props.teamExp}
                         />
                 </div>
                 <div className="bottom-support"></div>

@@ -11,6 +11,7 @@ import { Modal, Backdrop, Fade } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { togglePokemonLoad, addPokemonData, addPokemonNames, addPokemonTypes } from '../redux/actions/actions';
 import { populateBoardPage } from '.././api/goals';
+import {getTeamInfo} from '.././api/teams';
 import { fetchPokemonData, fetchPokemonTypes } from '.././api/pokemon';
 import './Board.css'
 
@@ -36,7 +37,6 @@ class Board extends React.Component {
 
   componentDidMount(){
     auth0Cilent.silentAuth();
-    console.log(auth0Cilent);
     this.populatePage();
     if (!this.props.isLoaded) {
       this.getPokemonData();
@@ -74,17 +74,20 @@ class Board extends React.Component {
   }
 
   populatePage = async () => {
-    var apiData = populateBoardPage(this.state.teamName);
+    var goalApiData = populateBoardPage(this.state.teamName);
+    var teamApiData = getTeamInfo(this.state.teamName);
 
     this.setState({
       teamName: this.props.match.params.teamName,
-      goalsList: (await apiData).goalsList,
-      goalNames: (await apiData).goalNames,
-      taskNames: (await apiData).taskNames,
-      todoList: (await apiData).todoList,
-      inProgressList: (await apiData).inProgressList,
-      inReviewList: (await apiData).inReviewList,
-      doneList: (await apiData).doneList,
+      teamLevel: (await teamApiData).level,
+      teamExp: (await teamApiData).experiencePoints,
+      goalsList: (await goalApiData).goalsList,
+      goalNames: (await goalApiData).goalNames,
+      taskNames: (await goalApiData).taskNames,
+      todoList: (await goalApiData).todoList,
+      inProgressList: (await goalApiData).inProgressList,
+      inReviewList: (await goalApiData).inReviewList,
+      doneList: (await goalApiData).doneList,
     })
   }
   
@@ -94,7 +97,7 @@ class Board extends React.Component {
     })
   };
 
-  handleCloseLevelUpModa() {
+  handleCloseLevelUpModal() {
     this.setState({
       openLevelUp: false,
     })
@@ -110,7 +113,7 @@ class Board extends React.Component {
           <div className="board-page">
           <Header teamName={this.state.teamName} currentPage="/board"/>
           <div className="team-card">
-                <TeamCard teamName={this.state.teamName}/>
+                <TeamCard teamName={this.state.teamName} teamLevel={this.state.teamLevel} teamExp={this.state.teamExp}/>
           </div>
             <div className="menu">
             <GoalSidebar 
@@ -144,8 +147,8 @@ class Board extends React.Component {
               aria-describedby="transition-modal-description"
               open={this.state.openLevelUp}
               disableAutoFocus={true}
-              onBackdropClick={() => this.handleOpenLevelUpModa()}
-              onClose={() => this.handleCloseLevelUpModa()}
+              onBackdropClick={() => this.handleOpenLevelUpModal()}
+              onClose={() => this.handleCloseLevelUpModal()}
               closeAfterTransition
               BackdropComponent={Backdrop}
               BackdropProps={{
@@ -158,7 +161,7 @@ class Board extends React.Component {
                   {this.props.pokemonData[1] ? 
                   <LevelUpModalContent
                     teamName={this.state.teamName}
-                    handleClose={this.handleCloseLevelUpModa.bind(this)}
+                    handleClose={this.handleCloseLevelUpModal.bind(this)}
                     pokemonData={this.props.pokemonData}
                   />
                   : ""}
