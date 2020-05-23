@@ -1,52 +1,60 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
-using MongoDB.Bson;
 using MongoDB.Driver;
-using MongoDB.Driver.Linq;
 using pokematic_backend.Contexts;
 using pokematic_backend.Models;
-using static MongoDB.Driver.Builders<pokematic_backend.Models.User>;
+using static MongoDB.Driver.Builders<pokematic_backend.Models.Team>;
 
 namespace pokematic_backend.Services
 {
     public class UserService
     {
-        private readonly IMongoCollection<User> _users;
+        private readonly IMongoCollection<Team> _teams;
 
         public UserService(IConfiguration configuration)
         {
             var databaseContext = new DatabaseContext(configuration);
-            _users = databaseContext.Database.GetCollection<User>("Users");
+            _teams = databaseContext.Database.GetCollection<Team>("Teams");
         }
 
-        public List<User> GetAllUsers()
+        private void UpdateTeam(string teamName, Team teamToUpdate)
         {
-            return _users.AsQueryable().ToList();
+            var filter = Filter.Eq(team => team.Name, teamName);
+            try
+            {
+                _teams.ReplaceOneAsync(filter, teamToUpdate);
+            }
+            catch (Exception)
+            {
+                // ignored
+            }
         }
 
-        public User Get(string username)
+        public string JoinTeam(string teamName, string username)
         {
-            var user = _users.AsQueryable().FirstOrDefault(user => user.Username == username);
-            return user;
-        }
-        
-        public void Create(User user)
-        {
-            _users.InsertOneAsync(user);
-        }
-        
-        public void Update(string username, User user)
-        {
-            var filter = Filter.Eq(user => user.Username, username);
-            _users.ReplaceOneAsync(filter, user);
+            var team = _teams.AsQueryable().FirstOrDefault(teamToFind => teamToFind.Name == teamName);
+
+            if (team == null)
+            {
+                return "No team with that team name";
+            }
+
+            if (team.Users.Contains(username))
+            {
+                return "User already part of team";
+            }
+
+            team.Users.Add(username);
+            UpdateTeam(teamName, team);
+            return "success";
         }
 
-        public void Remove(string username)
+        public (List<Team>, string) GetAllTeamsForUser(string username)
         {
-            _users.DeleteOneAsync(user => user.Username == username);
+            var teams = _teams.AsQueryable().Where(team => team.Users.Contains(username)).ToList();
+            return (teams, "success");
         }
-        
     }
 }

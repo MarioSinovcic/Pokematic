@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
-using MongoDB.Bson;
 using MongoDB.Driver;
-using MongoDB.Driver.Linq;
 using pokematic_backend.Contexts;
 using pokematic_backend.Models;
 using static MongoDB.Driver.Builders<pokematic_backend.Models.Team>;
-using Task = System.Threading.Tasks.Task;
 
 namespace pokematic_backend.Services
 {
@@ -22,10 +18,6 @@ namespace pokematic_backend.Services
             var databaseContext = new DatabaseContext(configuration);
             _teams = databaseContext.Database.GetCollection<Team>("Teams");
         }
-            
-        /**
-         * Team functionality 
-         */
 
         public List<Team> GetAllTeams()
         {
@@ -34,7 +26,7 @@ namespace pokematic_backend.Services
 
         public Team GetTeam(string teamName)
         {
-            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
+            var team = _teams.AsQueryable().FirstOrDefault(teamToFind => teamToFind.Name == teamName);
             return team;
         }
 
@@ -50,436 +42,27 @@ namespace pokematic_backend.Services
             {
                 _teams.ReplaceOneAsync(filter, teamToUpdate);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return "Request failed, no team with that team name or team object invalid";
             }
             
             return "success";
-
         }
         
         public string DeleteTeam(string teamName)
         {
-            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
-            var filter = Filter.Eq(team => team.Name, teamName);
+            var team = _teams.AsQueryable().FirstOrDefault(teamToFind => teamToFind.Name == teamName);
+            var filter = Filter.Eq(teamToFind => teamToFind.Name, teamName);
             
             if (team == null)
             {
                 return "No team with that team name";
             }
-            else
-            {
-                _teams.DeleteOneAsync(filter);
-                return "success";
-            }
-            
-        }
-        
-        
 
-
-        /**
-         * Goal functionality
-         */
-        
-        public List<Goal> GetAllGoals(string teamName)
-        {
-            var team =  _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
-            return team.Goals.ToList();
-        }
-
-        public Goal GetGoal(string teamName, string goalName)
-        {
-            var team =  _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
-            
-            if (team != null)
-            {
-                var goal = team.Goals.FirstOrDefault(goal => goal.Name == goalName);
-                return goal;
-            }
-
-            return null;
-        }
- 
-        public Goal CreateGoal(Goal goal, string teamName)
-        {
-            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
-            
-            if (team == null)
-            {
-                return null;
-            }
-
-            if (team.Goals == null)
-            {
-                goal.Number = 0;
-                var goals = new List<Goal> {goal};
-                team.Goals = goals;
-                UpdateTeam(teamName, team);
-            }
-            else
-            {
-                var biggestGoalNumber = 0;
-
-                foreach (var g in team.Goals)
-                {
-                    if (g.Number > biggestGoalNumber)
-                    {
-                        biggestGoalNumber = g.Number;
-                    }
-                }
-
-                goal.Number = biggestGoalNumber + 1;
-                team.Goals.Add(goal);
-                UpdateTeam(teamName, team);
-            }
-
-            return goal;
-        }
-
-        
-        public string DeleteGoal(string teamName, string goalName)
-        {
-            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
-
-            if (team == null)
-            {
-                return "No team with that team name";
-            }
-
-            var goal = team.Goals.FirstOrDefault(goal => goal.Name == goalName);
-
-            if (goal == null)
-            {
-                return "No goal with that goal name exists for the " + teamName + " team ";
-            }
-
-            team.Goals.Remove(team.Goals.Single(goal => goal.Name == goalName));
-            UpdateTeam(teamName, team);
-
-            return "success";
-        }
-
-        public string UpdateGoal(string teamName, string goalToUpdateName, Goal updatedGoal)
-        {
-            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
-
-            if (team == null)
-            {
-                return "No team with that team name";
-            }
-
-            var goalToUpdate = team.Goals.FirstOrDefault(goal => goal.Name == goalToUpdateName);
-
-            if (goalToUpdate == null)
-            {
-                return "Trying to update goal that doesn't exist";
-            }
-
-            team.Goals[team.Goals.FindIndex(goal => goal.Name == goalToUpdateName)] = updatedGoal;
-            UpdateTeam(teamName, team);
-
-            return "success";
-        }
-
-        private double CalculateGoalProgress(Goal goal)
-        {
-            double numberOfTasks = goal.Tasks.Count;
-            double numberOfApprovedTasks = goal.Tasks.Count(task => task.Approved == true);
-
-            return numberOfApprovedTasks / numberOfTasks;
-        }
-        
-        /**
-         * Task functionality 
-         */
-        
-        public List<Models.Task> GetTasks(string teamName)
-        {
-            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
-            return team.Goals.SelectMany(goal => goal.Tasks).ToList();
-        }
-        
-
-        
-        
-        public void CreateTask(Models.Task task, string teamName, string goalName)
-        {
-            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
-
-            if (team == null)
-            {
-                return;
-            }
-            
-            var goal = team.Goals.FirstOrDefault(goal => goal.Name == goalName);
-
-            if (goal == null)
-            {
-                return; 
-            }
-
-            if (goal.Tasks == null)
-            {
-                task.Number = 0;
-                goal.Tasks = new List<Models.Task> {task};
-                team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
-                UpdateTeam(teamName, team);
-            }
-            else
-            {
-                var biggestTaskNumber = 0;
-
-                foreach (var t in goal.Tasks)
-                {
-                    if (t.Number > biggestTaskNumber)
-                    {
-                        biggestTaskNumber = t.Number;
-                    }
-                }
-                
-                task.Number = biggestTaskNumber + 1;
-                goal.Tasks.Add(task);
-                goal.Progress = CalculateGoalProgress(goal);
-                goal.ExperiencePoints += task.ExperiencePoints;
-                team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
-                UpdateTeam(teamName, team);
-            }
-            
-        }
-      
-        public string DeleteTask(string teamName, string goalName, string taskName)
-        { 
-            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
-
-            if (team == null)
-            {
-                return "No team with that team name";
-
-            }
-
-            var goal = team.Goals.FirstOrDefault(goal => goal.Name == goalName);
-
-            if (goal == null)
-            {
-                return "No goal with that goal name exists for the " + teamName + " team ";
-            }
-
-            if (goal.Tasks == null)
-            {
-                return "No task with that task name exists for the goal with the name " + goalName;
-            }
-            
-            var task = goal.Tasks.FirstOrDefault(task => task.Name == taskName);
-
-            if (task == null)
-            {
-                return "No task with that task name exists for the goal with the name " + goalName;
-            }
-
-            goal.Tasks.Remove(goal.Tasks.Single(task => task.Name == taskName));
-            goal.Progress = CalculateGoalProgress(goal);
-            goal.ExperiencePoints -= task.ExperiencePoints;
-            team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
-            UpdateTeam(teamName, team);
-
-            return "success";
-        }
-        
-        
-        
-        public string UpdateTask(string teamName, string goalName, string taskToUpdateName, Models.Task updatedTask)
-        {
-            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
-
-            if (team == null)
-            {
-                return "No team with that team name";
-            }
-
-            var goal = team.Goals.FirstOrDefault(goal => goal.Name == goalName);
-
-            if (goal == null)
-            {
-                return "No goal with that goal name exists for the " + teamName + " team ";
-            }
-
-            if (goal.Tasks == null)
-            {
-                return "No task with that task name exists for the goal with the name " + goalName;
-            }
-            
-            var taskToUpdate = goal.Tasks.FirstOrDefault(task => task.Name == taskToUpdateName);
-
-            if (taskToUpdate == null)
-            {
-                return "No task with that task name exists for the goal with the name " + goalName;
-            }
-            
-            goal.Tasks[goal.Tasks.FindIndex(task => task.Name == taskToUpdateName)] = updatedTask;
-            goal.Progress = CalculateGoalProgress(goal);
-            goal.ExperiencePoints -= taskToUpdate.ExperiencePoints; // Update goals experience points with updated task experience point
-            goal.ExperiencePoints += updatedTask.ExperiencePoints;
-            team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
-            UpdateTeam(teamName, team);
-            
-            return "success";
-        }
-        
-
-
-        public string AssignUserToTask(string teamName, string goalName, string taskName, string username)
-        {
-            
-            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
-
-            if (team == null)
-            {
-                return "No team with that team name";
-
-            }
-
-            var user = team.Users.FirstOrDefault(user => user == username);
-
-            if (user == null)
-            {
-                return "No user with that username in this team";
-            }
-            
-            var goal = team.Goals.FirstOrDefault(goal => goal.Name == goalName);
-
-            if (goal == null)
-            {
-                return "No goal with that goal name exists for the " + teamName + " team ";
-            }
-
-            if (goal.Tasks == null)
-            {
-                return "No task with that task name exists for the goal with the name " + goalName;
-            }
-            
-            var task = goal.Tasks.FirstOrDefault(task => task.Name == taskName);
-
-            if (task == null)
-            {
-                return "No task with that task name exists for the goal with the name " + goalName;
-            }
-
-            var assignees = task.Assignees;
-
-            if (assignees == null)
-            {
-                task.Assignees.Add(username);
-                goal.Tasks[goal.Tasks.FindIndex(task => task.Name == taskName)] = task;
-                team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
-                UpdateTeam(teamName, team);
-            }
-            else if (assignees.Exists(user => user == username))
-            {
-                return "User is already assigned to this task";
-            }
-            else if (assignees.Exists(user => user == username))
-            {
-                return "User is already assigned to this task";
-            }
-            else if (assignees.Exists(user => user == username))
-            {
-                return "User is already assigned to this task";
-            }
-            else
-            {
-                assignees.Add(user);
-                task.Assignees = assignees;
-                goal.Tasks[goal.Tasks.FindIndex(task => task.Name == taskName)] = task;
-                team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
-                UpdateTeam(teamName, team);
-            }
-
+            _teams.DeleteOneAsync(filter);
             return "success";
 
-        }
-
-        public string unassignUserToTask(string teamName, string goalName, string taskName, string username)
-        {
-                      
-            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
-
-            if (team == null)
-            {
-                return "No team with that team name";
-
-            }
-            
-            var user = team.Users.FirstOrDefault(user => user == username);
-
-            if (user == null)
-            {
-                return "No user with that username in this team";
-            }
-            
-            var goal = team.Goals.FirstOrDefault(goal => goal.Name == goalName);
-
-            if (goal == null)
-            {
-                return "No goal with that goal name exists for the " + teamName + " team ";
-            }
-
-            var task = goal.Tasks.FirstOrDefault(task => task.Name == taskName);
-
-            if (task == null)
-            {
-                return "No task with that task name exists for the goal with the name " + goalName;
-            }
-            
-            var assignees = task.Assignees;
-
-            if (assignees == null)
-            {
-                return "User is not assigned to this task";
-            }
-
-            if (!assignees.Exists(user => user == username))
-            {
-                return "User is not assigned to this task";
-            }
-
-            assignees.Remove(assignees.Single(user => user == username));
-            task.Assignees = assignees;
-            goal.Tasks[goal.Tasks.FindIndex(task => task.Name == taskName)] = task;
-            team.Goals[team.Goals.FindIndex(goal => goal.Name == goalName)] = goal;
-            UpdateTeam(teamName, team);
-
-            return "success";
-        }
-        /**
-         * User functionality
-         */
-        public string JoinTeam(string teamName, string username)
-        {
-            var team = _teams.AsQueryable().FirstOrDefault(team => team.Name == teamName);
-            
-            if (team == null)
-            {
-                return "No team with that team name";
-            }
-            
-            if (team.Users.Contains(username))
-            {
-                return "User already part of team";
-            }
-            else
-            {
-                team.Users.Add(username);
-                UpdateTeam(teamName, team);
-                return "success";
-            }
-        }
-        
-        public (List<Team>, string) GetAllTeamsForUser(string username)
-        {
-            var teams = _teams.AsQueryable().Where(team => team.Users.Contains(username)).ToList();
-            return (teams, "success");
         }
     }
 }
