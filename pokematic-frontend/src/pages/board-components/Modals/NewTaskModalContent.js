@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import {createTask} from '../../../api/tasks';
+import {createTask, gatherAllTasks} from '../../../api/tasks';
 import "./NewTaskModalContent.css"
 
 const useStyles = makeStyles({
@@ -107,7 +107,7 @@ function ModalContent (props) {
                     approved: false,
                 };
                 await createTask(props.teamName, newTask, selectedGoal);
-                await props.refreshBoardPage(props.teamName);
+                await gatherAllTasks(props.teamName);
                 await props.refreshBoardPage(props.teamName);
             }
         }

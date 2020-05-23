@@ -1,6 +1,6 @@
 import { createStore } from 'redux';
 import rootReducers from './reducers';
-import { persistStore, persistReducer } from 'redux-persist';
+import { persistStore } from 'redux-persist';
 
 
 // creating and persist store for the redux structure

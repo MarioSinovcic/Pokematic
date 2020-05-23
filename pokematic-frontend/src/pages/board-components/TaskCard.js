@@ -9,7 +9,7 @@ import Label from '../shared-components/Label';
 import ModalConent from './Modals/TaskModalContent';
 import StatusDropdown from './StatusDropdown';
 import * as colors from '../shared-components/colors';
-import {updateTask} from '../../api/tasks';
+import {updateTask, gatherAllTasks} from '../../api/tasks';
 import './TaskCard.css';
 
 
@@ -52,7 +52,7 @@ function TaskCard(props) {
             approved: props.approved,
         };
         await updateTask(updatedTask, props.teamName, props.goalName, props.name);
-        await props.populatePage(props.teamName);
+        await gatherAllTasks(props.teamName);
         await props.populatePage(props.teamName);
     };
 

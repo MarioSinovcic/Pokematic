@@ -12,13 +12,15 @@ class TeamCard extends React.Component {
 
         this.state = {
             teamData: [],
+            goals: [],
         }
     }
 
     async componentDidMount(){
         await this.getTeamData().then((apiData) => {
             this.setState({
-                teamData: (apiData)
+                teamData: (apiData),
+                goals: this.props.goals
             })
         });
     }

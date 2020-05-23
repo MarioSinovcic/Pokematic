@@ -12,11 +12,9 @@ class LevelUpModalContent extends React.Component {
     constructor(props) {
         super(props);
 
-
         this.state = {
             showReward: false,
             pokemonReward: [],
-            newLevel: 21,
         }
     }
 
@@ -46,7 +44,7 @@ class LevelUpModalContent extends React.Component {
         return (
             <div className="pokemon-modal-content">
                 <div className="blocks">
-                    <div className="new-level">LV. {this.state.newLevel}</div>
+                    <div className="new-level">LV. {this.props.newTeamLevel}</div>
                     <div className="pokemon-modal-title">
                         {!this.state.showReward ? "Level Up!" : this.state.rewardName}
                     </div>
