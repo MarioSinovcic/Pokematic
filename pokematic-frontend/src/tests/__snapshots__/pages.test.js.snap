@@ -212,21 +212,7 @@ exports[`pages snapshot tests displays error page 1`] = `
     className="App-header"
   >
     <p>
-      404 Cheif
-    </p>
-  </header>
-</div>
-`;
-
-exports[`pages snapshot tests team search 1`] = `
-<div
-  className="App"
->
-  <header
-    className="App-header"
-  >
-    <p>
-      TeamSearch
+      404: You've navigated to a non-existing page of Pokematic!
     </p>
   </header>
 </div>

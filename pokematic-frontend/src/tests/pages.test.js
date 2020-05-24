@@ -4,9 +4,8 @@ import Board from '../pages/Board';
 import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
 import { createStore } from 'redux';
-import rootReducers from '../reducers';
+import rootReducers from '../reducers/pokemonReducer';
 import NotFound from '../pages/NotFound';
-import TeamSearch from '../pages/TeamSearch';
 import Routes from '../router/Routes';
 import Login from '../pages/Login';
 import Profile from '../pages/Profile';
@@ -31,13 +30,6 @@ describe('pages', () => {
                 <NotFound />
             </Provider>).toJSON();
             expect(notFound).toMatchSnapshot();
-        })
-
-        it('team search', () => {
-            const team = renderer.create(<Provider store={store}>
-                <TeamSearch />
-            </Provider>).toJSON();
-            expect(team).toMatchSnapshot();
         })
     })
 })
@@ -159,8 +151,6 @@ describe('Snapshot pages tests', () => {
             }));
 
             const wrapper = shallow(<Provider store={store}><NotFound /></Provider>);
-
-
             expect(wrapper).toMatchSnapshot();
 
         })
