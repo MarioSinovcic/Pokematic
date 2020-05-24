@@ -1,5 +1,14 @@
 # Pokematic
-Pokematic is a web application that fosters team collaboration and is designed to be a tool that rewards teams through “gamifying” team achievements. As teams complete tasks and gain achievements and milestones, the tool rewards teams with randomly generated Pokemon or Pokemon-based items. These rewards are added into a collective Pokédex within each team, where members of the team can view their achievements and track the progress of their incoming goals.
+Pokematic is a web application that fosters team collaboration and is designed to be a tool that rewards teams through “gamifying” team achievements. As teams complete tasks and gain achievements and milestones, the tool rewards teams with randomly generated Pokemon. These rewards are added into a collective Pokédex within each team, where members of the team can view their achievements and track the progress of their incoming goals.
+
+Features that are currently available on Pokematic include:
+- Creating and Joining different teams
+- Kanban-board view of the team's task
+- Creating, tracking and modifying tasks
+- Creating and tracking goals
+- Experience points system for level ups for teams
+- Rewards system revolving around Pokemon collection
+
 
 ## Technical Layout
 
