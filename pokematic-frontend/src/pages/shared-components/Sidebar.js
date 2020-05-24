@@ -60,13 +60,9 @@ export default function Sidebar(props) {
       >
         <div className={classes.toolbar} />
         <List>
-            <ListItem button key={"title"} className="TeamTabs TaskButton">
+            <ListItem key={"title"} className="TeamTabs TaskButton" >
             <Typography className="TaskFilter AllTasks">{props.title}</Typography>
             </ListItem>
-            {props.subTitle && 
-             <ListItem button key={"subtitle"} className="TeamTabs">
-             <Typography className="TaskFilter MyTasks">{props.subTitle}</Typography>
-            </ListItem>}
         </List>
         <Divider className="SideBarDivider"/>
         <List>

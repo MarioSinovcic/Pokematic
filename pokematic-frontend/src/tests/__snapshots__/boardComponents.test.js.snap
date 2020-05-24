@@ -1,61 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`board components snapshot matching Assignees matches snapshot 1`] = `
-<div
-  className="AvatarContent"
->
-  <div
-    className="MuiAvatarGroup-root"
-  >
-    <div
-      className="MuiAvatar-root MuiAvatar-circle MuiAvatarGroup-avatar MuiAvatar-colorDefault"
-      style={
-        Object {
-          "marginLeft": null,
-          "zIndex": 4,
-        }
-      }
-    >
-      M
-    </div>
-    <div
-      className="MuiAvatar-root MuiAvatar-circle MuiAvatarGroup-avatar MuiAvatar-colorDefault"
-      style={
-        Object {
-          "marginLeft": null,
-          "zIndex": 3,
-        }
-      }
-    >
-      V
-    </div>
-    <div
-      className="MuiAvatar-root MuiAvatar-circle MuiAvatarGroup-avatar MuiAvatar-colorDefault"
-      style={
-        Object {
-          "marginLeft": null,
-          "zIndex": 2,
-        }
-      }
-    >
-      C
-    </div>
-    <div
-      className="MuiAvatar-root MuiAvatar-circle MuiAvatarGroup-avatar MuiAvatar-colorDefault"
-      style={
-        Object {
-          "marginLeft": null,
-          "zIndex": 0,
-        }
-      }
-    >
-      +
-      1
-    </div>
-  </div>
-</div>
-`;
-
 exports[`board components snapshot matching Goal Side Bar matches snapshot 1`] = `
 <div>
   laoding
@@ -113,10 +57,10 @@ exports[`board components snapshot matching Status Card matches snapshot 1`] = `
 
 exports[`board components snapshot matching Status DropDown matches snapshot 1`] = `
 <div
-  className="MuiFormControl-root makeStyles-dropDown-95"
+  className="MuiFormControl-root makeStyles-dropDown-86"
 >
   <div
-    className="MuiInputBase-root MuiInput-root makeStyles-dropDownMenu-96 MuiInputBase-formControl MuiInput-formControl"
+    className="MuiInputBase-root MuiInput-root makeStyles-dropDownMenu-87 MuiInputBase-formControl MuiInput-formControl"
     onClick={[Function]}
   >
     <div
@@ -140,7 +84,7 @@ exports[`board components snapshot matching Status DropDown matches snapshot 1`]
     />
     <svg
       aria-hidden="true"
-      className="MuiSvgIcon-root MuiSelect-icon makeStyles-icon-98"
+      className="MuiSvgIcon-root MuiSelect-icon makeStyles-icon-89"
       focusable="false"
       viewBox="0 0 24 24"
     >
@@ -165,59 +109,6 @@ exports[`board components snapshot matching Taskcard matches snapshot 1`] = `
         className="MuiTypography-root TaskTitleText MuiTypography-body1"
       />
       
-    </div>
-    <div
-      className="AvatarContent"
-    >
-      <div
-        className="MuiAvatarGroup-root"
-      >
-        <div
-          className="MuiAvatar-root MuiAvatar-circle MuiAvatarGroup-avatar MuiAvatar-colorDefault"
-          style={
-            Object {
-              "marginLeft": null,
-              "zIndex": 4,
-            }
-          }
-        >
-          M
-        </div>
-        <div
-          className="MuiAvatar-root MuiAvatar-circle MuiAvatarGroup-avatar MuiAvatar-colorDefault"
-          style={
-            Object {
-              "marginLeft": null,
-              "zIndex": 3,
-            }
-          }
-        >
-          V
-        </div>
-        <div
-          className="MuiAvatar-root MuiAvatar-circle MuiAvatarGroup-avatar MuiAvatar-colorDefault"
-          style={
-            Object {
-              "marginLeft": null,
-              "zIndex": 2,
-            }
-          }
-        >
-          C
-        </div>
-        <div
-          className="MuiAvatar-root MuiAvatar-circle MuiAvatarGroup-avatar MuiAvatar-colorDefault"
-          style={
-            Object {
-              "marginLeft": null,
-              "zIndex": 0,
-            }
-          }
-        >
-          +
-          1
-        </div>
-      </div>
     </div>
     <div
       className="TaskLabels"
@@ -255,10 +146,10 @@ exports[`board components snapshot matching Taskcard matches snapshot 1`] = `
         </button>
       </div>
       <div
-        className="MuiFormControl-root makeStyles-dropDown-95"
+        className="MuiFormControl-root makeStyles-dropDown-86"
       >
         <div
-          className="MuiInputBase-root MuiInput-root makeStyles-dropDownMenu-96 MuiInputBase-formControl MuiInput-formControl"
+          className="MuiInputBase-root MuiInput-root makeStyles-dropDownMenu-87 MuiInputBase-formControl MuiInput-formControl"
           onClick={[Function]}
         >
           <div
@@ -287,7 +178,7 @@ exports[`board components snapshot matching Taskcard matches snapshot 1`] = `
           />
           <svg
             aria-hidden="true"
-            className="MuiSvgIcon-root MuiSelect-icon makeStyles-icon-98"
+            className="MuiSvgIcon-root MuiSelect-icon makeStyles-icon-89"
             focusable="false"
             viewBox="0 0 24 24"
           >

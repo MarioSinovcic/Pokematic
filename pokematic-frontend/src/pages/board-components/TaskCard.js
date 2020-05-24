@@ -1,17 +1,17 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import Label from '../../shared-components/Label';
+import Label from '../shared-components/Label';
 import ModalConent from './Modals/TaskModalContent';
 import StatusDropdown from './StatusDropdown';
-import Assignees from './Assignees';
-import * as colors from '../../colors';
-import {updateTask} from '../../apiHandler';
+import * as colors from '../shared-components/colors';
+import {updateTask, gatherAllTasks} from '../../api/tasks';
 import './TaskCard.css';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -52,7 +52,7 @@ function TaskCard(props) {
             approved: props.approved,
         };
         await updateTask(updatedTask, props.teamName, props.goalName, props.name);
-        await props.populatePage(props.teamName);
+        await gatherAllTasks(props.teamName);
         await props.populatePage(props.teamName);
     };
 
@@ -64,7 +64,6 @@ function TaskCard(props) {
             <Typography className="TaskTitleText">{props.name}</Typography>
                 {props.approved ? <Typography className="TaskIDText StoryPoint"><CheckCircleIcon /></Typography> : "" }
             </div>
-            <Assignees />
             <div className="TaskLabels">
                 <Label labelText={props.experiencePoints + " XP"} color={colors.fire}/>
                 <StatusDropdown changeStatus={changeStatus} currentStatus={props.status} />

@@ -1,15 +1,15 @@
 /*
-    To run the system in production mdoe, swap the the HOST url to:
-        https://pokematicapi.azurewebsites.net/api/
+    When deploying the front-end change the WEBSITEURI to:
+        https://pokematic.netlify.app/
 
-    To run the system without any interation to the API checkout the apiHandler file
+    When testing locally change the WEBSITEURI to:
+    http://localhost:3000/
 */
+export const HOST = "https://localhost:5001/api/";
 
-// MODEL ENUM FEILDS 
+export const WEBSITEURI ="https://pokematic.netlify.app/";
 
 export const STATUSLIST = ["TODO", "In Progress", "In Review", "Done"];
-export const GETGOALS = "";
-export const GETTASKS = "";
 
 export const POKEMONTYPES = {
     FIRE: "fire",
@@ -30,7 +30,3 @@ export const POKEMONTYPES = {
     GHOST: "ghost",
     DRAGON: "dragon",
 }
-
-// API CALLS 
-export const HOST = "https://localhost:5001/api/";
-

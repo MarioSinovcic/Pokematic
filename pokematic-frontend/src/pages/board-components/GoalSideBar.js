@@ -7,7 +7,7 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import AddIcon from '@material-ui/icons/Add';
 import Goal from './Goal';
-import ModalButton from '../../shared-components/ModalButton';
+import ModalButton from '.././shared-components/ModalButton';
 import './GoalSideBar.css'
 
 const drawerWidth = 250;
@@ -67,12 +67,12 @@ export class GoalSideBar extends React.Component {
           >
             <div className={classes.toolbar} />
             <List>
-                <ListItem button key={"All Tasks"} className="TeamTabs TaskButton">
-                <Typography className="TaskFilter AllTasks">ALL TASKS</Typography>
+                <ListItem key={"All Tasks"} className="TeamTabs TaskButton">
+                <Typography className="TaskFilter AllTasks">GOALS</Typography>
                 </ListItem>
 
-                <ListItem button key={"My Tasks"} className="TeamTabs">
-                <Typography className="TaskFilter MyTasks">MY TASKS</Typography>
+                <ListItem key={"My Tasks"} className="TeamTabs">
+                <Typography className="TaskFilter MyTasks">TEAM GOALS</Typography>
                 </ListItem>
             </List>
             <Divider className="SideBarDivider"/>

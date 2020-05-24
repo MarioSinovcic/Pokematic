@@ -1,6 +1,6 @@
 import React from 'react';
-import * as colors from '../../colors'
-import { POKEMONTYPES } from '../../constants';
+import * as colors from '../shared-components/colors'
+import { POKEMONTYPES } from '../../api/constants';
 
 class PokedexMappingUtil extends React.Component{
 

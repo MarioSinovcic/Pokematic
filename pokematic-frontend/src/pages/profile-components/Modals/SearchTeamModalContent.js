@@ -1,6 +1,6 @@
 import React from "react";
-import {AddUserToTeam} from '../../../apiHandler';
-import TeamDetails from '../../../shared-components/TeamDetails';
+import {AddUserToTeam} from '../../../api/users';
+import TeamDetails from '../../shared-components/TeamDetails';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import "./SearchTeamModalContent.css"

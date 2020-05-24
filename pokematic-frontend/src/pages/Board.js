@@ -1,17 +1,19 @@
 import React from 'react';
+import auth0Cilent from '../Auth0/Auth';
 import GoalSidebar from './board-components/GoalSideBar';
-import TeamCard from '../shared-components/TeamCard';
+import TeamCard from './shared-components/TeamCard';
 import StatusCard from './board-components/StatusCard';
-import ModalButton from '../shared-components/ModalButton';
-import Header from '../shared-components/Header';
+import ModalButton from './shared-components/ModalButton';
+import Header from './shared-components/Header';
 import AddIcon from '@material-ui/icons/Add';
-import { populateBoardPage, fetchPokemonData, fetchPokemonTypes } from '.././apiHandler';
 import LevelUpModalContent from './board-components/Modals/LevelUpModalContent';
 import { Modal, Backdrop, Fade } from '@material-ui/core';
 import { connect } from 'react-redux';
-import { togglePokemonLoad, addPokemonData, addPokemonNames, addPokemonTypes } from '../actions/actions';
+import { togglePokemonLoad, addPokemonData, addPokemonNames, addPokemonTypes } from '../redux/actions/actions';
+import { populateBoardPage } from '.././api/goals';
+import {getTeamInfo} from '.././api/teams';
+import { fetchPokemonData, fetchPokemonTypes } from '.././api/pokemon';
 import './Board.css'
-import auth0Cilent from '../Auth0/Auth';
 
 class Board extends React.Component {
   constructor(props){
@@ -30,12 +32,12 @@ class Board extends React.Component {
       inReviewList: [],
       doneList: [],
       openLevelUp: false,
+      teamLevel: "",
     }
   }
 
   componentDidMount(){
     auth0Cilent.silentAuth();
-    console.log(auth0Cilent);
     this.populatePage();
     if (!this.props.isLoaded) {
       this.getPokemonData();
@@ -73,27 +75,31 @@ class Board extends React.Component {
   }
 
   populatePage = async () => {
-    var apiData = populateBoardPage(this.state.teamName);
+    var goalApiData = populateBoardPage(this.state.teamName);
+    var teamApiData = getTeamInfo(this.state.teamName);
 
     this.setState({
       teamName: this.props.match.params.teamName,
-      goalsList: (await apiData).goalsList,
-      goalNames: (await apiData).goalNames,
-      taskNames: (await apiData).taskNames,
-      todoList: (await apiData).todoList,
-      inProgressList: (await apiData).inProgressList,
-      inReviewList: (await apiData).inReviewList,
-      doneList: (await apiData).doneList,
+      teamLevel: (await teamApiData).level,
+      teamExp: (await teamApiData).experiencePoints,
+      goalsList: (await goalApiData).goalsList,
+      goalNames: (await goalApiData).goalNames,
+      taskNames: (await goalApiData).taskNames,
+      todoList: (await goalApiData).todoList,
+      inProgressList: (await goalApiData).inProgressList,
+      inReviewList: (await goalApiData).inReviewList,
+      doneList: (await goalApiData).doneList,
     })
   }
   
-  handleOpenLevelUpModal() {
+  handleOpenLevelUpModal(newTeamLevel) {
     this.setState({
       openLevelUp: true,
+      teamLevel: newTeamLevel
     })
   };
 
-  handleCloseLevelUpModa() {
+  handleCloseLevelUpModal() {
     this.setState({
       openLevelUp: false,
     })
@@ -109,7 +115,7 @@ class Board extends React.Component {
           <div className="board-page">
           <Header teamName={this.state.teamName} currentPage="/board"/>
           <div className="team-card">
-                <TeamCard teamName={this.state.teamName}/>
+                <TeamCard teamName={this.state.teamName} teamLevel={this.state.teamLevel} teamExp={this.state.teamExp} isComponentofBoard={true}/>
           </div>
             <div className="menu">
             <GoalSidebar 
@@ -143,8 +149,8 @@ class Board extends React.Component {
               aria-describedby="transition-modal-description"
               open={this.state.openLevelUp}
               disableAutoFocus={true}
-              onBackdropClick={() => this.handleOpenLevelUpModa()}
-              onClose={() => this.handleCloseLevelUpModa()}
+              onBackdropClick={() => this.handleOpenLevelUpModal()}
+              onClose={() => this.handleCloseLevelUpModal()}
               closeAfterTransition
               BackdropComponent={Backdrop}
               BackdropProps={{
@@ -157,8 +163,8 @@ class Board extends React.Component {
                   {this.props.pokemonData[1] ? 
                   <LevelUpModalContent
                     teamName={this.state.teamName}
-                    handleClose={this.handleCloseLevelUpModa.bind(this)}
-                    pokemonData={this.props.pokemonData}
+                    handleClose={this.handleCloseLevelUpModal.bind(this)}
+                    newTeamLevel={this.state.teamLevel}
                   />
                   : ""}
                 </div>

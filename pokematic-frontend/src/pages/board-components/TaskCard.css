@@ -65,6 +65,7 @@
 .TaskHeaders {
     width: 100%;
     display: flex;
+    padding-bottom: 70px;
 }
 
 .TaskTitleText {

@@ -1,11 +1,12 @@
 import React from 'react';
-import Header from '../shared-components/Header';
-import Sidebar from '../shared-components/Sidebar';
+import Header from './shared-components/Header';
+import TeamSidebar from './profile-components/TeamSidebar';
 import ProfileCard from './profile-components/ProfileCard';
-import ModalButton from '../shared-components/ModalButton';
+import ModalButton from './shared-components/ModalButton';
 import AddIcon from '@material-ui/icons/Add';
 import SearchIcon from '@material-ui/icons/Search';
-import { getAllTeamsForAUser, getAllTeams } from '.././apiHandler';
+import { getAllTeamsForAUser } from '.././api/users';
+import { getAllTeams } from '.././api/teams';
 import auth0Client from '../Auth0/Auth';
 import './Profile.css';
 
@@ -14,6 +15,7 @@ class Profile extends React.Component {
     super(props);
 
     this.populatePage = this.populatePage.bind(this);
+    this.signOut = this.signOut.bind(this);
 
     this.state = {
       teamsList: [], //personal teamlist added below
@@ -64,7 +66,7 @@ class Profile extends React.Component {
         </header>
         <div className="profile-background"></div>
         <div className="menu">
-          <Sidebar
+          <TeamSidebar
             title={sidebarTitle}
             itemType="TEAM"
             teamsList={this.state.teamsList}
@@ -74,7 +76,7 @@ class Profile extends React.Component {
             <ModalButton icon={newTeamIcon} theme="light" type="new-team"  userId={this.state.name} refreshProfilePage={this.populatePage} />
           </div>
           <div className="profile-content">
-            <ProfileCard className="profile-card" nickname={this.state.nickname} picture={this.state.picture} />
+            <ProfileCard className="profile-card" nickname={this.state.nickname} picture={this.state.picture} signOut={this.signOut} />
           </div>
         </div>
       </div>

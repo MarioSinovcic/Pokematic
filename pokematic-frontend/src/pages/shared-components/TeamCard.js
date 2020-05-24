@@ -1,10 +1,9 @@
 import React from 'react';
-import {getTeamInfo} from '.././apiHandler';
+import {getTeamInfo} from '../../api/teams';
 import TeamDetails from './TeamDetails';
-import './TeamCard.css';
-import { addToCollection, setCollection } from '../actions/actions';
+import { addToCollection, setCollection } from '../../redux/actions/actions';
 import { connect } from 'react-redux';
-
+import './TeamCard.css';
 
 class TeamCard extends React.Component {
     constructor(props){
@@ -13,30 +12,41 @@ class TeamCard extends React.Component {
 
         this.state = {
             teamData: [],
+            goals: [],
         }
     }
 
-    componentDidMount(){
-        this.getTeamData();
+    async componentDidMount(){
+        await this.getTeamData().then((apiData) => {
+            this.setState({
+                teamData: (apiData),
+                goals: this.props.goals
+            })
+        });
     }
     
-    getTeamData = async ()  => {
-        var apiData = await getTeamInfo(this.props.teamName);
-
-        this.setState({
-            teamData: (await apiData)
-        })
+    getTeamData =  ()  => {
+        return getTeamInfo(this.props.teamName);
     }
 
     render(){
+        var teamLevel;
+        var XP;
+        if(!this.props.isComponentofBoard){
+            teamLevel = this.state.teamData["level"];
+            XP = this.state.teamData["experiencePoints"];
+        }else{
+            teamLevel = this.props.teamLevel;
+            XP = this.props.teamExp;
+        }
         return (
             <div id="CardShape">
                 <div className="base-shape shape-content">
                     <TeamDetails 
                         name={this.state.teamData["name"]}
                         imageUri={this.state.teamData["imageUri"]}
-                        level={this.state.teamData["level"]}
-                        experiencePoints={this.state.teamData["experiencePoints"]}
+                        level={teamLevel}
+                        experiencePoints={XP}
                         />
                 </div>
                 <div className="bottom-support"></div>

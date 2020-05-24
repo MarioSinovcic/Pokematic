@@ -4,9 +4,6 @@ import { Typography, Button } from '@material-ui/core';
 
 function ProfileCard(props) {
 
-    // TEMP: fetch user details & change role into enum/object
-    const role = "Developer";
-
     return (
         <div className="profile-card-shape">
         <div className="profile-card-shadow"></div>
@@ -18,7 +15,7 @@ function ProfileCard(props) {
                     </div>
                     <Typography className="user-name">{props.nickname}</Typography>
                 </div>
-                <Button className="TeamLabel role-button">{role}</Button>
+                <Button className="sign-out-button" onClick={props.signOut}>Sign out</Button>
             </div>
     
             </div>

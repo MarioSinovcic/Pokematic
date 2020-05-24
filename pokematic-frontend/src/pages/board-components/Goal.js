@@ -5,9 +5,10 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { Typography, Divider, ListItem } from '@material-ui/core';
-import ProgressBar from '../../shared-components/ProgressBar';
-import {deleteGoal} from '../../apiHandler';
+import ProgressBar from '.././shared-components/ProgressBar';
+import {deleteGoal} from '../../api/goals';
 import './Goal.css';
+import { gatherAllTasks } from '../../api/tasks';
 
 function Goal(props) {
   const [open, setOpen] = React.useState(false);
@@ -22,8 +23,8 @@ function Goal(props) {
 
   async function handleDeleteGoal(){
     await deleteGoal(props.teamName, props.name);
-    await props.populatePage();
-    await props.populatePage();
+    await gatherAllTasks(props.teamName);
+    await props.populatePage(props.teamName);
     setOpen(false);
   }
 

@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { Typography } from '@material-ui/core';
-import {deleteTask, updateTask, handleApproval} from '../../../apiHandler';
+import {deleteTask, updateTask, handleApproval, gatherAllTasks} from '../../../api/tasks';
 import "./TaskModalContent.css"
 
 const useStyles = makeStyles({
@@ -46,9 +46,9 @@ function TaskModalContent (props) {
 
     async function handleDelete() {
         await deleteTask(props.teamName, props.goalName, props.name);
+        await gatherAllTasks(props.teamName);
         await props.populatePage(props.teamName);
         props.handleClose();
-        props.openLevelUp();
 
     }
 
@@ -67,10 +67,12 @@ function TaskModalContent (props) {
         await props.populatePage(props.teamName);
 
         if(selectedApproved){
-            var levelUp = await handleApproval(props.teamName, props.goalName, props.experiencePoints);
+            var levelInfo = await handleApproval(props.teamName, props.goalName, props.experiencePoints);
             await props.populatePage(props.teamName);
-            if(levelUp){
-                props.openLevelUp();
+            await props.populatePage(props.teamName);
+
+            if(levelInfo[0] < levelInfo[1]){
+                props.openLevelUp(levelInfo[1]);
             }
         }
         props.handleClose();

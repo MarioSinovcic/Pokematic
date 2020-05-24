@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
 import { createStore } from 'redux';
-import rootReducers from '../reducers';
+import rootReducers from '../redux/reducers';
 import LevelUpModalContent from '../pages/board-components/Modals/LevelUpModalContent';
 import NewGoalModalContent from '../pages/board-components/Modals/NewGoalModalContent';
 import TaskModalContent from '../pages/board-components/Modals/TaskModalContent';
