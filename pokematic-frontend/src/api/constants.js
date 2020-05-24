@@ -1,6 +1,6 @@
 /*
     When deploying the front-end change the WEBSITEURI to:
-        https://pokematicapi.azurewebsites.net/
+        https://pokematic.netlify.app/
 */
 export const HOST = "https://localhost:5001/api/";
 
