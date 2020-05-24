@@ -4,7 +4,7 @@ import Board from '../pages/Board';
 import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
 import { createStore } from 'redux';
-import rootReducers from '../reducers/pokemonReducer';
+import rootReducers from '../redux/reducers';
 import NotFound from '../pages/NotFound';
 import Routes from '../router/Routes';
 import Login from '../pages/Login';

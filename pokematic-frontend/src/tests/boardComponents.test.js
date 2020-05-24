@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
 import { createStore } from 'redux';
-import rootReducers from '../reducers';
+import rootReducers from '../redux/reducers';
 import Goal from '../pages/board-components/Goal';
 import GoalSideBar from '../pages/board-components/GoalSideBar';
 import StatusCard from '../pages/board-components/StatusCard';
