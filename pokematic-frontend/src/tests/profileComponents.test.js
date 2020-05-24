@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
 import { createStore } from 'redux';
-import rootReducers from '../reducers';
+import rootReducers from '../redux/reducers';
 import ProfileCard from '../pages/profile-components/ProfileCard';
 import TeamSidebar from '../pages/profile-components/TeamSidebar';
 
