@@ -1,10 +1,13 @@
 /*
     When deploying the front-end change the WEBSITEURI to:
         https://pokematic.netlify.app/
+
+    When testing locally change the WEBSITEURI to:
+    http://localhost:3000/
 */
 export const HOST = "https://localhost:5001/api/";
 
-export const WEBSITEURI ="http://localhost:3000/";
+export const WEBSITEURI ="https://pokematic.netlify.app/";
 
 export const STATUSLIST = ["TODO", "In Progress", "In Review", "Done"];
 
