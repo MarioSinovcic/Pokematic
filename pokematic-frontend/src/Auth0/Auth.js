@@ -1,4 +1,5 @@
 import auth0 from 'auth0-js';
+import {WEBSITEURI} from '../api/constants';
 
 class Auth {
   constructor() {
@@ -6,7 +7,7 @@ class Auth {
       domain: 'dev-zjltb3n1.au.auth0.com',
       audience: 'https://dev-zjltb3n1.au.auth0.com/userinfo',
       clientID: 'tdWcPjeQnkZUQJH79YBaTzApEgvcDNWM',
-      redirectUri: 'http://localhost:3000/callback',
+      redirectUri: WEBSITEURI+'callback',
       responseType: 'id_token',
       scope: 'openid profile'
     });
@@ -67,7 +68,7 @@ class Auth {
     this.profile = null;
     this.expiresAt = null;
     this.auth0.logout({
-        returnTo: 'http://localhost:3000',
+        returnTo: WEBSITEURI,
         clientID: 'tdWcPjeQnkZUQJH79YBaTzApEgvcDNWM',
     });
   }
